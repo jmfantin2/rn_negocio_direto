@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-import RootStackContainer from './src/routes'
+import RootStackContainer from './routes'
 import { ThemeProvider } from 'styled-components'
-import { globalStyles } from './src/styles'
+import { globalStyles } from './styles'
 
-import './src/config/ReactotronConfig'
-import { setTopLevelNavigator } from './src/utils'
+import './config/ReactotronConfig'
+import { setTopLevelNavigator } from './utils'
 
 export default class App extends Component {
   render() {
