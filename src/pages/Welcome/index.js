@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { StackActions, NavigationActions } from 'react-navigation'
 import { StatusBar, ActivityIndicator, AsyncStorage } from 'react-native'
 import PropTypes from 'prop-types'
+import { general } from '../../../assets/general'
 
 import api from '../../services/api'
 
@@ -56,7 +57,7 @@ export default function Welcome(props) {
       console.log(err)
 
       setLoading(false)
-      setErrorMessage('Usuário não existe')
+      setErrorMessage(general.strings.USER_NOT_FOUND)
     }
   }
 
@@ -64,9 +65,9 @@ export default function Welcome(props) {
     <Container>
       <StatusBar barStyle="light-content" />
 
-      <Title>Bem-vindo</Title>
+      <Title>{general.strings.WELCOME}</Title>
       <TextInformation>
-        Para continuar, precisamos que você informe seu usuário
+          {general.strings.CONTINUE}
       </TextInformation>
 
       {!!errorMessage && <Error>{errorMessage}</Error>}
@@ -75,7 +76,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder="Digite seu usuário"
+          placeholder={general.strings.INSERT_USERNAME}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           value={username}
           onChangeText={username => setUsername(username)}
@@ -84,7 +85,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder="Digite sua senha"
+          placeholder={general.strings.INSERT_PASSWORD}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           secureTextEntry={true}
           value={password}
@@ -95,7 +96,7 @@ export default function Welcome(props) {
           {loading ? (
             <ActivityIndicator size="small" color="#FFF" />
           ) : (
-            <ButtonText>Prosseguir</ButtonText>
+            <ButtonText>{general.strings.GO_AHEAD}</ButtonText>
           )}
         </Button>
       </Form>

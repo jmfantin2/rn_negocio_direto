@@ -2,7 +2,7 @@ import { Dimensions } from 'react-native'
 
 const { width, height } = Dimensions.get('window')
 
-const styles = {
+const globalStyles = {
   box: {
     backgroundColor: '#FFF',
     borderRadius: 3,
@@ -25,6 +25,7 @@ const styles = {
     dark: '#666',
     darker: '#333',
     black: '#000',
+    darkGreen: '#075e54',
 
     primary: '#7A91CA',
     secondary: '#444A5A',
@@ -37,4 +38,4 @@ const styles = {
   },
 };
 
-export default styles
+export default globalStyles

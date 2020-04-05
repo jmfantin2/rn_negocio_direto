@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import api from '../../services/api'
 import { deleteUser } from '../../utils'
 import ProductItem from '../../components/ProductItem'
-
-import { Container, Title, Button, ButtonText, ProductList } from './styles'
+import { general } from '../../../assets/general'
+import { Container, LogoutText, ProductList } from './styles'
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -14,11 +14,8 @@ export default function Home() {
 
   useEffect(() => {
     async function loadProducts() {
-
       const response = await api.get('/products')
-
       console.log(response.data)
-
       setData(response.data.products);
     }
 
@@ -43,7 +40,7 @@ export default function Home() {
 Home.navigationOptions = ({ navigation }) => {
 
   return {
-    title: 'Home',
+    title: '${general.strings.CLIENT_TITLE}',
     headerBackTitleVisible: true,
     headerRight: () => (
       <TouchableOpacity
@@ -54,7 +51,9 @@ Home.navigationOptions = ({ navigation }) => {
         )}
         style={{ marginRight: 10 }}
       >
-        <Text>Sair</Text>
+        <Text style ={{color:general.styles.colors.white}}>   
+          {general.strings.EXIT}
+        </Text>
       </TouchableOpacity>
     ),
   };

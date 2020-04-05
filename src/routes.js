@@ -5,6 +5,8 @@ import Welcome from './pages/Welcome'
 import Home from './pages/Home'
 import AuthLoadingScreen from './pages/AuthLoadingScreen'
 
+import { general } from '../assets/general'
+
 const StackNavigator = createStackNavigator(
   {
     Home,
@@ -12,7 +14,10 @@ const StackNavigator = createStackNavigator(
   {
     initialRouteName: 'Home',
     defaultNavigationOptions: {
-      headerTintColor: '#000',
+      headerStyle: {
+        backgroundColor: general.styles.colors.darkGreen
+      },
+      headerTintColor: '#FFF',
       headerTitleStyle: {
         fontWeight: 'bold',
       },

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import RootStackContainer from './routes'
 import { ThemeProvider } from 'styled-components'
-import { globalStyles } from './styles'
+import { general } from '../../assets/general'
 
 import './config/ReactotronConfig'
 import { setTopLevelNavigator } from './utils'
@@ -10,7 +10,7 @@ import { setTopLevelNavigator } from './utils'
 export default class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={globalStyles}>
+      <ThemeProvider theme={general.styles}>
         <RootStackContainer  
           ref={navigatorRef => {
             setTopLevelNavigator(navigatorRef)

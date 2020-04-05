@@ -1,9 +1,10 @@
 import styled from 'styled-components/native'
+import { general } from '../../../assets/general'
 
 export const Container = styled.View`
   display: flex;
-  flex: 1;
-  background-color: #444a5a;
+  flex: 1; 
+  background-color: ${general.styles.colors.darkGreen};
   padding: 40px;
   justify-content: center;
   align-items: stretch;
