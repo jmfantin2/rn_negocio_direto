@@ -40,7 +40,7 @@ export default function Home() {
 Home.navigationOptions = ({ navigation }) => {
 
   return {
-    title: '${general.strings.CLIENT_TITLE}',
+    title: `${general.strings.CLIENT_TITLE}`,
     headerBackTitleVisible: true,
     headerRight: () => (
       <TouchableOpacity

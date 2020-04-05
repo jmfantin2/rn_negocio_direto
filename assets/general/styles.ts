@@ -25,7 +25,9 @@ const globalStyles = {
     dark: '#666',
     darker: '#333',
     black: '#000',
-    darkGreen: '#075e54',
+    oceanGreen: '#075e54',
+    businessGreen: '#004610', 
+    businessBrown:'#8c6254',
 
     primary: '#7A91CA',
     secondary: '#444A5A',

@@ -4,10 +4,13 @@ import { StatusBar, ActivityIndicator, AsyncStorage } from 'react-native'
 import PropTypes from 'prop-types'
 import { general } from '../../../assets/general'
 
+import LogoSrc from '../../../assets/images/nd-horizontal-transparent.png'
+
 import api from '../../services/api'
 
 import {
   Container,
+  Logo,
   Title,
   TextInformation,
   Error,
@@ -28,15 +31,15 @@ export default function Welcome(props) {
   }
 
   async function signIn() {
-    if (username.length === 0) return
+    if (username.length === 0 || password.length === 0) return
 
     setLoading(true)
 
     try {
 
       const credentials = {
-        email: username,
-        password: password
+        email: username.replace(/\s+/g, ''),
+        password: password.replace(/\s+/g, '')
       }
 
       const response = await api.post('/sessions', credentials)
@@ -65,6 +68,7 @@ export default function Welcome(props) {
     <Container>
       <StatusBar barStyle="light-content" />
 
+      <Logo source={LogoSrc}/>
       <Title>{general.strings.WELCOME}</Title>
       <TextInformation>
           {general.strings.CONTINUE}
@@ -94,7 +98,7 @@ export default function Welcome(props) {
 
         <Button onPress={signIn}>
           {loading ? (
-            <ActivityIndicator size="small" color="#FFF" />
+            <ActivityIndicator size="small" />
           ) : (
             <ButtonText>{general.strings.GO_AHEAD}</ButtonText>
           )}

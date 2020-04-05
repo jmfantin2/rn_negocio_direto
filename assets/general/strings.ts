@@ -1,12 +1,14 @@
+//Adicionar strings em ordem alfabetica, por favor!
+
 const globalStrings = {
   CLIENT_TITLE: "Negócio Direto",
-  WELCOME: "Bem-vindo ao\nNegócio Direto",
-  CONTINUE: "Para continuar, precisamos que você informe seu usuário",
-  GO_AHEAD: "Prosseguir",
+  CONTINUE: "Para continuar, precisamos\nque você informe seu usuário",
   EXIT: "Sair",
-  INSERT_USERNAME: "Digite seu usuário",
+  GO_AHEAD: "Prosseguir",
   INSERT_PASSWORD: "Digite sua senha",
-  USER_NOT_FOUND: "Usuário não existe",
+  INSERT_USERNAME: "Digite seu usuário",
+  USER_NOT_FOUND: "Usuário ou senha incorretos",
+  WELCOME: "Bem-vindo ao\nNegócio Direto",
 };
 
 export default globalStrings
