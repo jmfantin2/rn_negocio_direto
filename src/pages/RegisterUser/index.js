@@ -1,84 +1,124 @@
 import React, { useState } from 'react'
-import { StackActions, NavigationActions } from 'react-navigation'
-import { StatusBar, ActivityIndicator, AsyncStorage, TouchableOpacity } from 'react-native'
-import PropTypes from 'prop-types'
+import { TouchableOpacity, View } from 'react-native'
 import { general } from '../../../assets/general'
 
 import { Ionicons } from '@expo/vector-icons';
 
-import { Container, Title, Input, Label, Button, ButtonText } from './styles'
+import { 
+  Container, 
+  Input, 
+  Label, 
+  Button, 
+  ButtonText,
+  Notice, 
+  LabelContainer } from './styles'
 
-// TODO: header-margin and navigate
-export default function RegisterUser() {
-  const [username, setUsername] = useState('')
+const RegisterUser = () => {
+  const [fullName, setFullName] = useState('')
   const [password, setPassword] = useState('')
   const [cpf, setCpf] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
-  
+  const [submitAttempt, setSubmitAttempt] = useState(false)
+  const [pressedKey, setPressedKey] = useState(false)
+
+  // const maskPhoneNumber = (phoneNumber) =>{
+  //         phoneNumber.length == 1 && !pressedKey  ? setPhoneNumber(phoneNumber="(" + phoneNumber) : //if
+  //         phoneNumber.length == 3 && !pressedKey  ? setPhoneNumber(phoneNumber+=")") : //else if
+  //         phoneNumber.length == 9 && !pressedKey  ? setPhoneNumber(phoneNumber+="-") : //else if 
+  //         setPhoneNumber(phoneNumber)  //else
+  // }
+
+  // const maskCpfNumber = (cpf) => {
+  //       cpf.length == 3  && !pressedKey ? setCpf(cpf+=".") :
+  //       cpf.length == 7  && !pressedKey ? setCpf(cpf+=".") :
+  //       cpf.length == 11 && !pressedKey ? setCpf(cpf+="-") :
+  //       setCpf(cpf)
+  // }
+
   return(
     <Container>
-      <Label>
+      <LabelContainer>
+        <Label>
           {general.strings.FULL_NAME}
-      </Label>
+        </Label>
+      </LabelContainer>
       <Input
         autoCapitalize="words"
         autoCorrect={false}
-        placeholder={general.strings.SET_NAME}
+        placeholder={general.strings.PLACEHOLDER_NAME}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
-        value={username}
-        onChangeText={username => setUsername(username)}
+        value={fullName}
+        onChangeText={fullName => setFullName(fullName)}
       />
-      <Label>
+      <LabelContainer>
+        <Label>
           {general.strings.CPF}
-      </Label>
+        </Label>
+      </LabelContainer>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.SET_CPF}
+        placeholder={general.strings.PLACEHOLDER_CPF}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
         keyboardType={'numeric'}
+        maxLength={11}
         value={cpf}
         onChangeText={cpf => setCpf(cpf)}
       />
-      <Label>
+      <LabelContainer>
+        <Label>
           {general.strings.PHONE_NUMBER}
-      </Label>
+        </Label>
+      </LabelContainer>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.SET_PHONE_NUMBER}
+        placeholder={general.strings.PLACEHOLDER_PHONE}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
         keyboardType={'numeric'}
-        format="(##) #####-####" 
-        mask="_"
-        value={phoneNumber}
+        maxLength={11}
+        value={phoneNumber} 
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
+        
       />
-      <Label>
+      <LabelContainer>
+        <Label>
           {general.strings.EMAIL}
-      </Label>
+        </Label>
+      </LabelContainer>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.SET_EMAIL}
+        placeholder={general.strings.PLACEHOLDER_EMAIL}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
         value={email}
         onChangeText={email => setEmail(email)}
       />
-      <Label>
+      <LabelContainer>
+        <Label>
           {general.strings.PASSWORD}
-      </Label>
+        </Label>
+        <Notice 
+          color={(password.length < 8 && submitAttempt) ? `${general.styles.colors.danger}` : `${general.styles.colors.lighter}`}
+        >
+          {general.strings.INVALID_PASSWORD}
+        </Notice>
+      </LabelContainer>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.SET_PASSWORD}
+        placeholder={general.strings.PLACEHOLDER_PASSWORD}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
         value={password}
         secureTextEntry={true}
+        minLength={8}
+        borderColor={(password.length < 8 && submitAttempt) ? `${general.styles.colors.danger}` : `${general.styles.colors.white}`}
         onChangeText={password => setPassword(password)}
       />
-      <Button>
+      <Button
+        onPress={() => setSubmitAttempt(true)}
+      >
         <ButtonText>{general.strings.FINISH_SIGN_UP.toUpperCase()}</ButtonText>
       </Button>
     </Container>
@@ -100,8 +140,4 @@ RegisterUser.navigationOptions = ({ navigation }) => {
   }
 }
 
-RegisterUser.propTypes = {
-  navigation: PropTypes.shape({
-    dispatch: PropTypes.func,
-  }).isRequired,
-}
+export default RegisterUser

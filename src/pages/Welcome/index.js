@@ -23,7 +23,7 @@ import {
 } from './styles'
 
 export default function Welcome(props) {
-  const [username, setUsername] = useState('')
+  const [email, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
@@ -33,14 +33,14 @@ export default function Welcome(props) {
   }
 
   async function signIn() {
-    if (username.length === 0 || password.length === 0) return
+    if (email.length === 0 || password.length === 0) return
 
     setLoading(true)
 
     try {
 
       const credentials = {
-        email: username.replace(/\s+/g, ''),
+        email: email.replace(/\s+/g, ''),
         password: password.replace(/\s+/g, '')
       }
 
@@ -82,16 +82,16 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.SET_USERNAME}
+          placeholder={general.strings.INSERT_EMAIL}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
-          value={username}
-          onChangeText={username => setUsername(username)}
+          value={email}
+          onChangeText={email => setUsername(email)}
         />
 
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.SET_PASSWORD}
+          placeholder={general.strings.INSERT_PASSWORD}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           secureTextEntry={true}
           value={password}
