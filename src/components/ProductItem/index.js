@@ -12,9 +12,8 @@ export default function ProductItem({ product }) {
       />
       <InfoContainer>
         <ProductName>{product.name}</ProductName>
-        <Text>{general.strings.COST} {product.cost}</Text>
-        <Text>{general.strings.QUANTITY} {product.quantity}</Text>
-        <Text>{general.strings.ID} {product.id}</Text>
+        <Text>{general.strings.COST}: {product.cost}</Text>
+        <Text>{general.strings.QUANTITY}: {product.quantity}</Text>
       </InfoContainer>  
     </Container>
   );

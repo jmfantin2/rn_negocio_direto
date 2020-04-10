@@ -8,7 +8,8 @@ import RegisterUser from './pages/RegisterUser'
 
 import { general } from '../assets/general'
 
-const StackNavigator = createStackNavigator(
+//Telas acessíveis apenas após Login!
+const StackNavigator = createStackNavigator( 
   {
     Home,
   },
@@ -17,7 +18,6 @@ const StackNavigator = createStackNavigator(
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: general.styles.colors.oceanGreen,
-        marginRight: 8
       },
       headerTintColor: general.styles.colors.white,
       headerTitleStyle: {
@@ -29,10 +29,10 @@ const StackNavigator = createStackNavigator(
 
 const StackNavigatorContainer = createAppContainer(StackNavigator);
 
+//Telas de fluxo de Autenticação!
 const AuthStack = createStackNavigator(
   {
     SignIn: Welcome,
-    //SignUp: RegisterUser,
     App: StackNavigatorContainer,
   },
   {
@@ -42,10 +42,33 @@ const AuthStack = createStackNavigator(
   },
 );
 
+//Telas de fluxo de Cadastro!
+const SignUpStack = createStackNavigator(
+  {
+    RegisterUser,
+    App: StackNavigatorContainer,
+  },
+  {
+    initialRouteName: 'RegisterUser',
+    headerShown: true,
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: general.styles.colors.oceanGreen,
+      },
+      headerTintColor: general.styles.colors.white,
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    }
+  },
+    
+)
+
 const RootStack = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     Auth: AuthStack,
+    RegisterUser: SignUpStack,
     App: StackNavigatorContainer,
   },
   {

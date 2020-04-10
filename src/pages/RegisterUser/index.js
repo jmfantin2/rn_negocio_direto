@@ -6,49 +6,90 @@ import { general } from '../../../assets/general'
 
 import { Ionicons } from '@expo/vector-icons';
 
-import { Container, Title, Input } from './styles'
+import { Container, Title, Input, Label, Button, ButtonText } from './styles'
 
 // TODO: header-margin and navigate
 export default function RegisterUser() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [cpf, setCpf] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  
   return(
     <Container>
-      <Title>
-        {general.strings.CREATE_ACCOUNT}
-      </Title>
+      <Label>
+          {general.strings.FULL_NAME}
+      </Label>
+      <Input
+        autoCapitalize="words"
+        autoCorrect={false}
+        placeholder={general.strings.SET_NAME}
+        underlineColorAndroid="rgba(0, 0, 0, 0)"
+        value={username}
+        onChangeText={username => setUsername(username)}
+      />
+      <Label>
+          {general.strings.CPF}
+      </Label>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.INSERT_USERNAME}
+        placeholder={general.strings.SET_CPF}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
+        keyboardType={'numeric'}
+        value={cpf}
+        onChangeText={cpf => setCpf(cpf)}
       />
+      <Label>
+          {general.strings.PHONE_NUMBER}
+      </Label>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.INSERT_PASSWORD}
+        placeholder={general.strings.SET_PHONE_NUMBER}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
+        keyboardType={'numeric'}
+        format="(##) #####-####" 
+        mask="_"
+        value={phoneNumber}
+        onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
       />
+      <Label>
+          {general.strings.EMAIL}
+      </Label>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.INSERT_EMAIL}
+        placeholder={general.strings.SET_EMAIL}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
+        value={email}
+        onChangeText={email => setEmail(email)}
       />
+      <Label>
+          {general.strings.PASSWORD}
+      </Label>
       <Input
         autoCapitalize="none"
         autoCorrect={false}
-        placeholder={general.strings.INSERT_PHONE_NUMBER}
+        placeholder={general.strings.SET_PASSWORD}
         underlineColorAndroid="rgba(0, 0, 0, 0)"
+        value={password}
+        secureTextEntry={true}
+        onChangeText={password => setPassword(password)}
       />
+      <Button>
+        <ButtonText>{general.strings.FINISH_SIGN_UP.toUpperCase()}</ButtonText>
+      </Button>
     </Container>
   )
 }
 
-SignUp.navigationOptions = ({ navigation }) => {
+RegisterUser.navigationOptions = ({ navigation }) => {
   return {
-    title: `${general.strings.SIGN_UP}`,
-
+    title: `${general.strings.CREATE_ACCOUNT}`,
     headerRight: () => (
-      <TouchableOpacity onPress={() => navigation.navigate('Auth')} >
+      <TouchableOpacity onPress={() => navigation.navigate('Auth')} style={{ marginRight: 20 }} >
         <Ionicons 
           name="md-arrow-back" 
           size={32} 
@@ -57,4 +98,10 @@ SignUp.navigationOptions = ({ navigation }) => {
       </TouchableOpacity>
     ),   
   }
+}
+
+RegisterUser.propTypes = {
+  navigation: PropTypes.shape({
+    dispatch: PropTypes.func,
+  }).isRequired,
 }

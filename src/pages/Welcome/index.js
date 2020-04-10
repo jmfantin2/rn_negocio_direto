@@ -82,7 +82,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.INSERT_USERNAME}
+          placeholder={general.strings.SET_USERNAME}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           value={username}
           onChangeText={username => setUsername(username)}
@@ -91,7 +91,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.INSERT_PASSWORD}
+          placeholder={general.strings.SET_PASSWORD}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           secureTextEntry={true}
           value={password}
@@ -102,13 +102,13 @@ export default function Welcome(props) {
           {loading ? (
             <ActivityIndicator size="small" />
           ) : (
-            <ButtonText>{general.strings.GO_AHEAD}</ButtonText>
+            <ButtonText>{general.strings.GO_AHEAD.toUpperCase()}</ButtonText>
           )}
         </Button>
         <BottomForm>
-        <TouchableOpacity onPress={props.navigation.navigate('RegisterUser')}>
-        <SignInText>{general.strings.SIGN_UP}</SignInText>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => props.navigation.navigate('RegisterUser')}>
+            <SignInText>{general.strings.SIGN_UP}</SignInText>
+          </TouchableOpacity>
         </BottomForm>
       </Form>
       
