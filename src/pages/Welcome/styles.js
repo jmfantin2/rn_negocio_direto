@@ -65,3 +65,18 @@ export const ButtonText = styled.Text`
   font-weight: bold;
   font-size: 18px;
 `;
+
+export const SignInText = styled.Text`
+  color: ${general.styles.colors.white};
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+export const BottomForm = styled.View`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: 15px;
+  margin-top: 5px;
+`;

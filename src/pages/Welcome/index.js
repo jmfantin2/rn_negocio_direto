@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StackActions, NavigationActions } from 'react-navigation'
-import { StatusBar, ActivityIndicator, AsyncStorage } from 'react-native'
+import { StatusBar, ActivityIndicator, AsyncStorage, TouchableOpacity} from 'react-native'
 import PropTypes from 'prop-types'
 import { general } from '../../../assets/general'
 
@@ -18,6 +18,8 @@ import {
   Input,
   Button,
   ButtonText,
+  SignInText,
+  BottomForm
 } from './styles'
 
 export default function Welcome(props) {
@@ -103,7 +105,13 @@ export default function Welcome(props) {
             <ButtonText>{general.strings.GO_AHEAD}</ButtonText>
           )}
         </Button>
+        <BottomForm>
+        <TouchableOpacity onPress={props.navigation.navigate('RegisterUser')}>
+        <SignInText>{general.strings.SIGN_UP}</SignInText>
+        </TouchableOpacity>
+        </BottomForm>
       </Form>
+      
     </Container>
   )
 }

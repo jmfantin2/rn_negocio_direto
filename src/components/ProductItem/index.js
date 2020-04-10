@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text } from 'react-native'
+import { general } from '../../../assets/general'
 
 import { Container, ProductImage, InfoContainer, ProductName } from './styles'
 
@@ -11,8 +12,9 @@ export default function ProductItem({ product }) {
       />
       <InfoContainer>
         <ProductName>{product.name}</ProductName>
-        <Text>Cost {product.cost}</Text>
-        <Text>Quantity {product.quantity}</Text>
+        <Text>{general.strings.COST} {product.cost}</Text>
+        <Text>{general.strings.QUANTITY} {product.quantity}</Text>
+        <Text>{general.strings.ID} {product.id}</Text>
       </InfoContainer>  
     </Container>
   );
