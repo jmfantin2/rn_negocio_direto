@@ -1,120 +1,82 @@
 import React, { useState } from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, View, ActivityIndicator } from 'react-native';
 import { general } from '../../../assets/general'
+
+import{
+  LabelContainer,
+  Label,
+  Notice,
+  Input,
+  Button,
+  ButtonText
+} from './styles'
+
+import { withFormik } from 'formik';
 
 import { Ionicons } from '@expo/vector-icons';
 
-import { 
-  Container, 
-  Input, 
-  Label, 
-  Button, 
-  ButtonText,
-  Notice, 
-  LabelContainer } from './styles'
-
-const RegisterUser = () => {
-  const [fullName, setFullName] = useState('')
-  const [password, setPassword] = useState('')
-  const [cpf, setCpf] = useState('')
-  const [email, setEmail] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [submitAttempt, setSubmitAttempt] = useState(false)
-  const [pressedKey, setPressedKey] = useState(false)
-
-  // const maskPhoneNumber = (phoneNumber) =>{
-  //         phoneNumber.length == 1 && !pressedKey  ? setPhoneNumber(phoneNumber="(" + phoneNumber) : //if
-  //         phoneNumber.length == 3 && !pressedKey  ? setPhoneNumber(phoneNumber+=")") : //else if
-  //         phoneNumber.length == 9 && !pressedKey  ? setPhoneNumber(phoneNumber+="-") : //else if 
-  //         setPhoneNumber(phoneNumber)  //else
-  // }
-
-  // const maskCpfNumber = (cpf) => {
-  //       cpf.length == 3  && !pressedKey ? setCpf(cpf+=".") :
-  //       cpf.length == 7  && !pressedKey ? setCpf(cpf+=".") :
-  //       cpf.length == 11 && !pressedKey ? setCpf(cpf+="-") :
-  //       setCpf(cpf)
-  // }
-
-  return(
-    <Container>
+  const RegisterUser = props => (
+    <View>
       <LabelContainer>
-        <Label>
-          {general.strings.FULL_NAME}
-        </Label>
+        <Label>{general.strings.FULL_NAME}</Label>
+        <Notice>{general.strings.INVALID_FULL_NAME}</Notice>
       </LabelContainer>
       <Input
-        autoCapitalize="words"
-        autoCorrect={false}
+        value={props.values.fullName}
+        onChangeText={text => props.setFieldValue('fullName', text)}
         placeholder={general.strings.PLACEHOLDER_FULL_NAME}
-        value={fullName}
-        onChangeText={fullName => setFullName(fullName)}
       />
+
       <LabelContainer>
-        <Label>
-          {general.strings.CPF}
-        </Label>
+        <Label>{general.strings.CPF}</Label>
+        <Notice>{general.strings.INVALID_CPF}</Notice>
       </LabelContainer>
       <Input
-        autoCapitalize="none"
-        autoCorrect={false}
+        value={props.values.cpf}
+        onChangeText={text => props.setFieldValue('cpf', text)}
         placeholder={general.strings.PLACEHOLDER_CPF}
-        keyboardType={'numeric'}
-        maxLength={11}
-        value={cpf}
-        onChangeText={cpf => setCpf(cpf)}
       />
+      
       <LabelContainer>
-        <Label>
-          {general.strings.PHONE_NUMBER}
-        </Label>
+        <Label>{general.strings.PHONE_NUMBER}</Label>
+        <Notice>{general.strings.INVALID_PHONE}</Notice>
       </LabelContainer>
       <Input
-        autoCapitalize="none"
-        autoCorrect={false}
+        value={props.values.phone}
+        onChangeText={text => props.setFieldValue('phone', text)}
         placeholder={general.strings.PLACEHOLDER_PHONE}
-        keyboardType={'numeric'}
-        maxLength={11}
-        value={phoneNumber} 
-        onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
       />
+
       <LabelContainer>
-        <Label>
-          {general.strings.EMAIL}
-        </Label>
+        <Label>{general.strings.EMAIL}</Label>
+        <Notice>{general.strings.INVALID_EMAIL}</Notice>
       </LabelContainer>
       <Input
-        autoCapitalize="none"
-        autoCorrect={false}
+        value={props.values.email}
+        onChangeText={text => props.setFieldValue('email', text)}
         placeholder={general.strings.PLACEHOLDER_EMAIL}
-        value={email}
-        onChangeText={email => setEmail(email)}
       />
+
       <LabelContainer>
-        <Label>
-          {general.strings.PASSWORD}
-        </Label>
-        <Notice>
-          {general.strings.INVALID_PASSWORD}
-        </Notice>
+        <Label>{general.strings.PASSWORD}</Label>
+        <Notice>{general.strings.INVALID_PASSWORD}</Notice>
       </LabelContainer>
       <Input
-        autoCapitalize="none"
-        autoCorrect={false}
+        value={props.values.password}
+        onChangeText={text => props.setFieldValue('password', text)}
         placeholder={general.strings.PLACEHOLDER_PASSWORD}
-        value={password}
-        secureTextEntry={true}
-        minLength={8}
-        onChangeText={password => setPassword(password)}
       />
+
       <Button
-        onPress={() => setSubmitAttempt(true)}
+        onPress={props.handleSubmit}
+        title="Submit"
       >
-        <ButtonText>{general.strings.FINISH_SIGN_UP.toUpperCase()}</ButtonText>
+        <ButtonText>
+          {general.strings.FINISH_SIGN_UP.toUpperCase()}
+        </ButtonText>
       </Button>
-    </Container>
-  )
-}
+    </View>
+  );
 
 RegisterUser.navigationOptions = ({ navigation }) => {
   return {
@@ -131,4 +93,15 @@ RegisterUser.navigationOptions = ({ navigation }) => {
   }
 }
 
-export default RegisterUser
+export default withFormik({
+  mapPropsToValues: () => ({ 
+    fullName: '',
+    cpf: '',
+    phone: '',
+    email: '', 
+    password: '' }),
+
+  handleSubmit: (values) => {
+    console.log(values);
+  }
+})(RegisterUser);

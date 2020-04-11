@@ -20,13 +20,14 @@ export const Label = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-  background-color: ${general.styles.colors.white};
-  border-radius: 3px;
-  border-color: ${general.styles.colors.white}
   height: 44px;
-  border-width:1px;
   margin: 10px 10px 0px 10px;
   padding: 0px 10px 0px 10px;
+
+  background-color: ${general.styles.colors.white};
+  border-width:1px;
+  border-radius: 3px;
+  border-color: ${props => (props.error === true) ? general.styles.colors.danger : general.styles.colors.white};
 `;
 
 export const ButtonText = styled.Text`
