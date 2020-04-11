@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { general } from '../../../assets/general'
 
-export const Container = styled.KeyboardAvoidingView`
+export const Container = styled.View`
   display: flex;
   flex: 1; 
   background-color: ${general.styles.colors.lighter};
@@ -22,6 +22,7 @@ export const Label = styled.Text`
 export const Input = styled.TextInput`
   background-color: ${general.styles.colors.white};
   border-radius: 3px;
+  border-color: ${general.styles.colors.white}
   height: 44px;
   border-width:1px;
   margin: 10px 10px 0px 10px;

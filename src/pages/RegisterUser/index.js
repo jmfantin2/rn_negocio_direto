@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TouchableOpacity, View } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import { general } from '../../../assets/general'
 
 import { Ionicons } from '@expo/vector-icons';
@@ -46,8 +46,7 @@ const RegisterUser = () => {
       <Input
         autoCapitalize="words"
         autoCorrect={false}
-        placeholder={general.strings.PLACEHOLDER_NAME}
-        underlineColorAndroid="rgba(0, 0, 0, 0)"
+        placeholder={general.strings.PLACEHOLDER_FULL_NAME}
         value={fullName}
         onChangeText={fullName => setFullName(fullName)}
       />
@@ -60,7 +59,6 @@ const RegisterUser = () => {
         autoCapitalize="none"
         autoCorrect={false}
         placeholder={general.strings.PLACEHOLDER_CPF}
-        underlineColorAndroid="rgba(0, 0, 0, 0)"
         keyboardType={'numeric'}
         maxLength={11}
         value={cpf}
@@ -75,12 +73,10 @@ const RegisterUser = () => {
         autoCapitalize="none"
         autoCorrect={false}
         placeholder={general.strings.PLACEHOLDER_PHONE}
-        underlineColorAndroid="rgba(0, 0, 0, 0)"
         keyboardType={'numeric'}
         maxLength={11}
         value={phoneNumber} 
         onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
-        
       />
       <LabelContainer>
         <Label>
@@ -91,7 +87,6 @@ const RegisterUser = () => {
         autoCapitalize="none"
         autoCorrect={false}
         placeholder={general.strings.PLACEHOLDER_EMAIL}
-        underlineColorAndroid="rgba(0, 0, 0, 0)"
         value={email}
         onChangeText={email => setEmail(email)}
       />
@@ -99,9 +94,7 @@ const RegisterUser = () => {
         <Label>
           {general.strings.PASSWORD}
         </Label>
-        <Notice 
-          color={(password.length < 8 && submitAttempt) ? `${general.styles.colors.danger}` : `${general.styles.colors.lighter}`}
-        >
+        <Notice>
           {general.strings.INVALID_PASSWORD}
         </Notice>
       </LabelContainer>
@@ -109,11 +102,9 @@ const RegisterUser = () => {
         autoCapitalize="none"
         autoCorrect={false}
         placeholder={general.strings.PLACEHOLDER_PASSWORD}
-        underlineColorAndroid="rgba(0, 0, 0, 0)"
         value={password}
         secureTextEntry={true}
         minLength={8}
-        borderColor={(password.length < 8 && submitAttempt) ? `${general.styles.colors.danger}` : `${general.styles.colors.white}`}
         onChangeText={password => setPassword(password)}
       />
       <Button

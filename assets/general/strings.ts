@@ -18,7 +18,7 @@ const globalStrings = {
   INVALID_PASSWORD: "A senha deve possuir 8 ou mais dígitos",
   PLACEHOLDER_CPF: "123.456.789-12",
   PLACEHOLDER_EMAIL: "usuario@email.com",
-  PLACEHOLDER_NAME: "Digite seu nome completo",
+  PLACEHOLDER_FULL_NAME: "Digite seu nome completo",
   PLACEHOLDER_PASSWORD: "@SenhaCom8+Digitos@",
   PLACEHOLDER_PASSWORD_CONFIRMATION: "Confirme sua senha",
   PLACEHOLDER_PHONE: "(21) 54321-4321",
