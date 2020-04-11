@@ -22,7 +22,7 @@ export const RequiredInfo = styled.View`
 
 export const RequiredInfoHalf = styled.View`
   flex-direction: column;
-  width: ${screenW/2};
+  width: ${screenW/2}px; 
   padding: 10px 10px 10px 10px;
 `;
 
