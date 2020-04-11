@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
-import { TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import React from 'react'
+import { TouchableOpacity } from 'react-native';
 import { general } from '../../../assets/general'
 
 import{
-  LabelContainer,
+  Container,
+  RequiredInfo,
   Label,
-  Notice,
   Input,
   Button,
-  ButtonText
+  ButtonText,
+  DoubleContainer
 } from './styles'
 
 import { withFormik } from 'formik';
@@ -16,56 +17,64 @@ import { withFormik } from 'formik';
 import { Ionicons } from '@expo/vector-icons';
 
   const RegisterUser = props => (
-    <View>
-      <LabelContainer>
+    <Container>
+      <RequiredInfo>
         <Label>{general.strings.FULL_NAME}</Label>
-        <Notice>{general.strings.INVALID_FULL_NAME}</Notice>
-      </LabelContainer>
-      <Input
-        value={props.values.fullName}
-        onChangeText={text => props.setFieldValue('fullName', text)}
-        placeholder={general.strings.PLACEHOLDER_FULL_NAME}
-      />
+        <Input
+          value={props.values.fullName}
+          onChangeText={text => props.setFieldValue('fullName', text)}
+          placeholder={general.strings.PLACEHOLDER_FULL_NAME}
+        />
+      </RequiredInfo>
 
-      <LabelContainer>
-        <Label>{general.strings.CPF}</Label>
-        <Notice>{general.strings.INVALID_CPF}</Notice>
-      </LabelContainer>
-      <Input
-        value={props.values.cpf}
-        onChangeText={text => props.setFieldValue('cpf', text)}
-        placeholder={general.strings.PLACEHOLDER_CPF}
-      />
-      
-      <LabelContainer>
-        <Label>{general.strings.PHONE_NUMBER}</Label>
-        <Notice>{general.strings.INVALID_PHONE}</Notice>
-      </LabelContainer>
-      <Input
-        value={props.values.phone}
-        onChangeText={text => props.setFieldValue('phone', text)}
-        placeholder={general.strings.PLACEHOLDER_PHONE}
-      />
+      <DoubleContainer>
+        <RequiredInfo>
+          <Label>{general.strings.CPF}</Label>
+          <Input
+            value={props.values.cpf}
+            onChangeText={text => props.setFieldValue('cpf', text)}
+            placeholder={general.strings.PLACEHOLDER_CPF}
+          />
+        </RequiredInfo>
+        <RequiredInfo>
+          <Label>{general.strings.PHONE_NUMBER}</Label>
+          <Input
+            value={props.values.phone}
+            onChangeText={text => props.setFieldValue('phone', text)}
+            placeholder={general.strings.PLACEHOLDER_PHONE}
+          />
+        </RequiredInfo>
+      </DoubleContainer>
 
-      <LabelContainer>
+      <RequiredInfo>
         <Label>{general.strings.EMAIL}</Label>
-        <Notice>{general.strings.INVALID_EMAIL}</Notice>
-      </LabelContainer>
-      <Input
-        value={props.values.email}
-        onChangeText={text => props.setFieldValue('email', text)}
-        placeholder={general.strings.PLACEHOLDER_EMAIL}
-      />
+        <Input
+          value={props.values.email}
+          onChangeText={text => props.setFieldValue('email', text)}
+          placeholder={general.strings.PLACEHOLDER_EMAIL}
+        />
+      </RequiredInfo>
 
-      <LabelContainer>
-        <Label>{general.strings.PASSWORD}</Label>
-        <Notice>{general.strings.INVALID_PASSWORD}</Notice>
-      </LabelContainer>
-      <Input
-        value={props.values.password}
-        onChangeText={text => props.setFieldValue('password', text)}
-        placeholder={general.strings.PLACEHOLDER_PASSWORD}
-      />
+      <DoubleContainer>
+        <RequiredInfo>
+          <Label>{general.strings.PASSWORD}</Label>
+          <Input
+            value={props.values.password}
+            onChangeText={text => props.setFieldValue('password', text)}
+            placeholder={general.strings.PLACEHOLDER_PASSWORD}
+            secureTextEntry
+          />
+        </RequiredInfo>
+        <RequiredInfo>
+          <Label>{general.strings.PASSWORD_CONFIRMATION}</Label>
+          <Input
+            value={props.values.passwordConfirmation}
+            onChangeText={text => props.setFieldValue('passwordConfirmation', text)}
+            placeholder={general.strings.PLACEHOLDER_PASSWORD}
+            secureTextEntry
+          />
+        </RequiredInfo>
+      </DoubleContainer>
 
       <Button
         onPress={props.handleSubmit}
@@ -75,7 +84,7 @@ import { Ionicons } from '@expo/vector-icons';
           {general.strings.FINISH_SIGN_UP.toUpperCase()}
         </ButtonText>
       </Button>
-    </View>
+    </Container>
   );
 
 RegisterUser.navigationOptions = ({ navigation }) => {
@@ -99,7 +108,8 @@ export default withFormik({
     cpf: '',
     phone: '',
     email: '', 
-    password: '' }),
+    password: '',
+    passwordConfirmation: '' }),
 
   handleSubmit: (values) => {
     console.log(values);
