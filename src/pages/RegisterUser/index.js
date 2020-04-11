@@ -5,6 +5,7 @@ import { general } from '../../../assets/general'
 import{
   Container,
   RequiredInfo,
+  RequiredInfoHalf,
   Label,
   Input,
   Button,
@@ -28,22 +29,22 @@ import { Ionicons } from '@expo/vector-icons';
       </RequiredInfo>
 
       <DoubleContainer>
-        <RequiredInfo>
+        <RequiredInfoHalf>
           <Label>{general.strings.CPF}</Label>
           <Input
             value={props.values.cpf}
             onChangeText={text => props.setFieldValue('cpf', text)}
             placeholder={general.strings.PLACEHOLDER_CPF}
           />
-        </RequiredInfo>
-        <RequiredInfo>
+        </RequiredInfoHalf>
+        <RequiredInfoHalf>
           <Label>{general.strings.PHONE_NUMBER}</Label>
           <Input
             value={props.values.phone}
             onChangeText={text => props.setFieldValue('phone', text)}
             placeholder={general.strings.PLACEHOLDER_PHONE}
           />
-        </RequiredInfo>
+        </RequiredInfoHalf>
       </DoubleContainer>
 
       <RequiredInfo>
@@ -56,7 +57,7 @@ import { Ionicons } from '@expo/vector-icons';
       </RequiredInfo>
 
       <DoubleContainer>
-        <RequiredInfo>
+        <RequiredInfoHalf>
           <Label>{general.strings.PASSWORD}</Label>
           <Input
             value={props.values.password}
@@ -64,8 +65,8 @@ import { Ionicons } from '@expo/vector-icons';
             placeholder={general.strings.PLACEHOLDER_PASSWORD}
             secureTextEntry
           />
-        </RequiredInfo>
-        <RequiredInfo>
+        </RequiredInfoHalf>
+        <RequiredInfoHalf>
           <Label>{general.strings.PASSWORD_CONFIRMATION}</Label>
           <Input
             value={props.values.passwordConfirmation}
@@ -73,7 +74,7 @@ import { Ionicons } from '@expo/vector-icons';
             placeholder={general.strings.PLACEHOLDER_PASSWORD}
             secureTextEntry
           />
-        </RequiredInfo>
+        </RequiredInfoHalf>
       </DoubleContainer>
 
       <Button

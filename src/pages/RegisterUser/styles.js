@@ -1,7 +1,8 @@
 import styled from 'styled-components/native'
 import { general } from '../../../assets/general'
 
-// TODO: uncomment l19 and make it them go full width
+import { Dimensions } from 'react-native'
+const screenW = Dimensions.get('window').width;
 
 export const Container = styled.KeyboardAvoidingView`
   flex-direction: column;
@@ -15,8 +16,13 @@ export const DoubleContainer = styled.View`
 `
 
 export const RequiredInfo = styled.View`
-  /*background-color: ${general.styles.colors.danger};*/
   flex-direction: column;
+  padding: 10px 10px 10px 10px;
+`;
+
+export const RequiredInfoHalf = styled.View`
+  flex-direction: column;
+  width: ${screenW/2};
   padding: 10px 10px 10px 10px;
 `;
 
