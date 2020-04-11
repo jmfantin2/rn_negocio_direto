@@ -35,7 +35,6 @@ export const Label = styled.Text`
 export const Input = styled.TextInput`
   height: 40px;
   padding: 0px 10px 0px 10px;
-
   background-color: ${general.styles.colors.white};
   border-radius: 3px;
 `;
@@ -45,6 +44,11 @@ export const ButtonText = styled.Text`
   color: ${general.styles.colors.white};
   font-size: 16px;
   font-weight: bold;
+`;
+
+export const ErrorText = styled.Text`
+  color: ${general.styles.colors.danger};
+  font-size: 12px;
 `;
 
 export const Button = styled.TouchableOpacity`

@@ -82,7 +82,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.INSERT_EMAIL}
+          placeholder={general.strings.INSERT.EMAIL}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           value={email}
           onChangeText={email => setUsername(email)}
@@ -91,7 +91,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.INSERT_PASSWORD}
+          placeholder={general.strings.INSERT.PASSWORD}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           secureTextEntry={true}
           value={password}
