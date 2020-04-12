@@ -44,7 +44,7 @@ export default function Welcome(props) {
         password: password.replace(/\s+/g, '')
       }
 
-      const response = await api.post('/sessions', credentials)
+      const response = await api.post('/api/v1/login', credentials)
 
       const user = response.data
 
