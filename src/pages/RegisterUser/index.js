@@ -120,9 +120,10 @@ const RegisterUser = props => {
       >
         <ButtonText>
           {
-            ((props.values.cpf === '') ||    (props.values.email === '') ||
-            (props.values.name === '') || (props.values.password === '') ||
-            (props.values.passwordConfirmation === '') || (props.values.phone === ''))
+            ((props.values.cpf === '') ||    (props.values.email === '')  ||
+            (props.values.name === '') || (props.values.password === '')  ||
+            (props.values.passwordConfirmation !== props.values.password) || 
+            (props.values.phone === ''))
             ? general.strings.FILL_SIGN_UP.toUpperCase()
             : general.strings.FINISH_SIGN_UP.toUpperCase()
           }

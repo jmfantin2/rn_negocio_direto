@@ -104,9 +104,8 @@ export default function Home() {
   
   useEffect(() => {
     function loadProducts() {
-      console.log(ads)
       setData(ads.items);
-      console.log(ads.items)
+      // console.log(ads.items)
     }
 
     loadProducts(); 
