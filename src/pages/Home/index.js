@@ -6,7 +6,7 @@ import api from '../../services/api'
 import { deleteUser } from '../../utils'
 import AdItem from '../../components/AdItem'
 import { general } from '../../../assets/general'
-import { Container, ProductList as AdList } from './styles'
+import { Container, AdList } from './styles'
 
 export default function Home() {
 

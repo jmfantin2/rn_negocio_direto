@@ -16,7 +16,7 @@ export const Title = styled.Text`
   line-height: 21px;
 `;
 
-export const ProductList = styled(FlatList)`
+export const AdList = styled(FlatList)`
   flex: 1;
 `;
 
