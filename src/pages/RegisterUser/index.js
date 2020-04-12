@@ -24,19 +24,34 @@ const RegisterUser = props => {
 
   const [errors, setErrors] = useState([]);
 
-  handleSubmit = props => {
+  async function handleSubmit(props) {
     console.log(props.values);
     setErrors(props.errors);
+    
+    try{
+      await fetch('http://192.168.0.9:8080/api/v1/register',{
+        method: 'post',
+        mode: 'no-cors',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(props.values)
+      });
+    } catch(e){
+      console.log("Erro:", e);
+    }
+    
   }
 
   return(
     <Container>
       <RequiredInfo>
         <Label>{general.strings.FULL_NAME}</Label> 
-        <ErrorText>{errors.fullName}</ErrorText>
+        <ErrorText>{errors.name}</ErrorText>
         <Input 
-          value={props.values.fullName}
-          onChangeText={text => props.setFieldValue('fullName', text)}
+          value={props.values.name}
+          onChangeText={text => props.setFieldValue('name', text)}
           placeholder={general.strings.PLACEHOLDER.FULL_NAME}
           autoCapitalize={'words'}
         />
@@ -119,7 +134,7 @@ RegisterUser.navigationOptions = ({ navigation }) => {
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Auth')} style={{ marginRight: 20 }} >
         <Ionicons 
-          name="md-arrow-back" 
+         name="md-arrow-back" 
           size={32} 
           color={general.styles.colors.white}
         />
@@ -130,7 +145,7 @@ RegisterUser.navigationOptions = ({ navigation }) => {
 
 export default withFormik({
   mapPropsToValues: () => ({ 
-    fullName: '',
+   name: '',
     cpf: '',
     phone: '',
     email: '', 
@@ -147,7 +162,7 @@ export default withFormik({
     passwordConfirmation: yup.string()
       .test('password-match', general.strings.ERRORS.PASSWORD_MATCH, function(value){ return this.parent.password === value})
       .required(general.strings.ERRORS.PASSWORD_MATCH),
-    fullName: yup.string()
+    name: yup.string()
       .required(general.strings.ERRORS.FULL_NAME_REQUIRED),
     phone: yup.string()
       .min(11, general.strings.ERRORS.PHONE_MINIMUM)

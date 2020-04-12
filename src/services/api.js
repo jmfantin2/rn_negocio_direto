@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { Alert } from 'react-native'
 
-import { getUser, navigate, deleteUser } from '../utils'
+import { getUser, navigate, deleteUser, postUser } from '../utils'
 
 const api = axios.create({
   baseURL: 'https://api-jwt-tutorial.herokuapp.com',
