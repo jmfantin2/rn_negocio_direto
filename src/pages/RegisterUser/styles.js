@@ -4,10 +4,9 @@ import { general } from '../../../assets/general'
 import { Dimensions } from 'react-native'
 const screenW = Dimensions.get('window').width;
 
-export const Container = styled.KeyboardAvoidingView`
+export const Container = styled.ScrollView`
   flex-direction: column;
   flex: 1; 
-  justify-content: center;
   background-color: ${general.styles.colors.lighter};
 `;
 
@@ -47,7 +46,7 @@ export const ButtonText = styled.Text`
 `;
 
 export const ErrorText = styled.Text`
-  color: ${general.styles.colors.danger};
+  color: ${general.styles.colors.businessGreen};
   font-size: 12px;
 `;
 

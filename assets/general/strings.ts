@@ -3,15 +3,10 @@
 const globalStrings = {
   ERRORS: {
     CPF_MINIMUM: "Digite um CPF de 11 dígitos",
-    CPF_REQUIRED: "Preencha o campo de CPF",
-    EMAIL:"Seu e-mail precisa ser um email valido",
-    EMAIL_REQUIRED: "Preencha o campo de e-mail",
-    FULL_NAME_REQUIRED: "Preencha o campo de nome completo",
+    INVALID_EMAIL:"Seu e-mail precisa ser um email valido",
     PASSWORD_MATCH: "Não corresponde",
     PASSWORD_MINIMUM: "No mínimo 8 caracteres",
-    PASSWORD_REQUIRED: "Preencha o campo de senha",
-    PHONE_MINIMUM: "Deve ter 11 dígitos",
-    PHONE_REQUIRED: "Prencha o campo de telefone"
+    PHONE_MINIMUM: "DDD e 9 dígitos",
   },
 
   INSERT: {
@@ -36,6 +31,7 @@ const globalStrings = {
   CREATE_ACCOUNT: "Crie sua conta",
   EMAIL: "E-mail",
   EXIT: "Sair",
+  FILL_SIGN_UP: "Preencha todos os campos",
   FINISH_SIGN_UP: "Finalizar Cadastro",
   FULL_NAME: "Nome completo",
   GO_AHEAD: "Prosseguir",

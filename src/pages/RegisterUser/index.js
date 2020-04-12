@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { TouchableOpacity } from 'react-native';
+import React from 'react'
+import { Text, TouchableOpacity } from 'react-native';
 import { general } from '../../../assets/general'
 
 import{
@@ -19,15 +19,12 @@ import * as yup from 'yup';
 
 import { Ionicons } from '@expo/vector-icons';
 
-
 const RegisterUser = props => {
 
-  const [errors, setErrors] = useState([]);
-
   async function handleSubmit(props) {
-    console.log(props.values);
-    setErrors(props.errors);
-    
+
+    console.log("Values", props.values)
+    console.log("Errors", props.errors)
     try{
       await fetch('http://192.168.0.9:8080/api/v1/register',{
         method: 'post',
@@ -37,7 +34,7 @@ const RegisterUser = props => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(props.values)
-      });
+      }).then(() => props.navigation.navigate('Auth'));
     } catch(e){
       console.log("Erro:", e);
     }
@@ -48,10 +45,10 @@ const RegisterUser = props => {
     <Container>
       <RequiredInfo>
         <Label>{general.strings.FULL_NAME}</Label> 
-        <ErrorText>{errors.name}</ErrorText>
+        <ErrorText>{props.errors.name}</ErrorText>
         <Input 
           value={props.values.name}
-          onChangeText={text => props.setFieldValue('name', text)}
+          onChangeText={text => props.setFieldValue('name', text.replace(/[^a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s]+/g, ''))}
           placeholder={general.strings.PLACEHOLDER.FULL_NAME}
           autoCapitalize={'words'}
         />
@@ -60,7 +57,7 @@ const RegisterUser = props => {
       <DoubleContainer>
         <RequiredInfoHalf>
           <Label>{general.strings.CPF}</Label>
-          <ErrorText>{errors.cpf}</ErrorText>
+          <ErrorText>{props.errors.cpf}</ErrorText>
           <Input
             value={props.values.cpf}
             onChangeText={text => props.setFieldValue('cpf', text.replace(/\D/g,''))}
@@ -71,7 +68,7 @@ const RegisterUser = props => {
         </RequiredInfoHalf>
         <RequiredInfoHalf>
           <Label>{general.strings.PHONE_NUMBER}</Label>
-          <ErrorText>{errors.phone}</ErrorText>
+          <ErrorText>{props.errors.phone}</ErrorText>
           <Input
             value={props.values.phone}
             onChangeText={text => props.setFieldValue('phone', text.replace(/\D/g,''))}
@@ -84,10 +81,10 @@ const RegisterUser = props => {
   
       <RequiredInfo>
         <Label>{general.strings.EMAIL}</Label>
-        <ErrorText>{errors.email}</ErrorText>
+        <ErrorText>{props.errors.email}</ErrorText>
         <Input 
           value={props.values.email}
-          onChangeText={text => props.setFieldValue('email', text)}
+          onChangeText={text => props.setFieldValue('email', text.replace(/\s+/g, ''))}
           placeholder={general.strings.PLACEHOLDER.EMAIL}
           autoCapitalize={'none'}
         />
@@ -96,7 +93,7 @@ const RegisterUser = props => {
       <DoubleContainer>
         <RequiredInfoHalf>
           <Label>{general.strings.PASSWORD}</Label>
-          <ErrorText>{errors.password}</ErrorText>
+          <ErrorText>{props.errors.password}</ErrorText>
           <Input
             value={props.values.password}
             onChangeText={text => props.setFieldValue('password', text)}
@@ -106,7 +103,7 @@ const RegisterUser = props => {
         </RequiredInfoHalf>
         <RequiredInfoHalf>
           <Label>{general.strings.PASSWORD_CONFIRMATION}</Label>
-          <ErrorText>{errors.passwordConfirmation}</ErrorText>
+          <ErrorText>{props.errors.passwordConfirmation}</ErrorText>
           <Input        
             value={props.values.passwordConfirmation}
             onChangeText={text => props.setFieldValue('passwordConfirmation', text)}
@@ -118,10 +115,17 @@ const RegisterUser = props => {
   
       <Button
         // onPress={() => {handleSubmit(props), console.warn(props.errors)}}
-        onPress={() => {handleSubmit(props)}}
+        onPress={() => { (JSON.stringify(props.errors) === '{}' && props.values.name !== '')
+                          ? handleSubmit(props) : null }}
       >
         <ButtonText>
-          {general.strings.FINISH_SIGN_UP.toUpperCase()}
+          {
+            ((props.values.cpf === '') ||    (props.values.email === '') ||
+            (props.values.name === '') || (props.values.password === '') ||
+            (props.values.passwordConfirmation === '') || (props.values.phone === ''))
+            ? general.strings.FILL_SIGN_UP.toUpperCase()
+            : general.strings.FINISH_SIGN_UP.toUpperCase()
+          }
         </ButtonText>
       </Button>
     </Container>
@@ -154,21 +158,21 @@ export default withFormik({
 
   validationSchema: yup.object().shape({
     email: yup.string()
-      .email(general.strings.ERRORS.EMAIL)
-      .required(general.strings.ERRORS.EMAIL_REQUIRED),
+      .email(general.strings.ERRORS.INVALID_EMAIL)
+      .required(' '),
     password: yup.string()
       .min(8, general.strings.ERRORS.PASSWORD_MINIMUM)
-      .required(general.strings.ERRORS.PASSWORD_REQUIRED),
+      .required(' '),
     passwordConfirmation: yup.string()
       .test('password-match', general.strings.ERRORS.PASSWORD_MATCH, function(value){ return this.parent.password === value})
-      .required(general.strings.ERRORS.PASSWORD_MATCH),
+      .required(' '),
     name: yup.string()
-      .required(general.strings.ERRORS.FULL_NAME_REQUIRED),
+      .required(' '),
     phone: yup.string()
       .min(11, general.strings.ERRORS.PHONE_MINIMUM)
-      .required(general.strings.ERRORS.PHONE_REQUIRED),
+      .required(' '),
     cpf: yup.string()
       .min(11, general.strings.ERRORS.CPF_MINIMUM)
-      .required(general.strings.ERRORS.CPF_REQUIRED),
+      .required(' '),
   }),
 })(RegisterUser);
