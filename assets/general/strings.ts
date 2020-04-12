@@ -24,6 +24,7 @@ const globalStrings = {
   },
 
 
+  CATEGORIES: "Categorias",
   CLIENT_TITLE: "Negócio Direto",
   CONTINUE: "Para continuar, precisamos\nque informe suas credenciais",
   COST: "Custo",
@@ -42,7 +43,8 @@ const globalStrings = {
   QUANTITY: "Quantidade",
   SIGN_UP: "Cadastro",
   USER_NOT_FOUND: "Usuário ou senha incorretos",
-  WELCOME: "Bem-vindo ao\nNegócio Direto"
+  WELCOME: "Bem-vindo ao\nNegócio Direto",
+  WHERE: "Onde"
 };
 
 export default globalStrings
