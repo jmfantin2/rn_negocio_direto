@@ -26,7 +26,7 @@ const RegisterUser = props => {
     console.log("Values", props.values)
     console.log("Errors", props.errors)
     try{
-      await fetch('http://192.168.0.9:8080/api/v1/register',{
+      await fetch('https://taskforce-security.herokuapp.com/api/v1/register',{
         method: 'post',
         mode: 'no-cors',
         headers: {
