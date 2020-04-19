@@ -74,7 +74,7 @@ export default function Welcome(props) {
     <Container>
       <StatusBar barStyle="light-content" />
 
-      <Logo source={LogoSrc} />
+      <Logo source={LogoSrc} resizeMode="contain" />
       <Title>{general.strings.WELCOME}</Title>
       <TextInformation>{general.strings.CONTINUE}</TextInformation>
 
