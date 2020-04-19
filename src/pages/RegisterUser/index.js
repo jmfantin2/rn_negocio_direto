@@ -2,6 +2,8 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { general } from "../../../assets/general";
 
+import api from "../../services/api";
+
 import {
   Container,
   RequiredInfo,
@@ -24,15 +26,9 @@ const RegisterUser = (props) => {
     console.log("Values", props.values);
     console.log("Errors", props.errors);
     try {
-      await fetch("https://taskforce-security.herokuapp.com/api/v1/register", {
-        method: "post",
-        mode: "no-cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(props.values),
-      }).then(() => props.navigation.navigate("Auth"));
+      await api
+        .post("/api/v1/register", JSON.stringify(props.values))
+        .then(() => props.navigation.navigate("Auth"));
     } catch (e) {
       console.log("Erro:", e);
     }
