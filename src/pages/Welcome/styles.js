@@ -1,9 +1,9 @@
-import styled from 'styled-components/native'
-import { general } from '../../../assets/general'
+import styled from "styled-components/native";
+import { general } from "../../../assets/general";
 
 export const Container = styled.View`
   display: flex;
-  flex: 1; 
+  flex: 1;
   background-color: ${general.styles.colors.oceanGreen};
   padding: 40px;
   justify-content: center;

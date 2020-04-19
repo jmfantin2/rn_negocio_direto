@@ -1,18 +1,18 @@
-import styled from 'styled-components/native'
-import { general } from '../../../assets/general'
+import styled from "styled-components/native";
+import { general } from "../../../assets/general";
 
-import { Dimensions } from 'react-native'
-const screenW = Dimensions.get('window').width;
+import { Dimensions } from "react-native";
+const screenW = Dimensions.get("window").width;
 
 export const Container = styled.ScrollView`
   flex-direction: column;
-  flex: 1; 
+  flex: 1;
   background-color: ${general.styles.colors.lighter};
 `;
 
 export const DoubleContainer = styled.View`
   flex-direction: row;
-`
+`;
 
 export const RequiredInfo = styled.View`
   flex-direction: column;
@@ -21,7 +21,7 @@ export const RequiredInfo = styled.View`
 
 export const RequiredInfoHalf = styled.View`
   flex-direction: column;
-  width: ${screenW/2}px; 
+  width: ${screenW / 2}px;
   padding: 10px 10px 10px 10px;
 `;
 

@@ -1,9 +1,9 @@
-import { AsyncStorage} from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { AsyncStorage } from "react-native";
+import { NavigationActions } from "react-navigation";
 
 export async function getUser() {
   try {
-    return await AsyncStorage.getItem('@ListApp:userToken');
+    return await AsyncStorage.getItem("@ListApp:userToken");
   } catch (e) {
     throw e;
   }
@@ -11,7 +11,10 @@ export async function getUser() {
 
 export async function storeUser(userToken) {
   try {
-    return await AsyncStorage.setItem('@ListApp:userToken', JSON.stringify(userToken));
+    return await AsyncStorage.setItem(
+      "@ListApp:userToken",
+      JSON.stringify(userToken)
+    );
   } catch (e) {
     throw e;
   }
@@ -19,7 +22,7 @@ export async function storeUser(userToken) {
 
 export async function deleteUser() {
   try {
-    return await AsyncStorage.removeItem('@ListApp:userToken');
+    return await AsyncStorage.removeItem("@ListApp:userToken");
   } catch (e) {
     throw e;
   }
@@ -38,6 +41,6 @@ export function navigate(routeName, params) {
     NavigationActions.navigate({
       routeName,
       params,
-    }),
+    })
   );
 }
