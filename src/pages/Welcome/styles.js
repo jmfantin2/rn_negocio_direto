@@ -1,13 +1,18 @@
-import styled from 'styled-components/native'
-import { general } from '../../../assets/general'
+import styled from "styled-components/native";
+import { general } from "../../../assets/general";
 
 export const Container = styled.View`
   display: flex;
-  flex: 1; 
-  background-color: ${general.styles.colors.darkGreen};
+  flex: 1;
+  background-color: ${general.styles.colors.oceanGreen};
   padding: 40px;
   justify-content: center;
   align-items: stretch;
+`;
+
+export const Logo = styled.Image`
+  margin: 10px;
+  width: auto;
 `;
 
 export const Title = styled.Text`
@@ -26,7 +31,7 @@ export const TextInformation = styled.Text`
 `;
 
 export const Error = styled.Text`
-  color: #e37a7a;
+  color: yellow;
   text-align: center;
   margin-top: 10px;
 `;
@@ -44,9 +49,10 @@ export const Input = styled.TextInput`
 `;
 
 export const Button = styled.TouchableOpacity`
-  background-color: #7a91ca;
-  border-radius: 3px;
-  height: 44px;
+  background-color: ${general.styles.colors.white};
+  border-radius: 4px;
+  border: 1px solid ${general.styles.colors.regular};
+  height: 50px;
   padding: 0px 20px;
   margin-top: 10px;
   justify-content: center;
@@ -54,7 +60,22 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: #ffffff;
+  color: ${general.styles.colors.businessGreen};
   font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
+`;
+
+export const SignInText = styled.Text`
+  color: ${general.styles.colors.white};
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+export const BottomForm = styled.View`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: 15px;
+  margin-top: 5px;
 `;

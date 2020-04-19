@@ -1,57 +1,79 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
-import Welcome from './pages/Welcome'
-import Home from './pages/Home'
-import AuthLoadingScreen from './pages/AuthLoadingScreen'
+import Welcome from "./pages/Welcome";
+import AuthLoadingScreen from "./pages/AuthLoadingScreen";
+import Home from "./pages/Home";
+import RegisterUser from "./pages/RegisterUser";
 
-import { general } from '../assets/general'
+import { general } from "../assets/general";
 
+//Telas acessíveis apenas após Login!
 const StackNavigator = createStackNavigator(
   {
     Home,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: "Home",
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: general.styles.colors.darkGreen
+        backgroundColor: general.styles.colors.oceanGreen,
       },
-      headerTintColor: '#FFF',
+      headerTintColor: general.styles.colors.white,
       headerTitleStyle: {
-        fontWeight: 'bold',
+        fontWeight: "bold",
       },
     },
-  },
+  }
 );
 
 const StackNavigatorContainer = createAppContainer(StackNavigator);
 
+//Telas de fluxo de Autenticação!
 const AuthStack = createStackNavigator(
   {
     SignIn: Welcome,
     App: StackNavigatorContainer,
-    // SignUp: RegisterUser
   },
   {
-    initialRouteName: 'SignIn',
-    headerMode: 'none',
+    initialRouteName: "SignIn",
+    headerMode: "none",
     headerShown: false,
+  }
+);
+
+//Telas de fluxo de Cadastro!
+const SignUpStack = createStackNavigator(
+  {
+    RegisterUser,
+    App: StackNavigatorContainer,
   },
+  {
+    initialRouteName: "RegisterUser",
+    headerShown: true,
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: general.styles.colors.oceanGreen,
+      },
+      headerTintColor: general.styles.colors.white,
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+    },
+  }
 );
 
 const RootStack = createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     Auth: AuthStack,
+    RegisterUser: SignUpStack,
     App: StackNavigatorContainer,
-    // Auth: AuthStack
   },
   {
-    initialRouteName: 'AuthLoading',
-  },
+    initialRouteName: "AuthLoading",
+  }
 );
-
 const RootStackContainer = createAppContainer(RootStack);
 
 export default RootStackContainer;

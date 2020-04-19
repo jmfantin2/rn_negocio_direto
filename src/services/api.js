@@ -1,27 +1,25 @@
-import axios from 'axios'
+import axios from "axios";
 
-import { Alert } from 'react-native'
+import { Alert } from "react-native";
 
-import { getUser, navigate, deleteUser } from '../utils'
+import { getUser, navigate, deleteUser, postUser } from "../utils";
 
 const api = axios.create({
-  baseURL: 'https://api-jwt-tutorial.herokuapp.com',
+  baseURL: "https://taskforce-security.herokuapp.com/",
   // baseURL: 'http://10.0.3.2:3000',
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
-})
+});
 
 api.interceptors.response.use(
-  response => {
-
+  (response) => {
     // Do something with response data
 
-    return response
+    return response;
   },
-  error => {
-
+  (error) => {
     // Do something with response error
 
     // You can even test for a response code
@@ -29,50 +27,49 @@ api.interceptors.response.use(
 
     if (
       error.request._hasError === true &&
-      error.request._response.includes('connect')
+      error.request._response.includes("connect")
     ) {
       Alert.alert(
-        'Aviso',
-        'Não foi possível conectar aos nossos servidores, sem conexão a internet',
-        [ { text: 'OK' } ],
-        { cancelable: false },
-      )
+        "Aviso",
+        "Não foi possível conectar aos nossos servidores, sem conexão a internet",
+        [{ text: "OK" }],
+        { cancelable: false }
+      );
     }
 
     if (error.response.status === 401) {
-      const requestConfig = error.config
+      const requestConfig = error.config;
 
       // O token JWT expirou
 
-      deleteUser()
-        .then(() => {
-          navigate('AuthLoading', {})
-        })
+      deleteUser().then(() => {
+        navigate("AuthLoading", {});
+      });
 
-      return axios(requestConfig)
+      return axios(requestConfig);
     }
 
-    return Promise.reject(error)
-  },
-)
+    return Promise.reject(error);
+  }
+);
 
 api.interceptors.request.use(
-  config => {
+  (config) => {
     return getUser()
-      .then(user => {
-        user = JSON.parse(user)
+      .then((user) => {
+        user = JSON.parse(user);
         if (user && user.token)
-          config.headers.Authorization = `Bearer ${user.token}`
-        return Promise.resolve(config)
+          config.headers.Authorization = `Bearer ${user.token}`;
+        return Promise.resolve(config);
       })
-      .catch(error => {
-        console.log(error)
-        return Promise.resolve(config)
-      })
+      .catch((error) => {
+        console.log(error);
+        return Promise.resolve(config);
+      });
   },
-  error => {
-    return Promise.reject(error)
-  },
-)
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-export default api
+export default api;
