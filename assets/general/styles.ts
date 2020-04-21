@@ -1,10 +1,10 @@
-import { Dimensions } from 'react-native'
+import { Dimensions } from "react-native";
 
-const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get("window");
 
-const globalStyles = {
+const styles = {
   box: {
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
     borderRadius: 3,
     padding: 20,
   },
@@ -18,26 +18,26 @@ const globalStyles = {
   },
 
   colors: {
-    white: '#FFF',
-    lighter: '#EEE',
-    light: '#DDD',
-    regular: '#999',
-    dark: '#666',
-    darker: '#333',
-    black: '#000',
-    oceanGreen: '#075e54',
-    businessGreen: '#004610', 
-    businessBrown:'#8c6254',
+    white: "#FFF",
+    lighter: "#EEE",
+    light: "#DDD",
+    regular: "#999",
+    dark: "#666",
+    darker: "#333",
+    black: "#000",
+    oceanGreen: "#075e54",
+    businessGreen: "#004610",
+    businessBrown: "#8c6254",
 
-    primary: '#7A91CA',
-    secondary: '#444A5A',
-    success: '#9DCA83',
-    danger: '#E37A7A',
+    primary: "#7A91CA",
+    secondary: "#444A5A",
+    success: "#9DCA83",
+    danger: "#E37A7A",
 
-    transparent: 'transparent',
-    darkTransparent: 'rgba(0, 0, 0, 0.6)',
-    whiteTransparent: 'rgba(0, 0, 0, 0.3)',
+    transparent: "transparent",
+    darkTransparent: "rgba(0, 0, 0, 0.6)",
+    whiteTransparent: "rgba(0, 0, 0, 0.3)",
   },
 };
 
-export default globalStyles
+export default styles;

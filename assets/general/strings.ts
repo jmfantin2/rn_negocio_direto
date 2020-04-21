@@ -1,17 +1,17 @@
 //Adicionar strings em ordem alfabetica, por favor!
 
-const globalStrings = {
+const strings = {
   ERRORS: {
     CPF_MINIMUM: "Digite um CPF de 11 dígitos",
-    INVALID_EMAIL:"Seu e-mail precisa ser um email valido",
+    INVALID_EMAIL: "Seu e-mail precisa ser um email valido",
     PASSWORD_MATCH: "Não corresponde",
     PASSWORD_MINIMUM: "No mínimo 8 caracteres",
     PHONE_MINIMUM: "DDD e 9 dígitos",
   },
 
   INSERT: {
-    EMAIL: 'Insira seu e-mail',
-    PASSWORD: 'Insira sua senha'
+    EMAIL: "Insira seu e-mail",
+    PASSWORD: "Insira sua senha",
   },
 
   PLACEHOLDER: {
@@ -20,9 +20,8 @@ const globalStrings = {
     FULL_NAME: "Seu Nome Completo",
     PASSWORD: "8+ caracteres",
     PASSWORD_CONFIRMATION: "Confirme sua senha",
-    PHONE: "(21) 54321-4321"
+    PHONE: "(21) 54321-4321",
   },
-
 
   CATEGORIES: "Categorias",
   CLIENT_TITLE: "Negócio Direto",
@@ -44,7 +43,7 @@ const globalStrings = {
   SIGN_UP: "Cadastro",
   USER_NOT_FOUND: "Usuário ou senha incorretos",
   WELCOME: "Bem-vindo ao\nNegócio Direto",
-  WHERE: "Onde"
+  WHERE: "Onde",
 };
 
-export default globalStrings
+export default strings;

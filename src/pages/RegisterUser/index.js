@@ -4,6 +4,11 @@ import { general } from "../../../assets/general";
 
 import api from "../../services/api";
 
+import { withFormik } from "formik";
+import * as yup from "yup";
+
+import { Ionicons } from "@expo/vector-icons";
+
 import {
   Container,
   RequiredInfo,
@@ -15,11 +20,6 @@ import {
   ButtonText,
   DoubleContainer,
 } from "./styles";
-
-import { withFormik } from "formik";
-import * as yup from "yup";
-
-import { Ionicons } from "@expo/vector-icons";
 
 const RegisterUser = (props) => {
   async function handleSubmit(props) {
