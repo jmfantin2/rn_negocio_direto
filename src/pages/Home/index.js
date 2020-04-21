@@ -8,7 +8,7 @@ import AdItem from "../../components/AdItem";
 import { general } from "../../../assets/general";
 import { Container, AdList } from "./styles";
 
-export default function Home() {
+export default function Home(props) {
   const [data, setData] = useState([]);
   // const [refreshing, setRefreshing] = useState(false);
 
@@ -86,19 +86,6 @@ export default function Home() {
     ],
   };
 
-  // useEffect(() => {
-  //   async function loadProducts() {
-  //     const response = await api.get('/products')
-  //     console.log("RES DATA", response.data)
-  //     //objeto products com array de objetos
-  //     setData(response.data.products);
-  //     console.log("RES DATA PROD", response.data.products)
-  //     //array de objetos
-  //   }
-
-  //   loadProducts();
-  // }, []);
-
   useEffect(() => {
     function loadProducts() {
       setData(ads.items);
@@ -119,6 +106,11 @@ export default function Home() {
         // onRefresh={loadProducts}
         // refreshing={refreshing}
       />
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("AnnouncementCreation")}
+      >
+        <Text>Criar anúncio</Text>
+      </TouchableOpacity>
     </Container>
   );
 }

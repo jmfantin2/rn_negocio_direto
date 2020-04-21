@@ -145,10 +145,10 @@ const RegisterUser = (props) => {
 RegisterUser.navigationOptions = ({ navigation }) => {
   return {
     title: `${general.strings.CREATE_ACCOUNT}`,
-    headerRight: () => (
+    headerLeft: () => (
       <TouchableOpacity
         onPress={() => navigation.navigate("Auth")}
-        style={{ marginRight: 20 }}
+        style={{ marginLeft: 20 }}
       >
         <Ionicons
           name="md-arrow-back"
