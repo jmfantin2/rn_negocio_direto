@@ -1,12 +1,10 @@
 import styled from "styled-components/native";
-import { FlatList } from "react-native";
 import { general } from "../../../assets/general";
 
 export const Container = styled.ScrollView`
   display: flex;
   flex: 1;
   background-color: ${general.styles.colors.light};
-  padding: 30px;
 `;
 
 export const UploadVideo = styled.View`
@@ -17,34 +15,40 @@ export const UploadVideo = styled.View`
   border-color: ${general.styles.colors.businessGreen};
   border-radius: 3px;
   border-style: dashed;
-  margin: 0px 0px 30px 0px;
+  margin: 30px 30px 0px 30px;
+`;
+
+export const Divider = styled.View`
+  padding: 10px 0px 10px 0px;
+  background-color: ${general.styles.colors.oceanGreen};
+  margin: 30px 0px 0px 0px;
+`;
+export const SwitchSection = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 30px 0px 30px;
+`;
+
+export const Description = styled.Text`
+  color: ${general.styles.colors.black};
+  text-align: center;
+  font-size: 16px;
+`;
+
+export const Section = styled.View`
+  padding: 20px 30px 30px 30px;
 `;
 
 export const Title = styled.Text`
+  color: ${general.styles.colors.white};
+  font-size: 18px;
   font-weight: bold;
-  text-align: center;
-  margin-top: 10px;
-  font-size: 20px;
-  color: #000000;
-  line-height: 21px;
+  align-self: center;
 `;
 
-export const AdList = styled(FlatList)`
-  flex: 1;
-`;
-
-export const Button = styled.TouchableOpacity`
-  background-color: #398ad7;
-  border-radius: 3px;
-  height: 44px;
-  padding: 0px 20px;
-  margin-top: 10px;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ButtonText = styled.Text`
-  color: #ffffff;
+export const Label = styled.Text`
+  color: ${general.styles.colors.oceanGreen};
+  font-size: 18px;
   font-weight: bold;
-  font-size: 14px;
 `;

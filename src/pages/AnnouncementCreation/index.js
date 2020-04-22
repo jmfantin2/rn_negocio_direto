@@ -3,7 +3,7 @@
     - We are also not using react-native-community/picker because it sucks.
 */
 import React, { useState } from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Switch, Text } from "react-native";
 import PropTypes from "prop-types";
 
 import RNPickerSelect from "react-native-picker-select";
@@ -11,9 +11,19 @@ import { general } from "../../../assets/general";
 
 import { Ionicons } from "@expo/vector-icons";
 
-import { Container, UploadVideo } from "./styles";
+import {
+  Container,
+  UploadVideo,
+  Title,
+  Label,
+  Divider,
+  Section,
+  SwitchSection,
+  Description,
+} from "./styles";
 
 export default function AnnouncementCreation() {
+  const [dynamic, setDynamic] = useState(false);
   const [primary, setPrimary] = useState("");
   const [primaryBreed, setPrimaryBreed] = useState("");
   const [secondary, setSecondary] = useState("");
@@ -110,65 +120,85 @@ export default function AnnouncementCreation() {
             size={42}
             color={general.styles.colors.oceanGreen}
           />
-          <Text>Envie um vídeo</Text>
+          <Label>Envie um vídeo</Label>
         </UploadVideo>
       </TouchableOpacity>
 
-      {/* Primary Category Selection */}
-      <Text>Indique uma categoria para o gado que será vendido</Text>
-      <RNPickerSelect
-        placeholder={{
-          label: "———",
-          value: null,
-          color: general.styles.colors.light,
-        }}
-        onValueChange={(value) => handleSelection(value)}
-        items={primaryOptions}
-      />
-      {primary ? (
-        <>
-          <Text>Selecione a raça correspondente à categoria</Text>
-          <RNPickerSelect
-            placeholder={{
-              label: "———",
-              value: null,
-              color: general.styles.colors.light,
-            }}
-            onValueChange={(value) => setPrimaryBreed(value)}
-            items={breeds}
-          />
-        </>
-      ) : null}
+      <SwitchSection>
+        <Label>{dynamic ? "PREÇO DINÂMICO" : "PREÇO FIXO"}</Label>
+        <Switch
+          onValueChange={() => (dynamic ? setDynamic(false) : setDynamic(true))}
+          value={dynamic}
+          style={{ margin: 10 }}
+        />
+        <Description>
+          {dynamic
+            ? '"Nessa opção, o valor do seu anúncio fica em aberto, aproveitando ao máximo o potencial da venda através da proposta dos compradores. Em preço dinâmico, você pode anunciar apenas uma categoria de gado por até 3 dias."'
+            : '"Nessa opção, o valor mínimo desejado para o anúncio é determinado, mas pode não ser definitivo mesmo se a venda for concretizada. Em preço fixo, você pode anunciar por até 7 dias e declarar duas categorias de gado."'}
+        </Description>
+      </SwitchSection>
 
-      {/* Secondary Category Selection */}
-      {secondaryToggle ? (
-        <>
-          <Text>Selecione, se houver, outra categoria</Text>
-          <RNPickerSelect
-            placeholder={{
-              label: "———",
-              value: null,
-              color: general.styles.colors.light,
-            }}
-            onValueChange={(value) => setSecondary(value)}
-            items={secondaryOptions}
-          />
-          {secondary ? (
-            <>
-              <Text>Selecione a raça correspondente à segunda categoria</Text>
-              <RNPickerSelect
-                placeholder={{
-                  label: "———",
-                  value: null,
-                  color: general.styles.colors.light,
-                }}
-                onValueChange={(value) => setSecondaryBreed(value)}
-                items={breeds}
-              />
-            </>
-          ) : null}
-        </>
-      ) : null}
+      <Divider>
+        <Title>INFORMAÇÕES DO GADO</Title>
+      </Divider>
+
+      <Section>
+        {/* Primary Category Selection */}
+        <Label>Categoria</Label>
+        <RNPickerSelect
+          placeholder={{
+            label: "———",
+            value: null,
+            color: general.styles.colors.light,
+          }}
+          onValueChange={(value) => handleSelection(value)}
+          items={primaryOptions}
+        />
+        {primary ? (
+          <>
+            <Label>Raça</Label>
+            <RNPickerSelect
+              placeholder={{
+                label: "———",
+                value: null,
+                color: general.styles.colors.light,
+              }}
+              onValueChange={(value) => setPrimaryBreed(value)}
+              items={breeds}
+            />
+          </>
+        ) : null}
+
+        {/* Secondary Category Selection */}
+        {secondaryToggle && !dynamic ? (
+          <>
+            <Label>Categoria adicional (opcional)</Label>
+            <RNPickerSelect
+              placeholder={{
+                label: "———",
+                value: null,
+                color: general.styles.colors.light,
+              }}
+              onValueChange={(value) => setSecondary(value)}
+              items={secondaryOptions}
+            />
+            {secondary ? (
+              <>
+                <Label>Raça</Label>
+                <RNPickerSelect
+                  placeholder={{
+                    label: "———",
+                    value: null,
+                    color: general.styles.colors.light,
+                  }}
+                  onValueChange={(value) => setSecondaryBreed(value)}
+                  items={breeds}
+                />
+              </>
+            ) : null}
+          </>
+        ) : null}
+      </Section>
     </Container>
   );
 }

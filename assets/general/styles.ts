@@ -27,7 +27,7 @@ const styles = {
     black: "#000",
     oceanGreen: "#075e54",
     businessGreen: "#004610",
-    businessBrown: "#8c6254",
+    businessBrown: "#421c07",
 
     primary: "#7A91CA",
     secondary: "#444A5A",
