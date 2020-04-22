@@ -23,6 +23,13 @@ export const Divider = styled.View`
   background-color: ${general.styles.colors.oceanGreen};
   margin: 30px 0px 0px 0px;
 `;
+
+export const Line = styled.View`
+  background-color: ${general.styles.colors.oceanGreen};
+  padding: 1px 0px 0px 0px;
+  margin: 20px 0px 25px 0px;
+`;
+
 export const SwitchSection = styled.View`
   flex: 1;
   align-items: center;
@@ -52,3 +59,34 @@ export const Label = styled.Text`
   font-size: 18px;
   font-weight: bold;
 `;
+
+// RNPickerSelect (not styled-components)
+export const pickerStyle = {
+  inputIOS: {
+    color: "white",
+    paddingTop: 13,
+    paddingHorizontal: 10,
+    paddingBottom: 12,
+  },
+  inputAndroid: {
+    color: general.styles.colors.black,
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  placeholderColor: "white",
+  underline: { borderTopWidth: 0 },
+  icon: {
+    position: "absolute",
+    backgroundColor: "transparent",
+    borderTopWidth: 5,
+    borderTopColor: "#00000099",
+    borderRightWidth: 5,
+    borderRightColor: "transparent",
+    borderLeftWidth: 5,
+    borderLeftColor: "transparent",
+    width: 0,
+    height: 0,
+    top: 20,
+    right: 15,
+  },
+};

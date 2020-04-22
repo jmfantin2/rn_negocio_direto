@@ -16,10 +16,12 @@ import {
   UploadVideo,
   Title,
   Label,
+  Line,
   Divider,
   Section,
   SwitchSection,
   Description,
+  pickerStyle,
 } from "./styles";
 
 export default function AnnouncementCreation() {
@@ -133,8 +135,8 @@ export default function AnnouncementCreation() {
         />
         <Description>
           {dynamic
-            ? '"Nessa opção, o valor do seu anúncio fica em aberto, aproveitando ao máximo o potencial da venda através da proposta dos compradores. Em preço dinâmico, você pode anunciar apenas uma categoria de gado por até 3 dias."'
-            : '"Nessa opção, o valor mínimo desejado para o anúncio é determinado, mas pode não ser definitivo mesmo se a venda for concretizada. Em preço fixo, você pode anunciar por até 7 dias e declarar duas categorias de gado."'}
+            ? "Nessa opção, o valor do seu anúncio fica em aberto, aproveitando ao máximo o potencial de venda através da proposta dos compradores. Em preço dinâmico, você pode anunciar apenas uma categoria de gado por até 3 dias."
+            : "Nessa opção, o valor mínimo desejado para o anúncio é determinado, mas pode não ser definitivo mesmo se a venda for concretizada. Em preço fixo, você pode anunciar por até 7 dias e declarar duas categorias de gado."}
         </Description>
       </SwitchSection>
 
@@ -151,6 +153,8 @@ export default function AnnouncementCreation() {
             value: null,
             color: general.styles.colors.light,
           }}
+          style={pickerStyle}
+          useNativeAndroidPickerStyle={false}
           onValueChange={(value) => handleSelection(value)}
           items={primaryOptions}
         />
@@ -163,6 +167,8 @@ export default function AnnouncementCreation() {
                 value: null,
                 color: general.styles.colors.light,
               }}
+              style={pickerStyle}
+              useNativeAndroidPickerStyle={false}
               onValueChange={(value) => setPrimaryBreed(value)}
               items={breeds}
             />
@@ -172,6 +178,7 @@ export default function AnnouncementCreation() {
         {/* Secondary Category Selection */}
         {secondaryToggle && !dynamic ? (
           <>
+            <Line />
             <Label>Categoria adicional (opcional)</Label>
             <RNPickerSelect
               placeholder={{
@@ -179,6 +186,8 @@ export default function AnnouncementCreation() {
                 value: null,
                 color: general.styles.colors.light,
               }}
+              style={pickerStyle}
+              useNativeAndroidPickerStyle={false}
               onValueChange={(value) => setSecondary(value)}
               items={secondaryOptions}
             />
@@ -191,6 +200,8 @@ export default function AnnouncementCreation() {
                     value: null,
                     color: general.styles.colors.light,
                   }}
+                  style={pickerStyle}
+                  useNativeAndroidPickerStyle={false}
                   onValueChange={(value) => setSecondaryBreed(value)}
                   items={breeds}
                 />
