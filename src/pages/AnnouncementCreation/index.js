@@ -1,5 +1,6 @@
+/* Se precisar dar manutenção nisso, me chama - jmlerina@gmail.com */
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Switch, Text } from "react-native";
+import { TouchableOpacity, Switch, Text, Alert } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import PropTypes from "prop-types";
 
@@ -37,9 +38,11 @@ export default function AnnouncementCreation() {
   const [category1, setCategory1] = useState("");
   const [breed1, setBreed1] = useState("");
   const [variants1, setVariants1] = useState("");
+  const [quantity1, setQuantity1] = useState("1");
   const [category2, setCategory2] = useState("");
   const [breed2, setBreed2] = useState("");
   const [variants2, setVariants2] = useState("");
+  const [quantity2, setQuantity2] = useState("1");
   const [toggle2, isEnabled2] = useState(false);
 
   useEffect(() => {
@@ -60,11 +63,28 @@ export default function AnnouncementCreation() {
     setBreed2("");
     // busca quais opções possíveis de segunda categoria
     setOptionsCategory2(helpers.category1Check(value));
+    // atualiza as variantes pra essa categoria
+    // updateVariants(1);
     // desabilita opções de segunda categoria se prim for touro, invernar ou nula
     if (value === "touro" || value === "vaca_invernar" || value === null) {
       isEnabled2(false);
     } else {
       isEnabled2(true);
+    }
+  };
+
+  const updateVariants = (n) => {
+    // vaca: [{ case: "prenhes" }, { case: "com_cria" }]
+    if (n === 1) {
+      let v1 = [];
+      category1 ? (v1 = variants[category1]) : null;
+      console.log("Variants 1 (", category1, ")", variants[category1]);
+      setVariants1(v1);
+    } else if (n === 2) {
+      let v2 = [];
+      category2 ? (v2 = variants[category2]) : null;
+      console.log("Variants 2 (", category2, ")", variants[category2]);
+      setVariants2(v2);
     }
   };
 
@@ -117,7 +137,10 @@ export default function AnnouncementCreation() {
             value={category1}
             style={pickerStyle}
             useNativeAndroidPickerStyle={false}
-            onValueChange={(value) => handleNewCategory1(value)}
+            onValueChange={(value) => [
+              handleNewCategory1(value),
+              updateVariants(1),
+            ]}
             items={categories}
           />
         </SelectorBG>
@@ -141,13 +164,14 @@ export default function AnnouncementCreation() {
             <ContainerQtt>
               <Label>Quantidade</Label>
               <InputQtt
-                value={0}
-                onChangeText={(text) => console.log(text)}
+                value={quantity1}
+                onChangeText={(text) => setQuantity1(text.replace(/\D/g, ""))}
                 placeholder={"total de cabeças"}
                 maxLength={3}
                 keyboardType={"numeric"}
               />
             </ContainerQtt>
+            {/* Here things get a little insane */}
           </>
         ) : null}
 
@@ -166,7 +190,10 @@ export default function AnnouncementCreation() {
                 value={category2}
                 style={pickerStyle}
                 useNativeAndroidPickerStyle={false}
-                onValueChange={(value) => setCategory2(value)}
+                onValueChange={(value) => [
+                  setCategory2(value),
+                  updateVariants(2),
+                ]}
                 items={optionsCategory2}
               />
             </SelectorBG>
@@ -190,8 +217,10 @@ export default function AnnouncementCreation() {
                 <ContainerQtt>
                   <Label>Quantidade</Label>
                   <InputQtt
-                    value={0}
-                    onChangeText={(text) => console.log(text)}
+                    value={quantity2}
+                    onChangeText={(text) =>
+                      setQuantity2(text.replace(/\D/g, ""))
+                    }
                     placeholder={"total de cabeças"}
                     maxLength={3}
                     keyboardType={"numeric"}
