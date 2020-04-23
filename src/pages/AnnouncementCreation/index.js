@@ -55,7 +55,7 @@ export default function AnnouncementCreation() {
     // busca quais opções possíveis de segunda categoria
     setOptionsCategory2(helpers.category1Check(value));
     // desabilita opções de segunda categoria se prim for touro, invernar ou nula
-    if (value === "touro" || value === "vaca invernar" || value === null) {
+    if (value === "touro" || value === "vaca_invernar" || value === null) {
       isEnabled2(false);
     } else {
       isEnabled2(true);
