@@ -37,6 +37,32 @@ export const SwitchSection = styled.View`
   margin: 30px 30px 0px 30px;
 `;
 
+export const ContainerQtt = styled.View`
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  padding: 18px 0px 0px 0px;
+  align-items: center;
+`;
+
+export const InputQtt = styled.TextInput`
+  height: 40px;
+  padding: 0px 10px 0px 10px;
+  background-color: ${general.styles.colors.lighter};
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: ${general.styles.colors.oceanGreen};
+  border-radius: 3px;
+`;
+
+export const SelectorBG = styled.View`
+  height: 40px;
+  flex: 1;
+  background-color: ${general.styles.colors.lighter};
+  margin: 0px 0px 20px 0px;
+`;
+
 export const Description = styled.Text`
   color: ${general.styles.colors.black};
   text-align: center;
@@ -58,6 +84,7 @@ export const Label = styled.Text`
   color: ${general.styles.colors.oceanGreen};
   font-size: 18px;
   font-weight: bold;
+  margin: 0px 0px 2px 0px;
 `;
 
 // RNPickerSelect (not styled-components)
@@ -71,7 +98,8 @@ export const pickerStyle = {
   inputAndroid: {
     color: general.styles.colors.black,
     fontSize: 18,
-    marginBottom: 10,
+    marginLeft: 10,
+    marginTop: 5,
   },
   placeholderColor: "white",
   underline: { borderTopWidth: 0 },

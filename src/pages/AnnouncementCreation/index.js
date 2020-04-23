@@ -18,8 +18,11 @@ import {
   Line,
   Divider,
   Section,
+  SelectorBG,
   SwitchSection,
   Description,
+  ContainerQtt,
+  InputQtt,
   pickerStyle,
 } from "./styles";
 
@@ -28,21 +31,24 @@ export default function AnnouncementCreation() {
   const [dynamic, setDynamic] = useState(false);
   const [categories, setCategories] = useState([]);
   const [breeds, setBreeds] = useState([]);
+  const [variants, setVariants] = useState([]);
   const [optionsCategory2, setOptionsCategory2] = useState([]);
   // relevant data variables
   const [category1, setCategory1] = useState("");
   const [breed1, setBreed1] = useState("");
+  const [variants1, setVariants1] = useState("");
   const [category2, setCategory2] = useState("");
   const [breed2, setBreed2] = useState("");
+  const [variants2, setVariants2] = useState("");
   const [toggle2, isEnabled2] = useState(false);
 
   useEffect(() => {
     function loadConstants() {
       setCategories(constants.CATEGORIES);
       setBreeds(constants.BREEDS);
+      setVariants(constants.VARIANTS);
     }
     loadConstants();
-    console.log("Loaded CATEGORIES:", categories, "\nLoaded BREEDS:", breeds);
   }, []);
 
   const handleNewCategory1 = (value) => {
@@ -101,33 +107,47 @@ export default function AnnouncementCreation() {
       <Section>
         {/* Category 1 Selection */}
         <Label>Categoria</Label>
-        <RNPickerSelect
-          placeholder={{
-            label: "———",
-            value: null,
-            color: general.styles.colors.light,
-          }}
-          value={category1}
-          style={pickerStyle}
-          useNativeAndroidPickerStyle={false}
-          onValueChange={(value) => handleNewCategory1(value)}
-          items={categories}
-        />
+        <SelectorBG>
+          <RNPickerSelect
+            placeholder={{
+              label: "———",
+              value: null,
+              color: general.styles.colors.light,
+            }}
+            value={category1}
+            style={pickerStyle}
+            useNativeAndroidPickerStyle={false}
+            onValueChange={(value) => handleNewCategory1(value)}
+            items={categories}
+          />
+        </SelectorBG>
         {category1 ? (
           <>
             <Label>Raça</Label>
-            <RNPickerSelect
-              placeholder={{
-                label: "———",
-                value: null,
-                color: general.styles.colors.light,
-              }}
-              value={breed1}
-              style={pickerStyle}
-              useNativeAndroidPickerStyle={false}
-              onValueChange={(value) => setBreed1(value)}
-              items={breeds}
-            />
+            <SelectorBG>
+              <RNPickerSelect
+                placeholder={{
+                  label: "———",
+                  value: null,
+                  color: general.styles.colors.light,
+                }}
+                value={breed1}
+                style={pickerStyle}
+                useNativeAndroidPickerStyle={false}
+                onValueChange={(value) => setBreed1(value)}
+                items={breeds}
+              />
+            </SelectorBG>
+            <ContainerQtt>
+              <Label>Quantidade</Label>
+              <InputQtt
+                value={0}
+                onChangeText={(text) => console.log(text)}
+                placeholder={"total de cabeças"}
+                maxLength={3}
+                keyboardType={"numeric"}
+              />
+            </ContainerQtt>
           </>
         ) : null}
 
@@ -136,33 +156,47 @@ export default function AnnouncementCreation() {
           <>
             <Line />
             <Label>Categoria adicional (opcional)</Label>
-            <RNPickerSelect
-              placeholder={{
-                label: "———",
-                value: null,
-                color: general.styles.colors.light,
-              }}
-              value={category2}
-              style={pickerStyle}
-              useNativeAndroidPickerStyle={false}
-              onValueChange={(value) => setCategory2(value)}
-              items={optionsCategory2}
-            />
+            <SelectorBG>
+              <RNPickerSelect
+                placeholder={{
+                  label: "———",
+                  value: null,
+                  color: general.styles.colors.light,
+                }}
+                value={category2}
+                style={pickerStyle}
+                useNativeAndroidPickerStyle={false}
+                onValueChange={(value) => setCategory2(value)}
+                items={optionsCategory2}
+              />
+            </SelectorBG>
             {category2 ? (
               <>
                 <Label>Raça</Label>
-                <RNPickerSelect
-                  placeholder={{
-                    label: "———",
-                    value: null,
-                    color: general.styles.colors.light,
-                  }}
-                  value={breed2}
-                  style={pickerStyle}
-                  useNativeAndroidPickerStyle={false}
-                  onValueChange={(value) => setBreed2(value)}
-                  items={breeds}
-                />
+                <SelectorBG>
+                  <RNPickerSelect
+                    placeholder={{
+                      label: "———",
+                      value: null,
+                      color: general.styles.colors.light,
+                    }}
+                    value={breed2}
+                    style={pickerStyle}
+                    useNativeAndroidPickerStyle={false}
+                    onValueChange={(value) => setBreed2(value)}
+                    items={breeds}
+                  />
+                </SelectorBG>
+                <ContainerQtt>
+                  <Label>Quantidade</Label>
+                  <InputQtt
+                    value={0}
+                    onChangeText={(text) => console.log(text)}
+                    placeholder={"total de cabeças"}
+                    maxLength={3}
+                    keyboardType={"numeric"}
+                  />
+                </ContainerQtt>
               </>
             ) : null}
           </>

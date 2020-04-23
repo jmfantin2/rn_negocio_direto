@@ -16,6 +16,7 @@ export const VARIANTS = {
   terneira: [],
   novilha: [{ case: "prenhes" }],
   vaca: [{ case: "prenhes" }, { case: "com_cria" }],
+  vaca_invernar: [],
 };
 
 export const BREEDS = [
