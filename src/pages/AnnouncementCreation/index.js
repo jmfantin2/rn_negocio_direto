@@ -1,13 +1,12 @@
-/* NOTICE: 
-    - We are not using styled.Picker since react-native/picker is deprecated.
-    - We are also not using react-native-community/picker because it sucks.
-*/
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TouchableOpacity, Switch, Text } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
 import PropTypes from "prop-types";
 
-import RNPickerSelect from "react-native-picker-select";
 import { general } from "../../../assets/general";
+
+import * as constants from "../../helpers/constants";
+import * as helpers from "../../helpers/AnnouncementCreation";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -25,90 +24,41 @@ import {
 } from "./styles";
 
 export default function AnnouncementCreation() {
+  // presentational variables
   const [dynamic, setDynamic] = useState(false);
-  const [primary, setPrimary] = useState("");
-  const [primaryBreed, setPrimaryBreed] = useState("");
-  const [secondary, setSecondary] = useState("");
-  const [secondaryBreed, setSecondaryBreed] = useState("");
-  const [secondaryToggle, setSecondaryToggle] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [breeds, setBreeds] = useState([]);
+  const [optionsCategory2, setOptionsCategory2] = useState([]);
+  // relevant data variables
+  const [category1, setCategory1] = useState("");
+  const [breed1, setBreed1] = useState("");
+  const [category2, setCategory2] = useState("");
+  const [breed2, setBreed2] = useState("");
+  const [toggle2, isEnabled2] = useState(false);
 
-  const primaryOptions = [
-    { label: "NOVILHO", value: "novilho" },
-    { label: "TERNEIRO", value: "terneiro" },
-    { label: "TOURO", value: "touro" },
-    { label: "TERNEIRA", value: "terneira" },
-    { label: "NOVILHA", value: "novilha" },
-    { label: "VACA", value: "vaca" },
-    { label: "VACA INVERNAR", value: "vaca invernar" },
-  ];
+  useEffect(() => {
+    function loadConstants() {
+      setCategories(constants.CATEGORIES);
+      setBreeds(constants.BREEDS);
+    }
+    loadConstants();
+    console.log("Loaded CATEGORIES:", categories, "\nLoaded BREEDS:", breeds);
+  }, []);
 
-  let secondaryOptions = [];
-  let primaryVariants,
-    secondaryVariants = [];
-
-  /* Chernobyl : Do you know what you're doing? Well, I didn't. */
-  if (primary === "novilho") {
-    secondaryOptions = [
-      { label: "TERNEIRO", value: "terneiro" },
-      { label: "NOVILHA", value: "novilha" },
-      { label: "VACA", value: "vaca" },
-    ];
-  } else if (primary === "terneiro") {
-    secondaryOptions = [
-      { label: "NOVILHO", value: "novilho" },
-      { label: "TERNEIRA", value: "terneira" },
-    ];
-  } else if (primary === "terneira") {
-    secondaryOptions = [
-      { label: "NOVILHA", value: "novilha" },
-      { label: "TERNEIRO", value: "terneiro" },
-    ];
-  } else if (primary === "novilha") {
-    secondaryOptions = [
-      { label: "TERNEIRA", value: "terneira" },
-      { label: "NOVILHO", value: "novilho" },
-      { label: "VACA", value: "vaca" },
-    ];
-  } else if (primary === "vaca") {
-    secondaryOptions = [{ label: "NOVILHA", value: "novilha" }];
-  } else if (
-    primary === "touro" ||
-    primary === "vaca invernar" ||
-    primary === null
-  ) {
-    //"touro" ou "vaca invernar" ou placeholder
-    secondaryOptions = [];
-  }
-
-  const breeds = [
-    { label: "ANGUS (ABERDEEN)", value: "aberdeen angus" },
-    { label: "ANGUS (RED)", value: "red angus" },
-    { label: "BRAFORD", value: "braford" },
-    { label: "BRANGUS", value: "brangus" },
-    { label: "BRITÂNICOS", value: "britânicos" },
-    { label: "CANCHIN", value: "canchin" },
-    { label: "CHAROLES", value: "charoles" },
-    { label: "CRUZAS EUROPEIAS", value: "cruzas europeias" },
-    { label: "CRUZAS LEITEIRAS", value: "cruzas leiteiras" },
-    { label: "CRUZAS ZEBU", value: "cruzas zebu" },
-    { label: "DEVON", value: "devon" },
-    { label: "EUROPEUS", value: "europeus" },
-    { label: "HEREFORD", value: "hereford" },
-    { label: "LIMOUSIN", value: "limousin" },
-    { label: "NELORE", value: "nelore" },
-    { label: "SIMENTAL", value: "simental" },
-    { label: "TABAPUÃ", value: "tabapuã" },
-    { label: "ZEBU", value: "zebu" },
-  ];
-
-  const handleSelection = (value) => {
-    setPrimary(value);
-    setSecondary("");
-    setSecondaryBreed("");
+  const handleNewCategory1 = (value) => {
+    // troca primeira categoria por selecionada
+    setCategory1(value);
+    // esvazia segunda categoria preenchida
+    setCategory2("");
+    // esvazia segunda raça preenchida
+    setBreed2("");
+    // busca quais opções possíveis de segunda categoria
+    setOptionsCategory2(helpers.category1Check(value));
+    // desabilita opções de segunda categoria se prim for touro, invernar ou nula
     if (value === "touro" || value === "vaca invernar" || value === null) {
-      setSecondaryToggle(false);
+      isEnabled2(false);
     } else {
-      setSecondaryToggle(true);
+      isEnabled2(true);
     }
   };
 
@@ -129,7 +79,11 @@ export default function AnnouncementCreation() {
       <SwitchSection>
         <Label>{dynamic ? "PREÇO DINÂMICO" : "PREÇO FIXO"}</Label>
         <Switch
-          onValueChange={() => (dynamic ? setDynamic(false) : setDynamic(true))}
+          onValueChange={() =>
+            dynamic
+              ? setDynamic(false)
+              : [setDynamic(true), setCategory2(""), setBreed2("")]
+          }
           value={dynamic}
           style={{ margin: 10 }}
         />
@@ -145,7 +99,7 @@ export default function AnnouncementCreation() {
       </Divider>
 
       <Section>
-        {/* Primary Category Selection */}
+        {/* Category 1 Selection */}
         <Label>Categoria</Label>
         <RNPickerSelect
           placeholder={{
@@ -153,12 +107,13 @@ export default function AnnouncementCreation() {
             value: null,
             color: general.styles.colors.light,
           }}
+          value={category1}
           style={pickerStyle}
           useNativeAndroidPickerStyle={false}
-          onValueChange={(value) => handleSelection(value)}
-          items={primaryOptions}
+          onValueChange={(value) => handleNewCategory1(value)}
+          items={categories}
         />
-        {primary ? (
+        {category1 ? (
           <>
             <Label>Raça</Label>
             <RNPickerSelect
@@ -167,16 +122,17 @@ export default function AnnouncementCreation() {
                 value: null,
                 color: general.styles.colors.light,
               }}
+              value={breed1}
               style={pickerStyle}
               useNativeAndroidPickerStyle={false}
-              onValueChange={(value) => setPrimaryBreed(value)}
+              onValueChange={(value) => setBreed1(value)}
               items={breeds}
             />
           </>
         ) : null}
 
-        {/* Secondary Category Selection */}
-        {secondaryToggle && !dynamic ? (
+        {/* Category 2 Selection */}
+        {toggle2 && !dynamic ? (
           <>
             <Line />
             <Label>Categoria adicional (opcional)</Label>
@@ -186,12 +142,13 @@ export default function AnnouncementCreation() {
                 value: null,
                 color: general.styles.colors.light,
               }}
+              value={category2}
               style={pickerStyle}
               useNativeAndroidPickerStyle={false}
-              onValueChange={(value) => setSecondary(value)}
-              items={secondaryOptions}
+              onValueChange={(value) => setCategory2(value)}
+              items={optionsCategory2}
             />
-            {secondary ? (
+            {category2 ? (
               <>
                 <Label>Raça</Label>
                 <RNPickerSelect
@@ -200,9 +157,10 @@ export default function AnnouncementCreation() {
                     value: null,
                     color: general.styles.colors.light,
                   }}
+                  value={breed2}
                   style={pickerStyle}
                   useNativeAndroidPickerStyle={false}
-                  onValueChange={(value) => setSecondaryBreed(value)}
+                  onValueChange={(value) => setBreed2(value)}
                   items={breeds}
                 />
               </>
