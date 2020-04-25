@@ -42,23 +42,27 @@ export function getPossibleVariants(value) {
   let possibleVariants = [];
   switch (value) {
     case "novilho":
-      possibleVariants = [{ case: "castrados" }];
+      possibleVariants = [{ key: 0, case: "castrados" }];
       break;
     case "terneiro":
-      possibleVariants = [{ case: "castrados" }];
+      possibleVariants = [{ key: 0, case: "castrados" }];
       break;
     case "touro":
-      possibleVariants = [{ case: "com_registro" }];
+      possibleVariants = [{ key: 0, case: "com_registro" }];
       break;
     case "novilha":
-      possibleVariants = [{ case: "prenhes" }];
+      possibleVariants = [{ key: 0, case: "prenhes" }];
       break;
     case "vaca":
-      possibleVariants = [{ case: "prenhes" }, { case: "com_cria" }];
+      possibleVariants = [
+        { key: 0, case: "prenhes" },
+        { key: 1, case: "com_cria" },
+      ];
       break;
     default:
       // "terneira", "vaca_invernar", null
       break;
   }
   console.log("Possible variants for", value, ":", possibleVariants);
+  return possibleVariants;
 }

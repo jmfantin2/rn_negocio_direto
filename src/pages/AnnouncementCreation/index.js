@@ -1,6 +1,6 @@
 /* Se precisar dar manutenção nisso, me chama - jmlerina@gmail.com */
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Switch, Text, Alert } from "react-native";
+import { TouchableOpacity, Switch, Text, Alert, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import PropTypes from "prop-types";
 
@@ -16,6 +16,7 @@ import {
   UploadVideo,
   Title,
   Label,
+  VLabel,
   Line,
   Divider,
   Section,
@@ -24,6 +25,8 @@ import {
   Description,
   ContainerQtt,
   InputQtt,
+  Button,
+  ButtonText,
   pickerStyle,
 } from "./styles";
 
@@ -44,7 +47,7 @@ export default function AnnouncementCreation() {
   const [breed1, setBreed1] = useState("");
   const [breed2, setBreed2] = useState("");
 
-  // for set totals to be sold
+  // for setting totals to be sold
   const [quantity1, setQuantity1] = useState("1");
   const [quantity2, setQuantity2] = useState("1");
 
@@ -52,7 +55,15 @@ export default function AnnouncementCreation() {
   const [variants1, setVariants1] = useState([]);
   const [variants2, setVariants2] = useState([]);
 
+  //for setting variants to be sold
+  const [variant1Qtt, setVariant1Qtt] = useState("1");
+  const [variant2Qtt, setVariant2Qtt] = useState("1");
+
+  // to easily manage the showing of category 2
   const [toggle2, isEnabled2] = useState(false);
+
+  // wrapper for backend
+  const [announcement, setAnnouncement] = useState({});
 
   useEffect(() => {
     function loadConstants() {
@@ -62,7 +73,7 @@ export default function AnnouncementCreation() {
     loadConstants();
   }, []);
 
-  const handleNewCategory1 = (value) => {
+  const handleCategory1Change = (value) => {
     // troca primeira categoria por selecionada
     setCategory1(value);
     // esvazia segunda categoria preenchida
@@ -80,6 +91,90 @@ export default function AnnouncementCreation() {
     } else {
       isEnabled2(true);
     }
+  };
+
+  const isSubmitReady = () => {
+    // se der falso, avisa pra completar.
+    let ann = {
+      category: [],
+      breed: [],
+    };
+    // let category = [];
+    // let breed = [];
+    // let ageRange = "5y-10y";
+    // let weight = "150";
+    // let location = "Erechim (RS)";
+    // let endDate = "Mar 25 2015";
+    // let observations = ["obs1", "obs2"];
+
+    let categoryWrapper = {};
+    let breedWrapper = {};
+    let ready = false;
+
+    if (category1 && breed1 && quantity1) {
+      // all right for first category
+      if (category2) {
+        // some complementary category was chosen
+        if (!breed2 || !quantity2) {
+          // information missing for second category
+          // stop right there...
+          return ready;
+        } else {
+          //information complete for second category
+          categoryWrapper.name = category2;
+          categoryWrapper.quantity = quantity2;
+          ann.category.push(categoryWrapper);
+
+          breedWrapper.name = breed2;
+          breedWrapper.quantity = quantity2;
+          ann.breed.push(breedWrapper);
+        }
+      }
+
+      categoryWrapper.name = category1;
+      categoryWrapper.quantity = quantity1;
+      ann.category.push(categoryWrapper);
+
+      breedWrapper.name = breed1;
+      breedWrapper.quantity = quantity1;
+      ann.breed.push(breedWrapper);
+
+      ready = true;
+    }
+    console.log(ann);
+    return ready;
+  };
+
+  const VariantComponent = () => {
+    const [quantities, setQuantities] = useState([]);
+    const updateQuantity = () => {};
+    return (
+      <>
+        {variants1.map((v) => (
+          <View key={v.key}>
+            <ContainerQtt>
+              <VLabel>
+                {"└─ " +
+                  v.case
+                    .charAt(0)
+                    .toUpperCase()
+                    .concat(v.case.substring(1))
+                    .replace("_", " ")}
+              </VLabel>
+              <InputQtt
+                value={""}
+                onChangeText={(text) =>
+                  console.log("Quantity for", v.case, "( key", v.key, ")", text)
+                }
+                placeholder={quantity1 ? quantity1 + " ou menos" : "0"}
+                maxLength={3}
+                keyboardType={"numeric"}
+              />
+            </ContainerQtt>
+          </View>
+        ))}
+      </>
+    );
   };
 
   return (
@@ -124,14 +219,14 @@ export default function AnnouncementCreation() {
         <SelectorBG>
           <RNPickerSelect
             placeholder={{
-              label: "———",
+              label: "───",
               value: null,
               color: general.styles.colors.light,
             }}
             value={category1}
             style={pickerStyle}
             useNativeAndroidPickerStyle={false}
-            onValueChange={(value) => [handleNewCategory1(value)]}
+            onValueChange={(value) => handleCategory1Change(value)}
             items={categories}
           />
         </SelectorBG>
@@ -141,7 +236,7 @@ export default function AnnouncementCreation() {
             <SelectorBG>
               <RNPickerSelect
                 placeholder={{
-                  label: "———",
+                  label: "───",
                   value: null,
                   color: general.styles.colors.light,
                 }}
@@ -157,12 +252,13 @@ export default function AnnouncementCreation() {
               <InputQtt
                 value={quantity1}
                 onChangeText={(text) => setQuantity1(text.replace(/\D/g, ""))}
-                placeholder={"total de cabeças"}
+                placeholder={"n° cabeças"}
                 maxLength={3}
                 keyboardType={"numeric"}
               />
             </ContainerQtt>
             {/* Here things get a little insane */}
+            <VariantComponent />
           </>
         ) : null}
 
@@ -174,7 +270,7 @@ export default function AnnouncementCreation() {
             <SelectorBG>
               <RNPickerSelect
                 placeholder={{
-                  label: "———",
+                  label: "───",
                   value: null,
                   color: general.styles.colors.light,
                 }}
@@ -194,7 +290,7 @@ export default function AnnouncementCreation() {
                 <SelectorBG>
                   <RNPickerSelect
                     placeholder={{
-                      label: "———",
+                      label: "───",
                       value: null,
                       color: general.styles.colors.light,
                     }}
@@ -212,7 +308,7 @@ export default function AnnouncementCreation() {
                     onChangeText={(text) =>
                       setQuantity2(text.replace(/\D/g, ""))
                     }
-                    placeholder={"total de cabeças"}
+                    placeholder={"n° cabeças"}
                     maxLength={3}
                     keyboardType={"numeric"}
                   />
@@ -222,6 +318,16 @@ export default function AnnouncementCreation() {
           </>
         ) : null}
       </Section>
+      <Button
+        // onPress={() => {handleSubmit(props), console.warn(props.errors)}}
+        onPress={() => isSubmitReady()}
+      >
+        <ButtonText>
+          {category1
+            ? general.strings.FINISH_SIGN_UP.toUpperCase()
+            : general.strings.FILL_SIGN_UP.toUpperCase()}
+        </ButtonText>
+      </Button>
     </Container>
   );
 }

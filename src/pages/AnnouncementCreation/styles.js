@@ -1,6 +1,9 @@
 import styled from "styled-components/native";
 import { general } from "../../../assets/general";
 
+import { Dimensions } from "react-native";
+const screenW = Dimensions.get("window").width;
+
 export const Container = styled.ScrollView`
   display: flex;
   flex: 1;
@@ -54,6 +57,7 @@ export const InputQtt = styled.TextInput`
   font-size: 16px;
   color: ${general.styles.colors.oceanGreen};
   border-radius: 3px;
+  width: ${screenW / 3}px;
 `;
 
 export const SelectorBG = styled.View`
@@ -85,6 +89,30 @@ export const Label = styled.Text`
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
+`;
+
+export const VLabel = styled.Text`
+  color: ${general.styles.colors.businessBrown};
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px 0px 2px 0px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  background-color: ${general.styles.colors.oceanGreen};
+  border-radius: 4px;
+  border: 1px solid ${general.styles.colors.regular};
+  height: 50px;
+  margin: 30px 10px 30px 10px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonText = styled.Text`
+  text-align: left;
+  color: ${general.styles.colors.white};
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 // RNPickerSelect (not styled-components)
