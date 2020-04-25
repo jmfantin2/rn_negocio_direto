@@ -1,37 +1,64 @@
-// returns possible secondary categories
-// will also return the prymary category variants
-// <{[...sec],[...var]}>
-export function category1Check(primary) {
-  if (primary === "novilho") {
-    return [
-      { label: "TERNEIRO", value: "terneiro" },
-      { label: "NOVILHA", value: "novilha" },
-      { label: "VACA", value: "vaca" },
-    ];
-  } else if (primary === "terneiro") {
-    return [
-      { label: "NOVILHO", value: "novilho" },
-      { label: "TERNEIRA", value: "terneira" },
-    ];
-  } else if (primary === "terneira") {
-    return [
-      { label: "NOVILHA", value: "novilha" },
-      { label: "TERNEIRO", value: "terneiro" },
-    ];
-  } else if (primary === "novilha") {
-    return [
-      { label: "TERNEIRA", value: "terneira" },
-      { label: "NOVILHO", value: "novilho" },
-      { label: "VACA", value: "vaca" },
-    ];
-  } else if (primary === "vaca") {
-    return [{ label: "NOVILHA", value: "novilha" }];
-  } else if (
-    primary === "touro" ||
-    primary === "vaca invernar" ||
-    primary === null
-  ) {
-    //"touro" ou "vaca invernar" ou placeholder
-    return [];
+export function getMatchedCategories(value) {
+  let matchedCategories = [];
+  switch (value) {
+    case "terneiro":
+      matchedCategories = [
+        { label: "NOVILHO", value: "novilho" },
+        { label: "TERNEIRA", value: "terneira" },
+      ];
+      break;
+    case "novilho":
+      matchedCategories = [
+        { label: "TERNEIRO", value: "terneiro" },
+        { label: "NOVILHA", value: "novilha" },
+        { label: "VACA", value: "vaca" },
+      ];
+      break;
+    case "terneira":
+      matchedCategories = [
+        { label: "NOVILHA", value: "novilha" },
+        { label: "TERNEIRO", value: "terneiro" },
+      ];
+      break;
+    case "novilha":
+      matchedCategories = [
+        { label: "TERNEIRA", value: "terneira" },
+        { label: "NOVILHO", value: "novilho" },
+        { label: "VACA", value: "vaca" },
+      ];
+      break;
+    case "vaca":
+      matchedCategories = [{ label: "NOVILHA", value: "novilha" }];
+      break;
+    default:
+      // "touro", "vaca_invernar", null
+      break;
   }
+  console.log("Matched categories for", value, ":", matchedCategories);
+  return matchedCategories;
+}
+
+export function getPossibleVariants(value) {
+  let possibleVariants = [];
+  switch (value) {
+    case "novilho":
+      possibleVariants = [{ case: "castrados" }];
+      break;
+    case "terneiro":
+      possibleVariants = [{ case: "castrados" }];
+      break;
+    case "touro":
+      possibleVariants = [{ case: "com_registro" }];
+      break;
+    case "novilha":
+      possibleVariants = [{ case: "prenhes" }];
+      break;
+    case "vaca":
+      possibleVariants = [{ case: "prenhes" }, { case: "com_cria" }];
+      break;
+    default:
+      // "terneira", "vaca_invernar", null
+      break;
+  }
+  console.log("Possible variants for", value, ":", possibleVariants);
 }

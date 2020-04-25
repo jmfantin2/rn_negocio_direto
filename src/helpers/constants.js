@@ -1,23 +1,13 @@
 // Não mexa a menos que saiba exatamente o que está fazendo :)
 export const CATEGORIES = [
-  { label: "NOVILHO", value: "novilho" },
   { label: "TERNEIRO", value: "terneiro" },
+  { label: "NOVILHO", value: "novilho" },
   { label: "TOURO", value: "touro" },
   { label: "TERNEIRA", value: "terneira" },
   { label: "NOVILHA", value: "novilha" },
   { label: "VACA", value: "vaca" },
   { label: "VACA INVERNAR", value: "vaca_invernar" },
 ];
-
-export const VARIANTS = {
-  novilho: [{ case: "castrados" }],
-  terneiro: [{ case: "castrados" }],
-  touro: [{ case: "com_registro" }],
-  terneira: [],
-  novilha: [{ case: "prenhes" }],
-  vaca: [{ case: "prenhes" }, { case: "com_cria" }],
-  vaca_invernar: [],
-};
 
 export const BREEDS = [
   { label: "ANGUS (ABERDEEN)", value: "aberdeen_angus" },

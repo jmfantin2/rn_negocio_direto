@@ -32,24 +32,32 @@ export default function AnnouncementCreation() {
   const [dynamic, setDynamic] = useState(false);
   const [categories, setCategories] = useState([]);
   const [breeds, setBreeds] = useState([]);
-  const [variants, setVariants] = useState([]);
-  const [optionsCategory2, setOptionsCategory2] = useState([]);
-  // relevant data variables
+
+  // for selected categories
   const [category1, setCategory1] = useState("");
-  const [breed1, setBreed1] = useState("");
-  const [variants1, setVariants1] = useState("");
-  const [quantity1, setQuantity1] = useState("1");
   const [category2, setCategory2] = useState("");
+
+  // for matching categories
+  const [optionsCategory2, setOptionsCategory2] = useState([]);
+
+  // for selected breeds
+  const [breed1, setBreed1] = useState("");
   const [breed2, setBreed2] = useState("");
-  const [variants2, setVariants2] = useState("");
+
+  // for set totals to be sold
+  const [quantity1, setQuantity1] = useState("1");
   const [quantity2, setQuantity2] = useState("1");
+
+  // for variants to show up
+  const [variants1, setVariants1] = useState([]);
+  const [variants2, setVariants2] = useState([]);
+
   const [toggle2, isEnabled2] = useState(false);
 
   useEffect(() => {
     function loadConstants() {
       setCategories(constants.CATEGORIES);
       setBreeds(constants.BREEDS);
-      setVariants(constants.VARIANTS);
     }
     loadConstants();
   }, []);
@@ -62,29 +70,15 @@ export default function AnnouncementCreation() {
     // esvazia segunda raça preenchida
     setBreed2("");
     // busca quais opções possíveis de segunda categoria
-    setOptionsCategory2(helpers.category1Check(value));
+    setOptionsCategory2(helpers.getMatchedCategories(value));
     // atualiza as variantes pra essa categoria
-    // updateVariants(1);
+    setVariants1(helpers.getPossibleVariants(value));
+
     // desabilita opções de segunda categoria se prim for touro, invernar ou nula
     if (value === "touro" || value === "vaca_invernar" || value === null) {
       isEnabled2(false);
     } else {
       isEnabled2(true);
-    }
-  };
-
-  const updateVariants = (n) => {
-    // vaca: [{ case: "prenhes" }, { case: "com_cria" }]
-    if (n === 1) {
-      let v1 = [];
-      category1 ? (v1 = variants[category1]) : null;
-      console.log("Variants 1 (", category1, ")", variants[category1]);
-      setVariants1(v1);
-    } else if (n === 2) {
-      let v2 = [];
-      category2 ? (v2 = variants[category2]) : null;
-      console.log("Variants 2 (", category2, ")", variants[category2]);
-      setVariants2(v2);
     }
   };
 
@@ -137,10 +131,7 @@ export default function AnnouncementCreation() {
             value={category1}
             style={pickerStyle}
             useNativeAndroidPickerStyle={false}
-            onValueChange={(value) => [
-              handleNewCategory1(value),
-              updateVariants(1),
-            ]}
+            onValueChange={(value) => [handleNewCategory1(value)]}
             items={categories}
           />
         </SelectorBG>
@@ -192,7 +183,7 @@ export default function AnnouncementCreation() {
                 useNativeAndroidPickerStyle={false}
                 onValueChange={(value) => [
                   setCategory2(value),
-                  updateVariants(2),
+                  setVariants2(helpers.getPossibleVariants(value)),
                 ]}
                 items={optionsCategory2}
               />
