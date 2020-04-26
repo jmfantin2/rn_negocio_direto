@@ -13,6 +13,8 @@ import videoTest from "../../../assets/video.mp4";
 
 import {
   Container,
+  Label,
+  ContainerQtt
 } from "./styles";
 
 export default function AnnouncementDetail() {
@@ -27,7 +29,7 @@ export default function AnnouncementDetail() {
 
   return (
     <Container>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log(announcement)}>
         <Video
           source={videoTest}
           rate={1.0}
@@ -39,9 +41,87 @@ export default function AnnouncementDetail() {
           style={{ height: 300 }}
         />
       </TouchableOpacity>
-      <Text>{announcement.weight}</Text>
-    </Container>
+      {announcement.category ?
+      <>
+      <ContainerQtt>
+        <Label>Categoria: </Label><Text>{announcement.category[0].name} </Text>
+      </ContainerQtt>
+      <ContainerQtt>
+        <Label>Quantidade: </Label><Text>{announcement.category[0].quantity} </Text>
+      </ContainerQtt>
+      </>
+      : null}
 
+      {announcement.category ?
+      <>
+      <ContainerQtt>
+        <Label>Categoria: </Label><Text>{announcement.category[1].name} </Text>
+      </ContainerQtt>
+      <ContainerQtt>
+        <Label>Quantidade: </Label><Text>{announcement.category[1].quantity} </Text>
+      </ContainerQtt>
+      </>
+      : null}
+
+      {announcement.breed ?
+      <>
+      <ContainerQtt>
+        <Label>Raça: </Label><Text>{announcement.breed[0].name} </Text>
+      </ContainerQtt>
+      <ContainerQtt>
+       <Label>Quantidade: </Label><Text>{announcement.breed[0].quantity} </Text>
+      </ContainerQtt>
+      </>
+      : null}
+
+      {announcement.breed ?
+      <>
+      <ContainerQtt>
+        <Label>Raça: </Label><Text>{announcement.breed[1].name} </Text>
+      </ContainerQtt>
+      <ContainerQtt>
+        <Label>Quantidade: </Label><Text>{announcement.breed[1].quantity} </Text>
+      </ContainerQtt>
+      </>
+      : null }
+
+      <ContainerQtt>
+        <Label>Idade: </Label><Text>{announcement.ageRange} </Text>
+      </ContainerQtt>
+      <ContainerQtt>
+        <Label>Peso: </Label><Text>{announcement.weight}</Text>
+      </ContainerQtt>
+
+      {announcement.location ? 
+      <>
+      <ContainerQtt>
+        <Label>Estado: </Label><Text>{announcement.location.state}</Text>
+      </ContainerQtt>
+      <ContainerQtt>
+        <Label>Cidade: </Label><Text>{announcement.location.city}</Text>
+      </ContainerQtt>
+      </>
+      : null }
+
+      {announcement.observations ?
+      <ContainerQtt>
+       <Label>Observações: </Label><Text>{announcement.observations[0]}, {announcement.observations[1]}</Text>
+      </ContainerQtt>
+      : null}
+
+      <ContainerQtt>
+        <Label>Data de Criação: </Label><Text>{announcement.createdDate}</Text>
+      </ContainerQtt>
+      <ContainerQtt>
+       <Label>Data de Encerramento: </Label><Text>{announcement.endDate}</Text>
+      </ContainerQtt>
+      <ContainerQtt>
+        <Label>Preço Inicial: </Label><Text>{announcement.initialPrice}</Text>
+      </ContainerQtt>
+      <ContainerQtt>
+        <Label>Preço Atual: </Label><Text>{announcement.currentPrice}</Text>
+      </ContainerQtt>
+    </Container>
   )
 
 }
