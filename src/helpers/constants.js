@@ -32,17 +32,17 @@ export const BREEDS = [
   { label: "ZEBU", value: "zebu" },
 ];
 
-// ANNOUNCEMENT DETAI
+// ANNOUNCEMENT DETAIL
 export const ANNOUNCEMENT = {
   category: [
-    { name: "novilho", quantity: 10 },
-    { name: "novilha", quantity: 5 }
+    { name: "Novilho", quantity: 10, size:0 },
+    { name: "Novilha", quantity: 5, size:1 },
   ],
   breed: [
-    { name: "devon", quantity: 10 },
-    { name: "nelore", quantity: 5 }
+    { name: "Devon", quantity: 10, size:0 },
+    { name: "Nelore", quantity: 5, size:1},
   ],
-  ageRange: "5y-7y",
+  ageRange: "De 5 à 7 anos",
   weight: "150",
   location: {
     city: "Erechim",
@@ -50,7 +50,7 @@ export const ANNOUNCEMENT = {
   },
   observations: [
     "O gado é louco",
-    "Tô com fome"
+    "tô com fome"
   ],
   createdDate: "2020-04-21T21:49:38.734+00:00",
   endDate: "2020-04-24T21:49:38.734+00:00",
