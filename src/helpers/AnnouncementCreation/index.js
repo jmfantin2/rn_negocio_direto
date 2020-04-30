@@ -34,7 +34,7 @@ export function getMatchedCategories(value) {
       // "touro", "vaca_invernar", null
       break;
   }
-  console.log("Matched categories for", value, ":", matchedCategories);
+  // console.log("Matched categories for", value, ":", matchedCategories);
   return matchedCategories;
 }
 
@@ -63,6 +63,6 @@ export function getPossibleVariants(value) {
       // "terneira", "vaca_invernar", null
       break;
   }
-  console.log("Possible variants for", value, ":", possibleVariants);
+  // console.log("Possible variants for", value, ":", possibleVariants);
   return possibleVariants;
 }

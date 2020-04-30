@@ -25,6 +25,7 @@ import {
   Description,
   ContainerQtt,
   InputQtt,
+  InvisibleInput,
   Button,
   ButtonText,
   pickerStyle,
@@ -48,16 +49,16 @@ export default function AnnouncementCreation() {
   const [breed2, setBreed2] = useState("");
 
   // for setting totals to be sold
-  const [quantity1, setQuantity1] = useState("1");
-  const [quantity2, setQuantity2] = useState("1");
+  const [quantity1, setQuantity1] = useState("0");
+  const [quantity2, setQuantity2] = useState("0");
 
   // for variants to show up
   const [variants1, setVariants1] = useState([]);
   const [variants2, setVariants2] = useState([]);
 
-  //for setting variants to be sold
-  const [variant1Qtt, setVariant1Qtt] = useState("1");
-  const [variant2Qtt, setVariant2Qtt] = useState("1");
+  // weight and price
+  const [weight, setWeight] = useState("");
+  const [price, setPrice] = useState("1");
 
   // to easily manage the showing of category 2
   const [toggle2, isEnabled2] = useState(false);
@@ -80,6 +81,9 @@ export default function AnnouncementCreation() {
     setCategory2("");
     // esvazia segunda raça preenchida
     setBreed2("");
+    //esvazia as quantidades
+    setQuantity1("");
+    setQuantity2("");
     // busca quais opções possíveis de segunda categoria
     setOptionsCategory2(helpers.getMatchedCategories(value));
     // atualiza as variantes pra essa categoria
@@ -93,24 +97,16 @@ export default function AnnouncementCreation() {
     }
   };
 
-  const isSubmitReady = () => {
-    // se der falso, avisa pra completar.
+  const submitValidator = () => {
+    let isReady = false;
+    // false: form precisa ser completado
+    // true: confirmação para enviar
     let ann = {
       category: [],
       breed: [],
     };
-    // let category = [];
-    // let breed = [];
-    // let ageRange = "5y-10y";
-    // let weight = "150";
-    // let location = "Erechim (RS)";
-    // let endDate = "Mar 25 2015";
-    // let observations = ["obs1", "obs2"];
 
-    let categoryWrapper = {};
-    let breedWrapper = {};
-    let ready = false;
-
+    // RESTRICTION ZONE
     if (category1 && breed1 && quantity1) {
       // all right for first category
       if (category2) {
@@ -118,63 +114,51 @@ export default function AnnouncementCreation() {
         if (!breed2 || !quantity2) {
           // information missing for second category
           // stop right there...
-          return ready;
+          console.log("Ready ?", isReady, "!");
+          console.log("Assembled :", ann);
+          return isReady;
         } else {
           //information complete for second category
-          categoryWrapper.name = category2;
-          categoryWrapper.quantity = quantity2;
-          ann.category.push(categoryWrapper);
+          const categoryWrapper2 = {};
+          categoryWrapper2.name = category2;
+          categoryWrapper2.quantity = quantity2;
+          ann.category.push(categoryWrapper2);
 
-          breedWrapper.name = breed2;
-          breedWrapper.quantity = quantity2;
-          ann.breed.push(breedWrapper);
+          const breedWrapper2 = {};
+          breedWrapper2.name = breed2;
+          breedWrapper2.quantity = quantity2;
+          ann.breed.push(breedWrapper2);
         }
       }
 
-      categoryWrapper.name = category1;
-      categoryWrapper.quantity = quantity1;
-      ann.category.push(categoryWrapper);
+      const categoryWrapper1 = {};
+      categoryWrapper1.name = category1;
+      categoryWrapper1.quantity = quantity1;
+      ann.category.push(categoryWrapper1);
 
-      breedWrapper.name = breed1;
-      breedWrapper.quantity = quantity1;
-      ann.breed.push(breedWrapper);
+      const breedWrapper1 = {};
+      breedWrapper1.name = breed1;
+      breedWrapper1.quantity = quantity1;
+      ann.breed.push(breedWrapper1);
 
-      ready = true;
+      isReady = true;
     }
-    console.log(ann);
-    return ready;
+    console.log("Ready ?", isReady, "!");
+    console.log("Assembled :", ann);
+    return isReady;
   };
 
-  const VariantComponent = () => {
-    const [quantities, setQuantities] = useState([]);
-    const updateQuantity = () => {};
-    return (
-      <>
-        {variants1.map((v) => (
-          <View key={v.key}>
-            <ContainerQtt>
-              <VLabel>
-                {"└─ " +
-                  v.case
-                    .charAt(0)
-                    .toUpperCase()
-                    .concat(v.case.substring(1))
-                    .replace("_", " ")}
-              </VLabel>
-              <InputQtt
-                value={""}
-                onChangeText={(text) =>
-                  console.log("Quantity for", v.case, "( key", v.key, ")", text)
-                }
-                placeholder={quantity1 ? quantity1 + " ou menos" : "0"}
-                maxLength={3}
-                keyboardType={"numeric"}
-              />
-            </ContainerQtt>
-          </View>
-        ))}
-      </>
-    );
+  const monetaryHandling = (value) => {
+    //value is 090
+    console.log("Entered", value);
+    const real = parseInt(value) / 100; //7.55
+
+    //preserve the last zero!
+    value.charAt(value.len - 1) === "0"
+      ? setPrice(real.toString() + "0")
+      : setPrice(real.toString()); //R$ 7.55
+
+    console.log("Updated", real);
   };
 
   return (
@@ -257,8 +241,36 @@ export default function AnnouncementCreation() {
                 keyboardType={"numeric"}
               />
             </ContainerQtt>
-            {/* Here things get a little insane */}
-            <VariantComponent />
+            {variants1.map((v) => (
+              <View key={v.key}>
+                <ContainerQtt>
+                  <VLabel>
+                    {"└─ " +
+                      v.case
+                        .charAt(0)
+                        .toUpperCase()
+                        .concat(v.case.substring(1))
+                        .replace("_", " ")}
+                  </VLabel>
+                  <InputQtt
+                    value={"X"}
+                    onChangeText={(text) =>
+                      console.log(
+                        "Quantity for",
+                        v.case,
+                        "( key",
+                        v.key,
+                        ")",
+                        text
+                      )
+                    }
+                    placeholder={quantity1 ? quantity1 + " ou menos" : "0"}
+                    maxLength={3}
+                    keyboardType={"numeric"}
+                  />
+                </ContainerQtt>
+              </View>
+            ))}
           </>
         ) : null}
 
@@ -313,15 +325,73 @@ export default function AnnouncementCreation() {
                     keyboardType={"numeric"}
                   />
                 </ContainerQtt>
+                {variants2.map((v) => (
+                  <View key={v.key}>
+                    <ContainerQtt>
+                      <VLabel>
+                        {"└─ " +
+                          v.case
+                            .charAt(0)
+                            .toUpperCase()
+                            .concat(v.case.substring(1))
+                            .replace("_", " ")}
+                      </VLabel>
+                      <InputQtt
+                        value={"X"}
+                        onChangeText={(text) =>
+                          console.log(
+                            "Quantity for",
+                            v.case,
+                            "( key",
+                            v.key,
+                            ")",
+                            text
+                          )
+                        }
+                        placeholder={quantity1 ? quantity1 + " ou menos" : "0"}
+                        maxLength={3}
+                        keyboardType={"numeric"}
+                      />
+                    </ContainerQtt>
+                  </View>
+                ))}
               </>
             ) : null}
           </>
         ) : null}
+        <Line />
+        {parseInt(quantity1) + parseInt(quantity2) > 1 ? (
+          <Label>
+            {parseInt(quantity1) + parseInt(quantity2)} cabeças contabilizadas.
+          </Label>
+        ) : null}
+        <ContainerQtt>
+          <Label>Peso médio (kg)</Label>
+          <InputQtt
+            value={weight}
+            onChangeText={(text) => setWeight(text.replace(/\D/g, ""))}
+            placeholder={"em kg"}
+            maxLength={3}
+            keyboardType={"numeric"}
+          />
+        </ContainerQtt>
+        {dynamic ? null : (
+          <ContainerQtt>
+            <Label>Preço por kg</Label>
+            <View>
+              <InvisibleInput
+                value={"R$ " + price}
+                onChangeText={(text) =>
+                  monetaryHandling(text.replace(/\D/g, ""))
+                }
+                maxLength={10}
+                keyboardType={"numeric"}
+              />
+            </View>
+          </ContainerQtt>
+        )}
       </Section>
-      <Button
-        // onPress={() => {handleSubmit(props), console.warn(props.errors)}}
-        onPress={() => isSubmitReady()}
-      >
+      <Button onPress={() => submitValidator()}>
         <ButtonText>
           {category1
             ? general.strings.FINISH_SIGN_UP.toUpperCase()

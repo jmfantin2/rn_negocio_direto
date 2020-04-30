@@ -60,6 +60,18 @@ export const InputQtt = styled.TextInput`
   width: ${screenW / 3}px;
 `;
 
+export const InvisibleInput = styled.TextInput`
+  height: 40px;
+  padding: 0px 10px 0px 10px;
+  background-color: ${general.styles.colors.lighter};
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: ${general.styles.colors.oceanGreen};
+  border-radius: 3px;
+  width: ${screenW / 3}px;
+`;
+
 export const SelectorBG = styled.View`
   height: 40px;
   flex: 1;

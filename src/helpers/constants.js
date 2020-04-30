@@ -35,25 +35,22 @@ export const BREEDS = [
 // ANNOUNCEMENT DETAIL
 export const ANNOUNCEMENT = {
   category: [
-    { name: "Novilho", quantity: 10, size:0 },
-    { name: "Novilha", quantity: 5, size:1 },
+    { name: "novilho", quantity: 10, size: 0 },
+    { name: "novilha", quantity: 5, size: 1 },
   ],
   breed: [
-    { name: "Devon", quantity: 10, size:0 },
-    { name: "Nelore", quantity: 5, size:1},
+    { name: "devon", quantity: 10, size: 0 },
+    { name: "nelore", quantity: 5, size: 1 },
   ],
-  ageRange: "De 5 à 7 anos",
+  ageRange: "5Y-7Y",
   weight: "150",
   location: {
     city: "Erechim",
     state: "RS",
   },
-  observations: [
-    "O gado é louco",
-    "tô com fome"
-  ],
+  observations: ["O gado é louco", "Tô com fome"],
   createdDate: "2020-04-21T21:49:38.734+00:00",
   endDate: "2020-04-24T21:49:38.734+00:00",
   initialPrice: 0,
-  currentPrice: "7.50"
-}
+  currentPrice: "7.50",
+};
