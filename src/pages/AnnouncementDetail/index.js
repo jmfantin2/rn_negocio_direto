@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { TouchableOpacity, Text } from "react-native";
 import PropTypes from "prop-types";
 
-import * as constants from "../../helpers/constants";
+import * as constants from "../../helpers/CattleUtility/constants";
 import { Video } from "expo-av";
 import videoTest from "../../../assets/video.mp4";
 

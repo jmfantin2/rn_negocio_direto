@@ -103,14 +103,20 @@ export default function Home(props) {
         data={data}
         keyExtractor={(item) => String(item.id)}
         renderItem={renderListItem}
-      // onRefresh={loadProducts}
-      // refreshing={refreshing}
+        // onRefresh={loadProducts}
+        // refreshing={refreshing}
       />
       <TouchableOpacity
         onPress={() => props.navigation.navigate("AnnouncementCreation")}
       >
         <Text>{general.strings.CREATE_ANNOUNCEMENT}</Text>
       </TouchableOpacity>
+
+      {/* <TouchableOpacity
+        onPress={() => props.navigation.navigate("Development")}
+      >
+        <Text>Teste de componentes</Text>
+      </TouchableOpacity> */}
     </Container>
   );
 }

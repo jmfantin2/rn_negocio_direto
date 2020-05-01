@@ -8,6 +8,8 @@ import AnnouncementCreation from "./pages/AnnouncementCreation";
 import AnnouncementDetail from "./pages/AnnouncementDetail";
 import RegisterUser from "./pages/RegisterUser";
 
+import Development from "./pages/Development";
+
 import { general } from "../assets/general";
 
 //Telas acessíveis apenas após Login!
@@ -16,6 +18,7 @@ const StackNavigator = createStackNavigator(
     Home,
     AnnouncementCreation,
     AnnouncementDetail,
+    Development,
   },
   {
     initialRouteName: "Home",
