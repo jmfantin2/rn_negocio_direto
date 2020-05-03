@@ -1,13 +1,19 @@
 /* Se precisar dar manutenção nisso, me chama - jmlerina@gmail.com */
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Switch, Text, Alert, View } from "react-native";
+import {
+  TouchableOpacity,
+  Switch,
+  Text,
+  Alert,
+  View,
+  Slider,
+} from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import PropTypes from "prop-types";
 
 import { general } from "../../../assets/general";
-
 import * as helpers from "../../helpers/CattleUtility";
-import * as constants from "../../helpers/CattleUtility/constants";
+import * as location from "../../helpers/LocationUtility";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -24,6 +30,7 @@ import {
   SwitchSection,
   Description,
   ContainerQtt,
+  ContainerHor,
   InputQtt,
   InvisibleInput,
   Button,
@@ -33,6 +40,7 @@ import {
 
 export default function AnnouncementCreation() {
   // presentational variables
+
   const [dynamic, setDynamic] = useState(false);
   const [categories, setCategories] = useState([]);
   const [breeds, setBreeds] = useState([]);
@@ -58,18 +66,24 @@ export default function AnnouncementCreation() {
 
   // weight and price
   const [weight, setWeight] = useState("");
-  const [price, setPrice] = useState("1");
+  const [price, setPrice] = useState("0");
+
+  // location
+  const [states, setStates] = useState([]);
+  const [state, setState] = useState("");
+  const [cityOptions, setCityOptions] = useState([]);
+  const [city, setCity] = useState("");
 
   // to easily manage the showing of category 2
   const [toggle2, isEnabled2] = useState(false);
 
-  // wrapper for backend
-  const [announcement, setAnnouncement] = useState({});
+  const [daysActive, setDaysActive] = useState(2);
 
   useEffect(() => {
     function loadConstants() {
-      setCategories(constants.CATEGORIES);
-      setBreeds(constants.BREEDS);
+      setCategories(general.collections.CATEGORIES);
+      setBreeds(general.collections.BREEDS);
+      setStates(general.collections.BRAZILIAN_STATES);
     }
     loadConstants();
   }, []);
@@ -181,7 +195,12 @@ export default function AnnouncementCreation() {
           onValueChange={() =>
             dynamic
               ? setDynamic(false)
-              : [setDynamic(true), setCategory2(""), setBreed2("")]
+              : [
+                  setDynamic(true),
+                  setCategory2(""),
+                  setBreed2(""),
+                  setDaysActive(2),
+                ]
           }
           value={dynamic}
           style={{ margin: 10 }}
@@ -360,12 +379,7 @@ export default function AnnouncementCreation() {
           </>
         ) : null}
         <Line />
-        {parseInt(quantity1) + parseInt(quantity2) > 1 ? (
-          <Label>
-            {parseInt(quantity1) + parseInt(quantity2)} cabeças contabilizadas.
-          </Label>
-        ) : null}
-        <ContainerQtt>
+        <ContainerHor>
           <Label>Peso médio (kg)</Label>
           <InputQtt
             value={weight}
@@ -374,28 +388,82 @@ export default function AnnouncementCreation() {
             maxLength={3}
             keyboardType={"numeric"}
           />
-        </ContainerQtt>
+        </ContainerHor>
         {dynamic ? null : (
           <ContainerQtt>
-            <Label>Preço por kg</Label>
+            <Label>Preço por kg (R$)</Label>
             <View>
               <InvisibleInput
-                value={"R$ " + price}
-                onChangeText={(text) =>
-                  monetaryHandling(text.replace(/\D/g, ""))
-                }
+                value={price}
+                onChangeText={(text) => setPrice(text.replace(/\D/g, ","))}
                 maxLength={10}
                 keyboardType={"numeric"}
               />
             </View>
           </ContainerQtt>
         )}
+        <Line />
+        <Label>Unidade Federativa e Município</Label>
+        <ContainerQtt>
+          <SelectorBG>
+            <RNPickerSelect
+              placeholder={{
+                label: "───",
+                value: null,
+                color: general.styles.colors.light,
+              }}
+              value={state}
+              style={pickerStyle}
+              useNativeAndroidPickerStyle={false}
+              onValueChange={(value) => [
+                setState(value),
+                setCityOptions(location.getStateCities(value)),
+              ]}
+              items={states}
+            />
+          </SelectorBG>
+          <Text> </Text>
+          <SelectorBG>
+            <RNPickerSelect
+              placeholder={{
+                label: "───",
+                value: null,
+                color: general.styles.colors.light,
+              }}
+              value={city}
+              style={pickerStyle}
+              useNativeAndroidPickerStyle={false}
+              onValueChange={(value) => setCity(value)}
+              items={cityOptions}
+            />
+          </SelectorBG>
+        </ContainerQtt>
+        <SwitchSection>
+          <Label>Dias em Anúncio</Label>
+          <Slider
+            minimumValue={2}
+            maximumValue={dynamic ? 3 : 7}
+            step={1}
+            value={daysActive}
+            onValueChange={(value) => setDaysActive(value)}
+            style={{ width: "100%" }}
+          />
+          <Label>{daysActive.toString()}</Label>
+        </SwitchSection>
       </Section>
       <Button onPress={() => submitValidator()}>
         <ButtonText>
-          {category1
-            ? general.strings.FINISH_SIGN_UP.toUpperCase()
-            : general.strings.FILL_SIGN_UP.toUpperCase()}
+          {category1 &&
+          breed1 &&
+          parseInt(quantity1) > 0 &&
+          parseInt(weight) > 0 &&
+          state &&
+          city
+            ? (!dynamic && parseInt(price) <= 0) ||
+              (category2 && (!breed2 || !quantity2))
+              ? general.strings.ANNOUNCEMENT.FILL.toUpperCase()
+              : general.strings.ANNOUNCEMENT.PUBLISH.toUpperCase()
+            : general.strings.ANNOUNCEMENT.FILL.toUpperCase()}
         </ButtonText>
       </Button>
     </Container>

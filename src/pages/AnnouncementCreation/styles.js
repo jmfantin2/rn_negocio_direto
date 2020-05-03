@@ -48,6 +48,13 @@ export const ContainerQtt = styled.View`
   align-items: center;
 `;
 
+export const ContainerHor = styled.View`
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const InputQtt = styled.TextInput`
   height: 40px;
   padding: 0px 10px 0px 10px;
