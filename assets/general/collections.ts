@@ -45,7 +45,10 @@ const collections = {
       city: "Erechim",
       state: "RS",
     },
-    observations: ["O gado é louco", "Tô com fome"],
+    observations: [
+      "um dos novilhos tem uma condição de nascença que o faz mancar",
+      "de resto, tudo normal",
+    ],
     createdDate: "2020-04-21T21:49:38.734+00:00",
     endDate: "2020-04-24T21:49:38.734+00:00",
     initialPrice: 0,

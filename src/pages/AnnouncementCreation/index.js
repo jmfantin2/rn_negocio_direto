@@ -7,9 +7,12 @@ import {
   Alert,
   View,
   Slider,
+  ActivityIndicator,
 } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import PropTypes from "prop-types";
+
+import api from "../../services/ann";
 
 import { general } from "../../../assets/general";
 import * as helpers from "../../helpers/CattleUtility";
@@ -38,8 +41,10 @@ import {
   pickerStyle,
 } from "./styles";
 
-export default function AnnouncementCreation() {
+export default function AnnouncementCreation(props) {
   // presentational variables
+
+  const [loading, setLoading] = useState(false);
 
   const [dynamic, setDynamic] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -116,16 +121,53 @@ export default function AnnouncementCreation() {
     // false: form precisa ser completado
     // true: confirmação para enviar
     let ann = {
+      animalsQuantity: 0,
+      observations: ["obs1", "obs2"],
+      ageRange: "TBD",
       category: [],
       breed: [],
+      currentPrice: "0",
+      endDate: 0,
+      location: {
+        city: "",
+        state: "",
+      },
+      weight: "",
     };
 
     // RESTRICTION ZONE
-    if (category1 && breed1 && quantity1) {
+    if (category1 && breed1 && parseInt(quantity1) >= 1) {
       // all right for first category
+
+      //all other variables are verified
+      if (parseInt(weight) >= 0 && state && city) {
+        ann.location = { city, state };
+        ann.weight = weight;
+        ann.endDate = daysActive;
+      } else {
+        // information missing for more info
+        // stop right there...
+        console.log("Ready ?", isReady, "!");
+        console.log("Assembled :", ann);
+        return isReady;
+      }
+      if (dynamic) {
+        ann.currentPrice = "0";
+      } else {
+        if (parseInt(price) > 0) {
+          ann.currentPrice = price;
+        } else {
+          //not quite kiddo
+          // stop right there...
+          console.log("Ready ?", isReady, "!");
+          console.log("Assembled :", ann);
+          return isReady;
+        }
+      }
+
       if (category2) {
         // some complementary category was chosen
-        if (!breed2 || !quantity2) {
+        if (!breed2 || parseInt(quantity2) <= 0) {
           // information missing for second category
           // stop right there...
           console.log("Ready ?", isReady, "!");
@@ -135,45 +177,74 @@ export default function AnnouncementCreation() {
           //information complete for second category
           const categoryWrapper2 = {};
           categoryWrapper2.name = category2;
-          categoryWrapper2.quantity = quantity2;
+          categoryWrapper2.quantity = parseInt(quantity2);
           ann.category.push(categoryWrapper2);
 
           const breedWrapper2 = {};
           breedWrapper2.name = breed2;
-          breedWrapper2.quantity = quantity2;
+          breedWrapper2.quantity = parseInt(quantity2);
           ann.breed.push(breedWrapper2);
         }
       }
 
       const categoryWrapper1 = {};
       categoryWrapper1.name = category1;
-      categoryWrapper1.quantity = quantity1;
+      categoryWrapper1.quantity = parseInt(quantity1);
       ann.category.push(categoryWrapper1);
 
       const breedWrapper1 = {};
       breedWrapper1.name = breed1;
-      breedWrapper1.quantity = quantity1;
+      breedWrapper1.quantity = parseInt(quantity1);
       ann.breed.push(breedWrapper1);
+
+      quantity2
+        ? (ann.animalsQuantity = parseInt(quantity1) + parseInt(quantity2))
+        : (ann.animalsQuantity = parseInt(quantity1));
 
       isReady = true;
     }
     console.log("Ready ?", isReady, "!");
     console.log("Assembled :", ann);
-    return isReady;
+    // isReady ? handleSubmit(ann) : console.log("Didn't submit");
   };
 
-  const monetaryHandling = (value) => {
-    //value is 090
-    console.log("Entered", value);
-    const real = parseInt(value) / 100; //7.55
-
-    //preserve the last zero!
-    value.charAt(value.len - 1) === "0"
-      ? setPrice(real.toString() + "0")
-      : setPrice(real.toString()); //R$ 7.55
-
-    console.log("Updated", real);
-  };
+  async function handleSubmit(ann) {
+    const mock = {
+      ageRange: "string",
+      animalsQuantity: 0,
+      breed: [
+        {
+          name: "ANGUS",
+          quantity: 0,
+        },
+      ],
+      category: [
+        {
+          name: "TERNEIROS",
+          quantity: 0,
+        },
+      ],
+      currentPrice: "string",
+      endDate: 0,
+      location: {
+        city: "string",
+        state: "string",
+      },
+      observations: ["string"],
+      weight: "string",
+    };
+    console.log("TEMPLATE IS", mock);
+    console.log("RECEIVED ANN", ann);
+    setLoading(true);
+    try {
+      await api
+        .post("/api/v1/announcements", JSON.stringify(ann))
+        .then(() => props.navigation.navigate("Home"));
+    } catch (e) {
+      console.log("Erro:", e);
+    }
+    setLoading(false);
+  }
 
   return (
     <Container>
@@ -452,19 +523,23 @@ export default function AnnouncementCreation() {
         </SwitchSection>
       </Section>
       <Button onPress={() => submitValidator()}>
-        <ButtonText>
-          {category1 &&
-          breed1 &&
-          parseInt(quantity1) > 0 &&
-          parseInt(weight) > 0 &&
-          state &&
-          city
-            ? (!dynamic && parseInt(price) <= 0) ||
-              (category2 && (!breed2 || !quantity2))
-              ? general.strings.ANNOUNCEMENT.FILL.toUpperCase()
-              : general.strings.ANNOUNCEMENT.PUBLISH.toUpperCase()
-            : general.strings.ANNOUNCEMENT.FILL.toUpperCase()}
-        </ButtonText>
+        {loading ? (
+          <ActivityIndicator color="white" />
+        ) : (
+          <ButtonText>
+            {category1 &&
+            breed1 &&
+            parseInt(quantity1) > 0 &&
+            parseInt(weight) > 0 &&
+            state &&
+            city
+              ? (!dynamic && parseInt(price) <= 0) ||
+                (category2 && (!breed2 || !quantity2))
+                ? general.strings.ANNOUNCEMENT.FILL.toUpperCase()
+                : general.strings.ANNOUNCEMENT.PUBLISH.toUpperCase()
+              : general.strings.ANNOUNCEMENT.FILL.toUpperCase()}
+          </ButtonText>
+        )}
       </Button>
     </Container>
   );

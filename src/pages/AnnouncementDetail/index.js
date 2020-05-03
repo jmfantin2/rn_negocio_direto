@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
 import PropTypes from "prop-types";
 
 import * as constants from "../../helpers/CattleUtility/constants";
@@ -7,6 +7,8 @@ import { Video } from "expo-av";
 import videoTest from "../../../assets/video.mp4";
 
 import { Container, Label, ContainerQtt } from "./styles";
+import { Ionicons } from "@expo/vector-icons";
+import { general } from "../../../assets/general";
 
 export default function AnnouncementDetail() {
   const [announcement, setAnnouncement] = useState({});
@@ -31,7 +33,22 @@ export default function AnnouncementDetail() {
         isLooping
         style={{ height: 300 }}
       />
-      {announcement.category ? (
+      <View
+        style={{
+          height: 200,
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Ionicons
+          name="ios-construct"
+          size={80}
+          color={general.styles.colors.oceanGreen}
+        />
+      </View>
+
+      {/* {announcement.category ? (
         <>
           <ContainerQtt>
             <Label>Categoria: </Label>
@@ -129,7 +146,7 @@ export default function AnnouncementDetail() {
       <ContainerQtt>
         <Label>Preço Atual: </Label>
         <Text>{announcement.currentPrice}</Text>
-      </ContainerQtt>
+      </ContainerQtt> */}
     </Container>
   );
 }
