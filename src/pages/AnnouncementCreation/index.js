@@ -109,7 +109,7 @@ export default function AnnouncementCreation(props) {
     setVariants1(helpers.getPossibleVariants(value));
 
     // desabilita opções de segunda categoria se prim for touro, invernar ou nula
-    if (value === "touro" || value === "vaca_invernar" || value === null) {
+    if (value === "TOURO" || value === "VACA_INVERNAR" || value === null) {
       isEnabled2(false);
     } else {
       isEnabled2(true);
@@ -176,24 +176,24 @@ export default function AnnouncementCreation(props) {
         } else {
           //information complete for second category
           const categoryWrapper2 = {};
-          categoryWrapper2.name = category2;
+          categoryWrapper2.name = "TERNEIROS";
           categoryWrapper2.quantity = parseInt(quantity2);
           ann.category.push(categoryWrapper2);
 
           const breedWrapper2 = {};
-          breedWrapper2.name = breed2;
+          breedWrapper2.name = "BRANGUS";
           breedWrapper2.quantity = parseInt(quantity2);
           ann.breed.push(breedWrapper2);
         }
       }
 
       const categoryWrapper1 = {};
-      categoryWrapper1.name = category1;
+      categoryWrapper1.name = "OVELHAS";
       categoryWrapper1.quantity = parseInt(quantity1);
       ann.category.push(categoryWrapper1);
 
       const breedWrapper1 = {};
-      breedWrapper1.name = breed1;
+      breedWrapper1.name = "ANGUS";
       breedWrapper1.quantity = parseInt(quantity1);
       ann.breed.push(breedWrapper1);
 
@@ -205,35 +205,10 @@ export default function AnnouncementCreation(props) {
     }
     console.log("Ready ?", isReady, "!");
     console.log("Assembled :", ann);
-    // isReady ? handleSubmit(ann) : console.log("Didn't submit");
+    isReady ? handleSubmit(ann) : console.log("Didn't submit");
   };
 
   async function handleSubmit(ann) {
-    const mock = {
-      ageRange: "string",
-      animalsQuantity: 0,
-      breed: [
-        {
-          name: "ANGUS",
-          quantity: 0,
-        },
-      ],
-      category: [
-        {
-          name: "TERNEIROS",
-          quantity: 0,
-        },
-      ],
-      currentPrice: "string",
-      endDate: 0,
-      location: {
-        city: "string",
-        state: "string",
-      },
-      observations: ["string"],
-      weight: "string",
-    };
-    console.log("TEMPLATE IS", mock);
     console.log("RECEIVED ANN", ann);
     setLoading(true);
     try {
