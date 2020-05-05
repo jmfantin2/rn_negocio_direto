@@ -114,11 +114,6 @@ export default function Home(props) {
           <Text> </Text>
         </TouchableOpacity>
       </View>
-      {/* <TouchableOpacity
-        onPress={() => props.navigation.navigate("Development")}
-      >
-        <Text>Teste de componentes</Text>
-      </TouchableOpacity> */}
     </Container>
   );
 }
