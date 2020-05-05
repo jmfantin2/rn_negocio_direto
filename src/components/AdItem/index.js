@@ -19,13 +19,15 @@ export default function AdItem({ product }) {
       onPress={() => navigate("AnnouncementDetail")}
     >
       <Container>
-        <AdImage source={{ uri: product.image }} />
+        <AdImage
+          source={{ uri: "https://app.kshost.com.br/images/video.png" }}
+        />
         <InfoContainer>
           <Text style={{ fontWeight: "bold" }}>
-            {shortenText(product.categories, 40)}
+            {shortenText(product.id, 40)}
           </Text>
           <Text style={{ color: general.styles.colors.oceanGreen }}>
-            {product.cep.city} ({product.cep.state})
+            {product.location.city} ({product.location.state})
           </Text>
         </InfoContainer>
       </Container>
