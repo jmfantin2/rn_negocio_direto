@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { TouchableOpacity, Text, View } from "react-native";
 import PropTypes from "prop-types";
 
+import api from "../../services/ann";
+
 import * as constants from "../../helpers/CattleUtility/constants";
 import { Video } from "expo-av";
 import videoTest from "../../../assets/video.mp4";
@@ -10,14 +12,24 @@ import { Container, Label, ContainerQtt } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { general } from "../../../assets/general";
 
-export default function AnnouncementDetail() {
+export default function AnnouncementDetail({ id }) {
   const [announcement, setAnnouncement] = useState({});
 
   useEffect(() => {
-    function loadAnnouncement() {
-      setAnnouncement(constants.ANNOUNCEMENT);
+    async function retrieveAnnouncement() {
+      try {
+        console.log("essa iD", id);
+        const retrieved = await api.get(`/api/v1/announcements/${id}`);
+        console.log("ret data:", retrieved.data);
+        setAnnouncement(retrieved.data);
+      } catch (e) {
+        console.log("Erro:", e);
+      }
+      //setData(ads.items);
+      // console.log(ads.items)
     }
-    loadAnnouncement();
+
+    retrieveAnnouncement();
   }, []);
 
   return (
@@ -29,7 +41,7 @@ export default function AnnouncementDetail() {
         volume={1.0}
         isMuted={false}
         resizeMode="cover"
-        shouldPlay
+        shouldPlay={false}
         isLooping
         style={{ height: 300 }}
       />
@@ -46,107 +58,8 @@ export default function AnnouncementDetail() {
           size={80}
           color={general.styles.colors.oceanGreen}
         />
-      </View>
-
-      {/* {announcement.category ? (
-        <>
-          <ContainerQtt>
-            <Label>Categoria: </Label>
-            <Text>{announcement.category[0].name} </Text>
-          </ContainerQtt>
-          <ContainerQtt>
-            <Label>Quantidade: </Label>
-            <Text>{announcement.category[0].quantity} </Text>
-          </ContainerQtt>
-        </>
-      ) : null}
-
-      {announcement.category ? (
-        <>
-          <ContainerQtt>
-            <Label>Categoria: </Label>
-            <Text>{announcement.category[1].name} </Text>
-          </ContainerQtt>
-          <ContainerQtt>
-            <Label>Quantidade: </Label>
-            <Text>{announcement.category[1].quantity} </Text>
-          </ContainerQtt>
-        </>
-      ) : null}
-
-      {announcement.breed ? (
-        <>
-          <ContainerQtt>
-            <Label>Raça: </Label>
-            <Text>{announcement.breed[0].name} </Text>
-          </ContainerQtt>
-          <ContainerQtt>
-            <Label>Quantidade: </Label>
-            <Text>{announcement.breed[0].quantity} </Text>
-          </ContainerQtt>
-        </>
-      ) : null}
-
-      {announcement.breed ? (
-        <>
-          <ContainerQtt>
-            <Label>Raça: </Label>
-            <Text>{announcement.breed[1].name} </Text>
-          </ContainerQtt>
-          <ContainerQtt>
-            <Label>Quantidade: </Label>
-            <Text>{announcement.breed[1].quantity} </Text>
-          </ContainerQtt>
-        </>
-      ) : null}
-
-      <ContainerQtt>
-        <Label>Idade: </Label>
-        <Text>{announcement.ageRange} </Text>
-      </ContainerQtt>
-      <ContainerQtt>
-        <Label>Peso: </Label>
-        <Text>{announcement.weight}</Text>
-      </ContainerQtt>
-
-      {announcement.location ? (
-        <>
-          <ContainerQtt>
-            <Label>Estado: </Label>
-            <Text>{announcement.location.state}</Text>
-          </ContainerQtt>
-          <ContainerQtt>
-            <Label>Cidade: </Label>
-            <Text>{announcement.location.city}</Text>
-          </ContainerQtt>
-        </>
-      ) : null}
-
-      {announcement.observations ? (
-        <ContainerQtt>
-          <Label>Observações: </Label>
-          <Text>
-            {announcement.observations[0]}, {announcement.observations[1]}
-          </Text>
-        </ContainerQtt>
-      ) : null}
-
-      <ContainerQtt>
-        <Label>Data de Criação: </Label>
         <Text>{announcement.createdDate}</Text>
-      </ContainerQtt>
-      <ContainerQtt>
-        <Label>Data de Encerramento: </Label>
-        <Text>{announcement.endDate}</Text>
-      </ContainerQtt>
-      <ContainerQtt>
-        <Label>Preço Inicial: </Label>
-        <Text>{announcement.initialPrice}</Text>
-      </ContainerQtt>
-      <ContainerQtt>
-        <Label>Preço Atual: </Label>
-        <Text>{announcement.currentPrice}</Text>
-      </ContainerQtt> */}
+      </View>
     </Container>
   );
 }

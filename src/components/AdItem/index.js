@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { general } from "../../../assets/general";
 import { navigate } from "../../utils";
@@ -16,16 +16,14 @@ export default function AdItem({ product }) {
   return (
     <TouchableOpacity
       activeOpacity={0.2}
-      onPress={() => navigate("AnnouncementDetail")}
+      onPress={() => navigate("AnnouncementDetail", { id: product.id })}
     >
       <Container>
         <AdImage
           source={{ uri: "https://app.kshost.com.br/images/video.png" }}
         />
         <InfoContainer>
-          <Text style={{ fontWeight: "bold" }}>
-            {shortenText(product.id, 40)}
-          </Text>
+          <AdName>{shortenText(product.id, 40)}</AdName>
           <Text style={{ color: general.styles.colors.oceanGreen }}>
             {product.location.city} ({product.location.state})
           </Text>
