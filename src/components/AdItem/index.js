@@ -1,33 +1,61 @@
 import React, { useState, useEffect } from "react";
-import { Text, TouchableOpacity } from "react-native";
-import { general } from "../../../assets/general";
+import { TouchableOpacity, Text } from "react-native";
+import TimeIndicator from "../TimeIndicator";
 import { navigate } from "../../utils";
 
-import { Container, AdImage, InfoContainer, AdName } from "./styles";
+import {
+  Container,
+  CattleContainer,
+  CategoryAndBreed,
+  Tag,
+  TagLabel,
+  DynamicBadge,
+  FixedBadge,
+} from "./styles";
 
 export default function AdItem({ product }) {
   function shortenText(text, maxLength) {
     if (text && text.length > maxLength) {
-      return text.substr(0, maxLength) + "...";
+      return text.substr(0, maxLength);
     }
     return text;
   }
 
   return (
     <TouchableOpacity
-      activeOpacity={0.2}
+      activeOpacity={0.5}
       onPress={() => navigate("AnnouncementDetail", { id: product.id })}
     >
       <Container>
-        <AdImage
-          source={{ uri: "https://app.kshost.com.br/images/video.png" }}
-        />
-        <InfoContainer>
-          <AdName>{shortenText(product.id, 40)}</AdName>
-          <Text style={{ color: general.styles.colors.oceanGreen }}>
-            {product.location.city} ({product.location.state})
-          </Text>
-        </InfoContainer>
+        {parseInt(product.currentPrice) === 0 ? (
+          <DynamicBadge />
+        ) : (
+          <FixedBadge />
+        )}
+        <CattleContainer>
+          <CategoryAndBreed>
+            <Tag category={product.category[0].name}>
+              <TagLabel>
+                {product.category[0].name
+                  .replace("INVERNAR", "INV")
+                  .replace("_", " ")}
+                {product.category.length === 2 ? <Text> {"&"} +</Text> : null}
+              </TagLabel>
+            </Tag>
+            <Tag breed={product.breed[0].name}>
+              <TagLabel>
+                {product.breed[0].name
+                  .replace("CRUZAS", "CZ")
+                  .replace("ABERDEEN", "ABD")
+                  .replace("_", " ")}
+              </TagLabel>
+            </Tag>
+          </CategoryAndBreed>
+          <Tag quantity={"true"} category={product.category[0].name}>
+            <TagLabel type="quantity">{product.animalsQuantity}</TagLabel>
+          </Tag>
+          <TimeIndicator days={product.endDate} />
+        </CattleContainer>
       </Container>
     </TouchableOpacity>
   );

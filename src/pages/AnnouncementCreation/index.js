@@ -229,7 +229,7 @@ export default function AnnouncementCreation(props) {
           <Ionicons
             name="md-videocam"
             size={42}
-            color={general.styles.colors.oceanGreen}
+            color={general.styles.colors.darkCyan}
           />
           <Label>Envie um vídeo</Label>
         </UploadVideo>

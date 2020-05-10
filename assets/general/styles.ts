@@ -28,6 +28,8 @@ const styles = {
     oceanGreen: "#075e54",
     businessGreen: "#004610",
     businessBrown: "#421c07",
+    beet: "#460036",
+    darkCyan: "#003646",
 
     primary: "#7A91CA",
     secondary: "#444A5A",

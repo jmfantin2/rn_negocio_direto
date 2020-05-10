@@ -48,7 +48,7 @@ export default function Home(props) {
           <AntDesign
             name="plussquareo"
             size={42}
-            color={general.styles.colors.oceanGreen}
+            color={general.styles.colors.darkCyan}
           />
           <Text> </Text>
         </TouchableOpacity>
