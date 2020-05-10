@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Text } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+
 import { useMainCategory } from "../../context/MainCategory";
+import { useDynamic } from "../../context/Dynamic";
 import { useOtherCategory } from "../../context/OtherCategory";
 
 import { general } from "../../../../../assets/general";
@@ -9,6 +10,7 @@ import { Label, SelectBG, pickerStyle } from "./styles";
 
 export default function OtherCategorySelect() {
   const { mainCategory } = useMainCategory(); // READ
+  const { dynamic } = useDynamic(); // READ
   const { otherCategory, setOtherCategory } = useOtherCategory(); // READ
 
   const [options, setOptions] = useState([]);
@@ -18,6 +20,7 @@ export default function OtherCategorySelect() {
   useEffect(() => {
     setOtherCategory(null);
     if (
+      dynamic ||
       mainCategory === "touro" ||
       mainCategory === "vaca_invernar" ||
       mainCategory === null
@@ -27,7 +30,7 @@ export default function OtherCategorySelect() {
       setOptions(getMatchedCategories(mainCategory));
       toggle(true);
     }
-  }, [mainCategory]);
+  }, [mainCategory, dynamic]);
 
   return (
     <>

@@ -1,3 +1,9 @@
+import VideoProvider from "./Video";
+export { VideoProvider };
+
+import DynamicProvider from "./Dynamic";
+export { DynamicProvider };
+
 import MainCategoryProvider from "./MainCategory";
 export { MainCategoryProvider };
 
@@ -9,6 +15,3 @@ export { OtherCategoryProvider };
 
 import OtherBreedProvider from "./OtherBreed";
 export { OtherBreedProvider };
-
-import VideoProvider from "./Video";
-export { VideoProvider };

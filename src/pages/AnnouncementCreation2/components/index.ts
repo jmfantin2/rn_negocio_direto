@@ -1,5 +1,11 @@
+import Container from "./Container";
+export { Container };
+
 import VideoUpload from "./VideoUpload";
 export { VideoUpload };
+
+import DynamicSwitch from "./DynamicSwitch";
+export { DynamicSwitch };
 
 import MainCategorySelect from "./MainCategorySelect";
 export { MainCategorySelect };
@@ -12,6 +18,3 @@ export { OtherCategorySelect };
 
 import OtherBreedSelect from "./OtherBreedSelect";
 export { OtherBreedSelect };
-
-import Container from "./Container";
-export { Container };

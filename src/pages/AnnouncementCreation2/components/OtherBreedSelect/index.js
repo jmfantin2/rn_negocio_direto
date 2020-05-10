@@ -3,6 +3,7 @@ import RNPickerSelect from "react-native-picker-select";
 
 import { useMainCategory } from "../../context/MainCategory";
 import { useOtherCategory } from "../../context/OtherCategory";
+import { useDynamic } from "../../context/Dynamic";
 import { useOtherBreed } from "../../context/OtherBreed";
 
 import { general } from "../../../../../assets/general";
@@ -11,14 +12,13 @@ import { Label, SelectBG, pickerStyle } from "./styles";
 export default function OtherBreedSelect() {
   const { mainCategory } = useMainCategory(); // READ
   const { otherCategory } = useOtherCategory(); // READ
-  const { otherBreed, setOtherBreed } = useOtherBreed(); // READ / WRITE
-
+  const { dynamic } = useDynamic(); // READ
   const [shouldAppear, toggle] = useState(false);
 
-  // Triggered everytime mainCategory changes
   useEffect(() => {
     setOtherBreed(null);
     if (
+      dynamic ||
       mainCategory === "touro" ||
       mainCategory === "vaca_invernar" ||
       mainCategory === null
@@ -27,7 +27,9 @@ export default function OtherBreedSelect() {
     } else {
       toggle(true);
     }
-  }, [mainCategory, otherCategory]);
+  }, [mainCategory, otherCategory, dynamic]);
+
+  const { otherBreed, setOtherBreed } = useOtherBreed(); // READ / WRITE
 
   return (
     <>

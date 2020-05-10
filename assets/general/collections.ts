@@ -15,7 +15,7 @@ const collections = {
     { label: "ANGUS (RED)", value: "red_angus" },
     { label: "BRAFORD", value: "braford" },
     { label: "BRANGUS", value: "brangus" },
-    { label: "BRITÂNICOS", value: "britânicos" },
+    { label: "BRITÂNICOS", value: "britanicos" },
     { label: "CANCHIN", value: "canchin" },
     { label: "CHAROLES", value: "charoles" },
     { label: "CRUZAS EUROPEIAS", value: "cruzas_europeias" },
@@ -27,7 +27,7 @@ const collections = {
     { label: "LIMOUSIN", value: "limousin" },
     { label: "NELORE", value: "nelore" },
     { label: "SIMENTAL", value: "simental" },
-    { label: "TABAPUÃ", value: "tabapuã" },
+    { label: "TABAPUÃ", value: "tabapua" },
     { label: "ZEBU", value: "zebu" },
   ],
   ANNOUNCEMENT: {
