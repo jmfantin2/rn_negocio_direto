@@ -4,7 +4,7 @@ import { general } from "../../../assets/general";
 export const Container = styled.View`
   display: flex;
   flex: 1;
-  background-color: ${general.styles.colors.oceanGreen};
+  background-color: ${general.styles.colors.darkCyan};
   padding: 40px;
   justify-content: center;
   align-items: stretch;
@@ -51,7 +51,7 @@ export const Input = styled.TextInput`
 export const Button = styled.TouchableOpacity`
   background-color: ${general.styles.colors.white};
   border-radius: 4px;
-  border: 1px solid ${general.styles.colors.regular};
+  border: 1px solid ${general.styles.colors.businessGreen};
   height: 50px;
   padding: 0px 20px;
   margin-top: 10px;
