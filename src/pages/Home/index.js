@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text, ScrollView, View } from "react-native";
+import { TouchableOpacity, Text, RefreshControl, View } from "react-native";
 import PropTypes from "prop-types";
 
 import api from "../../services/ann";
@@ -11,12 +11,15 @@ import { Container, AdList } from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 
 export default function Home(props) {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  // const [refreshing, setRefreshing] = useState(false);
+  const [refresh, makeRefresh] = useState(0);
 
   useEffect(() => {
     async function loadProducts() {
+      setLoading(true);
       try {
+        setData([]);
         const retrieved = await api.get("/api/v1/announcements");
         console.log("content:", retrieved.data.content);
         setData(retrieved.data.content);
@@ -28,7 +31,8 @@ export default function Home(props) {
     }
 
     loadProducts();
-  }, []);
+    setTimeout(() => setLoading(false), 1200);
+  }, [refresh]);
 
   renderListItem = ({ item }) => <AdItem product={item} />;
 
@@ -38,8 +42,16 @@ export default function Home(props) {
         data={data}
         keyExtractor={(item) => String(item.id)}
         renderItem={renderListItem}
-        // onRefresh={loadProducts}
-        // refreshing={refreshing}
+        refreshControl={
+          <RefreshControl
+            colors={[
+              general.styles.colors.darkCyan,
+              general.styles.colors.success,
+            ]}
+            refreshing={loading}
+            onRefresh={() => makeRefresh(refresh + 1)}
+          />
+        }
       />
       <View style={{ alignItems: "center" }}>
         <TouchableOpacity

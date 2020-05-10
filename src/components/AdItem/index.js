@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 import TimeIndicator from "../TimeIndicator";
 import { navigate } from "../../utils";
@@ -14,17 +14,12 @@ import {
 } from "./styles";
 
 export default function AdItem({ product }) {
-  function shortenText(text, maxLength) {
-    if (text && text.length > maxLength) {
-      return text.substr(0, maxLength);
-    }
-    return text;
-  }
-
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={() => navigate("AnnouncementDetail", { id: product.id })}
+      onPress={() =>
+        navigate("AnnouncementDetail", { id: "5eb0dcfb5323ef2e375f02dd" })
+      }
     >
       <Container>
         {parseInt(product.currentPrice) === 0 ? (
