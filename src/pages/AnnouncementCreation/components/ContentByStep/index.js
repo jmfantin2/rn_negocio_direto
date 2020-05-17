@@ -10,6 +10,7 @@ import {
   OtherCategorySelect,
   OtherBreedSelect,
   OtherQuantityInput,
+  OtherVariantsInputs,
 } from "../../components";
 
 import { useStep } from "../../context/Step";
@@ -35,6 +36,7 @@ export default function ContentByStep() {
           <OtherCategorySelect />
           <OtherBreedSelect />
           <OtherQuantityInput />
+          <OtherVariantsInputs />
         </>
       ) : null}
     </>

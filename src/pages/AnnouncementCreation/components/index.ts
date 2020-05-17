@@ -33,3 +33,6 @@ export { OtherBreedSelect };
 
 import OtherQuantityInput from "./OtherQuantityInput";
 export { OtherQuantityInput };
+
+import OtherVariantsInputs from "./OtherVariantsInputs";
+export { OtherVariantsInputs };
