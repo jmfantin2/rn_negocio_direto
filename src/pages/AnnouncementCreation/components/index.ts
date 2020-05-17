@@ -36,3 +36,6 @@ export { OtherQuantityInput };
 
 import OtherVariantsInputs from "./OtherVariantsInputs";
 export { OtherVariantsInputs };
+
+import AverageWeightInput from "./AverageWeightInput";
+export { AverageWeightInput };

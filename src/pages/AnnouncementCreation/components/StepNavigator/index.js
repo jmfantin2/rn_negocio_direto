@@ -27,15 +27,6 @@ export default function StepNavigator() {
         />
       )}
       <CenterContent>
-        {step === 1 ? (
-          <Label>VÍDEO OBRIGATÓRIO</Label>
-        ) : step === 2 ? (
-          <Label>OPÇÕES DE ANÚNCIO</Label>
-        ) : step === 3 ? (
-          <Label>SELEÇÃO DE GADO</Label>
-        ) : step === 4 ? (
-          <Label>SELEÇÃO ADICIONAL</Label>
-        ) : null}
         <Label>{step}/7</Label>
       </CenterContent>
       {step < 7 ? (

@@ -11,6 +11,7 @@ import {
   OtherBreedSelect,
   OtherQuantityInput,
   OtherVariantsInputs,
+  AverageWeightInput,
 } from "../../components";
 
 import { useStep } from "../../context/Step";
@@ -37,6 +38,10 @@ export default function ContentByStep() {
           <OtherBreedSelect />
           <OtherQuantityInput />
           <OtherVariantsInputs />
+        </>
+      ) : step === 5 ? (
+        <>
+          <AverageWeightInput />
         </>
       ) : null}
     </>

@@ -12,6 +12,7 @@ import {
   OtherBreedProvider,
   OtherQuantityProvider,
   OtherVariantsProvider,
+  AverageWeightProvider,
 } from "./context";
 
 import { Container, ContentByStep, StepNavigator } from "./components";
@@ -39,12 +40,15 @@ export default function AnnouncementCreation() {
                         {/* can access otherQuantity state */}
                         <OtherVariantsProvider>
                           {/* can access otherVariants state */}
-                          <StepProvider>
-                            <ContentByStep />
-                            <StepNavigator />
-                            {/* manages announcement creation*/}
-                          </StepProvider>
-                          {/* can access everything */}
+                          <AverageWeightProvider>
+                            {/* can access averageWeight state */}
+                            <StepProvider>
+                              <ContentByStep />
+                              <StepNavigator />
+                              {/* manages announcement creation*/}
+                            </StepProvider>
+                            {/* can access everything */}
+                          </AverageWeightProvider>
                         </OtherVariantsProvider>
                       </OtherQuantityProvider>
                     </OtherBreedProvider>
