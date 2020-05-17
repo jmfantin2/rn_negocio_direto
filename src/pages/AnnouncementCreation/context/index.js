@@ -24,3 +24,6 @@ export { OtherCategoryProvider };
 
 import OtherBreedProvider from "./OtherBreed";
 export { OtherBreedProvider };
+
+import OtherQuantityProvider from "./OtherQuantity";
+export { OtherQuantityProvider };

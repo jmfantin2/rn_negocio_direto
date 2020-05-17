@@ -10,6 +10,7 @@ import {
   MainVariantsProvider,
   OtherCategoryProvider,
   OtherBreedProvider,
+  OtherQuantityProvider,
 } from "./context";
 
 import { Container, ContentByStep, StepNavigator } from "./components";
@@ -33,12 +34,15 @@ export default function AnnouncementCreation() {
                     {/* can access otherCategory state */}
                     <OtherBreedProvider>
                       {/* can access otherBreed state */}
-                      <StepProvider>
-                        <ContentByStep />
-                        <StepNavigator />
-                        {/* manages announcement creation*/}
-                      </StepProvider>
-                      {/* can access everything */}
+                      <OtherQuantityProvider>
+                        {/* can access otherQuantity state */}
+                        <StepProvider>
+                          <ContentByStep />
+                          <StepNavigator />
+                          {/* manages announcement creation*/}
+                        </StepProvider>
+                        {/* can access everything */}
+                      </OtherQuantityProvider>
                     </OtherBreedProvider>
                   </OtherCategoryProvider>
                 </MainVariantsProvider>

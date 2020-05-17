@@ -9,6 +9,7 @@ import {
   MainVariantsInputs,
   OtherCategorySelect,
   OtherBreedSelect,
+  OtherQuantityInput,
 } from "../../components";
 
 import { useStep } from "../../context/Step";
@@ -33,6 +34,7 @@ export default function ContentByStep() {
         <>
           <OtherCategorySelect />
           <OtherBreedSelect />
+          <OtherQuantityInput />
         </>
       ) : null}
     </>

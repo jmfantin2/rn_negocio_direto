@@ -30,3 +30,6 @@ export { OtherCategorySelect };
 
 import OtherBreedSelect from "./OtherBreedSelect";
 export { OtherBreedSelect };
+
+import OtherQuantityInput from "./OtherQuantityInput";
+export { OtherQuantityInput };
