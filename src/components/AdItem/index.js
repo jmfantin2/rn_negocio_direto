@@ -49,7 +49,7 @@ export default function AdItem({ product }) {
           <Tag quantity={"true"} category={product.category[0].name}>
             <TagLabel type="quantity">{product.animalsQuantity}</TagLabel>
           </Tag>
-          <TimeIndicator days={product.endDate} />
+          <TimeIndicator days={2} />
         </CattleContainer>
       </Container>
     </TouchableOpacity>
