@@ -39,3 +39,6 @@ export { OtherVariantsInputs };
 
 import AverageWeightInput from "./AverageWeightInput";
 export { AverageWeightInput };
+
+import PriceInput from "./PriceInput";
+export { PriceInput };

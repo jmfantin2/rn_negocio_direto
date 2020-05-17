@@ -13,6 +13,7 @@ import {
   OtherQuantityProvider,
   OtherVariantsProvider,
   AverageWeightProvider,
+  PriceProvider,
 } from "./context";
 
 import { Container, ContentByStep, StepNavigator } from "./components";
@@ -42,12 +43,15 @@ export default function AnnouncementCreation() {
                           {/* can access otherVariants state */}
                           <AverageWeightProvider>
                             {/* can access averageWeight state */}
-                            <StepProvider>
-                              <ContentByStep />
-                              <StepNavigator />
-                              {/* manages announcement creation*/}
-                            </StepProvider>
-                            {/* can access everything */}
+                            <PriceProvider>
+                              {/* can access price state */}
+                              <StepProvider>
+                                <ContentByStep />
+                                <StepNavigator />
+                                {/* manages announcement creation*/}
+                              </StepProvider>
+                              {/* can access everything */}
+                            </PriceProvider>
                           </AverageWeightProvider>
                         </OtherVariantsProvider>
                       </OtherQuantityProvider>

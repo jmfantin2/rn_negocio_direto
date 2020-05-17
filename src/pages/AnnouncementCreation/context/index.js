@@ -33,3 +33,6 @@ export { OtherVariantsProvider };
 
 import AverageWeightProvider from "./AverageWeight";
 export { AverageWeightProvider };
+
+import PriceProvider from "./Price";
+export { PriceProvider };

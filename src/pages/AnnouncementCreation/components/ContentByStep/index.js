@@ -12,6 +12,7 @@ import {
   OtherQuantityInput,
   OtherVariantsInputs,
   AverageWeightInput,
+  PriceInput,
 } from "../../components";
 
 import { useStep } from "../../context/Step";
@@ -42,6 +43,7 @@ export default function ContentByStep() {
       ) : step === 5 ? (
         <>
           <AverageWeightInput />
+          <PriceInput />
         </>
       ) : null}
     </>
