@@ -13,6 +13,12 @@ export { MainCategoryProvider };
 import MainBreedProvider from "./MainBreed";
 export { MainBreedProvider };
 
+import MainQuantityProvider from "./MainQuantity";
+export { MainQuantityProvider };
+
+import MainVariantsProvider from "./MainVariants";
+export { MainVariantsProvider };
+
 import OtherCategoryProvider from "./OtherCategory";
 export { OtherCategoryProvider };
 

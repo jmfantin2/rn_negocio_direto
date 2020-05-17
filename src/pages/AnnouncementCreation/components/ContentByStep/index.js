@@ -1,12 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
-import { SwitchContainer, Label, Description } from "./styles";
 
 import {
   VideoUpload,
   DynamicSwitch,
   MainCategorySelect,
   MainBreedSelect,
+  MainQuantityInput,
+  MainVariantsInputs,
   OtherCategorySelect,
   OtherBreedSelect,
 } from "../../components";
@@ -26,6 +26,8 @@ export default function ContentByStep() {
         <>
           <MainCategorySelect />
           <MainBreedSelect />
+          <MainQuantityInput />
+          <MainVariantsInputs />
         </>
       ) : step === 4 ? (
         <>

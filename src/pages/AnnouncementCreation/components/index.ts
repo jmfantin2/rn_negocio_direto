@@ -19,6 +19,12 @@ export { MainCategorySelect };
 import MainBreedSelect from "./MainBreedSelect";
 export { MainBreedSelect };
 
+import MainQuantityInput from "./MainQuantityInput";
+export { MainQuantityInput };
+
+import MainVariantsInputs from "./MainVariantsInputs";
+export { MainVariantsInputs };
+
 import OtherCategorySelect from "./OtherCategorySelect";
 export { OtherCategorySelect };
 

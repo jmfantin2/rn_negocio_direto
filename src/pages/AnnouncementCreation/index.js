@@ -6,6 +6,8 @@ import {
   DynamicProvider,
   MainCategoryProvider,
   MainBreedProvider,
+  MainQuantityProvider,
+  MainVariantsProvider,
   OtherCategoryProvider,
   OtherBreedProvider,
 } from "./context";
@@ -23,18 +25,24 @@ export default function AnnouncementCreation() {
             {/* can access mainCategory state */}
             <MainBreedProvider>
               {/* can access mainBreed state */}
-              <OtherCategoryProvider>
-                {/* can access otherCategory state */}
-                <OtherBreedProvider>
-                  {/* can access otherBreed state */}
-                  <StepProvider>
-                    <ContentByStep />
-                    <StepNavigator />
-                    {/* manages announcement creation*/}
-                  </StepProvider>
-                  {/* can access everything */}
-                </OtherBreedProvider>
-              </OtherCategoryProvider>
+              <MainQuantityProvider>
+                {/* can access mainQuantity state */}
+                <MainVariantsProvider>
+                  {/* can access mainVariants state */}
+                  <OtherCategoryProvider>
+                    {/* can access otherCategory state */}
+                    <OtherBreedProvider>
+                      {/* can access otherBreed state */}
+                      <StepProvider>
+                        <ContentByStep />
+                        <StepNavigator />
+                        {/* manages announcement creation*/}
+                      </StepProvider>
+                      {/* can access everything */}
+                    </OtherBreedProvider>
+                  </OtherCategoryProvider>
+                </MainVariantsProvider>
+              </MainQuantityProvider>
             </MainBreedProvider>
           </MainCategoryProvider>
         </DynamicProvider>
