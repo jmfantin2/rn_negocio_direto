@@ -1,3 +1,6 @@
+import StepProvider from "./Step";
+export { StepProvider };
+
 import VideoProvider from "./Video";
 export { VideoProvider };
 

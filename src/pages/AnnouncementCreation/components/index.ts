@@ -1,6 +1,12 @@
 import Container from "./Container";
 export { Container };
 
+import ContentByStep from "./ContentByStep";
+export { ContentByStep };
+
+import StepNavigator from "./StepNavigator";
+export { StepNavigator };
+
 import VideoUpload from "./VideoUpload";
 export { VideoUpload };
 

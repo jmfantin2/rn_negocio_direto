@@ -15,7 +15,7 @@ export const UploadVideo = styled.View`
   padding: 80px;
   align-items: center;
   border-width: 3px;
-  border-color: ${general.styles.colors.darkCyan};
+  border-color: ${general.styles.colors.businessGreen};
   border-radius: 3px;
   border-style: dashed;
   margin: 30px 30px 0px 30px;
@@ -23,7 +23,7 @@ export const UploadVideo = styled.View`
 
 export const Divider = styled.View`
   padding: 10px 0px 10px 0px;
-  background-color: ${general.styles.colors.darkCyan};
+  background-color: ${general.styles.colors.oceanGreen};
   margin: 30px 0px 0px 0px;
 `;
 
@@ -118,7 +118,7 @@ export const VLabel = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  background-color: ${general.styles.colors.darkCyan};
+  background-color: ${general.styles.colors.oceanGreen};
   border-radius: 4px;
   border: 1px solid ${general.styles.colors.regular};
   height: 50px;

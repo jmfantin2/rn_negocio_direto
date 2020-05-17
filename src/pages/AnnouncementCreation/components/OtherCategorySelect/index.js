@@ -52,7 +52,12 @@ export default function OtherCategorySelect() {
             />
           </SelectBG>
         </>
-      ) : null}
+      ) : (
+        <Label>
+          Não há categoria adicional para:{"\n"}PREÇO DINÂMICO{"\n"}TOURO{"\n"}
+          VACA INVERNAR
+        </Label>
+      )}
     </>
   );
 }
