@@ -17,9 +17,7 @@ export default function AdItem({ product }) {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      onPress={() =>
-        navigate("AnnouncementDetail", { id: "5eb0dcfb5323ef2e375f02dd" })
-      }
+      onPress={() => navigate("AnnouncementDetail", { id: product.id })}
     >
       <Container>
         {parseInt(product.currentPrice) === 0 ? (
