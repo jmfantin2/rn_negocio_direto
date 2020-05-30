@@ -12,7 +12,8 @@ import { Container, Label, ContainerQtt } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { general } from "../../../assets/general";
 
-export default function AnnouncementDetail({ id }) {
+export default function AnnouncementDetail({ navigation }) {
+  const id = navigation.getParam("id");
   const [announcement, setAnnouncement] = useState({});
 
   useEffect(() => {
