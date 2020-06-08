@@ -4,7 +4,6 @@ import { general } from "../../../../../assets/general";
 export const SwitchContainer = styled.View`
   flex: 1;
   align-items: center;
-  justify-content: space-between;
 `;
 
 export const Label = styled.Text`

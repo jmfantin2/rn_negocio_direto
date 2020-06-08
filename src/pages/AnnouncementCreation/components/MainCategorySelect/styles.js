@@ -10,7 +10,6 @@ export const Label = styled.Text`
 
 export const SelectBG = styled.View`
   height: 40px;
-  flex: 1;
   background-color: ${general.styles.colors.lighter};
 `;
 

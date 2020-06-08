@@ -6,11 +6,11 @@ import {
   MainCategorySelect,
   MainBreedSelect,
   MainQuantityInput,
-  MainVariantsInputs,
+  // MainVariantsInputs, DEPRECATED
   OtherCategorySelect,
   OtherBreedSelect,
   OtherQuantityInput,
-  OtherVariantsInputs,
+  // OtherVariantsInputs, DEPRECATED
   AverageWeightInput,
   PriceInput,
 } from "../../components";
@@ -31,14 +31,14 @@ export default function ContentByStep() {
           <MainCategorySelect />
           <MainBreedSelect />
           <MainQuantityInput />
-          <MainVariantsInputs />
+          {/*<MainVariantsInputs /> DEPRECATED*/}
         </>
       ) : step === 4 ? (
         <>
           <OtherCategorySelect />
           <OtherBreedSelect />
           <OtherQuantityInput />
-          <OtherVariantsInputs />
+          {/*<OtherVariantsInputs /> DEPRECATED*/}
         </>
       ) : step === 5 ? (
         <>

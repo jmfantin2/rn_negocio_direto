@@ -14,7 +14,7 @@ export const Container = styled.View`
 export const AdImage = styled.Image`
   height: 52px;
   width: 70px;
-  border-radius: 4px;
+  border-radius: 50px;
   align-self: center;
 `;
 

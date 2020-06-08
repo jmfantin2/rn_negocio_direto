@@ -22,7 +22,7 @@ export const AdList = styled(FlatList)`
 
 export const Button = styled.TouchableOpacity`
   background-color: #398ad7;
-  border-radius: 3px;
+  border-radius: 50px;
   height: 44px;
   padding: 0px 20px;
   margin-top: 10px;

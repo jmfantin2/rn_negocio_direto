@@ -1,6 +1,14 @@
 import styled from "styled-components/native";
 import { general } from "../../../../../assets/general";
 
+export const Notice = styled.Text`
+  color: ${general.styles.colors.businessBrown};
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px 0px 2px 0px;
+`;
+
 export const Label = styled.Text`
   color: ${general.styles.colors.oceanGreen};
   font-size: 18px;
@@ -10,8 +18,12 @@ export const Label = styled.Text`
 
 export const SelectBG = styled.View`
   height: 40px;
-  flex: 1;
   background-color: ${general.styles.colors.lighter};
+`;
+
+export const Cow = styled.Image`
+  margin: 10px;
+  width: auto;
 `;
 
 export const pickerStyle = {

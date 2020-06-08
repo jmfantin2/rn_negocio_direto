@@ -6,7 +6,8 @@ import { useDynamic } from "../../context/Dynamic";
 import { useOtherCategory } from "../../context/OtherCategory";
 
 import { general } from "../../../../../assets/general";
-import { Label, SelectBG, pickerStyle } from "./styles";
+import { Cow, Label, SelectBG, Notice, pickerStyle } from "./styles";
+import CowSrc from "../../../../../assets/images/cow.png";
 
 export default function OtherCategorySelect() {
   const { mainCategory } = useMainCategory(); // READ
@@ -14,7 +15,7 @@ export default function OtherCategorySelect() {
   const { otherCategory, setOtherCategory } = useOtherCategory(); // READ
 
   const [options, setOptions] = useState([]);
-  const [shouldAppear, toggle] = useState(false);
+  const [shouldAppear, toggle] = useState(true);
 
   // Triggered everytime mainCategory changes
   useEffect(() => {
@@ -53,10 +54,17 @@ export default function OtherCategorySelect() {
           </SelectBG>
         </>
       ) : (
-        <Label>
-          Não há categoria adicional para:{"\n"}PREÇO DINÂMICO{"\n"}TOURO{"\n"}
-          VACA INVERNAR
-        </Label>
+        <>
+          <>
+            <Cow source={CowSrc} resizeMode="contain" />
+            <Notice>
+              Não há categoria{"\n"}adicional em caso de:{"\n\n"}PREÇO DINÂMICO
+              {"\n"}TOURO
+              {"\n"}
+              VACA INVERNAR
+            </Notice>
+          </>
+        </>
       )}
     </>
   );

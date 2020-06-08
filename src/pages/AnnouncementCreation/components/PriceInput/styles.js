@@ -27,6 +27,6 @@ export const Input = styled.TextInput`
   font-weight: bold;
   font-size: 16px;
   color: ${general.styles.colors.oceanGreen};
-  border-radius: 3px;
+  border-radius: 50px;
   width: ${screenW / 3}px;
 `;

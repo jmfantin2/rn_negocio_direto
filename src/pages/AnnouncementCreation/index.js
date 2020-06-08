@@ -7,11 +7,11 @@ import {
   MainCategoryProvider,
   MainBreedProvider,
   MainQuantityProvider,
-  MainVariantsProvider,
+  // MainVariantsProvider,
   OtherCategoryProvider,
   OtherBreedProvider,
   OtherQuantityProvider,
-  OtherVariantsProvider,
+  // OtherVariantsProvider,
   AverageWeightProvider,
   PriceProvider,
 } from "./context";
@@ -31,33 +31,33 @@ export default function AnnouncementCreation() {
               {/* can access mainBreed state */}
               <MainQuantityProvider>
                 {/* can access mainQuantity state */}
-                <MainVariantsProvider>
-                  {/* can access mainVariants state */}
-                  <OtherCategoryProvider>
-                    {/* can access otherCategory state */}
-                    <OtherBreedProvider>
-                      {/* can access otherBreed state */}
-                      <OtherQuantityProvider>
-                        {/* can access otherQuantity state */}
-                        <OtherVariantsProvider>
-                          {/* can access otherVariants state */}
-                          <AverageWeightProvider>
-                            {/* can access averageWeight state */}
-                            <PriceProvider>
-                              {/* can access price state */}
-                              <StepProvider>
-                                <ContentByStep />
-                                <StepNavigator />
-                                {/* manages announcement creation*/}
-                              </StepProvider>
-                              {/* can access everything */}
-                            </PriceProvider>
-                          </AverageWeightProvider>
-                        </OtherVariantsProvider>
-                      </OtherQuantityProvider>
-                    </OtherBreedProvider>
-                  </OtherCategoryProvider>
-                </MainVariantsProvider>
+                {/*<MainVariantsProvider> DEPRECATED*/}
+                {/* can access mainVariants state */}
+                <OtherCategoryProvider>
+                  {/* can access otherCategory state */}
+                  <OtherBreedProvider>
+                    {/* can access otherBreed state */}
+                    <OtherQuantityProvider>
+                      {/* can access otherQuantity state */}
+                      {/*<OtherVariantsProvider> DEPRECATED*/}
+                      {/* can access otherVariants state */}
+                      <AverageWeightProvider>
+                        {/* can access averageWeight state */}
+                        <PriceProvider>
+                          {/* can access price state */}
+                          <StepProvider>
+                            <ContentByStep />
+                            <StepNavigator />
+                            {/* manages announcement creation*/}
+                          </StepProvider>
+                          {/* can access everything */}
+                        </PriceProvider>
+                      </AverageWeightProvider>
+                      {/*</OtherVariantsProvider> DEPRECATED*/}
+                    </OtherQuantityProvider>
+                  </OtherBreedProvider>
+                </OtherCategoryProvider>
+                {/*</MainVariantsProvider> DEPRECATED*/}
               </MainQuantityProvider>
             </MainBreedProvider>
           </MainCategoryProvider>
