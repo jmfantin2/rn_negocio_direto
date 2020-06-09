@@ -27,9 +27,9 @@ export default function StepNavigator() {
         />
       )}
       <CenterContent>
-        <Label>{step}/7</Label>
+        <Label>{step} de 5</Label>
       </CenterContent>
-      {step < 7 ? (
+      {step < 5 ? (
         <TouchableOpacity onPress={() => setStep(step + 1)}>
           <AntDesign
             name="rightcircleo"

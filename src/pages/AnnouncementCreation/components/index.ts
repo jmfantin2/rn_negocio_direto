@@ -4,6 +4,9 @@ export { Canvas };
 import Container from "./Container";
 export { Container };
 
+import Optional from "./Optional";
+export { Optional };
+
 import ContentByStep from "./ContentByStep";
 export { ContentByStep };
 

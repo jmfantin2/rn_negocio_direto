@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { general } from "../../../../../assets/general";
 
 export const SwitchContainer = styled.View`
+  margin: 40px 0px 0px 0px;
   flex: 1;
   align-items: center;
 `;

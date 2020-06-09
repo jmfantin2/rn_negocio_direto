@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Text } from "react-native";
 import { useDynamic } from "../../context/Dynamic";
+import { useMainCategory } from "../../context/MainCategory";
 import { useOtherCategory } from "../../context/OtherCategory";
 import { useOtherObservations } from "../../context/OtherObservations";
 
@@ -8,8 +9,11 @@ import { Container, Label, Input } from "./styles";
 
 export default function OtherObservationsInput() {
   const { dynamic } = useDynamic(); // READ
+  const { mainCategory } = useMainCategory(); // READ
   const { otherCategory } = useOtherCategory(); // READ
   const { otherObservations, setOtherObservations } = useOtherObservations();
+
+  const [shouldAppear, toggle] = useState(false);
 
   const [possibleVariants, setPossibleVariants] = useState([]);
 
@@ -17,9 +21,24 @@ export default function OtherObservationsInput() {
     setPossibleVariants(getPossibleVariants(otherCategory));
   }, [otherCategory]);
 
+  // Triggered everytime mainCategory changes
+  useEffect(() => {
+    setOtherObservations("");
+    if (
+      dynamic ||
+      mainCategory === "touro" ||
+      mainCategory === "vaca_invernar" ||
+      mainCategory === null
+    ) {
+      toggle(false);
+    } else {
+      toggle(true);
+    }
+  }, [mainCategory, dynamic]);
+
   return (
     <>
-      {!dynamic ? (
+      {shouldAppear ? (
         <Container>
           <Label>Observações</Label>
           <Text>Forneça mais informações</Text>

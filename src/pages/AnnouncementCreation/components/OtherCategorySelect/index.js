@@ -37,7 +37,7 @@ export default function OtherCategorySelect() {
     <>
       {shouldAppear ? (
         <>
-          <Label>Categoria adicional (opcional)</Label>
+          <Label>Categoria adicional</Label>
           <SelectBG>
             <RNPickerSelect
               placeholder={{

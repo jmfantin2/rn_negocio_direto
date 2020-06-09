@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 
 import {
   StepProvider,
@@ -18,7 +19,13 @@ import {
   PriceProvider,
 } from "./context";
 
-import { Canvas, Container, ContentByStep, StepNavigator } from "./components";
+import {
+  Canvas,
+  Container,
+  Optional,
+  ContentByStep,
+  StepNavigator,
+} from "./components";
 
 export default function AnnouncementCreation() {
   return (
@@ -51,6 +58,7 @@ export default function AnnouncementCreation() {
                             {/* can access everything */}
                             <StepProvider>
                               <Canvas behavior="padding" enabled>
+                                <Optional />
                                 <Container>
                                   <ContentByStep />
                                   {/* manages announcement creation*/}

@@ -7,7 +7,6 @@ import { useMainObservations } from "../../context/MainObservations";
 import { Container, Label, Input } from "./styles";
 
 export default function MainObservationsInput() {
-  const { dynamic } = useDynamic(); // READ
   const { mainCategory } = useMainCategory(); // READ
   const { mainObservations, setMainObservations } = useMainObservations();
 
@@ -19,29 +18,27 @@ export default function MainObservationsInput() {
 
   return (
     <>
-      {!dynamic ? (
-        <Container>
-          <Label>Observações</Label>
-          <Text>Forneça mais informações</Text>
+      <Container>
+        <Label>Observações</Label>
+        <Text>Forneça mais informações</Text>
 
-          {possibleVariants.map((v) => (
-            <Text key={v.key} style={{ fontWeight: "bold" }}>
-              {v.case
-                .charAt(0)
-                .toUpperCase()
-                .concat(v.case.substring(1))
-                .replace("_", " ")}
-              ?
-            </Text>
-          ))}
-          <Input
-            textAlignVertical={"top"}
-            multiline={true}
-            value={mainObservations}
-            onChangeText={(text) => setMainObservations(text)}
-          />
-        </Container>
-      ) : null}
+        {possibleVariants.map((v) => (
+          <Text key={v.key} style={{ fontWeight: "bold" }}>
+            {v.case
+              .charAt(0)
+              .toUpperCase()
+              .concat(v.case.substring(1))
+              .replace("_", " ")}
+            ?
+          </Text>
+        ))}
+        <Input
+          textAlignVertical={"top"}
+          multiline={true}
+          value={mainObservations}
+          onChangeText={(text) => setMainObservations(text)}
+        />
+      </Container>
     </>
   );
 }

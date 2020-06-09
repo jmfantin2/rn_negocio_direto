@@ -25,10 +25,11 @@ export default function ContentByStep() {
   return (
     <>
       {step === 1 ? (
-        <VideoUpload />
+        <>
+          <VideoUpload />
+          <DynamicSwitch />
+        </>
       ) : step === 2 ? (
-        <DynamicSwitch />
-      ) : step === 3 ? (
         <>
           <MainCategorySelect />
           <MainBreedSelect />
@@ -36,7 +37,7 @@ export default function ContentByStep() {
           {/*<MainVariantsInputs /> DEPRECATED*/}
           <MainObservationsInput />
         </>
-      ) : step === 4 ? (
+      ) : step === 3 ? (
         <>
           <OtherCategorySelect />
           <OtherBreedSelect />
@@ -44,7 +45,7 @@ export default function ContentByStep() {
           {/*<OtherVariantsInputs /> DEPRECATED*/}
           <OtherObservationsInput />
         </>
-      ) : step === 5 ? (
+      ) : step === 4 ? (
         <>
           <AverageWeightInput />
           <PriceInput />

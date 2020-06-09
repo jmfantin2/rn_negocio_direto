@@ -1,6 +1,13 @@
 import styled from "styled-components/native";
 import { general } from "../../../../../assets/general";
 
+export const Title = styled.Text`
+  color: ${general.styles.colors.white};
+  font-size: 18px;
+  font-weight: bold;
+  align-self: center;
+`;
+
 export const Notice = styled.Text`
   color: ${general.styles.colors.businessBrown};
   text-align: center;
