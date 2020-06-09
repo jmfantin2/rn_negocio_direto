@@ -16,8 +16,13 @@ export { MainBreedProvider };
 import MainQuantityProvider from "./MainQuantity";
 export { MainQuantityProvider };
 
+/* DEPRECATED
 import MainVariantsProvider from "./MainVariants";
 export { MainVariantsProvider };
+*/
+
+import MainObservationsProvider from "./MainObservations";
+export { MainObservationsProvider };
 
 import OtherCategoryProvider from "./OtherCategory";
 export { OtherCategoryProvider };
@@ -28,8 +33,13 @@ export { OtherBreedProvider };
 import OtherQuantityProvider from "./OtherQuantity";
 export { OtherQuantityProvider };
 
+/* DEPRECATED
 import OtherVariantsProvider from "./OtherVariants";
 export { OtherVariantsProvider };
+*/
+
+import OtherObservationsProvider from "./OtherObservations";
+export { OtherObservationsProvider };
 
 import AverageWeightProvider from "./AverageWeight";
 export { AverageWeightProvider };

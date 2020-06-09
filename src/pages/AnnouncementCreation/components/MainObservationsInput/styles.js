@@ -5,9 +5,8 @@ import { Dimensions } from "react-native";
 const screenW = Dimensions.get("window").width;
 
 export const Container = styled.View`
-  flex-direction: row;
   flex: 1;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 18px 0px 0px 0px;
   align-items: center;
 `;
@@ -20,13 +19,12 @@ export const Label = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-  height: 40px;
+  height: 100%;
+  width: 100%;
+  margin: 10px 0px 0px 0px;
   padding: 0px 10px 0px 10px;
   background-color: ${general.styles.colors.lighter};
-  text-align: center;
-  font-weight: bold;
-  font-size: 16px;
-  color: ${general.styles.colors.oceanGreen};
-  border-radius: 50px;
-  width: ${screenW / 3}px;
+  font-size: 18px;
+  color: ${general.styles.colors.darkCyan};
+  border-radius: 4px;
 `;

@@ -8,62 +8,69 @@ import {
   MainBreedProvider,
   MainQuantityProvider,
   // MainVariantsProvider,
+  MainObservationsProvider,
   OtherCategoryProvider,
   OtherBreedProvider,
   OtherQuantityProvider,
   // OtherVariantsProvider,
+  OtherObservationsProvider,
   AverageWeightProvider,
   PriceProvider,
 } from "./context";
 
-import { Container, ContentByStep, StepNavigator } from "./components";
+import { Canvas, Container, ContentByStep, StepNavigator } from "./components";
 
 export default function AnnouncementCreation() {
   return (
-    <Container>
-      <VideoProvider>
-        {/* can access video state */}
-        <DynamicProvider>
-          {/* can access dynamic state */}
-          <MainCategoryProvider>
-            {/* can access mainCategory state */}
-            <MainBreedProvider>
-              {/* can access mainBreed state */}
-              <MainQuantityProvider>
-                {/* can access mainQuantity state */}
-                {/*<MainVariantsProvider> DEPRECATED*/}
-                {/* can access mainVariants state */}
+    <VideoProvider>
+      {/* can access video state */}
+      <DynamicProvider>
+        {/* can access dynamic state */}
+        <MainCategoryProvider>
+          {/* can access mainCategory state */}
+          <MainBreedProvider>
+            {/* can access mainBreed state */}
+            <MainQuantityProvider>
+              {/* can access mainQuantity state */}
+              {/*<MainVariantsProvider> DEPRECATED*/}
+              {/* can access mainVariants state */}
+              <MainObservationsProvider>
+                {/* can access mainObservations state */}
                 <OtherCategoryProvider>
                   {/* can access otherCategory state */}
                   <OtherBreedProvider>
                     {/* can access otherBreed state */}
                     <OtherQuantityProvider>
                       {/* can access otherQuantity state */}
-                      {/*<OtherVariantsProvider> DEPRECATED*/}
-                      {/* can access otherVariants state */}
-                      <AverageWeightProvider>
-                        {/* can access averageWeight state */}
-                        <PriceProvider>
-                          {/* can access price state */}
-                          <StepProvider>
-                            <ContentByStep />
-                            <StepNavigator />
-                            {/* manages announcement creation*/}
-                          </StepProvider>
-                          {/* can access everything */}
-                        </PriceProvider>
-                      </AverageWeightProvider>
-                      {/*</OtherVariantsProvider> DEPRECATED*/}
+                      <OtherObservationsProvider>
+                        {/* can access otherObservations state */}
+                        <AverageWeightProvider>
+                          {/* can access averageWeight state */}
+                          <PriceProvider>
+                            {/* can access price state */}
+                            {/* can access everything */}
+                            <StepProvider>
+                              <Canvas behavior="padding" enabled>
+                                <Container>
+                                  <ContentByStep />
+                                  {/* manages announcement creation*/}
+                                </Container>
+                                <StepNavigator />
+                              </Canvas>
+                            </StepProvider>
+                          </PriceProvider>
+                        </AverageWeightProvider>
+                      </OtherObservationsProvider>
                     </OtherQuantityProvider>
                   </OtherBreedProvider>
                 </OtherCategoryProvider>
-                {/*</MainVariantsProvider> DEPRECATED*/}
-              </MainQuantityProvider>
-            </MainBreedProvider>
-          </MainCategoryProvider>
-        </DynamicProvider>
-      </VideoProvider>
-    </Container>
+              </MainObservationsProvider>
+              {/*</MainVariantsProvider> DEPRECATED*/}
+            </MainQuantityProvider>
+          </MainBreedProvider>
+        </MainCategoryProvider>
+      </DynamicProvider>
+    </VideoProvider>
   );
 }
 

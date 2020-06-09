@@ -1,3 +1,6 @@
+import Canvas from "./Canvas";
+export { Canvas };
+
 import Container from "./Container";
 export { Container };
 
@@ -22,8 +25,13 @@ export { MainBreedSelect };
 import MainQuantityInput from "./MainQuantityInput";
 export { MainQuantityInput };
 
+/* DEPRECATED
 import MainVariantsInputs from "./MainVariantsInputs";
 export { MainVariantsInputs };
+*/
+
+import MainObservationsInput from "./MainObservationsInput";
+export { MainObservationsInput };
 
 import OtherCategorySelect from "./OtherCategorySelect";
 export { OtherCategorySelect };
@@ -34,8 +42,13 @@ export { OtherBreedSelect };
 import OtherQuantityInput from "./OtherQuantityInput";
 export { OtherQuantityInput };
 
+/* DEPRECATED
 import OtherVariantsInputs from "./OtherVariantsInputs";
 export { OtherVariantsInputs };
+*/
+
+import OtherObservationsInput from "./OtherObservationsInput";
+export { OtherObservationsInput };
 
 import AverageWeightInput from "./AverageWeightInput";
 export { AverageWeightInput };

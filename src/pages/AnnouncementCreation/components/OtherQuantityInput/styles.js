@@ -7,7 +7,7 @@ const screenW = Dimensions.get("window").width;
 export const Container = styled.View`
   flex-direction: row;
   flex: 1;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 18px 0px 0px 0px;
   align-items: center;
 `;
