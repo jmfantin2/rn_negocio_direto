@@ -9,7 +9,9 @@ export default function PriceInput() {
   const { price, setPrice } = usePrice();
 
   useEffect(() => {
-    setPrice("");
+    if (dynamic) {
+      setPrice("");
+    }
   }, [dynamic]);
 
   return (

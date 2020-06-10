@@ -20,28 +20,31 @@ import { useOtherObservations } from "../../context/OtherObservations";
 import { useAverageWeight } from "../../context/AverageWeight";
 import { usePrice } from "../../context/Price";
 
+import { useSubmition } from "../../context/Submition";
+
 export default function Summary() {
-  const { step } = useStep();
+  const { step } = useStep(); //READ
 
-  const { video } = useVideo();
-  const { dynamic } = useDynamic();
+  const { video } = useVideo(); //READ
+  const { dynamic } = useDynamic(); //READ
 
-  const { mainCategory } = useMainCategory();
-  const { mainBreed } = useMainBreed();
-  const { mainQuantity } = useMainQuantity();
-  const { mainObservations } = useMainObservations();
+  const { mainCategory } = useMainCategory(); //READ
+  const { mainBreed } = useMainBreed(); //READ
+  const { mainQuantity } = useMainQuantity(); //READ
+  const { mainObservations } = useMainObservations(); //READ
 
-  const { otherCategory } = useOtherCategory();
-  const { otherBreed } = useOtherBreed();
-  const { otherQuantity } = useOtherQuantity();
-  const { otherObservations } = useOtherObservations();
+  const { otherCategory } = useOtherCategory(); //READ
+  const { otherBreed } = useOtherBreed(); //READ
+  const { otherQuantity } = useOtherQuantity(); //READ
+  const { otherObservations } = useOtherObservations(); //READ
 
-  const { averageWeight } = useAverageWeight();
-  const { price } = usePrice();
+  const { averageWeight } = useAverageWeight(); //READ
+  const { price } = usePrice(); //READ
 
-  const [submitAllowed, allowSubmit] = useState(false);
+  const { submitAllowed, allowSubmit } = useSubmition();
 
   useEffect(() => {
+    allowSubmit(false);
     if (
       video &&
       mainQuantity &&
@@ -60,7 +63,7 @@ export default function Summary() {
     <Container>
       <Label>Tipo do Anúncio</Label>
       <Description>Preço{dynamic ? " Dinâmico" : " Fixo"}</Description>
-      <Label>Vídeo{video ? "" : " ❌"}</Label>
+      <Label>Vídeo{video ? "" : " ❓"}</Label>
       <Description>{video ? "Enviado" : "Não enviado"}</Description>
       {mainQuantity && mainCategory && mainBreed && mainObservations ? (
         <>
@@ -83,7 +86,7 @@ export default function Summary() {
         </>
       ) : (
         <>
-          <Label>Categoria Principal ❌</Label>
+          <Label>Categoria Principal ❓</Label>
           <Description>Informações faltantes</Description>
         </>
       )}
@@ -123,7 +126,7 @@ export default function Summary() {
         </>
       ) : (
         <>
-          <Label>Detalhes da venda ❌</Label>
+          <Label>Detalhes da venda ❓</Label>
           <Description>Informações faltantes</Description>
         </>
       )}

@@ -6,8 +6,10 @@ import { Container, CenterContent, Label } from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 
 import { useStep } from "../../context/Step";
+import { useSubmition } from "../../context/Submition";
 
 export default function StepNavigator() {
+  const { submitAllowed } = useSubmition();
   const { step, setStep } = useStep();
   return (
     <Container>
@@ -37,12 +39,20 @@ export default function StepNavigator() {
             color={general.styles.colors.darkCyan}
           />
         </TouchableOpacity>
-      ) : (
+      ) : submitAllowed ? (
         <TouchableOpacity>
           <AntDesign
             name="checkcircleo"
             size={42}
             color={general.styles.colors.businessGreen}
+          />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity>
+          <AntDesign
+            name="closecircleo"
+            size={42}
+            color={general.styles.colors.danger}
           />
         </TouchableOpacity>
       )}

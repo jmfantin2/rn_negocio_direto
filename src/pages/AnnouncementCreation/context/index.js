@@ -49,3 +49,6 @@ export { PriceProvider };
 
 import DaysActiveProvider from "./DaysActive";
 export { DaysActiveProvider };
+
+import SubmitionProvider from "./Submition";
+export { SubmitionProvider };

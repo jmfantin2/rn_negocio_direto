@@ -17,6 +17,7 @@ import {
   AverageWeightProvider,
   PriceProvider,
   DaysActiveProvider,
+  SubmitionProvider,
 } from "./context";
 
 import {
@@ -57,16 +58,18 @@ export default function AnnouncementCreation() {
                             {/* can access price state */}
                             <DaysActiveProvider>
                               {/* can access everything */}
-                              <StepProvider>
-                                <Canvas behavior="padding" enabled>
-                                  <Optional />
-                                  <Container>
-                                    <ContentByStep />
-                                    {/* manages announcement creation*/}
-                                  </Container>
-                                  <StepNavigator />
-                                </Canvas>
-                              </StepProvider>
+                              <SubmitionProvider>
+                                <StepProvider>
+                                  <Canvas behavior="padding" enabled>
+                                    <Optional />
+                                    <Container>
+                                      <ContentByStep />
+                                      {/* manages announcement creation*/}
+                                    </Container>
+                                    <StepNavigator />
+                                  </Canvas>
+                                </StepProvider>
+                              </SubmitionProvider>
                             </DaysActiveProvider>
                           </PriceProvider>
                         </AverageWeightProvider>
