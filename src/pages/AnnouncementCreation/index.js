@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 
 import {
   StepProvider,
@@ -17,6 +16,7 @@ import {
   OtherObservationsProvider,
   AverageWeightProvider,
   PriceProvider,
+  DaysActiveProvider,
 } from "./context";
 
 import {
@@ -55,17 +55,19 @@ export default function AnnouncementCreation() {
                           {/* can access averageWeight state */}
                           <PriceProvider>
                             {/* can access price state */}
-                            {/* can access everything */}
-                            <StepProvider>
-                              <Canvas behavior="padding" enabled>
-                                <Optional />
-                                <Container>
-                                  <ContentByStep />
-                                  {/* manages announcement creation*/}
-                                </Container>
-                                <StepNavigator />
-                              </Canvas>
-                            </StepProvider>
+                            <DaysActiveProvider>
+                              {/* can access everything */}
+                              <StepProvider>
+                                <Canvas behavior="padding" enabled>
+                                  <Optional />
+                                  <Container>
+                                    <ContentByStep />
+                                    {/* manages announcement creation*/}
+                                  </Container>
+                                  <StepNavigator />
+                                </Canvas>
+                              </StepProvider>
+                            </DaysActiveProvider>
                           </PriceProvider>
                         </AverageWeightProvider>
                       </OtherObservationsProvider>

@@ -15,13 +15,13 @@ export default function OtherQuantityInput() {
 
   // Triggered everytime mainCategory changes
   useEffect(() => {
-    setOtherQuantity("");
     if (
       dynamic ||
       mainCategory === "touro" ||
       mainCategory === "vaca_invernar" ||
       mainCategory === null
     ) {
+      setOtherQuantity("");
       toggle(false);
     } else {
       toggle(true);

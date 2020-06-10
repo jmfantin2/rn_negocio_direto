@@ -16,13 +16,13 @@ export default function OtherBreedSelect() {
   const [shouldAppear, toggle] = useState(false);
 
   useEffect(() => {
-    setOtherBreed(null);
     if (
       dynamic ||
       mainCategory === "touro" ||
       mainCategory === "vaca_invernar" ||
       mainCategory === null
     ) {
+      setOtherBreed(null);
       toggle(false);
     } else {
       toggle(true);

@@ -58,3 +58,9 @@ export { AverageWeightInput };
 
 import PriceInput from "./PriceInput";
 export { PriceInput };
+
+import Summary from "./Summary";
+export { Summary };
+
+import DaysActiveSlider from "./DaysActiveSlider";
+export { DaysActiveSlider };

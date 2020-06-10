@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDynamic } from "../../context/Dynamic";
 import { usePrice } from "../../context/Price";
 
@@ -7,6 +7,10 @@ import { Container, Label, Input } from "./styles";
 export default function PriceInput() {
   const { dynamic } = useDynamic(); // READ
   const { price, setPrice } = usePrice();
+
+  useEffect(() => {
+    setPrice("");
+  }, [dynamic]);
 
   return (
     <>

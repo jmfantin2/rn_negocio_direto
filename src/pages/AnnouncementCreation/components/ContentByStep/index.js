@@ -15,6 +15,8 @@ import {
   OtherObservationsInput,
   AverageWeightInput,
   PriceInput,
+  Summary,
+  DaysActiveSlider,
 } from "../../components";
 
 import { useStep } from "../../context/Step";
@@ -28,6 +30,7 @@ export default function ContentByStep() {
         <>
           <VideoUpload />
           <DynamicSwitch />
+          <DaysActiveSlider />
         </>
       ) : step === 2 ? (
         <>
@@ -49,6 +52,10 @@ export default function ContentByStep() {
         <>
           <AverageWeightInput />
           <PriceInput />
+        </>
+      ) : step === 5 ? (
+        <>
+          <Summary />
         </>
       ) : null}
     </>

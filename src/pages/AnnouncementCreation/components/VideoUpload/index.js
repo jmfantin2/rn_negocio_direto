@@ -15,7 +15,7 @@ export default function VideoUpload() {
     setTimeout(() => {
       setLoading(false);
     }, 2222);
-    setVideo("s78q35va12");
+    setVideo("some_url");
   }
 
   return (

@@ -19,13 +19,13 @@ export default function OtherCategorySelect() {
 
   // Triggered everytime mainCategory changes
   useEffect(() => {
-    setOtherCategory(null);
     if (
       dynamic ||
       mainCategory === "touro" ||
       mainCategory === "vaca_invernar" ||
       mainCategory === null
     ) {
+      setOtherCategory(null);
       toggle(false);
     } else {
       setOptions(getMatchedCategories(mainCategory));

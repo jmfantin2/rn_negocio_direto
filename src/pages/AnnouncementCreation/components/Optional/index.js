@@ -11,6 +11,10 @@ export default function Optional() {
         <OptionalBar>
           <OptionalText>OPCIONAL</OptionalText>
         </OptionalBar>
+      ) : step === 5 ? (
+        <OptionalBar>
+          <OptionalText>RESUMO DO ANÚNCIO</OptionalText>
+        </OptionalBar>
       ) : null}
     </>
   );

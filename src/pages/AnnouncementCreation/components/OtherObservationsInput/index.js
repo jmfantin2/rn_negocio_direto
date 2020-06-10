@@ -23,13 +23,13 @@ export default function OtherObservationsInput() {
 
   // Triggered everytime mainCategory changes
   useEffect(() => {
-    setOtherObservations("");
     if (
       dynamic ||
       mainCategory === "touro" ||
       mainCategory === "vaca_invernar" ||
       mainCategory === null
     ) {
+      setOtherObservations("");
       toggle(false);
     } else {
       toggle(true);

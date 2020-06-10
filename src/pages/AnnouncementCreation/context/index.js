@@ -46,3 +46,6 @@ export { AverageWeightProvider };
 
 import PriceProvider from "./Price";
 export { PriceProvider };
+
+import DaysActiveProvider from "./DaysActive";
+export { DaysActiveProvider };
