@@ -6,6 +6,7 @@ import { useStep } from "../../context/Step";
 
 import { useVideo } from "../../context/Video";
 import { useDynamic } from "../../context/Dynamic";
+import { useDaysActive } from "../../context/DaysActive";
 
 import { useMainCategory } from "../../context/MainCategory";
 import { useMainBreed } from "../../context/MainBreed";
@@ -27,6 +28,7 @@ export default function Summary() {
 
   const { video } = useVideo(); //READ
   const { dynamic } = useDynamic(); //READ
+  const { daysActive } = useDaysActive(); //READ
 
   const { mainCategory } = useMainCategory(); //READ
   const { mainBreed } = useMainBreed(); //READ
@@ -63,6 +65,7 @@ export default function Summary() {
     <Container>
       <Label>Tipo do Anúncio</Label>
       <Description>Preço{dynamic ? " Dinâmico" : " Fixo"}</Description>
+      <Description>{daysActive} dias</Description>
       <Label>Vídeo{video ? "" : " ❓"}</Label>
       <Description>{video ? "Enviado" : "Não enviado"}</Description>
       {mainQuantity && mainCategory && mainBreed && mainObservations ? (
