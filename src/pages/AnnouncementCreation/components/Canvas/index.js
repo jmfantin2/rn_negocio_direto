@@ -8,6 +8,7 @@ const screenH = Dimensions.get("window").height;
 
 const Canvas = styled.KeyboardAvoidingView`
   height: ${screenH}px;
+  justify-content: center;
   background-color: ${general.styles.colors.light};
 `;
 
