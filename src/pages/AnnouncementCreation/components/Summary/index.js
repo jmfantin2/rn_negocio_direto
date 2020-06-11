@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { Container, Label, Description, Notice } from "./styles";
-
-import { useStep } from "../../context/Step";
+import { Container, Label, Description } from "./styles";
 
 import { useVideo } from "../../context/Video";
 import { useDynamic } from "../../context/Dynamic";
@@ -21,11 +19,7 @@ import { useOtherObservations } from "../../context/OtherObservations";
 import { useAverageWeight } from "../../context/AverageWeight";
 import { usePrice } from "../../context/Price";
 
-import { useSubmition } from "../../context/Submition";
-
 export default function Summary() {
-  const { step } = useStep(); //READ
-
   const { video } = useVideo(); //READ
   const { dynamic } = useDynamic(); //READ
   const { daysActive } = useDaysActive(); //READ
@@ -42,24 +36,6 @@ export default function Summary() {
 
   const { averageWeight } = useAverageWeight(); //READ
   const { price } = usePrice(); //READ
-
-  const { submitAllowed, allowSubmit } = useSubmition();
-
-  useEffect(() => {
-    allowSubmit(false);
-    if (
-      video &&
-      mainQuantity &&
-      mainCategory &&
-      mainBreed &&
-      mainObservations &&
-      averageWeight
-    ) {
-      if ((!dynamic && price) || dynamic) {
-        allowSubmit(true);
-      }
-    }
-  }, []);
 
   return (
     <Container>
@@ -133,7 +109,6 @@ export default function Summary() {
           <Description>Informações faltantes</Description>
         </>
       )}
-      {!submitAllowed ? <Notice>Revise as informações!</Notice> : null}
     </Container>
   );
 }

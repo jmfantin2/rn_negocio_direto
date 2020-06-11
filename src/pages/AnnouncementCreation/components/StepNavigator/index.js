@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { ToastAndroid, TouchableOpacity } from "react-native";
 import { general } from "../../../../../assets/general";
 import { Container, CenterContent, Label } from "./styles";
 
@@ -48,7 +48,15 @@ export default function StepNavigator() {
           />
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            ToastAndroid.showWithGravity(
+              "Revise as informações!",
+              ToastAndroid.LONG,
+              ToastAndroid.BOTTOM
+            )
+          }
+        >
           <AntDesign
             name="closecircleo"
             size={42}

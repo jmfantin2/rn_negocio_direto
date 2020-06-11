@@ -19,10 +19,3 @@ export const Description = styled.Text`
   text-align: center;
   font-size: 18px;
 `;
-
-export const Notice = styled.Text`
-  color: ${general.styles.colors.danger};
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0px 2px 0px;
-`;
