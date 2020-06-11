@@ -22,7 +22,7 @@ export default function PriceInput() {
           <Input
             value={price}
             onChangeText={(text) => setPrice(text.replace(/\D/g, ""))}
-            placeholder={"em kg"}
+            placeholder={"em R$"}
             maxLength={3}
             keyboardType={"numeric"}
           />

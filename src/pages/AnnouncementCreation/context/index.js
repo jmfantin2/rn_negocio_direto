@@ -52,3 +52,6 @@ export { DaysActiveProvider };
 
 import SubmitionProvider from "./Submition";
 export { SubmitionProvider };
+
+import LocationProvider from "./Location";
+export { LocationProvider };

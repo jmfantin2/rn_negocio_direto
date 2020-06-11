@@ -1,12 +1,8 @@
 import styled from "styled-components/native";
 import { general } from "../../../../../assets/general";
 
-import { Dimensions } from "react-native";
-const screenW = Dimensions.get("window").width;
-
 export const Container = styled.View`
   flex: 1;
-  justify-content: space-between;
   padding: 18px 0px 0px 0px;
   align-items: center;
 `;

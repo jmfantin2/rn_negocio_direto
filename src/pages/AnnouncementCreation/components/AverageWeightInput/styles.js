@@ -8,15 +8,14 @@ export const Container = styled.View`
   flex-direction: row;
   flex: 1;
   justify-content: space-between;
-  padding: 18px 0px 0px 0px;
   align-items: center;
+  margin: 0px 0px 20px 0px;
 `;
 
 export const Label = styled.Text`
   color: ${general.styles.colors.oceanGreen};
   font-size: 18px;
   font-weight: bold;
-  margin: 0px 0px 2px 0px;
 `;
 
 export const Input = styled.TextInput`

@@ -7,7 +7,7 @@ export default function AverageWeightInput() {
   const { averageWeight, setAverageWeight } = useAverageWeight();
   return (
     <Container>
-      <Label>Peso médio (kg)</Label>
+      <Label>Peso médio</Label>
       <Input
         value={averageWeight}
         onChangeText={(text) => setAverageWeight(text.replace(/\D/g, ""))}

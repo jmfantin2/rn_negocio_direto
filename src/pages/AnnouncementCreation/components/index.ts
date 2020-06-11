@@ -67,3 +67,6 @@ export { Summary };
 
 import DaysActiveSlider from "./DaysActiveSlider";
 export { DaysActiveSlider };
+
+import LocationInputs from "./LocationInputs";
+export { LocationInputs };
