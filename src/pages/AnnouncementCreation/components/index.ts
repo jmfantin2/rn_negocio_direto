@@ -1,3 +1,6 @@
+import ContextWrapper from "./ContextWrapper";
+export { ContextWrapper };
+
 import Canvas from "./Canvas";
 export { Canvas };
 

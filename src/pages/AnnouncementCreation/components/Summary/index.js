@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { Container, Label, Description, Notice } from "./styles";
 
@@ -58,12 +58,12 @@ export default function Summary() {
       if ((!dynamic && price) || dynamic) {
         allowSubmit(true);
       }
-    } // else keep blocked
+    }
   }, []);
 
   return (
     <Container>
-      <Label>Tipo do Anúncio</Label>
+      <Label>Modalidade</Label>
       <Description>Preço{dynamic ? " Dinâmico" : " Fixo"}</Description>
       <Description>{daysActive} dias</Description>
       <Label>Vídeo{video ? "" : " ❓"}</Label>

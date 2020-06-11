@@ -1,26 +1,7 @@
 import React from "react";
 
 import {
-  StepProvider,
-  VideoProvider,
-  DynamicProvider,
-  MainCategoryProvider,
-  MainBreedProvider,
-  MainQuantityProvider,
-  // MainVariantsProvider,
-  MainObservationsProvider,
-  OtherCategoryProvider,
-  OtherBreedProvider,
-  OtherQuantityProvider,
-  // OtherVariantsProvider,
-  OtherObservationsProvider,
-  AverageWeightProvider,
-  PriceProvider,
-  DaysActiveProvider,
-  SubmitionProvider,
-} from "./context";
-
-import {
+  ContextWrapper,
   Canvas,
   Container,
   Optional,
@@ -30,60 +11,15 @@ import {
 
 export default function AnnouncementCreation() {
   return (
-    <VideoProvider>
-      {/* can access video state */}
-      <DynamicProvider>
-        {/* can access dynamic state */}
-        <MainCategoryProvider>
-          {/* can access mainCategory state */}
-          <MainBreedProvider>
-            {/* can access mainBreed state */}
-            <MainQuantityProvider>
-              {/* can access mainQuantity state */}
-              {/*<MainVariantsProvider> DEPRECATED*/}
-              {/* can access mainVariants state */}
-              <MainObservationsProvider>
-                {/* can access mainObservations state */}
-                <OtherCategoryProvider>
-                  {/* can access otherCategory state */}
-                  <OtherBreedProvider>
-                    {/* can access otherBreed state */}
-                    <OtherQuantityProvider>
-                      {/* can access otherQuantity state */}
-                      <OtherObservationsProvider>
-                        {/* can access otherObservations state */}
-                        <AverageWeightProvider>
-                          {/* can access averageWeight state */}
-                          <PriceProvider>
-                            {/* can access price state */}
-                            <DaysActiveProvider>
-                              {/* can access everything */}
-                              <SubmitionProvider>
-                                <StepProvider>
-                                  <Canvas behavior="padding" enabled>
-                                    <Optional />
-                                    <Container>
-                                      <ContentByStep />
-                                      {/* manages announcement creation*/}
-                                    </Container>
-                                    <StepNavigator />
-                                  </Canvas>
-                                </StepProvider>
-                              </SubmitionProvider>
-                            </DaysActiveProvider>
-                          </PriceProvider>
-                        </AverageWeightProvider>
-                      </OtherObservationsProvider>
-                    </OtherQuantityProvider>
-                  </OtherBreedProvider>
-                </OtherCategoryProvider>
-              </MainObservationsProvider>
-              {/*</MainVariantsProvider> DEPRECATED*/}
-            </MainQuantityProvider>
-          </MainBreedProvider>
-        </MainCategoryProvider>
-      </DynamicProvider>
-    </VideoProvider>
+    <ContextWrapper>
+      <Canvas behavior="padding" enabled>
+        <Optional />
+        <Container>
+          <ContentByStep />
+        </Container>
+        <StepNavigator />
+      </Canvas>
+    </ContextWrapper>
   );
 }
 

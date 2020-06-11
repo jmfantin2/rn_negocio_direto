@@ -3,7 +3,7 @@ import { general } from "../../../../../assets/general";
 
 export const Container = styled.View`
   flex-direction: row;
-  margin: 0px 20px 0px 20px;
+  margin: 0px 20px 10px 20px;
   height: 160px;
   align-items: center;
 `;
