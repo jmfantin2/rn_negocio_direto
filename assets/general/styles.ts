@@ -34,7 +34,7 @@ const styles = {
     primary: "#7A91CA",
     secondary: "#444A5A",
     success: "#9DCA83",
-    danger: "#E37A7A",
+    danger: "#B72B26",
 
     transparent: "transparent",
     darkTransparent: "rgba(0, 0, 0, 0.6)",
