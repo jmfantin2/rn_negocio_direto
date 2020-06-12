@@ -4,6 +4,9 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+
+import { withNavigation } from "react-navigation";
+
 import api from "../../../../services/ann";
 
 import { general } from "../../../../../assets/general";
@@ -31,7 +34,7 @@ import { usePrice } from "../../context/Price";
 
 import { useStep } from "../../context/Step";
 
-export default function StepNavigator() {
+const StepNavigator = (props) => {
   const { video } = useVideo(); //READ
   const { dynamic } = useDynamic(); //READ
   const { daysActive } = useDaysActive(); //READ
@@ -157,8 +160,16 @@ export default function StepNavigator() {
   async function sendData(announcement) {
     setLoading(true);
     try {
-      await api.post("/api/v1/announcements", JSON.stringify(announcement));
-      //.then(() => props.navigation.navigate("Home"));
+      await api
+        .post("/api/v1/announcements", JSON.stringify(announcement))
+        .then(() => [
+          ToastAndroid.showWithGravity(
+            "Anúncio publicado!",
+            ToastAndroid.LONG,
+            ToastAndroid.BOTTOM
+          ),
+          props.navigation.goBack(),
+        ]);
     } catch (e) {
       console.log("Erro:", e);
     }
@@ -225,4 +236,6 @@ export default function StepNavigator() {
       )}
     </Container>
   );
-}
+};
+
+export default withNavigation(StepNavigator);
