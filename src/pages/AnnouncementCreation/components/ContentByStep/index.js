@@ -17,7 +17,7 @@ import {
   PriceInput,
   Summary,
   DaysActiveSlider,
-  LocationInputs,
+  LocationSelects,
 } from "../../components";
 
 import { useStep } from "../../context/Step";
@@ -51,7 +51,7 @@ export default function ContentByStep() {
         </>
       ) : step === 4 ? (
         <>
-          <LocationInputs />
+          <LocationSelects />
           <AverageWeightInput />
           <PriceInput />
         </>

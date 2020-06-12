@@ -15,7 +15,6 @@ import {
   AverageWeightProvider,
   PriceProvider,
   DaysActiveProvider,
-  SubmitionProvider,
   LocationProvider,
 } from "../../context";
 
@@ -35,9 +34,7 @@ export default function ContextWrapper({ children }) {
                           <AverageWeightProvider>
                             <PriceProvider>
                               <DaysActiveProvider>
-                                <SubmitionProvider>
-                                  <StepProvider>{children}</StepProvider>
-                                </SubmitionProvider>
+                                <StepProvider>{children}</StepProvider>
                               </DaysActiveProvider>
                             </PriceProvider>
                           </AverageWeightProvider>

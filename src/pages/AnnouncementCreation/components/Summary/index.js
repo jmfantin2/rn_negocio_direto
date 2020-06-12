@@ -16,6 +16,7 @@ import { useOtherBreed } from "../../context/OtherBreed";
 import { useOtherQuantity } from "../../context/OtherQuantity";
 import { useOtherObservations } from "../../context/OtherObservations";
 
+import { useLocation } from "../../context/Location";
 import { useAverageWeight } from "../../context/AverageWeight";
 import { usePrice } from "../../context/Price";
 
@@ -34,6 +35,7 @@ export default function Summary() {
   const { otherQuantity } = useOtherQuantity(); //READ
   const { otherObservations } = useOtherObservations(); //READ
 
+  const { state, city } = useLocation(); //READ
   const { averageWeight } = useAverageWeight(); //READ
   const { price } = usePrice(); //READ
 
@@ -93,11 +95,16 @@ export default function Summary() {
           Categoria não informada{"\n"}ou informações faltantes
         </Description>
       )}
-      {averageWeight && (dynamic || price) ? (
+      {averageWeight && (dynamic || price) && state && city ? (
         <>
           <Label>Detalhes da venda</Label>
           <Description>
-            {"Peso médio " +
+            {"Em " +
+              city +
+              " (" +
+              state +
+              ")\n" +
+              "Peso médio " +
               averageWeight +
               " kg\n" +
               (price ? price + " reais por kg" : "")}

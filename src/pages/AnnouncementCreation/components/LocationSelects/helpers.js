@@ -1,7 +1,37 @@
+export const BRAZILIAN_STATES = [
+  { label: "Acre", value: "AC" },
+  { label: "Alagoas", value: "AL" },
+  { label: "Amapá", value: "AP" },
+  { label: "Amazonas", value: "AM" },
+  { label: "Bahia", value: "BA" },
+  { label: "Ceará", value: "CE" },
+  { label: "Destrito Federal", value: "DF" },
+  { label: "Espírito Santo", value: "ES" },
+  { label: "Goiás", value: "GO" },
+  { label: "Maranhão", value: "MA" },
+  { label: "Mato Grosso", value: "MT" },
+  { label: "Mato Grosso do Sul", value: "MS" },
+  { label: "Minas Gerais", value: "MG" },
+  { label: "Pará", value: "PA" },
+  { label: "Paraíba", value: "PB" },
+  { label: "Paraná", value: "PR" },
+  { label: "Pernambuco", value: "PE" },
+  { label: "Piauí", value: "PI" },
+  { label: "Rio de Janeiro", value: "RJ" },
+  { label: "Rio Grande do Norte", value: "RN" },
+  { label: "Rio Grande do Sul", value: "RS" },
+  { label: "Rondônia", value: "RO" },
+  { label: "Roraima", value: "RR" },
+  { label: "Santa Catarina", value: "SC" },
+  { label: "São Paulo", value: "SP" },
+  { label: "Sergipe", value: "SE" },
+  { label: "Tocantins", value: "TO" },
+];
+
 export function getStateCities(uf) {
   let cityOptions = [];
   switch (uf) {
-    case "Acre":
+    case "AC":
       cityOptions = [
         { label: "Acrelândia", value: "Acrelândia" },
         { label: "Assis Brasil", value: "Assis Brasil" },
@@ -27,7 +57,7 @@ export function getStateCities(uf) {
         { label: "Xapuri", value: "Xapuri" },
       ];
       break;
-    case "Alagoas":
+    case "AL":
       cityOptions = [
         { label: "Água Branca", value: "Água Branca" },
         { label: "Anadia", value: "Anadia" },
@@ -133,7 +163,7 @@ export function getStateCities(uf) {
         { label: "Viçosa", value: "Viçosa" },
       ];
       break;
-    case "Amazonas":
+    case "AM":
       cityOptions = [
         { label: "Alvarães", value: "Alvarães" },
         { label: "Amaturá", value: "Amaturá" },
@@ -205,7 +235,7 @@ export function getStateCities(uf) {
         { label: "Urucurituba", value: "Urucurituba" },
       ];
       break;
-    case "Amapá":
+    case "AP":
       cityOptions = [
         { label: "Amapá", value: "Amapá" },
         { label: "Calçoene", value: "Calçoene" },
@@ -225,7 +255,7 @@ export function getStateCities(uf) {
         { label: "Vitória do Jari", value: "Vitória do Jari" },
       ];
       break;
-    case "Bahia":
+    case "BA":
       cityOptions = [
         { label: "Abaíra", value: "Abaíra" },
         { label: "Abaré", value: "Abaré" },
@@ -655,7 +685,7 @@ export function getStateCities(uf) {
         { label: "Xique-Xique", value: "Xique-Xique" },
       ];
       break;
-    case "Ceará":
+    case "CE":
       cityOptions = [
         { label: "Abaiara", value: "Abaiara" },
         { label: "Acarapé", value: "Acarapé" },
@@ -846,7 +876,7 @@ export function getStateCities(uf) {
         { label: "Viçosa do Ceará", value: "Viçosa do Ceará" },
       ];
       break;
-    case "Destrito Federal":
+    case "DF":
       cityOptions = [
         { label: "Águas Claras", value: "Águas Claras" },
         { label: "Brasília", value: "Brasília" },
@@ -861,7 +891,7 @@ export function getStateCities(uf) {
         { label: "Taguatinga", value: "Taguatinga" },
       ];
       break;
-    case "Espírito Santo":
+    case "ES":
       cityOptions = [
         { label: "Afonso Cláudio", value: "Afonso Cláudio" },
         { label: "Água Doce do Norte", value: "Água Doce do Norte" },
@@ -943,7 +973,7 @@ export function getStateCities(uf) {
         { label: "Vitória", value: "Vitória" },
       ];
       break;
-    case "Goiás":
+    case "GO":
       cityOptions = [
         { label: "Abadia de Goiás", value: "Abadia de Goiás" },
         { label: "Abadiânia", value: "Abadiânia" },
@@ -1208,7 +1238,7 @@ export function getStateCities(uf) {
         { label: "Vila Propício", value: "Vila Propício" },
       ];
       break;
-    case "Maranhão":
+    case "MA":
       cityOptions = [
         { label: "Açailândia", value: "Açailândia" },
         { label: "Afonso Cunha", value: "Afonso Cunha" },
@@ -1462,7 +1492,7 @@ export function getStateCities(uf) {
         { label: "Zé Doca", value: "Zé Doca" },
       ];
       break;
-    case "Minas Gerais":
+    case "MG":
       cityOptions = [
         { label: "Abadia dos Dourados", value: "Abadia dos Dourados" },
         { label: "Abaeté", value: "Abaeté" },
@@ -2379,7 +2409,7 @@ export function getStateCities(uf) {
         { label: "Wenceslau Braz", value: "Wenceslau Braz" },
       ];
       break;
-    case "Mato Grosso do Sul":
+    case "MS":
       cityOptions = [
         { label: "Água Clara", value: "Água Clara" },
         { label: "Alcinópolis", value: "Alcinópolis" },
@@ -2463,7 +2493,7 @@ export function getStateCities(uf) {
         { label: "Vicentina", value: "Vicentina" },
       ];
       break;
-    case "Mato Grosso":
+    case "MG":
       cityOptions = [
         { label: "Acorizal", value: "Acorizal" },
         { label: "Água Boa", value: "Água Boa" },
@@ -2618,7 +2648,7 @@ export function getStateCities(uf) {
         { label: "Vila Rica", value: "Vila Rica" },
       ];
       break;
-    case "Pará":
+    case "PA":
       cityOptions = [
         { label: "Abaetetuba", value: "Abaetetuba" },
         { label: "Abel Figueiredo", value: "Abel Figueiredo" },
@@ -2777,7 +2807,7 @@ export function getStateCities(uf) {
         { label: "Xinguara", value: "Xinguara" },
       ];
       break;
-    case "Paraíba":
+    case "PB":
       cityOptions = [
         { label: "Água Branca", value: "Água Branca" },
         { label: "Aguiar", value: "Aguiar" },
@@ -3019,7 +3049,7 @@ export function getStateCities(uf) {
         { label: "Zabelê", value: "Zabelê" },
       ];
       break;
-    case "Pernambuco":
+    case "PE":
       cityOptions = [
         { label: "Abreu e Lima", value: "Abreu e Lima" },
         { label: "Afogados da Ingazeira", value: "Afogados da Ingazeira" },
@@ -3220,7 +3250,7 @@ export function getStateCities(uf) {
         { label: "Xexéu", value: "Xexéu" },
       ];
       break;
-    case "Piauí":
+    case "PI":
       cityOptions = [
         { label: "Acauã", value: "Acauã" },
         { label: "Agricolândia", value: "Agricolândia" },
@@ -3470,7 +3500,7 @@ export function getStateCities(uf) {
         { label: "Wall Ferraz", value: "Wall Ferraz" },
       ];
       break;
-    case "Paraná":
+    case "PR":
       cityOptions = [
         { label: "Abatiá", value: "Abatiá" },
         { label: "Adrianópolis", value: "Adrianópolis" },
@@ -3906,7 +3936,7 @@ export function getStateCities(uf) {
         { label: "Xambrê", value: "Xambrê" },
       ];
       break;
-    case "Rio de Janeiro":
+    case "RJ":
       cityOptions = [
         { label: "Angra dos Reis", value: "Angra dos Reis" },
         { label: "Aperibé", value: "Aperibé" },
@@ -4014,7 +4044,7 @@ export function getStateCities(uf) {
         { label: "Volta Redonda", value: "Volta Redonda" },
       ];
       break;
-    case "Rio Grande do Norte":
+    case "RN":
       cityOptions = [
         { label: "Acari", value: "Acari" },
         { label: "Açu", value: "Açu" },
@@ -4191,7 +4221,7 @@ export function getStateCities(uf) {
         { label: "Vila Flor", value: "Vila Flor" },
       ];
       break;
-    case "Rondônia":
+    case "RO":
       cityOptions = [
         { label: "Alta Floresta d'Oeste", value: "Alta Floresta d'Oeste" },
         { label: "Alto Alegre do Parecis", value: "Alto Alegre do Parecis" },
@@ -4256,7 +4286,7 @@ export function getStateCities(uf) {
         { label: "Vilhena", value: "Vilhena" },
       ];
       break;
-    case "Roraima":
+    case "RR":
       cityOptions = [
         { label: "Alto Alegre", value: "Alto Alegre" },
         { label: "Amajari", value: "Amajari" },
@@ -4275,7 +4305,7 @@ export function getStateCities(uf) {
         { label: "Uiramutã", value: "Uiramutã" },
       ];
       break;
-    case "Rio Grande do Sul":
+    case "RS":
       cityOptions = [
         { label: "Aceguá", value: "Aceguá" },
         { label: "Água Santa", value: "Água Santa" },
@@ -4787,7 +4817,7 @@ export function getStateCities(uf) {
         { label: "Xangri-lá", value: "Xangri-lá" },
       ];
       break;
-    case "Santa Catarina":
+    case "SC":
       cityOptions = [
         { label: "Abdon Batista", value: "Abdon Batista" },
         { label: "Abelardo Luz", value: "Abelardo Luz" },
@@ -5096,7 +5126,7 @@ export function getStateCities(uf) {
         { label: "Zortéa", value: "Zortéa" },
       ];
       break;
-    case "Sergipe":
+    case "SE":
       cityOptions = [
         { label: "Amparo de São Francisco", value: "Amparo de São Francisco" },
         { label: "Aquidabã", value: "Aquidabã" },
@@ -5187,7 +5217,7 @@ export function getStateCities(uf) {
         { label: "Umbaúba", value: "Umbaúba" },
       ];
       break;
-    case "São Paulo":
+    case "SP":
       cityOptions = [
         { label: "Adamantina", value: "Adamantina" },
         { label: "Adolfo", value: "Adolfo" },
@@ -5857,7 +5887,7 @@ export function getStateCities(uf) {
         { label: "Zacarias", value: "Zacarias" },
       ];
       break;
-    case "Tocantins":
+    case "TO":
       cityOptions = [
         { label: "Abreulândia", value: "Abreulândia" },
         { label: "Aguiarnópolis", value: "Aguiarnópolis" },
