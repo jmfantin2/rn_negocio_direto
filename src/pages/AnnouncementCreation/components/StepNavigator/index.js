@@ -9,7 +9,7 @@ import { withNavigation } from "react-navigation";
 
 import api from "../../../../services/ann";
 
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 import { Container, CenterContent, Label } from "./styles";
 
 import { AntDesign } from "@expo/vector-icons";
@@ -180,41 +180,26 @@ const StepNavigator = (props) => {
     <Container>
       {step > 1 ? (
         <TouchableOpacity onPress={() => setStep(step - 1)}>
-          <AntDesign
-            name="leftcircleo"
-            size={42}
-            color={general.styles.colors.darkCyan}
-          />
+          <AntDesign name="leftcircleo" size={42} color={colors.darkCyan} />
         </TouchableOpacity>
       ) : (
-        <AntDesign
-          name="leftcircleo"
-          size={42}
-          color={general.styles.colors.light}
-        />
+        <AntDesign name="leftcircleo" size={42} color={colors.light} />
       )}
       <CenterContent>
         <Label>{step} de 5</Label>
       </CenterContent>
       {step < 5 ? (
         <TouchableOpacity onPress={() => setStep(step + 1)}>
-          <AntDesign
-            name="rightcircleo"
-            size={42}
-            color={general.styles.colors.darkCyan}
-          />
+          <AntDesign name="rightcircleo" size={42} color={colors.darkCyan} />
         </TouchableOpacity>
       ) : loading ? (
-        <ActivityIndicator
-          size="large"
-          color={general.styles.colors.darkCyan}
-        />
+        <ActivityIndicator size="large" color={colors.darkCyan} />
       ) : submitAllowed ? (
         <TouchableOpacity onPress={() => handleSubmit()}>
           <AntDesign
             name="checkcircleo"
             size={42}
-            color={general.styles.colors.businessGreen}
+            color={colors.businessGreen}
           />
         </TouchableOpacity>
       ) : (
@@ -227,11 +212,7 @@ const StepNavigator = (props) => {
             )
           }
         >
-          <AntDesign
-            name="closecircleo"
-            size={42}
-            color={general.styles.colors.danger}
-          />
+          <AntDesign name="closecircleo" size={42} color={colors.danger} />
         </TouchableOpacity>
       )}
     </Container>

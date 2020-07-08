@@ -1,12 +1,12 @@
 import styled from "styled-components/native";
-import { general } from "../../../assets/general";
+import { colors, strings } from "../../../assets/general";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${general.styles.colors.white};
+  background-color: ${colors.white};
   flex-direction: row;
   border-bottom-width: 1px;
-  border-color: ${general.styles.colors.light};
+  border-color: ${colors.light};
   padding: 10px;
   align-items: center;
 `;
@@ -79,7 +79,7 @@ export const DynamicBadge = () => {
       <Foundation
         name="burst"
         size={50}
-        color={general.styles.colors.darkCyan}
+        color={colors.darkCyan}
         style={{ marginLeft: 10, marginRight: 10 }}
       />
       <Text
@@ -104,7 +104,7 @@ export const FixedBadge = () => {
       <Ionicons
         name="ios-radio-button-on"
         size={50}
-        color={general.styles.colors.beet}
+        color={colors.beet}
         style={{ marginLeft: 10, marginRight: 10 }}
       />
       <Text

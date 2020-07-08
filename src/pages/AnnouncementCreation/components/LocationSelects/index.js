@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RNPickerSelect from "react-native-picker-select";
 
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 
 import { BRAZILIAN_STATES, getStateCities } from "./helpers";
 
@@ -26,7 +26,7 @@ export default function LocationSelects() {
           placeholder={{
             label: "───",
             value: null,
-            color: general.styles.colors.light,
+            color: colors.light,
           }}
           value={state}
           style={pickerStyle}
@@ -41,7 +41,7 @@ export default function LocationSelects() {
           placeholder={{
             label: "───",
             value: null,
-            color: general.styles.colors.light,
+            color: colors.light,
           }}
           value={city}
           style={pickerStyle}

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import PropTypes from "prop-types";
-import { general } from "../../../assets/general";
+import { colors, strings } from "../../../assets/general";
 
 import LogoSrc from "../../../assets/images/nd-horizontal-transparent.png";
 
@@ -66,7 +66,7 @@ export default function Welcome(props) {
       console.log(err);
 
       setLoading(false);
-      setErrorMessage(general.strings.USER_NOT_FOUND);
+      setErrorMessage(strings.USER_NOT_FOUND);
     }
   }
 
@@ -75,8 +75,8 @@ export default function Welcome(props) {
       <StatusBar barStyle="light-content" />
 
       <Logo source={LogoSrc} resizeMode="contain" />
-      <Title>{general.strings.WELCOME}</Title>
-      <TextInformation>{general.strings.CONTINUE}</TextInformation>
+      <Title>{strings.WELCOME}</Title>
+      <TextInformation>{strings.CONTINUE}</TextInformation>
 
       {!!errorMessage && <Error>{errorMessage}</Error>}
 
@@ -84,7 +84,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.INSERT.EMAIL}
+          placeholder={strings.INSERT.EMAIL}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           value={email}
           onChangeText={(email) => setUsername(email)}
@@ -93,7 +93,7 @@ export default function Welcome(props) {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder={general.strings.INSERT.PASSWORD}
+          placeholder={strings.INSERT.PASSWORD}
           underlineColorAndroid="rgba(0, 0, 0, 0)"
           secureTextEntry={true}
           value={password}
@@ -104,14 +104,14 @@ export default function Welcome(props) {
           {loading ? (
             <ActivityIndicator size="small" />
           ) : (
-            <ButtonText>{general.strings.GO_AHEAD.toUpperCase()}</ButtonText>
+            <ButtonText>{strings.GO_AHEAD.toUpperCase()}</ButtonText>
           )}
         </Button>
         <BottomForm>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("RegisterUser")}
           >
-            <SignInText>{general.strings.SIGN_UP}</SignInText>
+            <SignInText>{strings.SIGN_UP}</SignInText>
           </TouchableOpacity>
         </BottomForm>
       </Form>

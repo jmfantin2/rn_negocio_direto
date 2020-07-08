@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { useMainCategory } from "../../context/MainCategory";
 
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 import { Label, SelectBG, pickerStyle } from "./styles";
 
 export default function MainCategorySelect() {
@@ -16,7 +16,7 @@ export default function MainCategorySelect() {
           placeholder={{
             label: "───",
             value: null,
-            color: general.styles.colors.light,
+            color: colors.light,
           }}
           value={mainCategory}
           style={pickerStyle}

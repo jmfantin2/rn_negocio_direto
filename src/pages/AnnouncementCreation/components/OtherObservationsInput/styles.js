@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 
 export const Container = styled.View`
   flex: 1;
@@ -8,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${general.styles.colors.oceanGreen};
+  color: ${colors.oceanGreen};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
@@ -19,8 +19,8 @@ export const Input = styled.TextInput`
   width: 100%;
   margin: 10px 0px 0px 0px;
   padding: 0px 10px 0px 10px;
-  background-color: ${general.styles.colors.lighter};
+  background-color: ${colors.lighter};
   font-size: 18px;
-  color: ${general.styles.colors.darkCyan};
+  color: ${colors.darkCyan};
   border-radius: 4px;
 `;

@@ -1,10 +1,10 @@
 import styled from "styled-components/native";
-import { general } from "../../../assets/general";
+import { colors, strings } from "../../../assets/general";
 
 export const Container = styled.View`
   display: flex;
   flex: 1;
-  background-color: ${general.styles.colors.darkCyan};
+  background-color: ${colors.darkCyan};
   padding: 40px;
   justify-content: center;
   align-items: stretch;
@@ -49,9 +49,9 @@ export const Input = styled.TextInput`
 `;
 
 export const Button = styled.TouchableOpacity`
-  background-color: ${general.styles.colors.white};
+  background-color: ${colors.white};
   border-radius: 50px;
-  border: 1px solid ${general.styles.colors.businessGreen};
+  border: 1px solid ${colors.businessGreen};
   height: 50px;
   padding: 0px 20px;
   margin-top: 10px;
@@ -60,13 +60,13 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: ${general.styles.colors.businessGreen};
+  color: ${colors.businessGreen};
   font-weight: bold;
   font-size: 18px;
 `;
 
 export const SignInText = styled.Text`
-  color: ${general.styles.colors.white};
+  color: ${colors.white};
   font-weight: bold;
   font-size: 18px;
 `;

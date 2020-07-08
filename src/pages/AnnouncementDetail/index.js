@@ -10,7 +10,7 @@ import videoTest from "../../../assets/video.mp4";
 
 import { Container, Label, ContainerQtt } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
-import { general } from "../../../assets/general";
+import { colors, strings } from "../../../assets/general";
 
 export default function AnnouncementDetail({ navigation }) {
   const id = navigation.getParam("id");
@@ -54,11 +54,7 @@ export default function AnnouncementDetail({ navigation }) {
           justifyContent: "center",
         }}
       >
-        <Ionicons
-          name="ios-construct"
-          size={80}
-          color={general.styles.colors.oceanGreen}
-        />
+        <Ionicons name="ios-construct" size={80} color={colors.oceanGreen} />
         <Text>{announcement.createdDate}</Text>
       </View>
     </Container>

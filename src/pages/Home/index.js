@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import api from "../../services/ann";
 import { deleteUser } from "../../utils";
 import AdItem from "../../components/AdItem";
-import { general } from "../../../assets/general";
+import { colors, strings } from "../../../assets/general";
 import { Container, AdList } from "./styles";
 
 import { AntDesign } from "@expo/vector-icons";
@@ -44,10 +44,7 @@ export default function Home(props) {
         renderItem={renderListItem}
         refreshControl={
           <RefreshControl
-            colors={[
-              general.styles.colors.darkCyan,
-              general.styles.colors.success,
-            ]}
+            colors={[colors.darkCyan, colors.success]}
             refreshing={loading}
             onRefresh={() => makeRefresh(refresh + 1)}
           />
@@ -57,11 +54,7 @@ export default function Home(props) {
         <TouchableOpacity
           onPress={() => props.navigation.navigate("AnnouncementCreation")}
         >
-          <AntDesign
-            name="plussquareo"
-            size={42}
-            color={general.styles.colors.darkCyan}
-          />
+          <AntDesign name="plussquareo" size={42} color={colors.darkCyan} />
           <Text> </Text>
         </TouchableOpacity>
       </View>
@@ -71,7 +64,7 @@ export default function Home(props) {
 
 Home.navigationOptions = ({ navigation }) => {
   return {
-    title: `${general.strings.CLIENT_TITLE}`,
+    title: `${strings.CLIENT_TITLE}`,
     headerBackTitleVisible: true,
     headerRight: () => (
       <TouchableOpacity
@@ -82,9 +75,7 @@ Home.navigationOptions = ({ navigation }) => {
         }
         style={{ marginRight: 10 }}
       >
-        <Text style={{ color: general.styles.colors.white }}>
-          {general.strings.EXIT}
-        </Text>
+        <Text style={{ color: colors.white }}>{strings.EXIT}</Text>
       </TouchableOpacity>
     ),
   };

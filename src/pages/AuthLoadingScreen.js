@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { View, AsyncStorage, ActivityIndicator } from "react-native";
 
-import { general } from "../../assets/general";
+import { colors, strings } from "../../assets/general";
 
 export default function AuthLoadingScreen(props) {
   useEffect(() => {
@@ -17,10 +17,7 @@ export default function AuthLoadingScreen(props) {
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <ActivityIndicator
-        size="large"
-        color={general.styles.colors.businessGreen}
-      />
+      <ActivityIndicator size="large" color={colors.businessGreen} />
     </View>
   );
 }

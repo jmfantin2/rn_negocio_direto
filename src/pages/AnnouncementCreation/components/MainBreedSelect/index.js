@@ -2,7 +2,7 @@ import React from "react";
 import RNPickerSelect from "react-native-picker-select";
 import { useMainBreed } from "../../context/MainBreed";
 
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 import { Label, SelectBG, pickerStyle } from "./styles";
 
 export default function MainBreedSelect() {
@@ -15,7 +15,7 @@ export default function MainBreedSelect() {
           placeholder={{
             label: "───",
             value: null,
-            color: general.styles.colors.light,
+            color: colors.light,
           }}
           value={mainBreed}
           style={pickerStyle}

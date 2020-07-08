@@ -5,7 +5,7 @@ import { useMainCategory } from "../../context/MainCategory";
 import { useDynamic } from "../../context/Dynamic";
 import { useOtherCategory } from "../../context/OtherCategory";
 
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 import { Cow, Label, SelectBG, Notice, pickerStyle } from "./styles";
 import CowSrc from "../../../../../assets/images/cow.png";
 
@@ -43,7 +43,7 @@ export default function OtherCategorySelect() {
               placeholder={{
                 label: "───",
                 value: null,
-                color: general.styles.colors.light,
+                color: colors.light,
               }}
               value={otherCategory}
               style={pickerStyle}

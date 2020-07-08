@@ -8,7 +8,7 @@ import AnnouncementCreation from "./pages/AnnouncementCreation";
 import AnnouncementDetail from "./pages/AnnouncementDetail";
 import RegisterUser from "./pages/RegisterUser";
 
-import { general } from "../assets/general";
+import { colors, strings } from "../assets/general";
 
 //Telas acessíveis apenas após Login!
 const StackNavigator = createStackNavigator(
@@ -21,9 +21,9 @@ const StackNavigator = createStackNavigator(
     initialRouteName: "Home",
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: general.styles.colors.oceanGreen,
+        backgroundColor: colors.oceanGreen,
       },
-      headerTintColor: general.styles.colors.white,
+      headerTintColor: colors.white,
       headerTitleStyle: {
         fontWeight: "bold",
       },
@@ -57,9 +57,9 @@ const SignUpStack = createStackNavigator(
     headerShown: true,
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: general.styles.colors.oceanGreen,
+        backgroundColor: colors.oceanGreen,
       },
-      headerTintColor: general.styles.colors.white,
+      headerTintColor: colors.white,
       headerTitleStyle: {
         fontWeight: "bold",
       },

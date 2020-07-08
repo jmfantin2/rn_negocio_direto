@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import RootStackContainer from "./routes";
 import { ThemeProvider } from "styled-components";
-import { general } from "../../assets/general";
+import { colors, strings } from "../../assets/general";
 
 import "./config/ReactotronConfig";
 import { setTopLevelNavigator } from "./utils";

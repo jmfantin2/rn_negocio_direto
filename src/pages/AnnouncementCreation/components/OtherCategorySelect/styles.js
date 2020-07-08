@@ -1,15 +1,15 @@
 import styled from "styled-components/native";
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 
 export const Title = styled.Text`
-  color: ${general.styles.colors.white};
+  color: ${colors.white};
   font-size: 18px;
   font-weight: bold;
   align-self: center;
 `;
 
 export const Notice = styled.Text`
-  color: ${general.styles.colors.businessBrown};
+  color: ${colors.businessBrown};
   text-align: center;
   font-size: 18px;
   font-weight: bold;
@@ -17,7 +17,7 @@ export const Notice = styled.Text`
 `;
 
 export const Label = styled.Text`
-  color: ${general.styles.colors.oceanGreen};
+  color: ${colors.oceanGreen};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
@@ -25,7 +25,7 @@ export const Label = styled.Text`
 
 export const SelectBG = styled.View`
   height: 40px;
-  background-color: ${general.styles.colors.lighter};
+  background-color: ${colors.lighter};
 `;
 
 export const Cow = styled.Image`
@@ -41,7 +41,7 @@ export const pickerStyle = {
     paddingBottom: 12,
   },
   inputAndroid: {
-    color: general.styles.colors.black,
+    color: colors.black,
     fontSize: 18,
     marginLeft: 10,
     marginTop: 5,

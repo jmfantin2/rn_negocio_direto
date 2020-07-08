@@ -1,11 +1,11 @@
 // dumb component => styled right away!
 
 import styled from "styled-components/native";
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 
 const Container = styled.View`
   flex: 1;
-  background-color: ${general.styles.colors.light};
+  background-color: ${colors.light};
   padding: 30px;
 `;
 

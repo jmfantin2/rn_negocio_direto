@@ -3,7 +3,7 @@ import { TouchableOpacity, ActivityIndicator } from "react-native";
 import { useVideo } from "../../context/Video";
 
 import { Area, Message, CameraIcon, CheckIcon } from "./styles";
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 
 export default function VideoUpload() {
   const { video, setVideo } = useVideo();
@@ -23,10 +23,7 @@ export default function VideoUpload() {
       <Area>
         {loading ? (
           <>
-            <ActivityIndicator
-              size="large"
-              color={general.styles.colors.oceanGreen}
-            />
+            <ActivityIndicator size="large" color={colors.oceanGreen} />
             <Message> POR FAVOR AGUARDE </Message>
           </>
         ) : video ? (

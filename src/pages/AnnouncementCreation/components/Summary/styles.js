@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 
 export const Container = styled.View`
   margin: 40px 0px 0px 0px;
@@ -8,14 +8,14 @@ export const Container = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${general.styles.colors.oceanGreen};
+  color: ${colors.oceanGreen};
   font-size: 20px;
   font-weight: bold;
   margin: 10px 0px 2px 0px;
 `;
 
 export const Description = styled.Text`
-  color: ${general.styles.colors.darkCyan};
+  color: ${colors.darkCyan};
   text-align: center;
   font-size: 18px;
 `;

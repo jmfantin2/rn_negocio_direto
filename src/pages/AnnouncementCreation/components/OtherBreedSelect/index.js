@@ -6,7 +6,7 @@ import { useOtherCategory } from "../../context/OtherCategory";
 import { useDynamic } from "../../context/Dynamic";
 import { useOtherBreed } from "../../context/OtherBreed";
 
-import { general } from "../../../../../assets/general";
+import { colors, strings } from "../../../../../assets/general";
 import { Label, SelectBG, pickerStyle } from "./styles";
 
 export default function OtherBreedSelect() {
@@ -41,7 +41,7 @@ export default function OtherBreedSelect() {
               placeholder={{
                 label: "───",
                 value: null,
-                color: general.styles.colors.light,
+                color: colors.light,
               }}
               value={otherBreed}
               style={pickerStyle}
