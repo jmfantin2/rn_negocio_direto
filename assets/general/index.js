@@ -1,9 +1,11 @@
-import globalStyles from './styles'
-import globalStrings from './strings'
+import collections from "./collections";
+import styles from "./styles";
+import strings from "./strings";
 
 const general = {
-  styles: globalStyles,
-  strings: globalStrings
-}
+  collections: collections,
+  styles: styles,
+  strings: strings,
+};
 
-export { general }
+export { general };

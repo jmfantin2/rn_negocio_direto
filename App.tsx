@@ -4,7 +4,6 @@ import RootStackContainer from "./src/routes";
 import { ThemeProvider } from "styled-components";
 import { general } from "./assets/general";
 
-import "./src/config/ReactotronConfig";
 import { setTopLevelNavigator } from "./src/utils";
 
 export default class App extends Component {

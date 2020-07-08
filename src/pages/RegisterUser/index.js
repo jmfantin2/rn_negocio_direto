@@ -4,6 +4,11 @@ import { general } from "../../../assets/general";
 
 import api from "../../services/api";
 
+import { withFormik } from "formik";
+import * as yup from "yup";
+
+import { Ionicons } from "@expo/vector-icons";
+
 import {
   Container,
   RequiredInfo,
@@ -15,11 +20,6 @@ import {
   ButtonText,
   DoubleContainer,
 } from "./styles";
-
-import { withFormik } from "formik";
-import * as yup from "yup";
-
-import { Ionicons } from "@expo/vector-icons";
 
 const RegisterUser = (props) => {
   async function handleSubmit(props) {
@@ -145,10 +145,10 @@ const RegisterUser = (props) => {
 RegisterUser.navigationOptions = ({ navigation }) => {
   return {
     title: `${general.strings.CREATE_ACCOUNT}`,
-    headerRight: () => (
+    headerLeft: () => (
       <TouchableOpacity
         onPress={() => navigation.navigate("Auth")}
-        style={{ marginRight: 20 }}
+        style={{ marginLeft: 20 }}
       >
         <Ionicons
           name="md-arrow-back"

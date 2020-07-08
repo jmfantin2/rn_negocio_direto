@@ -4,6 +4,8 @@ import { createStackNavigator } from "react-navigation-stack";
 import Welcome from "./pages/Welcome";
 import AuthLoadingScreen from "./pages/AuthLoadingScreen";
 import Home from "./pages/Home";
+import AnnouncementCreation from "./pages/AnnouncementCreation";
+import AnnouncementDetail from "./pages/AnnouncementDetail";
 import RegisterUser from "./pages/RegisterUser";
 
 import { general } from "../assets/general";
@@ -12,6 +14,8 @@ import { general } from "../assets/general";
 const StackNavigator = createStackNavigator(
   {
     Home,
+    AnnouncementCreation,
+    AnnouncementDetail,
   },
   {
     initialRouteName: "Home",

@@ -35,7 +35,7 @@ export const Input = styled.TextInput`
   height: 40px;
   padding: 0px 10px 0px 10px;
   background-color: ${general.styles.colors.white};
-  border-radius: 3px;
+  border-radius: 50px;
 `;
 
 export const ButtonText = styled.Text`
@@ -52,7 +52,7 @@ export const ErrorText = styled.Text`
 
 export const Button = styled.TouchableOpacity`
   background-color: ${general.styles.colors.oceanGreen};
-  border-radius: 4px;
+  border-radius: 50px;
   border: 1px solid ${general.styles.colors.regular};
   height: 50px;
   margin: 30px 10px 30px 10px;

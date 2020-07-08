@@ -1,112 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text, ScrollView } from "react-native";
+import { TouchableOpacity, Text, RefreshControl, View } from "react-native";
 import PropTypes from "prop-types";
 
-import api from "../../services/api";
+import api from "../../services/ann";
 import { deleteUser } from "../../utils";
 import AdItem from "../../components/AdItem";
 import { general } from "../../../assets/general";
 import { Container, AdList } from "./styles";
 
-export default function Home() {
+import { AntDesign } from "@expo/vector-icons";
+
+export default function Home(props) {
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  // const [refreshing, setRefreshing] = useState(false);
-
-  const ads = {
-    items: [
-      {
-        id: "L7-04-20",
-        cep: {
-          city: "Osório",
-          state: "RS",
-        },
-        categories: "Terneiros castrados, entre outros",
-        image:
-          "https://www.paginacampeira.com.br/wp-content/uploads/2017/08/58b4e2828525e284fcdc8126ce1342da.png",
-      },
-      {
-        id: "L6-04-20",
-        cep: {
-          city: "Esteio",
-          state: "RS",
-        },
-        categories: "Vacas, entre outros",
-        image:
-          "https://imagens.mfrural.com.br/mfrural-produtos-us/277979-278638-1473061-venda-permanente-de-gado-leiteiro-racas-holandesa-jersey-e-jersolanda-bezerras-novilhas-e-vacas.jpg",
-      },
-      {
-        id: "L5-04-20",
-        cep: {
-          city: "Cachoeira do Sul",
-          state: "RS",
-        },
-        categories: "Touros",
-        image:
-          "https://blogs.canalrural.com.br/leiloblog/wp-content/uploads/sites/6/2017/05/navirai-fiv.jpg",
-      },
-      {
-        id: "L4-04-20",
-        cep: {
-          city: "Vacaria",
-          state: "RS",
-        },
-        categories: "Novilhos castrados, entre outros",
-        image: "https://img.olx.com.br/images/26/269005025424487.jpg",
-      },
-      {
-        id: "L3-04-20",
-        cep: {
-          city: "Ijuí",
-          state: "RS",
-        },
-        categories: "Vacas com cria",
-        image:
-          "https://cdn.pixabay.com/photo/2015/06/10/08/57/calf-804622_960_720.jpg",
-      },
-      {
-        id: "L2-04-20",
-        cep: {
-          city: "Santana do Livramento",
-          state: "RS",
-        },
-        categories: "Novilhas, entre outros",
-        image:
-          "https://http2.mlstatic.com/novilhas-jersey-D_NQ_NP_964405-MLB25009646727_082016-F.jpg",
-      },
-      {
-        id: "L1-04-20",
-        cep: {
-          city: "Erechim",
-          state: "RS",
-        },
-        categories: "Terneiros inteiros",
-        image:
-          "https://lh3.googleusercontent.com/proxy/Cx7u1swF1M3Fs98NR4KWwg3ZvNT4_Cris7W16KOAHhZMMvKfGaGJH-qxV9T3XIqc1AJtpSSJttl8sagGWsX0lpPj_a4gzTewsHBFgpu527DVOF4GGVcjlFJtNZp6plb0oYTsEr3olOEBar5bi-Y",
-      },
-    ],
-  };
-
-  // useEffect(() => {
-  //   async function loadProducts() {
-  //     const response = await api.get('/products')
-  //     console.log("RES DATA", response.data)
-  //     //objeto products com array de objetos
-  //     setData(response.data.products);
-  //     console.log("RES DATA PROD", response.data.products)
-  //     //array de objetos
-  //   }
-
-  //   loadProducts();
-  // }, []);
+  const [refresh, makeRefresh] = useState(0);
 
   useEffect(() => {
-    function loadProducts() {
-      setData(ads.items);
+    async function loadProducts() {
+      setLoading(true);
+      try {
+        setData([]);
+        const retrieved = await api.get("/api/v1/announcements");
+        console.log("content:", retrieved.data.content);
+        setData(retrieved.data.content);
+      } catch (e) {
+        console.log("Erro:", e);
+      }
+      //setData(ads.items);
       // console.log(ads.items)
     }
 
     loadProducts();
-  }, []);
+    setTimeout(() => setLoading(false), 1200);
+  }, [refresh]);
 
   renderListItem = ({ item }) => <AdItem product={item} />;
 
@@ -116,9 +42,29 @@ export default function Home() {
         data={data}
         keyExtractor={(item) => String(item.id)}
         renderItem={renderListItem}
-        // onRefresh={loadProducts}
-        // refreshing={refreshing}
+        refreshControl={
+          <RefreshControl
+            colors={[
+              general.styles.colors.darkCyan,
+              general.styles.colors.success,
+            ]}
+            refreshing={loading}
+            onRefresh={() => makeRefresh(refresh + 1)}
+          />
+        }
       />
+      <View style={{ alignItems: "center" }}>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("AnnouncementCreation")}
+        >
+          <AntDesign
+            name="plussquareo"
+            size={42}
+            color={general.styles.colors.darkCyan}
+          />
+          <Text> </Text>
+        </TouchableOpacity>
+      </View>
     </Container>
   );
 }
