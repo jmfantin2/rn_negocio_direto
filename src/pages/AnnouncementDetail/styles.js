@@ -15,5 +15,5 @@ export const ContainerQtt = styled.View`
 `;
 
 export const Label = styled.Text`
-  fontweight: bold;
+  font-weight: bold;
 `;
