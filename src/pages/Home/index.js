@@ -3,9 +3,9 @@ import { TouchableOpacity, Text, RefreshControl, View } from "react-native";
 import PropTypes from "prop-types";
 
 import api from "../../services/ann";
-import { deleteUser } from "../../utils";
-import AdItem from "../../components/AdItem";
-import { colors, strings } from "../../../assets/general";
+import { deleteUser } from "utils";
+import AdItem from "components/common/AdItem";
+import { colors, strings } from "general";
 import { Container, AdList } from "./styles";
 
 import { AntDesign } from "@expo/vector-icons";

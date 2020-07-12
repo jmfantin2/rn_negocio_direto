@@ -7,7 +7,7 @@ import {
   Optional,
   ContentByStep,
   StepNavigator,
-} from "./components";
+} from "components/AnnouncementCreation";
 
 export default function AnnouncementCreation() {
   return (
