@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { colors } from "general";
+import styled from 'styled-components/native';
+import { colors } from 'general';
 
 export const Container = styled.View`
   flex: 1;
@@ -33,47 +33,47 @@ export const CategoryAndBreed = styled.View`
 `;
 
 export const Tag = styled.View`
-  width: ${(props) => (props.quantity ? "40px" : "110px")};
-  border-radius: ${(props) => (props.quantity ? "15px" : "4px")};
+  width: ${(props) => (props.quantity ? '40px' : '110px')};
+  border-radius: ${(props) => (props.quantity ? '15px' : '4px')};
   align-items: center;
   justify-content: center;
   margin: 3px;
   background-color: ${(props) =>
     props.breed || props.quantity
-      ? "#bfbfbf"
-      : props.category === "TERNEIRA"
-      ? "#c87ca8"
-      : props.category === "NOVILHA"
-      ? "#aa2470"
-      : props.category === "VACA"
-      ? "#920054"
-      : props.category === "VACA_INVERNAR"
-      ? "#6a0045"
-      : props.category === "TERNEIRO"
-      ? "#68679e"
-      : props.category === "NOVILHO"
-      ? "#312b79"
-      : props.category === "TOURO"
-      ? "#100046"
-      : "#393939"};
+      ? '#bfbfbf'
+      : props.category === 'TERNEIRA'
+      ? '#c87ca8'
+      : props.category === 'NOVILHA'
+      ? '#aa2470'
+      : props.category === 'VACA'
+      ? '#920054'
+      : props.category === 'VACA_INVERNAR'
+      ? '#6a0045'
+      : props.category === 'TERNEIRO'
+      ? '#68679e'
+      : props.category === 'NOVILHO'
+      ? '#312b79'
+      : props.category === 'TOURO'
+      ? '#100046'
+      : '#393939'};
 `;
 
 export const TagLabel = styled.Text`
   font-weight: bold;
-  font-size: ${(props) => (props.type === "quantity" ? "20px" : "14px")};
+  font-size: ${(props) => (props.type === 'quantity' ? '20px' : '14px')};
   color: white;
 `;
 
-import React from "react";
-import { View, Text } from "react-native";
-import { Foundation, Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { View, Text } from 'react-native';
+import { Foundation, Ionicons } from '@expo/vector-icons';
 
 export const DynamicBadge = () => {
   return (
     <View
       style={{
-        flexDirection: "column",
-        alignItems: "center",
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       <Foundation
@@ -84,12 +84,12 @@ export const DynamicBadge = () => {
       />
       <Text
         style={{
-          position: "absolute",
+          position: 'absolute',
           marginTop: 15,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           marginLeft: 30,
-          fontStyle: "italic",
-          color: "white",
+          fontStyle: 'italic',
+          color: 'white',
         }}
       >
         Dn
@@ -100,21 +100,21 @@ export const DynamicBadge = () => {
 
 export const FixedBadge = () => {
   return (
-    <View style={{ flexDirection: "column", alignItems: "center" }}>
+    <View style={{ flexDirection: 'column', alignItems: 'center' }}>
       <Ionicons
         name="ios-radio-button-on"
         size={50}
-        color={colors.beet}
+        color={colors.beetPurple}
         style={{ marginLeft: 10, marginRight: 10 }}
       />
       <Text
         style={{
-          position: "absolute",
+          position: 'absolute',
           marginTop: 15,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           marginLeft: 30,
-          fontStyle: "italic",
-          color: "white",
+          fontStyle: 'italic',
+          color: 'white',
         }}
       >
         Fx
