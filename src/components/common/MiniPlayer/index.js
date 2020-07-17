@@ -9,7 +9,7 @@ const MiniPlayer = ({ media }) => {
   const [selectedURL, setSelectedURL] = useState('');
 
   return (
-    <View>
+    <View style={{ alignItems: 'center' }}>
       {selectedURL === '' ? (
         <Video
           useNativeControls={true}
@@ -20,16 +20,10 @@ const MiniPlayer = ({ media }) => {
           resizeMode="cover"
           shouldPlay={false}
           isLooping
-          style={[custom.media, { height: 200 }]}
+          style={custom.media}
         />
       ) : (
-        <Image
-          style={[
-            custom.media,
-            { width: 300, height: 200, backgroundColor: 'black' },
-          ]}
-          source={{ uri: selectedURL }}
-        />
+        <Image style={custom.media} source={{ uri: selectedURL }} />
       )}
 
       <View
@@ -83,6 +77,8 @@ const custom = StyleSheet.create({
     marginBottom: 16,
     backgroundColor: colors.darker,
     borderRadius: 4,
+    width: 300,
+    height: 200,
   },
 });
 

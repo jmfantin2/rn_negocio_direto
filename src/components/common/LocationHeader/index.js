@@ -10,6 +10,7 @@ const LocationHeader = ({ city, uf }) => {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+        marginBottom: 16,
       }}
     >
       <MaterialIcons name="location-on" size={36} color={colors.meatRed} />
