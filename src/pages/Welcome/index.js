@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { StackActions, NavigationActions } from "react-navigation";
+import React, { useState } from 'react';
+import { StackActions, NavigationActions } from 'react-navigation';
 import {
   StatusBar,
   ActivityIndicator,
   AsyncStorage,
   TouchableOpacity,
-} from "react-native";
-import PropTypes from "prop-types";
-import { colors, strings } from "../../../assets/general";
+} from 'react-native';
+import PropTypes from 'prop-types';
+import { colors, strings } from '../../../assets/general';
 
-import LogoSrc from "../../../assets/images/nd-horizontal-transparent.png";
+import LogoSrc from '../../../assets/images/nd-horizontal-transparent.png';
 
-import api from "../../services/api";
+import api from '../../services/api';
 
 import {
   Container,
@@ -25,16 +25,18 @@ import {
   ButtonText,
   SignInText,
   BottomForm,
-} from "./styles";
+} from './styles';
 
 export default function Welcome(props) {
-  const [email, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   async function saveUser(user) {
-    await AsyncStorage.setItem("@ListApp:userToken", JSON.stringify(user));
+    api.defaults.headers.common = { Authorization: `bearer ${user.token}` };
+
+    await AsyncStorage.setItem('@ListApp:userToken', JSON.stringify(user));
   }
 
   async function signIn() {
@@ -44,11 +46,11 @@ export default function Welcome(props) {
 
     try {
       const credentials = {
-        email: email.replace(/\s+/g, ""),
-        password: password.replace(/\s+/g, ""),
+        email: email.replace(/\s+/g, ''),
+        password: password.replace(/\s+/g, ''),
       };
 
-      const response = await api.post("/api/v1/login", credentials);
+      const response = await api.post('/api/v1/login', credentials);
 
       const user = response.data;
 
@@ -56,7 +58,7 @@ export default function Welcome(props) {
 
       const resetAction = StackActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: "App" })],
+        actions: [NavigationActions.navigate({ routeName: 'App' })],
       });
 
       setLoading(false);
@@ -109,7 +111,7 @@ export default function Welcome(props) {
         </Button>
         <BottomForm>
           <TouchableOpacity
-            onPress={() => props.navigation.navigate("RegisterUser")}
+            onPress={() => props.navigation.navigate('RegisterUser')}
           >
             <SignInText>{strings.SIGN_UP}</SignInText>
           </TouchableOpacity>
