@@ -74,6 +74,7 @@ const custom = StyleSheet.create({
   obs: {
     fontStyle: 'italic',
     marginBottom: 8,
+    fontSize: 14,
   },
 });
 

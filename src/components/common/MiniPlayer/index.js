@@ -26,15 +26,9 @@ const MiniPlayer = ({ media }) => {
         <Image style={custom.media} source={{ uri: selectedURL }} />
       )}
 
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <View style={custom.gallery}>
         <TouchableOpacity onPress={() => setSelectedURL('')}>
-          <View style={[custom.tile, { backgroundColor: colors.darker }]}>
+          <View style={custom.tile}>
             <FontAwesome name="play" size={42} color={colors.white} />
           </View>
         </TouchableOpacity>
@@ -45,16 +39,7 @@ const MiniPlayer = ({ media }) => {
             )
           }
         >
-          <View style={[custom.tile, { backgroundColor: 'orange' }]}>
-            <FontAwesome name="picture-o" size={42} color={colors.white} />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            setSelectedURL('https://i.ytimg.com/vi/wA73guYV4Yk/hqdefault.jpg')
-          }
-        >
-          <View style={[custom.tile, { backgroundColor: 'pink' }]}>
+          <View style={custom.tile}>
             <FontAwesome name="picture-o" size={42} color={colors.white} />
           </View>
         </TouchableOpacity>
@@ -64,14 +49,20 @@ const MiniPlayer = ({ media }) => {
 };
 
 const custom = StyleSheet.create({
+  gallery: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+  },
   tile: {
-    height: 75,
     width: 75,
+    height: 75,
     marginLeft: 8,
     marginRight: 8,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 4,
+    backgroundColor: colors.darkCyan,
   },
   media: {
     marginBottom: 16,
