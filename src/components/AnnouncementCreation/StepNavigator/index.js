@@ -1,38 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   ToastAndroid,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
+} from 'react-native';
 
-import { withNavigation } from "react-navigation";
+import { withNavigation } from 'react-navigation';
 
-import api from "../../../services/ann";
+import api from '../../../services/ann';
 
-import { colors } from "general";
-import { Container, CenterContent, Label } from "./styles";
+import { colors } from 'general';
+import { Container, CenterContent, Label } from './styles';
 
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign } from '@expo/vector-icons';
 
-import { useVideo } from "context/AnnouncementCreation/Video";
-import { useDynamic } from "context/AnnouncementCreation/Dynamic";
-import { useDaysActive } from "context/AnnouncementCreation/DaysActive";
+import { useVideo } from 'context/AnnouncementCreation/Video';
+import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
+import { useDaysActive } from 'context/AnnouncementCreation/DaysActive';
 
-import { useMainCategory } from "context/AnnouncementCreation/MainCategory";
-import { useMainBreed } from "context/AnnouncementCreation/MainBreed";
-import { useMainQuantity } from "context/AnnouncementCreation/MainQuantity";
-import { useMainObservations } from "context/AnnouncementCreation/MainObservations";
+import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
+import { useMainBreed } from 'context/AnnouncementCreation/MainBreed';
+import { useMainQuantity } from 'context/AnnouncementCreation/MainQuantity';
+import { useMainObservations } from 'context/AnnouncementCreation/MainObservations';
 
-import { useOtherCategory } from "context/AnnouncementCreation/OtherCategory";
-import { useOtherBreed } from "context/AnnouncementCreation/OtherBreed";
-import { useOtherQuantity } from "context/AnnouncementCreation/OtherQuantity";
-import { useOtherObservations } from "context/AnnouncementCreation/OtherObservations";
+import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
+import { useOtherBreed } from 'context/AnnouncementCreation/OtherBreed';
+import { useOtherQuantity } from 'context/AnnouncementCreation/OtherQuantity';
+import { useOtherObservations } from 'context/AnnouncementCreation/OtherObservations';
 
-import { useLocation } from "context/AnnouncementCreation/Location";
-import { useAverageWeight } from "context/AnnouncementCreation/AverageWeight";
-import { usePrice } from "context/AnnouncementCreation/Price";
+import { useLocation } from 'context/AnnouncementCreation/Location';
+import { useAverageWeight } from 'context/AnnouncementCreation/AverageWeight';
+import { usePrice } from 'context/AnnouncementCreation/Price';
 
-import { useStep } from "context/AnnouncementCreation/Step";
+import { useStep } from 'context/AnnouncementCreation/Step';
 
 const StepNavigator = (props) => {
   const { video } = useVideo(); //READ
@@ -77,29 +77,29 @@ const StepNavigator = (props) => {
 
   function printData() {
     console.log(
-      "MainCategory: " +
+      'MainCategory: ' +
         mainCategory +
-        "\nMainBreed: " +
+        '\nMainBreed: ' +
         mainBreed +
-        "\nMainQuantity: " +
+        '\nMainQuantity: ' +
         mainQuantity +
-        "\nMainObservations: " +
+        '\nMainObservations: ' +
         mainObservations +
-        "\nOtherCategory: " +
+        '\nOtherCategory: ' +
         otherCategory +
-        "\nOtherBreed: " +
+        '\nOtherBreed: ' +
         otherBreed +
-        "\nOtherQuantity: " +
+        '\nOtherQuantity: ' +
         otherQuantity +
-        "\nOtherObservations: " +
+        '\nOtherObservations: ' +
         otherObservations +
-        "\nState: " +
+        '\nState: ' +
         state +
-        "\nCity: " +
+        '\nCity: ' +
         city +
-        "\nAverageWeight: " +
+        '\nAverageWeight: ' +
         averageWeight +
-        "\nPrice: " +
+        '\nPrice: ' +
         price
     );
   }
@@ -112,16 +112,16 @@ const StepNavigator = (props) => {
       let ann = {
         animalsQuantity: 0,
         observations: [],
-        ageRange: "TBD",
+        ageRange: 'TBD',
         category: [],
         breed: [],
-        currentPrice: "0",
+        currentPrice: '0',
         endDate: 0,
         location: {
-          city: "",
-          state: "",
+          city: '',
+          state: '',
         },
-        weight: "",
+        weight: '',
       };
 
       ann.location = { city, state };
@@ -129,31 +129,28 @@ const StepNavigator = (props) => {
       ann.endDate = daysActive;
       price ? (ann.currentPrice = price) : null;
 
-      categoryWrapper.name = mainCategory;
-      breedWrapper.name = mainBreed;
-      categoryWrapper.quantity = parseInt(mainQuantity);
-      breedWrapper.quantity = parseInt(mainQuantity);
-
-      ann.category.push(categoryWrapper);
-      ann.breed.push(breedWrapper);
+      ann.category.push({
+        name: mainCategory,
+        quantity: parseInt(mainQuantity),
+      });
+      ann.breed.push({ name: mainBreed, quantity: parseInt(mainQuantity) });
       ann.observations.push(mainObservations);
       ann.animalsQuantity = parseInt(mainQuantity);
 
       if (otherCategory && otherBreed && otherQuantity && otherObservations) {
-        categoryWrapper.name = otherCategory;
-        breedWrapper.name = otherBreed;
-        categoryWrapper.quantity = parseInt(otherQuantity);
-        breedWrapper.quantity = parseInt(otherQuantity);
-        ann.category.push(categoryWrapper);
-        ann.breed.push(breedWrapper);
-        ann.animalsQuantity = ann.animalsQuantity + parseInt(otherQuantity);
+        ann.category.push({
+          name: otherCategory,
+          quantity: parseInt(otherQuantity),
+        });
+        ann.breed.push({ name: otherBreed, quantity: parseInt(otherQuantity) });
+        ann.animalsQuantity += parseInt(otherQuantity);
         ann.observations.push(otherObservations);
       }
 
       sendData(ann);
-      console.log("Data submited");
+      console.log('Data submited');
     } else {
-      console.log("Failed Submition");
+      console.log('Failed Submition');
     }
   }
 
@@ -161,17 +158,17 @@ const StepNavigator = (props) => {
     setLoading(true);
     try {
       await api
-        .post("/api/v1/announcements", JSON.stringify(announcement))
+        .post('/api/v1/announcements', JSON.stringify(announcement))
         .then(() => [
           ToastAndroid.showWithGravity(
-            "Anúncio publicado!",
+            'Anúncio publicado!',
             ToastAndroid.LONG,
             ToastAndroid.BOTTOM
           ),
           props.navigation.goBack(),
         ]);
     } catch (e) {
-      console.log("Erro:", e);
+      console.log('Erro:', e);
     }
     setLoading(false);
   }
@@ -206,7 +203,7 @@ const StepNavigator = (props) => {
         <TouchableOpacity
           onPress={() =>
             ToastAndroid.showWithGravity(
-              "Revise as informações!",
+              'Revise as informações!',
               ToastAndroid.LONG,
               ToastAndroid.BOTTOM
             )
