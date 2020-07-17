@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Button, Chip, Card, Paragraph, Title } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors } from 'general';
+import { process } from 'helpers/CattleUtility';
 
 const CattleSummary = ({ ann }) => {
   return (
@@ -20,9 +21,14 @@ const CattleSummary = ({ ann }) => {
           {ann.category[1] ? (
             <>
               <Text>
-                {ann.category[0].quantity} {ann.category[0].name}
+                {ann.category[1].quantity}{' '}
+                {process(
+                  ann.category[1].name,
+                  'category',
+                  ann.category[1].quantity
+                )}
               </Text>
-              <Chip>{ann.breed[0].name}</Chip>
+              <Chip>{ann.breed[1].name}</Chip>
             </>
           ) : null}
         </View>

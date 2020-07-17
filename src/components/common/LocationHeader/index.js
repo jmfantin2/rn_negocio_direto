@@ -13,7 +13,7 @@ const LocationHeader = ({ city, uf }) => {
       }}
     >
       <MaterialIcons name="location-on" size={36} color={colors.meatRed} />
-      <Text style={{ fontSize: 20, color: colors.meatRed }}>
+      <Text style={{ fontSize: 20, fontWeight: 'bold', color: colors.meatRed }}>
         {city} ({uf})
       </Text>
     </View>
