@@ -55,7 +55,7 @@ export default function AnnouncementDetail({ navigation }) {
           {announcement.currentPrice ? (
             <PriceInteractor price={announcement.currentPrice} />
           ) : (
-            <ActivityIndicator size="large" color={colors.meatRed} />
+            <ActivityIndicator size="large" color={colors.noticeBlue} />
           )}
         </Card.Content>
       </Card>
