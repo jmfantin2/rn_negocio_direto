@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import {
+  FlatList,
+  Text,
+  View,
+  Dimensions,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import { Button, Card, Chip, Paragraph, Title } from 'react-native-paper';
-
+import { colors } from 'general';
 import api from '../../services/ann';
 
-const AnnouncementList = () => {
+const AnnouncementList = ({ navigation }) => {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
@@ -23,14 +31,21 @@ const AnnouncementList = () => {
       numColumns={2}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <Card style={{ width: 180 }}>
-          <Card.Cover
-            style={{ height: 120, margin: 12, borderRadius: 5 }}
-            source={{
-              uri:
-                'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
-            }}
-          />
+        <Card style={custom.card}>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() =>
+              navigation.navigate('AnnouncementDetail', { id: item.id })
+            }
+          >
+            <Card.Cover
+              style={{ height: 120, margin: 12, borderRadius: 5 }}
+              source={{
+                uri:
+                  'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
+              }}
+            />
+          </TouchableOpacity>
           <Card.Content>
             <View
               style={{
@@ -58,5 +73,14 @@ const AnnouncementList = () => {
     />
   );
 };
+
+const screenW = Dimensions.get('window').width;
+const custom = StyleSheet.create({
+  card: {
+    width: screenW / 2 - 12,
+    marginLeft: 8,
+    marginTop: 8,
+  },
+});
 
 export default AnnouncementList;
