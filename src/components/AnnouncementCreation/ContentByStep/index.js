@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
 
 import {
-  VideoUpload,
   DynamicSwitch,
   MainCategorySelect,
   MainBreedSelect,
@@ -18,9 +17,9 @@ import {
   Summary,
   DaysActiveSlider,
   LocationSelects,
-} from "components/AnnouncementCreation";
+} from 'components/AnnouncementCreation';
 
-import { useStep } from "context/AnnouncementCreation/Step";
+import { useStep } from 'context/AnnouncementCreation/Step';
 
 export default function ContentByStep() {
   const { step } = useStep();
@@ -29,7 +28,6 @@ export default function ContentByStep() {
     <>
       {step === 1 ? (
         <>
-          <VideoUpload />
           <DynamicSwitch />
           <DaysActiveSlider />
         </>
