@@ -10,7 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import { Button, Chip, Card, Paragraph, Title } from 'react-native-paper';
 import { MiniPlayer, StepIndicator, LocationHeader } from 'components/common';
-import { CattleSummary } from 'components/AnnouncementDetails';
+import { CattleSummary, PriceInteractor } from 'components/AnnouncementDetail';
 import api from '../../services/ann';
 import videoTest from '../../../assets/video.mp4';
 
@@ -48,6 +48,15 @@ export default function AnnouncementDetail({ navigation }) {
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
           <MiniPlayer media={videoTest} />
+        </Card.Content>
+      </Card>
+      <Card style={[custom.el, custom.card]}>
+        <Card.Content>
+          {announcement.currentPrice ? (
+            <PriceInteractor price={announcement.currentPrice} />
+          ) : (
+            <ActivityIndicator size="large" color={colors.meatRed} />
+          )}
         </Card.Content>
       </Card>
       <Card style={[custom.el, custom.card]}>

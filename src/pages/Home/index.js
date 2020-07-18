@@ -11,12 +11,11 @@ export default function Home(props) {
   return (
     <>
       <AnnouncementList navigation={props.navigation} />
-      <View style={{ alignItems: 'center' }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('AnnouncementCreation')}
         >
           <AntDesign name="plussquareo" size={42} color={colors.darkCyan} />
-          <Text> </Text>
         </TouchableOpacity>
       </View>
     </>

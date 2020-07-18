@@ -63,9 +63,10 @@ const custom = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 24,
+    color: colors.darkCyan,
   },
   chip: {
-    backgroundColor: colors.denimBlue,
+    backgroundColor: colors.darkCyan,
   },
   chipTxt: {
     color: colors.white,
@@ -77,8 +78,5 @@ const custom = StyleSheet.create({
     fontSize: 14,
   },
 });
-
-const loremipsum =
-  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
 
 export default CattleSummary;
