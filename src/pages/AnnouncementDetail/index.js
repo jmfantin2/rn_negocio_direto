@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text, View } from "react-native";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import {
+  Text,
+  View,
+  ScrollView,
+  StyleSheet,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
+import PropTypes from 'prop-types';
+import { Button, Chip, Card, Paragraph, Title } from 'react-native-paper';
+import { MiniPlayer, StepIndicator, LocationHeader } from 'components/common';
+import { CattleSummary, PriceInteractor } from 'components/AnnouncementDetail';
+import api from '../../services/ann';
+import videoTest from '../../../assets/video.mp4';
 
-import api from "../../services/ann";
-
-import * as constants from "../../helpers/CattleUtility/constants";
-import { Video } from "expo-av";
-import videoTest from "../../../assets/video.mp4";
-
-import { Container, Label, ContainerQtt } from "./styles";
-import { Ionicons } from "@expo/vector-icons";
-import { general } from "../../../assets/general";
+import { colors } from 'general';
 
 export default function AnnouncementDetail({ navigation }) {
-  const id = navigation.getParam("id");
+  const id = navigation.getParam('id');
   const [announcement, setAnnouncement] = useState({});
 
   useEffect(() => {
     async function retrieveAnnouncement() {
       try {
-        console.log("essa iD", id);
+        console.log('essa iD', id);
         const retrieved = await api.get(`/api/v1/announcements/${id}`);
-        console.log("ret data:", retrieved.data);
+        console.log('ret data:', retrieved.data);
         setAnnouncement(retrieved.data);
       } catch (e) {
-        console.log("Erro:", e);
+        console.log('Erro:', e);
       }
-      //setData(ads.items);
+      // setData(ads.items);
       // console.log(ads.items)
     }
 
@@ -34,40 +38,62 @@ export default function AnnouncementDetail({ navigation }) {
   }, []);
 
   return (
-    <Container>
-      <Video
-        useNativeControls={true}
-        source={videoTest}
-        rate={1.0}
-        volume={1.0}
-        isMuted={false}
-        resizeMode="cover"
-        shouldPlay={false}
-        isLooping
-        style={{ height: 300 }}
+    <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
+      <StepIndicator
+        status="active"
+        highlight={colors.noticeBlue}
+        style={custom.el}
       />
-      <View
-        style={{
-          height: 200,
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Ionicons
-          name="ios-construct"
-          size={80}
-          color={general.styles.colors.oceanGreen}
-        />
-        <Text>{announcement.createdDate}</Text>
-      </View>
-    </Container>
+      <Text style={[custom.el, custom.txt]}>Recebendo propostas</Text>
+      <Card style={[custom.el, custom.card]}>
+        <Card.Content>
+          <MiniPlayer media={videoTest} />
+        </Card.Content>
+      </Card>
+      <Card style={[custom.el, custom.card]}>
+        <Card.Content>
+          {announcement.currentPrice ? (
+            <PriceInteractor price={announcement.currentPrice} />
+          ) : (
+            <ActivityIndicator size="large" color={colors.noticeBlue} />
+          )}
+        </Card.Content>
+      </Card>
+      <Card style={[custom.el, custom.card]}>
+        <Card.Content>
+          {announcement.location ? (
+            <LocationHeader
+              city={announcement.location.city}
+              uf={announcement.location.state}
+            />
+          ) : (
+            <ActivityIndicator size="large" color={colors.meatRed} />
+          )}
+          {announcement ? <CattleSummary ann={announcement} /> : null}
+        </Card.Content>
+      </Card>
+    </ScrollView>
   );
 }
 
+const screenW = Dimensions.get('window').width;
+const custom = StyleSheet.create({
+  el: {
+    marginBottom: 16,
+  },
+  txt: {
+    color: colors.noticeBlue,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  card: {
+    width: screenW - 32,
+  },
+});
+
 AnnouncementDetail.navigationOptions = ({ navigation }) => {
   return {
-    title: "Detalhes do Anúncio",
+    title: 'Detalhes do Anúncio',
     headerBackTitleVisible: false,
   };
 };

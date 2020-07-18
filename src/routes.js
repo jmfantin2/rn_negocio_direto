@@ -1,14 +1,14 @@
-import { createSwitchNavigator, createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-import Welcome from "./pages/Welcome";
-import AuthLoadingScreen from "./pages/AuthLoadingScreen";
-import Home from "./pages/Home";
-import AnnouncementCreation from "./pages/AnnouncementCreation";
-import AnnouncementDetail from "./pages/AnnouncementDetail";
-import RegisterUser from "./pages/RegisterUser";
+import Welcome from './pages/Welcome';
+import AuthLoadingScreen from './pages/AuthLoadingScreen';
+import Home from './pages/Home';
+import AnnouncementCreation from './pages/AnnouncementCreation';
+import AnnouncementDetail from './pages/AnnouncementDetail';
+import RegisterUser from './pages/RegisterUser';
 
-import { general } from "../assets/general";
+import { colors, strings } from '../assets/general';
 
 //Telas acessíveis apenas após Login!
 const StackNavigator = createStackNavigator(
@@ -18,14 +18,14 @@ const StackNavigator = createStackNavigator(
     AnnouncementDetail,
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: 'Home',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: general.styles.colors.oceanGreen,
+        backgroundColor: colors.oceanGreen,
       },
-      headerTintColor: general.styles.colors.white,
+      headerTintColor: colors.white,
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     },
   }
@@ -40,8 +40,8 @@ const AuthStack = createStackNavigator(
     App: StackNavigatorContainer,
   },
   {
-    initialRouteName: "SignIn",
-    headerMode: "none",
+    initialRouteName: 'SignIn',
+    headerMode: 'none',
     headerShown: false,
   }
 );
@@ -53,15 +53,15 @@ const SignUpStack = createStackNavigator(
     App: StackNavigatorContainer,
   },
   {
-    initialRouteName: "RegisterUser",
+    initialRouteName: 'RegisterUser',
     headerShown: true,
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: general.styles.colors.oceanGreen,
+        backgroundColor: colors.oceanGreen,
       },
-      headerTintColor: general.styles.colors.white,
+      headerTintColor: colors.white,
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     },
   }
@@ -75,7 +75,7 @@ const RootStack = createSwitchNavigator(
     App: StackNavigatorContainer,
   },
   {
-    initialRouteName: "AuthLoading",
+    initialRouteName: 'AuthLoading',
   }
 );
 const RootStackContainer = createAppContainer(RootStack);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { general } from "../../../assets/general";
+import { colors, strings } from "../../../assets/general";
 
 import api from "../../services/api";
 
@@ -37,7 +37,7 @@ const RegisterUser = (props) => {
   return (
     <Container>
       <RequiredInfo>
-        <Label>{general.strings.FULL_NAME}</Label>
+        <Label>{strings.FULL_NAME}</Label>
         <ErrorText>{props.errors.name}</ErrorText>
         <Input
           value={props.values.name}
@@ -47,34 +47,34 @@ const RegisterUser = (props) => {
               text.replace(/[^a-zA-Z\u00C0-\u024F\u1E00-\u1EFF\s]+/g, "")
             )
           }
-          placeholder={general.strings.PLACEHOLDER.FULL_NAME}
+          placeholder={strings.PLACEHOLDER.FULL_NAME}
           autoCapitalize={"words"}
         />
       </RequiredInfo>
 
       <DoubleContainer>
         <RequiredInfoHalf>
-          <Label>{general.strings.CPF}</Label>
+          <Label>{strings.CPF}</Label>
           <ErrorText>{props.errors.cpf}</ErrorText>
           <Input
             value={props.values.cpf}
             onChangeText={(text) =>
               props.setFieldValue("cpf", text.replace(/\D/g, ""))
             }
-            placeholder={general.strings.PLACEHOLDER.CPF}
+            placeholder={strings.PLACEHOLDER.CPF}
             maxLength={11}
             keyboardType={"numeric"}
           />
         </RequiredInfoHalf>
         <RequiredInfoHalf>
-          <Label>{general.strings.PHONE_NUMBER}</Label>
+          <Label>{strings.PHONE_NUMBER}</Label>
           <ErrorText>{props.errors.phone}</ErrorText>
           <Input
             value={props.values.phone}
             onChangeText={(text) =>
               props.setFieldValue("phone", text.replace(/\D/g, ""))
             }
-            placeholder={general.strings.PLACEHOLDER.PHONE}
+            placeholder={strings.PLACEHOLDER.PHONE}
             maxLength={11}
             keyboardType={"numeric"}
           />
@@ -82,38 +82,38 @@ const RegisterUser = (props) => {
       </DoubleContainer>
 
       <RequiredInfo>
-        <Label>{general.strings.EMAIL}</Label>
+        <Label>{strings.EMAIL}</Label>
         <ErrorText>{props.errors.email}</ErrorText>
         <Input
           value={props.values.email}
           onChangeText={(text) =>
             props.setFieldValue("email", text.replace(/\s+/g, ""))
           }
-          placeholder={general.strings.PLACEHOLDER.EMAIL}
+          placeholder={strings.PLACEHOLDER.EMAIL}
           autoCapitalize={"none"}
         />
       </RequiredInfo>
 
       <DoubleContainer>
         <RequiredInfoHalf>
-          <Label>{general.strings.PASSWORD}</Label>
+          <Label>{strings.PASSWORD}</Label>
           <ErrorText>{props.errors.password}</ErrorText>
           <Input
             value={props.values.password}
             onChangeText={(text) => props.setFieldValue("password", text)}
-            placeholder={general.strings.PLACEHOLDER.PASSWORD}
+            placeholder={strings.PLACEHOLDER.PASSWORD}
             secureTextEntry
           />
         </RequiredInfoHalf>
         <RequiredInfoHalf>
-          <Label>{general.strings.PASSWORD_CONFIRMATION}</Label>
+          <Label>{strings.PASSWORD_CONFIRMATION}</Label>
           <ErrorText>{props.errors.passwordConfirmation}</ErrorText>
           <Input
             value={props.values.passwordConfirmation}
             onChangeText={(text) =>
               props.setFieldValue("passwordConfirmation", text)
             }
-            placeholder={general.strings.PLACEHOLDER.PASSWORD}
+            placeholder={strings.PLACEHOLDER.PASSWORD}
             secureTextEntry
           />
         </RequiredInfoHalf>
@@ -134,8 +134,8 @@ const RegisterUser = (props) => {
           props.values.password === "" ||
           props.values.passwordConfirmation !== props.values.password ||
           props.values.phone === ""
-            ? general.strings.FILL_SIGN_UP.toUpperCase()
-            : general.strings.FINISH_SIGN_UP.toUpperCase()}
+            ? strings.FILL_SIGN_UP.toUpperCase()
+            : strings.FINISH_SIGN_UP.toUpperCase()}
         </ButtonText>
       </Button>
     </Container>
@@ -144,17 +144,13 @@ const RegisterUser = (props) => {
 
 RegisterUser.navigationOptions = ({ navigation }) => {
   return {
-    title: `${general.strings.CREATE_ACCOUNT}`,
+    title: `${strings.CREATE_ACCOUNT}`,
     headerLeft: () => (
       <TouchableOpacity
         onPress={() => navigation.navigate("Auth")}
         style={{ marginLeft: 20 }}
       >
-        <Ionicons
-          name="md-arrow-back"
-          size={32}
-          color={general.styles.colors.white}
-        />
+        <Ionicons name="md-arrow-back" size={32} color={colors.white} />
       </TouchableOpacity>
     ),
   };
@@ -171,27 +167,19 @@ export default withFormik({
   }),
 
   validationSchema: yup.object().shape({
-    email: yup
-      .string()
-      .email(general.strings.ERRORS.INVALID_EMAIL)
-      .required(" "),
+    email: yup.string().email(strings.ERRORS.INVALID_EMAIL).required(" "),
     password: yup
       .string()
-      .min(8, general.strings.ERRORS.PASSWORD_MINIMUM)
+      .min(8, strings.ERRORS.PASSWORD_MINIMUM)
       .required(" "),
     passwordConfirmation: yup
       .string()
-      .test("password-match", general.strings.ERRORS.PASSWORD_MATCH, function (
-        value
-      ) {
+      .test("password-match", strings.ERRORS.PASSWORD_MATCH, function (value) {
         return this.parent.password === value;
       })
       .required(" "),
     name: yup.string().required(" "),
-    phone: yup
-      .string()
-      .min(11, general.strings.ERRORS.PHONE_MINIMUM)
-      .required(" "),
-    cpf: yup.string().min(11, general.strings.ERRORS.CPF_MINIMUM).required(" "),
+    phone: yup.string().min(11, strings.ERRORS.PHONE_MINIMUM).required(" "),
+    cpf: yup.string().min(11, strings.ERRORS.CPF_MINIMUM).required(" "),
   }),
 })(RegisterUser);

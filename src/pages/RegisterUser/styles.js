@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { general } from "../../../assets/general";
+import { colors, strings } from "../../../assets/general";
 
 import { Dimensions } from "react-native";
 const screenW = Dimensions.get("window").width;
@@ -7,7 +7,7 @@ const screenW = Dimensions.get("window").width;
 export const Container = styled.ScrollView`
   flex-direction: column;
   flex: 1;
-  background-color: ${general.styles.colors.lighter};
+  background-color: ${colors.lighter};
 `;
 
 export const DoubleContainer = styled.View`
@@ -26,7 +26,7 @@ export const RequiredInfoHalf = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${general.styles.colors.black};
+  color: ${colors.black};
   font-size: 16px;
   font-weight: bold;
 `;
@@ -34,26 +34,26 @@ export const Label = styled.Text`
 export const Input = styled.TextInput`
   height: 40px;
   padding: 0px 10px 0px 10px;
-  background-color: ${general.styles.colors.white};
+  background-color: ${colors.white};
   border-radius: 50px;
 `;
 
 export const ButtonText = styled.Text`
   text-align: left;
-  color: ${general.styles.colors.white};
+  color: ${colors.white};
   font-size: 16px;
   font-weight: bold;
 `;
 
 export const ErrorText = styled.Text`
-  color: ${general.styles.colors.businessGreen};
+  color: ${colors.businessGreen};
   font-size: 12px;
 `;
 
 export const Button = styled.TouchableOpacity`
-  background-color: ${general.styles.colors.oceanGreen};
+  background-color: ${colors.oceanGreen};
   border-radius: 50px;
-  border: 1px solid ${general.styles.colors.regular};
+  border: 1px solid ${colors.regular};
   height: 50px;
   margin: 30px 10px 30px 10px;
   justify-content: center;
