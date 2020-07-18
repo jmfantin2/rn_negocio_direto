@@ -80,7 +80,7 @@ export function process(str, type, qtd) {
     processed = str.toLowerCase();
     if (qtd > 1) processed += 's';
   } else if (type === 'breed') {
-    processed = processed
+    processed = str
       .replace('CRUZAS', 'CZ')
       .replace('_', ' ')
       .replace('ABERDEEN', 'ABD');

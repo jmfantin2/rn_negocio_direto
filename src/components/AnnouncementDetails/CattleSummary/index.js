@@ -19,7 +19,7 @@ const CattleSummary = ({ ann }) => {
               )}
             </Text>
             <Chip textStyle={custom.chipTxt} style={custom.chip}>
-              {ann.breed[0].name}
+              {process(ann.breed[0].name, 'breed', 0)}
             </Chip>
           </View>
           <View style={custom.info}>
@@ -38,7 +38,7 @@ const CattleSummary = ({ ann }) => {
                 )}
               </Text>
               <Chip textStyle={custom.chipTxt} style={custom.chip}>
-                {ann.breed[1].name}
+                {process(ann.breed[1].name, 'breed', 0)}
               </Chip>
             </View>
             <View style={custom.info}>
