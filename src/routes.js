@@ -6,7 +6,6 @@ import AuthLoadingScreen from './pages/AuthLoadingScreen';
 import Home from './pages/Home';
 import AnnouncementCreation from './pages/AnnouncementCreation';
 import AnnouncementDetail from './pages/AnnouncementDetail';
-import AnnouncementList from './pages/AnnouncementList';
 import RegisterUser from './pages/RegisterUser';
 
 import { colors, strings } from '../assets/general';
@@ -15,7 +14,6 @@ import { colors, strings } from '../assets/general';
 const StackNavigator = createStackNavigator(
   {
     Home,
-    AnnouncementList,
     AnnouncementCreation,
     AnnouncementDetail,
   },

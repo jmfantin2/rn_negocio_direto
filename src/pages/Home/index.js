@@ -1,65 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Button,
-  TouchableOpacity,
-  Text,
-  RefreshControl,
-  View,
-} from 'react-native';
+import React from 'react';
+import { TouchableOpacity, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-
-import api from '../../services/ann';
+import AnnouncementList from 'components/AnnouncementList';
 import { deleteUser } from 'utils';
-import AdItem from 'components/common/AdItem';
 import { colors, strings } from 'general';
-import { Container, AdList } from './styles';
 
 import { AntDesign } from '@expo/vector-icons';
 
 export default function Home(props) {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  const [refresh, makeRefresh] = useState(0);
-
-  useEffect(() => {
-    async function loadProducts() {
-      setLoading(true);
-      try {
-        setData([]);
-        const retrieved = await api.get('/api/v1/announcements');
-        console.log('content:', retrieved.data.content);
-        setData(retrieved.data.content);
-      } catch (e) {
-        console.log('Erro:', e);
-      }
-      //setData(ads.items);
-      // console.log(ads.items)
-    }
-
-    loadProducts();
-    setTimeout(() => setLoading(false), 1200);
-  }, [refresh]);
-
-  renderListItem = ({ item }) => <AdItem product={item} />;
-
   return (
-    <Container>
-      <AdList
-        data={data}
-        keyExtractor={(item) => String(item.id)}
-        renderItem={renderListItem}
-        refreshControl={
-          <RefreshControl
-            colors={[colors.darkCyan, colors.success]}
-            refreshing={loading}
-            onRefresh={() => makeRefresh(refresh + 1)}
-          />
-        }
-      />
-      <Button
-        title="LISTA"
-        onPress={() => props.navigation.navigate('AnnouncementList')}
-      />
+    <>
+      <AnnouncementList navigation={props.navigation} />
       <View style={{ alignItems: 'center' }}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('AnnouncementCreation')}
@@ -68,7 +19,7 @@ export default function Home(props) {
           <Text> </Text>
         </TouchableOpacity>
       </View>
-    </Container>
+    </>
   );
 }
 

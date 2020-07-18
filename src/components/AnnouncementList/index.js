@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   FlatList,
+  RefreshControl,
   Text,
   View,
   Dimensions,
@@ -14,22 +15,31 @@ import api from '../../services/ann';
 
 const AnnouncementList = ({ navigation }) => {
   const [announcements, setAnnouncements] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     async function fetchAnnouncements() {
       const response = await api.get('/api/v1/announcements');
 
       setAnnouncements(response.data.content);
+      setRefreshing(false);
     }
 
     fetchAnnouncements();
-  }, []);
+  }, [refreshing]);
 
   return (
     <FlatList
       data={announcements}
       numColumns={2}
       keyExtractor={(item) => item.id}
+      refreshControl={
+        <RefreshControl
+          colors={[colors.darkCyan, colors.success]}
+          refreshing={refreshing}
+          onRefresh={() => setRefreshing(true)}
+        />
+      }
       renderItem={({ item }) => (
         <Card style={custom.card}>
           <TouchableOpacity
