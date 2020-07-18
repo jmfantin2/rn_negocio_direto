@@ -1,19 +1,22 @@
-import StepProvider from "./Step";
+import StepProvider from './Step';
 export { StepProvider };
 
-import VideoProvider from "./Video";
+import VideoProvider from './Video';
 export { VideoProvider };
 
-import DynamicProvider from "./Dynamic";
+import ImageProvider from './Image';
+export { ImageProvider };
+
+import DynamicProvider from './Dynamic';
 export { DynamicProvider };
 
-import MainCategoryProvider from "./MainCategory";
+import MainCategoryProvider from './MainCategory';
 export { MainCategoryProvider };
 
-import MainBreedProvider from "./MainBreed";
+import MainBreedProvider from './MainBreed';
 export { MainBreedProvider };
 
-import MainQuantityProvider from "./MainQuantity";
+import MainQuantityProvider from './MainQuantity';
 export { MainQuantityProvider };
 
 /* DEPRECATED
@@ -21,16 +24,16 @@ import MainVariantsProvider from "./MainVariants";
 export { MainVariantsProvider };
 */
 
-import MainObservationsProvider from "./MainObservations";
+import MainObservationsProvider from './MainObservations';
 export { MainObservationsProvider };
 
-import OtherCategoryProvider from "./OtherCategory";
+import OtherCategoryProvider from './OtherCategory';
 export { OtherCategoryProvider };
 
-import OtherBreedProvider from "./OtherBreed";
+import OtherBreedProvider from './OtherBreed';
 export { OtherBreedProvider };
 
-import OtherQuantityProvider from "./OtherQuantity";
+import OtherQuantityProvider from './OtherQuantity';
 export { OtherQuantityProvider };
 
 /* DEPRECATED
@@ -38,17 +41,17 @@ import OtherVariantsProvider from "./OtherVariants";
 export { OtherVariantsProvider };
 */
 
-import OtherObservationsProvider from "./OtherObservations";
+import OtherObservationsProvider from './OtherObservations';
 export { OtherObservationsProvider };
 
-import AverageWeightProvider from "./AverageWeight";
+import AverageWeightProvider from './AverageWeight';
 export { AverageWeightProvider };
 
-import PriceProvider from "./Price";
+import PriceProvider from './Price';
 export { PriceProvider };
 
-import DaysActiveProvider from "./DaysActive";
+import DaysActiveProvider from './DaysActive';
 export { DaysActiveProvider };
 
-import LocationProvider from "./Location";
+import LocationProvider from './Location';
 export { LocationProvider };
