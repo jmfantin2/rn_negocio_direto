@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useVideo } from 'context/AnnouncementCreation/Video';
 import { useImage } from 'context/AnnouncementCreation/Image';
 
+import { sendImage } from 'helpers/MediaUtility';
+
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -24,9 +26,7 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 
 export default function MediaUploader() {
   const { video, setVideo } = useVideo();
-  const [uploadingV, setUploadingV] = useState(false);
   const { image, setImage } = useImage();
-  const [uploadingI, setUploadingI] = useState(false);
 
   useEffect(() => {
     getPermissionAsync();
@@ -36,7 +36,7 @@ export default function MediaUploader() {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
       if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!');
+        alert('Precisamos da permissão de CAMERA.');
       }
     }
   };
@@ -51,6 +51,11 @@ export default function MediaUploader() {
       });
       if (!result.cancelled) {
         setImage(result.uri);
+        sendImage({
+          uri: result.uri,
+          type: 'image/jpeg',
+          name: 'jotaemi.jpg',
+        });
       }
 
       console.log(result);
@@ -67,22 +72,12 @@ export default function MediaUploader() {
     setVideo('some_url');
   }
 
-  function handleImageUpload() {
-    setUploadingI(true);
-    setTimeout(() => {
-      setUploadingI(false);
-    }, 2222);
-    setImage('some_url');
-  }
-
   return (
     <>
       <View style={custom.bar}>
         <TouchableOpacity onPress={() => handleVideoUpload()}>
           <View style={custom.section}>
-            {uploadingV ? (
-              <ActivityIndicator size="large" color={colors.oceanGreen} />
-            ) : video ? (
+            {video ? (
               <>
                 <CheckIcon />
                 <Text style={custom.label}>VÍDEO</Text>
@@ -92,11 +87,9 @@ export default function MediaUploader() {
             )}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => _pickImage()}>
+        <TouchableOpacity onPress={() => _pickImage().then(sendImage(image))}>
           <View style={custom.section}>
-            {uploadingI ? (
-              <ActivityIndicator size="large" color={colors.oceanGreen} />
-            ) : image ? (
+            {image ? (
               <>
                 {image && (
                   <Image
