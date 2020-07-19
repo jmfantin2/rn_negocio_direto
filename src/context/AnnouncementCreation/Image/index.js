@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 const ImageContext = createContext();
 
 export default function ImageProvider({ children }) {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
 
   return (
     <ImageContext.Provider

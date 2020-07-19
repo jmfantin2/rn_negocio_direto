@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useVideo } from 'context/AnnouncementCreation/Video';
 import { useImage } from 'context/AnnouncementCreation/Image';
+
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 
 import {
   ActivityIndicator,
@@ -10,6 +14,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Button,
+  Image,
 } from 'react-native';
 
 import { colors } from 'general';
@@ -21,6 +27,37 @@ export default function MediaUploader() {
   const [uploadingV, setUploadingV] = useState(false);
   const { image, setImage } = useImage();
   const [uploadingI, setUploadingI] = useState(false);
+
+  useEffect(() => {
+    getPermissionAsync();
+  }, []);
+
+  const getPermissionAsync = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+      }
+    }
+  };
+
+  const _pickImage = async () => {
+    try {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        setImage(result.uri);
+      }
+
+      console.log(result);
+    } catch (E) {
+      console.log(E);
+    }
+  };
 
   function handleVideoUpload() {
     setUploadingV(true);
@@ -55,14 +92,18 @@ export default function MediaUploader() {
             )}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleImageUpload()}>
+        <TouchableOpacity onPress={() => _pickImage()}>
           <View style={custom.section}>
             {uploadingI ? (
               <ActivityIndicator size="large" color={colors.oceanGreen} />
             ) : image ? (
               <>
-                <CheckIcon />
-                <Text style={custom.label}>IMAGEM</Text>
+                {image && (
+                  <Image
+                    source={{ uri: image }}
+                    style={{ width: 200, height: 200 }}
+                  />
+                )}
               </>
             ) : (
               <PictureIcon />
