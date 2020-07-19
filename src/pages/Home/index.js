@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, View } from 'react-native';
+import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import AnnouncementList from 'components/AnnouncementList';
 import { deleteUser } from 'utils';
@@ -11,16 +11,28 @@ export default function Home(props) {
   return (
     <>
       <AnnouncementList navigation={props.navigation} />
-      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <View style={custom.footer}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('AnnouncementCreation')}
         >
-          <AntDesign name="plussquareo" size={42} color={colors.darkCyan} />
+          <AntDesign name="plussquareo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
       </View>
     </>
   );
 }
+
+const custom = StyleSheet.create({
+  footer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.white,
+    paddingBottom: 8,
+    paddingTop: 8,
+    borderTopWidth: 1,
+    borderTopColor: colors.light,
+  },
+});
 
 Home.navigationOptions = ({ navigation }) => {
   return {

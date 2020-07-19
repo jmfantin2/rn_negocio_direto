@@ -21,7 +21,7 @@ const StackNavigator = createStackNavigator(
     initialRouteName: 'Home',
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: colors.oceanGreen,
+        backgroundColor: colors.ruralGreen,
       },
       headerTintColor: colors.white,
       headerTitleStyle: {
@@ -57,7 +57,7 @@ const SignUpStack = createStackNavigator(
     headerShown: true,
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: colors.oceanGreen,
+        backgroundColor: colors.ruralGreen,
       },
       headerTintColor: colors.white,
       headerTitleStyle: {

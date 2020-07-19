@@ -1,10 +1,10 @@
-import styled from "styled-components/native";
-import { colors, strings } from "../../../assets/general";
+import styled from 'styled-components/native';
+import { colors, strings } from '../../../assets/general';
 
 export const Container = styled.View`
   display: flex;
   flex: 1;
-  background-color: ${colors.darkCyan};
+  background-color: ${colors.ruralGreen};
   padding: 40px;
   justify-content: center;
   align-items: stretch;
@@ -51,7 +51,6 @@ export const Input = styled.TextInput`
 export const Button = styled.TouchableOpacity`
   background-color: ${colors.white};
   border-radius: 50px;
-  border: 1px solid ${colors.businessGreen};
   height: 50px;
   padding: 0px 20px;
   margin-top: 10px;
@@ -60,7 +59,7 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: ${colors.businessGreen};
+  color: ${colors.noticeBlue};
   font-weight: bold;
   font-size: 18px;
 `;

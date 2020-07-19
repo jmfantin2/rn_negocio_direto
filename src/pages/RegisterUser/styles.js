@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
-import { colors, strings } from "../../../assets/general";
+import styled from 'styled-components/native';
+import { colors, strings } from '../../../assets/general';
 
-import { Dimensions } from "react-native";
-const screenW = Dimensions.get("window").width;
+import { Dimensions } from 'react-native';
+const screenW = Dimensions.get('window').width;
 
 export const Container = styled.ScrollView`
   flex-direction: column;
@@ -51,9 +51,8 @@ export const ErrorText = styled.Text`
 `;
 
 export const Button = styled.TouchableOpacity`
-  background-color: ${colors.oceanGreen};
+  background-color: ${colors.noticeBlue};
   border-radius: 50px;
-  border: 1px solid ${colors.regular};
   height: 50px;
   margin: 30px 10px 30px 10px;
   justify-content: center;
