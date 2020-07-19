@@ -13,6 +13,7 @@ const sendImage = async (imageObj) => {
     const response = await api.post('/v1/storage', formdata);
 
     console.log('RESPOSTA', response.data);
+    return response.data;
   } catch (e) {
     console.log('Erro:', e);
   }

@@ -27,6 +27,7 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 export default function MediaUploader() {
   const { video, setVideo } = useVideo();
   const { image, setImage } = useImage();
+  const [imgPreview, setImgPreview] = useState(null);
 
   useEffect(() => {
     getPermissionAsync();
@@ -52,7 +53,7 @@ export default function MediaUploader() {
 
       if (result.cancelled) return;
 
-      onsole.log('RESULTADO', result);
+      //console.log('RESULTADO', result);
 
       const uri = result.uri;
       const filename = uri.split('/').pop();
@@ -60,26 +61,24 @@ export default function MediaUploader() {
       const match = /\.(\w+)$/.exec(filename);
       const type = match ? `image/${match[1]}` : `image`;
 
-      const image = {
+      const img = {
         uri,
         filename,
         type,
       };
 
-      console.log('DADOS DA IMAGEM:', image);
+      console.log('LOCAL IMAGE:', img);
 
-      setImage(uri);
-      sendImage(image);
+      setImgPreview(uri);
+      const payload = await sendImage(img);
+      console.log('IMAGE PAYLOAD:', payload);
+      setImage(payload);
     } catch (e) {
       console.log(e);
     }
   };
 
   function handleVideoUpload() {
-    setUploadingV(true);
-    setTimeout(() => {
-      setUploadingV(false);
-    }, 2222);
     setVideo('some_url');
   }
 
@@ -100,11 +99,11 @@ export default function MediaUploader() {
         </TouchableOpacity>
         <TouchableOpacity onPress={_pickImage}>
           <View style={custom.section}>
-            {image ? (
+            {imgPreview ? (
               <>
-                {image && (
+                {imgPreview && (
                   <Image
-                    source={{ uri: image }}
+                    source={{ uri: imgPreview }}
                     style={{ width: 200, height: 200 }}
                   />
                 )}

@@ -15,6 +15,8 @@ import { Container, CenterContent, Label } from './styles';
 import { AntDesign } from '@expo/vector-icons';
 
 import { useVideo } from 'context/AnnouncementCreation/Video';
+import { useImage } from 'context/AnnouncementCreation/Image';
+
 import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
 import { useDaysActive } from 'context/AnnouncementCreation/DaysActive';
 
@@ -36,6 +38,8 @@ import { useStep } from 'context/AnnouncementCreation/Step';
 
 const StepNavigator = (props) => {
   const { video } = useVideo(); //READ
+  const { image } = useImage(); //READ
+
   const { dynamic } = useDynamic(); //READ
   const { daysActive } = useDaysActive(); //READ
 
@@ -60,6 +64,7 @@ const StepNavigator = (props) => {
   useEffect(() => {
     if (
       video &&
+      image &&
       mainCategory &&
       mainBreed &&
       mainQuantity &&
@@ -122,7 +127,14 @@ const StepNavigator = (props) => {
           state: '',
         },
         weight: '',
+        picture: {
+          id: '',
+          originalUrl: '',
+        },
       };
+
+      ann.picture.id = image.id;
+      ann.picture.originalUrl = image.originalUrl;
 
       ann.location = { city, state };
       ann.weight = averageWeight;
