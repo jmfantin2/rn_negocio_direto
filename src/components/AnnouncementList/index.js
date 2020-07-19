@@ -48,13 +48,22 @@ const AnnouncementList = ({ navigation }) => {
               navigation.navigate('AnnouncementDetail', { id: item.id })
             }
           >
-            <Card.Cover
-              style={{ height: 120, margin: 12, borderRadius: 5 }}
-              source={{
-                uri:
-                  'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
-              }}
-            />
+            {item.picture ? (
+              <Card.Cover
+                style={{ height: 120, margin: 12, borderRadius: 5 }}
+                source={{
+                  uri: item.picture.originalUrl,
+                }}
+              />
+            ) : (
+              <Card.Cover
+                style={{ height: 120, margin: 12, borderRadius: 5 }}
+                source={{
+                  uri:
+                    'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
+                }}
+              />
+            )}
           </TouchableOpacity>
           <Card.Content>
             <View

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import {
   ContextWrapper,
@@ -7,12 +7,14 @@ import {
   Optional,
   ContentByStep,
   StepNavigator,
-} from "components/AnnouncementCreation";
+  MediaUploader,
+} from 'components/AnnouncementCreation';
 
 export default function AnnouncementCreation() {
   return (
     <ContextWrapper>
       <Canvas behavior="padding" enabled>
+        <MediaUploader />
         <Optional />
         <Container>
           <ContentByStep />
@@ -25,7 +27,7 @@ export default function AnnouncementCreation() {
 
 AnnouncementCreation.navigationOptions = () => {
   return {
-    title: "Crie um anúncio",
+    title: 'Crie um anúncio',
     headerBackTitleVisible: false,
   };
 };

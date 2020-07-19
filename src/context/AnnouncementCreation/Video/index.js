@@ -1,9 +1,9 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
 const VideoContext = createContext();
 
 export default function VideoProvider({ children }) {
-  const [video, setVideo] = useState("");
+  const [video, setVideo] = useState(null);
 
   return (
     <VideoContext.Provider
@@ -19,7 +19,7 @@ export default function VideoProvider({ children }) {
 
 export function useVideo() {
   const context = useContext(VideoContext);
-  if (!context) throw new Error("useVideo must be used within a VideoProvider");
+  if (!context) throw new Error('useVideo must be used within a VideoProvider');
   const { video, setVideo } = context;
   return { video, setVideo };
 }

@@ -1,27 +1,31 @@
-import React from "react";
+import React from 'react';
 
-import { Container, Label, Description } from "./styles";
+import { Container, Label, Description } from './styles';
 
-import { useVideo } from "context/AnnouncementCreation/Video";
-import { useDynamic } from "context/AnnouncementCreation/Dynamic";
-import { useDaysActive } from "context/AnnouncementCreation/DaysActive";
+import { useVideo } from 'context/AnnouncementCreation/Video';
+import { useImage } from 'context/AnnouncementCreation/Image';
 
-import { useMainCategory } from "context/AnnouncementCreation/MainCategory";
-import { useMainBreed } from "context/AnnouncementCreation/MainBreed";
-import { useMainQuantity } from "context/AnnouncementCreation/MainQuantity";
-import { useMainObservations } from "context/AnnouncementCreation/MainObservations";
+import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
+import { useDaysActive } from 'context/AnnouncementCreation/DaysActive';
 
-import { useOtherCategory } from "context/AnnouncementCreation/OtherCategory";
-import { useOtherBreed } from "context/AnnouncementCreation/OtherBreed";
-import { useOtherQuantity } from "context/AnnouncementCreation/OtherQuantity";
-import { useOtherObservations } from "context/AnnouncementCreation/OtherObservations";
+import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
+import { useMainBreed } from 'context/AnnouncementCreation/MainBreed';
+import { useMainQuantity } from 'context/AnnouncementCreation/MainQuantity';
+import { useMainObservations } from 'context/AnnouncementCreation/MainObservations';
 
-import { useLocation } from "context/AnnouncementCreation/Location";
-import { useAverageWeight } from "context/AnnouncementCreation/AverageWeight";
-import { usePrice } from "context/AnnouncementCreation/Price";
+import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
+import { useOtherBreed } from 'context/AnnouncementCreation/OtherBreed';
+import { useOtherQuantity } from 'context/AnnouncementCreation/OtherQuantity';
+import { useOtherObservations } from 'context/AnnouncementCreation/OtherObservations';
+
+import { useLocation } from 'context/AnnouncementCreation/Location';
+import { useAverageWeight } from 'context/AnnouncementCreation/AverageWeight';
+import { usePrice } from 'context/AnnouncementCreation/Price';
 
 export default function Summary() {
   const { video } = useVideo(); //READ
+  const { image } = useImage();
+
   const { dynamic } = useDynamic(); //READ
   const { daysActive } = useDaysActive(); //READ
 
@@ -42,24 +46,25 @@ export default function Summary() {
   return (
     <Container>
       <Label>Modalidade</Label>
-      <Description>Preço{dynamic ? " Dinâmico" : " Fixo"}</Description>
+      <Description>Preço{dynamic ? ' Dinâmico' : ' Fixo'}</Description>
       <Description>{daysActive} dias</Description>
-      <Label>Vídeo{video ? "" : " ❓"}</Label>
-      <Description>{video ? "Enviado" : "Não enviado"}</Description>
+      <Label>Mídias{video && image ? '' : ' ❓'}</Label>
+      <Description>Vídeo{video ? ' enviado' : ' não enviado'}</Description>
+      <Description>Imagem{image ? ' enviada' : ' não enviada'}</Description>
       {mainQuantity && mainCategory && mainBreed && mainObservations ? (
         <>
           <Label>Categoria Principal</Label>
           <Description>
             {mainQuantity +
-              " x " +
+              ' x ' +
               mainCategory.toUpperCase() +
-              " (" +
+              ' (' +
               mainBreed
                 .toUpperCase()
-                .replace("CRUZAS", "CZ")
-                .replace("ABERDEEN", "ABD")
-                .replace("_", " ") +
-              ")\n" +
+                .replace('CRUZAS', 'CZ')
+                .replace('ABERDEEN', 'ABD')
+                .replace('_', ' ') +
+              ')\n' +
               '"' +
               mainObservations +
               '"'}
@@ -76,15 +81,15 @@ export default function Summary() {
         <>
           <Description>
             {otherQuantity +
-              " x " +
+              ' x ' +
               otherCategory.toUpperCase() +
-              " (" +
+              ' (' +
               otherBreed
                 .toUpperCase()
-                .replace("CRUZAS", "CZ")
-                .replace("ABERDEEN", "ABD")
-                .replace("_", " ") +
-              ")\n" +
+                .replace('CRUZAS', 'CZ')
+                .replace('ABERDEEN', 'ABD')
+                .replace('_', ' ') +
+              ')\n' +
               '"' +
               otherObservations +
               '"'}
@@ -92,22 +97,22 @@ export default function Summary() {
         </>
       ) : (
         <Description>
-          Categoria não informada{"\n"}ou informações faltantes
+          Categoria não informada{'\n'}ou informações faltantes
         </Description>
       )}
       {averageWeight && (dynamic || price) && state && city ? (
         <>
           <Label>Detalhes da venda</Label>
           <Description>
-            {"Em " +
+            {'Em ' +
               city +
-              " (" +
+              ' (' +
               state +
-              ")\n" +
-              "Peso médio " +
+              ')\n' +
+              'Peso médio ' +
               averageWeight +
-              " kg\n" +
-              (price ? price + " reais por kg" : "")}
+              ' kg\n' +
+              (price ? price + ' reais por kg' : '')}
           </Description>
         </>
       ) : (

@@ -47,7 +47,16 @@ export default function AnnouncementDetail({ navigation }) {
       <Text style={[custom.el, custom.txt]}>Recebendo propostas</Text>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          <MiniPlayer media={videoTest} />
+          {announcement.picture ? (
+            <MiniPlayer
+              media={{
+                video: videoTest,
+                image: announcement.picture.originalUrl,
+              }}
+            />
+          ) : (
+            <ActivityIndicator size="large" color={colors.noticeBlue} />
+          )}
         </Card.Content>
       </Card>
       <Card style={[custom.el, custom.card]}>
