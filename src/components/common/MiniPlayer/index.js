@@ -13,7 +13,7 @@ const MiniPlayer = ({ media }) => {
       {selectedURL === '' ? (
         <Video
           useNativeControls={true}
-          source={media}
+          source={media.video}
           rate={1.0}
           volume={1.0}
           isMuted={false}
@@ -28,18 +28,22 @@ const MiniPlayer = ({ media }) => {
 
       <View style={custom.gallery}>
         <TouchableOpacity onPress={() => setSelectedURL('')}>
-          <View style={custom.tile}>
+          <View
+            style={[
+              custom.tile,
+              selectedURL ? null : { backgroundColor: colors.noticeBlue },
+            ]}
+          >
             <FontAwesome name="play" size={42} color={colors.white} />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            setSelectedURL(
-              'https://i.ytimg.com/vi/mhgpg2w4HMM/maxresdefault.jpg'
-            )
-          }
-        >
-          <View style={custom.tile}>
+        <TouchableOpacity onPress={() => setSelectedURL(media.image)}>
+          <View
+            style={[
+              custom.tile,
+              selectedURL ? { backgroundColor: colors.noticeBlue } : null,
+            ]}
+          >
             <FontAwesome name="picture-o" size={42} color={colors.white} />
           </View>
         </TouchableOpacity>
