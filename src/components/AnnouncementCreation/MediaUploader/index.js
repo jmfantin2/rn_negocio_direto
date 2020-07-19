@@ -43,24 +43,35 @@ export default function MediaUploader() {
 
   const _pickImage = async () => {
     try {
-      let result = await ImagePicker.launchImageLibraryAsync({
+      const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
       });
-      if (!result.cancelled) {
-        setImage(result.uri);
-        sendImage({
-          uri: result.uri,
-          type: 'image/jpeg',
-          name: 'jotaemi.jpg',
-        });
-      }
 
-      console.log(result);
-    } catch (E) {
-      console.log(E);
+      if (result.cancelled) return;
+
+      onsole.log('RESULTADO', result);
+
+      const uri = result.uri;
+      const filename = uri.split('/').pop();
+
+      const match = /\.(\w+)$/.exec(filename);
+      const type = match ? `image/${match[1]}` : `image`;
+
+      const image = {
+        uri,
+        filename,
+        type,
+      };
+
+      console.log('DADOS DA IMAGEM:', image);
+
+      setImage(uri);
+      sendImage(image);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -87,7 +98,7 @@ export default function MediaUploader() {
             )}
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => _pickImage().then(sendImage(image))}>
+        <TouchableOpacity onPress={_pickImage}>
           <View style={custom.section}>
             {image ? (
               <>

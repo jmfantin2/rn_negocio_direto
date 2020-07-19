@@ -1,11 +1,18 @@
 import api from '../../services/storage';
-import axios from 'axios';
 
 const sendImage = async (imageObj) => {
   const formdata = new FormData();
-  formdata.append('image', imageObj);
+
+  formdata.append('file', {
+    uri: imageObj.uri,
+    name: imageObj.filename,
+    type: imageObj.type,
+  });
+
   try {
-    await api.post('/v1/storage', formdata);
+    const response = await api.post('/v1/storage', formdata);
+
+    console.log('RESPOSTA', response.data);
   } catch (e) {
     console.log('Erro:', e);
   }
