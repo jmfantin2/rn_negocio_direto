@@ -9,6 +9,8 @@ import { withNavigation } from 'react-navigation';
 
 import api from '../../../services/ann';
 
+import { makeDates } from 'helpers/DateUtility';
+
 import { colors } from 'general';
 import { Container, CenterContent, Label } from './styles';
 
@@ -121,6 +123,7 @@ const StepNavigator = (props) => {
         category: [],
         breed: [],
         currentPrice: '0',
+        // createdDate: 0,
         endDate: 0,
         location: {
           city: '',
@@ -138,7 +141,9 @@ const StepNavigator = (props) => {
 
       ann.location = { city, state };
       ann.weight = averageWeight;
-      ann.endDate = daysActive;
+      const dates = makeDates(daysActive);
+      // ann.createdDate = dates.createdDate;
+      ann.endDate = dates.endDate;
       price ? (ann.currentPrice = price) : null;
 
       ann.category.push({
