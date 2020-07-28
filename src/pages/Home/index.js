@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import AnnouncementList from 'components/AnnouncementList';
+import ExpiredListMock from 'components/ExpiredListMock';
 import { deleteUser } from 'utils';
 import { colors, strings } from 'general';
 
@@ -11,6 +12,7 @@ export default function Home(props) {
   const [footerOption, setFooterOption] = useState(1);
   return (
     <>
+      {footerOption === 0 && <ExpiredListMock navigation={props.navigation} />}
       {footerOption === 1 && <AnnouncementList navigation={props.navigation} />}
       <View style={custom.footer}>
         <TouchableOpacity onPress={() => setFooterOption(0)}>
