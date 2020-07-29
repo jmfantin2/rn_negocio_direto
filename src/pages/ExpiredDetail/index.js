@@ -16,7 +16,7 @@ import videoTest from '../../../assets/video.mp4';
 
 import { colors } from 'general';
 
-export default function AnnouncementDetail({ navigation }) {
+export default function ExpiredDetail({ navigation }) {
   const id = navigation.getParam('id');
   const [announcement, setAnnouncement] = useState({});
 
@@ -42,9 +42,9 @@ export default function AnnouncementDetail({ navigation }) {
       <StepIndicator
         status="active"
         highlight={colors.noticeBlue}
-        label={'Recebendo propostas'}
         style={custom.el}
       />
+      <Text style={[custom.el, custom.txt]}>Recebendo propostas</Text>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
           {announcement.picture ? (
@@ -90,19 +90,24 @@ const custom = StyleSheet.create({
   el: {
     marginBottom: 16,
   },
+  txt: {
+    color: colors.noticeBlue,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   card: {
     width: screenW - 32,
   },
 });
 
-AnnouncementDetail.navigationOptions = ({ navigation }) => {
+ExpiredDetail.navigationOptions = ({ navigation }) => {
   return {
     title: 'Detalhes do Anúncio',
     headerBackTitleVisible: false,
   };
 };
 
-AnnouncementDetail.propTypes = {
+ExpiredDetail.propTypes = {
   navigation: PropTypes.shape({
     dispatch: PropTypes.func,
   }).isRequired,
