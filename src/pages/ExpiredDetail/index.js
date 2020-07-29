@@ -10,7 +10,8 @@ import {
 import PropTypes from 'prop-types';
 import { Card } from 'react-native-paper';
 import { MiniPlayer, StepIndicator, LocationHeader } from 'components/common';
-import { CattleSummary, PriceInteractor } from 'components/AnnouncementDetail';
+import { CattleSummary } from 'components/AnnouncementDetail';
+import { FinalPrices, SellerStatus } from 'components/ExpiredDetail';
 import api from '../../services/ann';
 import videoTest from '../../../assets/video.mp4';
 
@@ -52,6 +53,18 @@ export default function ExpiredDetail({ navigation }) {
       />
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
+          {mockedDetail.currentPrice ? (
+            <FinalPrices price={mockedDetail.currentPrice} />
+          ) : (
+            <ActivityIndicator size="large" color={colors.noticeBlue} />
+          )}
+        </Card.Content>
+      </Card>
+      <Card style={[custom.el, custom.card]}>
+        <SellerStatus />
+      </Card>
+      <Card style={[custom.el, custom.card]}>
+        <Card.Content>
           {mockedDetail.picture ? (
             <MiniPlayer
               media={{
@@ -59,15 +72,6 @@ export default function ExpiredDetail({ navigation }) {
                 image: mockedDetail.picture.originalUrl,
               }}
             />
-          ) : (
-            <ActivityIndicator size="large" color={colors.noticeBlue} />
-          )}
-        </Card.Content>
-      </Card>
-      <Card style={[custom.el, custom.card]}>
-        <Card.Content>
-          {mockedDetail.currentPrice ? (
-            <PriceInteractor price={mockedDetail.currentPrice} />
           ) : (
             <ActivityIndicator size="large" color={colors.noticeBlue} />
           )}
