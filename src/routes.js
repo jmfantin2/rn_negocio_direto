@@ -7,8 +7,9 @@ import Home from './pages/Home';
 import AnnouncementCreation from './pages/AnnouncementCreation';
 import AnnouncementDetail from './pages/AnnouncementDetail';
 import RegisterUser from './pages/RegisterUser';
+import ExpiredDetail from './pages/ExpiredDetail';
 
-import { colors, strings } from '../assets/general';
+import { colors } from '../assets/general';
 
 //Telas acessíveis apenas após Login!
 const StackNavigator = createStackNavigator(
@@ -16,6 +17,7 @@ const StackNavigator = createStackNavigator(
     Home,
     AnnouncementCreation,
     AnnouncementDetail,
+    ExpiredDetail,
   },
   {
     initialRouteName: 'Home',

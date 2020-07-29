@@ -7,6 +7,8 @@ const StepIndicator = ({ status, highlight, label }) => {
   let endColor = colors.darkCyan;
   if (status === 'active') {
     endColor = colors.regular;
+  } else {
+    endColor = highlight;
   }
   return (
     <>

@@ -40,11 +40,11 @@ export default function ExpiredDetail({ navigation }) {
   return (
     <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
       <StepIndicator
-        status="active"
+        status="expired"
         highlight={colors.noticeBlue}
+        label={'O anúncio já terminou'}
         style={custom.el}
       />
-      <Text style={[custom.el, custom.txt]}>Recebendo propostas</Text>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
           {announcement.picture ? (
@@ -89,11 +89,6 @@ const screenW = Dimensions.get('window').width;
 const custom = StyleSheet.create({
   el: {
     marginBottom: 16,
-  },
-  txt: {
-    color: colors.noticeBlue,
-    fontSize: 16,
-    fontWeight: 'bold',
   },
   card: {
     width: screenW - 32,

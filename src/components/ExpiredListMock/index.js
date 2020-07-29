@@ -6,12 +6,13 @@ import {
   View,
   Dimensions,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { Button, Card, Chip, Paragraph, Title } from 'react-native-paper';
+import { Card, Chip, Paragraph, Title } from 'react-native-paper';
 import { colors } from 'general';
 import api from '../../services/ann';
+
+import { mockedList } from 'helpers/CattleUtility/constants';
 
 const ExpiredListMock = ({ navigation }) => {
   const [announcements, setAnnouncements] = useState([]);
@@ -30,7 +31,7 @@ const ExpiredListMock = ({ navigation }) => {
 
   return (
     <FlatList
-      data={announcements}
+      data={mockedList}
       numColumns={2}
       keyExtractor={(item) => item.id}
       refreshControl={
@@ -45,7 +46,7 @@ const ExpiredListMock = ({ navigation }) => {
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() =>
-              navigation.navigate('AnnouncementDetail', { id: item.id })
+              navigation.navigate('ExpiredDetail', { id: item.id })
             }
           >
             {item.picture ? (

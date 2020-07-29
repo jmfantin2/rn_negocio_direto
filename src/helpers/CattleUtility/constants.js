@@ -32,28 +32,20 @@ export const BREEDS = [
   { label: 'ZEBU', value: 'zebu' },
 ];
 
-// ANNOUNCEMENT DETAIL
-export const mockedData = {
-  category: [
-    { name: 'novilho', quantity: 10, size: 0 },
-    { name: 'novilha', quantity: 5, size: 1 },
-  ],
-  breed: [
-    { name: 'devon', quantity: 10, size: 0 },
-    { name: 'nelore', quantity: 5, size: 1 },
-  ],
-  ageRange: '5Y-7Y',
-  weight: '150',
-  location: {
-    city: 'Erechim',
-    state: 'RS',
+export const mockedList = [
+  {
+    id: '5eof356',
+    category: [
+      { name: 'NOVILHO', quantity: 10 },
+      { name: 'NOVILHA', quantity: 5 },
+    ],
+    location: {
+      city: 'Erechim',
+      state: 'RS',
+    },
+    animalsQuantity: 15,
+    currentPrice: '7',
   },
-  observations: [
-    'um dos novilhos tem uma condição de nascença que o faz mancar',
-    'de resto, tudo normal',
-  ],
-  createdDate: '2020-04-21T21:49:38.734+00:00',
-  endDate: '2020-04-24T21:49:38.734+00:00',
-  initialPrice: 0,
-  currentPrice: '7.50',
-};
+];
+
+export const mockedDetail = {};
