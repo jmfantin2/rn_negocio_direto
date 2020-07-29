@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Button, Chip, Card, Paragraph, Title } from 'react-native-paper';
+import { Card } from 'react-native-paper';
 import { MiniPlayer, StepIndicator, LocationHeader } from 'components/common';
 import { CattleSummary, PriceInteractor } from 'components/AnnouncementDetail';
 import api from '../../services/ann';

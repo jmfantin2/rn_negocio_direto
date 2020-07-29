@@ -48,4 +48,25 @@ export const mockedList = [
   },
 ];
 
-export const mockedDetail = {};
+export const mockedDetail = {
+  id: '5eof356',
+  category: [
+    { name: 'NOVILHO', quantity: 10 },
+    { name: 'NOVILHA', quantity: 5 },
+  ],
+  breed: [
+    { name: 'BRANGUS', quantity: 10 },
+    { name: 'DEVON', quantity: 5 },
+  ],
+  observations: ['são 5 inteiros e 5 castrados', 'nenhuma novilha prenhe'],
+  location: {
+    city: 'Erechim',
+    state: 'RS',
+  },
+  animalsQuantity: 15,
+  currentPrice: '7',
+  picture: {
+    originalUrl:
+      'https://64.media.tumblr.com/6567a164212aaf7b6b9b7c8645ba4aaa/d60bfe9bc3c7fd99-e4/s400x600/7aa485f187a19d7a4a97235e16517c49c7efe481.png',
+  },
+};

@@ -61,7 +61,7 @@ const ExpiredListMock = ({ navigation }) => {
                 style={{ height: 120, margin: 12, borderRadius: 5 }}
                 source={{
                   uri:
-                    'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
+                    'https://64.media.tumblr.com/6567a164212aaf7b6b9b7c8645ba4aaa/d60bfe9bc3c7fd99-e4/s400x600/7aa485f187a19d7a4a97235e16517c49c7efe481.png',
                 }}
               />
             )}

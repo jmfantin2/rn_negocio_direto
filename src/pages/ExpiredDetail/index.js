@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Button, Chip, Card, Paragraph, Title } from 'react-native-paper';
+import { Card } from 'react-native-paper';
 import { MiniPlayer, StepIndicator, LocationHeader } from 'components/common';
 import { CattleSummary, PriceInteractor } from 'components/AnnouncementDetail';
 import api from '../../services/ann';
@@ -16,8 +16,12 @@ import videoTest from '../../../assets/video.mp4';
 
 import { colors } from 'general';
 
+import { mockedDetail } from 'helpers/CattleUtility/constants';
+
 export default function ExpiredDetail({ navigation }) {
   const id = navigation.getParam('id');
+
+  /* USELESS WHEN MOCKING
   const [announcement, setAnnouncement] = useState({});
 
   useEffect(() => {
@@ -36,6 +40,7 @@ export default function ExpiredDetail({ navigation }) {
 
     retrieveAnnouncement();
   }, []);
+  */
 
   return (
     <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
@@ -47,11 +52,11 @@ export default function ExpiredDetail({ navigation }) {
       />
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.picture ? (
+          {mockedDetail.picture ? (
             <MiniPlayer
               media={{
                 video: videoTest,
-                image: announcement.picture.originalUrl,
+                image: mockedDetail.picture.originalUrl,
               }}
             />
           ) : (
@@ -61,8 +66,8 @@ export default function ExpiredDetail({ navigation }) {
       </Card>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.currentPrice ? (
-            <PriceInteractor price={announcement.currentPrice} />
+          {mockedDetail.currentPrice ? (
+            <PriceInteractor price={mockedDetail.currentPrice} />
           ) : (
             <ActivityIndicator size="large" color={colors.noticeBlue} />
           )}
@@ -70,15 +75,15 @@ export default function ExpiredDetail({ navigation }) {
       </Card>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.location ? (
+          {mockedDetail.location ? (
             <LocationHeader
-              city={announcement.location.city}
-              uf={announcement.location.state}
+              city={mockedDetail.location.city}
+              uf={mockedDetail.location.state}
             />
           ) : (
             <ActivityIndicator size="large" color={colors.meatRed} />
           )}
-          {announcement ? <CattleSummary ann={announcement} /> : null}
+          {mockedDetail ? <CattleSummary ann={mockedDetail} /> : null}
         </Card.Content>
       </Card>
     </ScrollView>
