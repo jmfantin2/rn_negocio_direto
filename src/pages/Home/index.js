@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import AnnouncementList from 'components/AnnouncementList';
+import ExpiredListMock from 'components/ExpiredListMock';
 import { deleteUser } from 'utils';
 import { colors, strings } from 'general';
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Entypo } from '@expo/vector-icons';
 
 export default function Home(props) {
+  const [footerOption, setFooterOption] = useState(1);
   return (
     <>
-      <AnnouncementList navigation={props.navigation} />
+      {footerOption === 0 && <ExpiredListMock navigation={props.navigation} />}
+      {footerOption === 1 && <AnnouncementList navigation={props.navigation} />}
       <View style={custom.footer}>
+        <TouchableOpacity onPress={() => setFooterOption(0)}>
+          <Entypo
+            name="folder"
+            size={42}
+            color={footerOption === 0 ? colors.noticeBlue : colors.light}
+          />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('AnnouncementCreation')}
         >
-          <AntDesign name="plussquareo" size={42} color={colors.noticeBlue} />
+          <AntDesign name="plussquareo" size={42} color={colors.ruralGreen} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setFooterOption(1)}>
+          <AntDesign
+            name="appstore1"
+            size={42}
+            color={footerOption === 1 ? colors.noticeBlue : colors.light}
+          />
         </TouchableOpacity>
       </View>
     </>
@@ -24,11 +41,14 @@ export default function Home(props) {
 
 const custom = StyleSheet.create({
   footer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     backgroundColor: colors.white,
     paddingBottom: 8,
     paddingTop: 8,
+    paddingLeft: 32,
+    paddingRight: 32,
     borderTopWidth: 1,
     borderTopColor: colors.light,
   },

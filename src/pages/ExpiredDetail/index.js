@@ -10,14 +10,19 @@ import {
 import PropTypes from 'prop-types';
 import { Card } from 'react-native-paper';
 import { MiniPlayer, StepIndicator, LocationHeader } from 'components/common';
-import { CattleSummary, PriceInteractor } from 'components/AnnouncementDetail';
+import { CattleSummary } from 'components/AnnouncementDetail';
+import { FinalPrices, SellerStatus } from 'components/ExpiredDetail';
 import api from '../../services/ann';
 import videoTest from '../../../assets/video.mp4';
 
 import { colors } from 'general';
 
-export default function AnnouncementDetail({ navigation }) {
+import { mockedDetail } from 'helpers/CattleUtility/constants';
+
+export default function ExpiredDetail({ navigation }) {
   const id = navigation.getParam('id');
+
+  /* USELESS WHEN MOCKING
   const [announcement, setAnnouncement] = useState({});
 
   useEffect(() => {
@@ -36,22 +41,35 @@ export default function AnnouncementDetail({ navigation }) {
 
     retrieveAnnouncement();
   }, []);
+  */
 
   return (
     <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
       <StepIndicator
-        status="active"
+        status="expired"
         highlight={colors.noticeBlue}
-        label={'Recebendo propostas'}
+        label={'O anúncio já terminou'}
         style={custom.el}
       />
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.picture ? (
+          {mockedDetail.currentPrice ? (
+            <FinalPrices price={mockedDetail.currentPrice} />
+          ) : (
+            <ActivityIndicator size="large" color={colors.noticeBlue} />
+          )}
+        </Card.Content>
+      </Card>
+      <Card style={[custom.el, custom.card]}>
+        <SellerStatus />
+      </Card>
+      <Card style={[custom.el, custom.card]}>
+        <Card.Content>
+          {mockedDetail.picture ? (
             <MiniPlayer
               media={{
                 video: videoTest,
-                image: announcement.picture.originalUrl,
+                image: mockedDetail.picture.originalUrl,
               }}
             />
           ) : (
@@ -61,24 +79,15 @@ export default function AnnouncementDetail({ navigation }) {
       </Card>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.currentPrice ? (
-            <PriceInteractor price={announcement.currentPrice} />
-          ) : (
-            <ActivityIndicator size="large" color={colors.noticeBlue} />
-          )}
-        </Card.Content>
-      </Card>
-      <Card style={[custom.el, custom.card]}>
-        <Card.Content>
-          {announcement.location ? (
+          {mockedDetail.location ? (
             <LocationHeader
-              city={announcement.location.city}
-              uf={announcement.location.state}
+              city={mockedDetail.location.city}
+              uf={mockedDetail.location.state}
             />
           ) : (
             <ActivityIndicator size="large" color={colors.meatRed} />
           )}
-          {announcement ? <CattleSummary ann={announcement} /> : null}
+          {mockedDetail ? <CattleSummary ann={mockedDetail} /> : null}
         </Card.Content>
       </Card>
     </ScrollView>
@@ -95,14 +104,14 @@ const custom = StyleSheet.create({
   },
 });
 
-AnnouncementDetail.navigationOptions = ({ navigation }) => {
+ExpiredDetail.navigationOptions = ({ navigation }) => {
   return {
     title: 'Detalhes do Anúncio',
     headerBackTitleVisible: false,
   };
 };
 
-AnnouncementDetail.propTypes = {
+ExpiredDetail.propTypes = {
   navigation: PropTypes.shape({
     dispatch: PropTypes.func,
   }).isRequired,
