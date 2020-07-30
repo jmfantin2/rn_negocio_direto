@@ -148,11 +148,11 @@ const custom = StyleSheet.create({
 });
 
 export const CameraIcon = () => {
-  return <Ionicons name="md-videocam" size={42} color={colors.ruralGreen} />;
+  return <Ionicons name="md-videocam" size={42} color={colors.noticeBlue} />;
 };
 
 export const PictureIcon = () => {
-  return <FontAwesome name="picture-o" size={42} color={colors.ruralGreen} />;
+  return <FontAwesome name="picture-o" size={42} color={colors.noticeBlue} />;
 };
 
 export const CheckIcon = () => {

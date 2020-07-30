@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { colors } from "general";
+import styled from 'styled-components/native';
+import { colors } from 'general';
 
 export const Area = styled.View`
   background-color: ${colors.lighter};
@@ -13,16 +13,16 @@ export const Area = styled.View`
 `;
 
 export const Message = styled.Text`
-  color: ${colors.oceanGreen};
+  color: ${colors.ruralGreen};
   font-size: 18px;
   font-weight: bold;
 `;
 
-import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
 export const CameraIcon = () => {
-  return <Ionicons name="md-videocam" size={42} color={colors.oceanGreen} />;
+  return <Ionicons name="md-videocam" size={42} color={colors.ruralGreen} />;
 };
 
 export const CheckIcon = () => {
@@ -30,7 +30,7 @@ export const CheckIcon = () => {
     <Ionicons
       name="md-checkmark-circle-outline"
       size={42}
-      color={colors.oceanGreen}
+      color={colors.ruralGreen}
     />
   );
 };

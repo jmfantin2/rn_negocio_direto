@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
-import { colors } from "general";
+import styled from 'styled-components/native';
+import { colors } from 'general';
 
-import { Dimensions } from "react-native";
-const screenW = Dimensions.get("window").width;
+import { Dimensions } from 'react-native';
+const screenW = Dimensions.get('window').width;
 
 export const Container = styled.View`
   flex-direction: row;
@@ -13,7 +13,7 @@ export const Container = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${colors.oceanGreen};
+  color: ${colors.ruralGreen};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
@@ -26,7 +26,7 @@ export const Input = styled.TextInput`
   text-align: center;
   font-weight: bold;
   font-size: 16px;
-  color: ${colors.oceanGreen};
+  color: ${colors.ruralGreen};
   border-radius: 50px;
   width: ${screenW / 3}px;
 `;
