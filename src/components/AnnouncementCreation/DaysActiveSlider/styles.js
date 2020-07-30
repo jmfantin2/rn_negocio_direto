@@ -8,14 +8,8 @@ export const SwitchContainer = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${colors.ruralGreen};
+  color: ${colors.darkCyan};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
-`;
-
-export const Description = styled.Text`
-  color: ${colors.black};
-  text-align: center;
-  font-size: 16px;
 `;

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { Slider } from "react-native";
-import { SwitchContainer, Label, Description } from "./styles";
+import React, { useEffect } from 'react';
+import { Slider } from 'react-native';
+import { SwitchContainer, Label } from './styles';
+import { colors } from 'general';
 
-import { useDynamic } from "context/AnnouncementCreation/Dynamic";
-import { useDaysActive } from "context/AnnouncementCreation/DaysActive";
+import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
+import { useDaysActive } from 'context/AnnouncementCreation/DaysActive';
 
 export default function DaysActiveSlider() {
   const { dynamic } = useDynamic();
@@ -17,14 +18,19 @@ export default function DaysActiveSlider() {
     <SwitchContainer>
       <Label>Dias em Anúncio</Label>
       <Slider
+        minimumTrackTintColor={colors.noticeBlue}
+        maximumTrackTintColor={colors.noticeBlue}
+        thumbTintColor={colors.noticeBlue}
         minimumValue={2}
         maximumValue={dynamic ? 3 : 7}
         step={1}
         value={daysActive}
         onValueChange={(value) => setDaysActive(value)}
-        style={{ width: "100%" }}
+        style={{ width: '100%' }}
       />
-      <Label>{daysActive.toString()}</Label>
+      <Label style={{ color: colors.noticeBlue }}>
+        {daysActive.toString()}
+      </Label>
     </SwitchContainer>
   );
 }

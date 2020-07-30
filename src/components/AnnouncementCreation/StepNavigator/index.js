@@ -194,7 +194,7 @@ const StepNavigator = (props) => {
     <Container>
       {step > 1 ? (
         <TouchableOpacity onPress={() => setStep(step - 1)}>
-          <AntDesign name="leftcircleo" size={42} color={colors.darkCyan} />
+          <AntDesign name="leftcircleo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
       ) : (
         <AntDesign name="leftcircleo" size={42} color={colors.light} />
@@ -204,17 +204,13 @@ const StepNavigator = (props) => {
       </CenterContent>
       {step < 5 ? (
         <TouchableOpacity onPress={() => setStep(step + 1)}>
-          <AntDesign name="rightcircleo" size={42} color={colors.darkCyan} />
+          <AntDesign name="rightcircleo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
       ) : loading ? (
-        <ActivityIndicator size="large" color={colors.darkCyan} />
+        <ActivityIndicator size="large" color={colors.ruralGreen} />
       ) : submitAllowed ? (
         <TouchableOpacity onPress={() => handleSubmit()}>
-          <AntDesign
-            name="checkcircleo"
-            size={42}
-            color={colors.businessGreen}
-          />
+          <AntDesign name="checkcircleo" size={42} color={colors.ruralGreen} />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
@@ -226,7 +222,7 @@ const StepNavigator = (props) => {
             )
           }
         >
-          <AntDesign name="closecircleo" size={42} color={colors.danger} />
+          <AntDesign name="closecircleo" size={42} color={colors.meatRed} />
         </TouchableOpacity>
       )}
     </Container>
