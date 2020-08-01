@@ -35,25 +35,39 @@ export default function ContentByStep() {
         <>
           <MainCategorySelect />
           <MainBreedSelect />
-          <MainQuantityInput />
-          {/*<MainVariantsInputs /> DEPRECATED*/}
-          <MainObservationsInput />
         </>
       ) : step === 3 ? (
         <>
-          <OtherCategorySelect />
-          <OtherBreedSelect />
-          <OtherQuantityInput />
-          {/*<OtherVariantsInputs /> DEPRECATED*/}
-          <OtherObservationsInput />
+          <MainQuantityInput />
+          {/*AQUI <MainAverageWeight /> */}
+          {/*AQUI <MainAgeRange /> */}
         </>
       ) : step === 4 ? (
         <>
-          <LocationSelects />
-          <AverageWeightInput />
-          <PriceInput />
+          <MainObservationsInput />
         </>
       ) : step === 5 ? (
+        <>
+          <OtherCategorySelect />
+          <OtherBreedSelect />
+        </>
+      ) : step === 6 ? (
+        <>
+          <OtherQuantityInput />
+          {/*AQUI <OtherAverageWeight /> */}
+          {/*AQUI <OtherAgeRange /> */}
+        </>
+      ) : step === 7 ? (
+        <>
+          <OtherObservationsInput />
+        </>
+      ) : step === 8 ? (
+        <>
+          <LocationSelects />
+          {/*<AverageWeightInput />*/}
+          <PriceInput />
+        </>
+      ) : step === 9 ? (
         <>
           <Summary />
         </>

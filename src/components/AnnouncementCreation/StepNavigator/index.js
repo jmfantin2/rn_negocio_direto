@@ -189,6 +189,12 @@ const StepNavigator = (props) => {
     }
     setLoading(false);
   }
+  /*
+  function jump(currentStep, direction){
+    if(step ===){
+
+    }
+  }*/
 
   return (
     <Container>
@@ -200,9 +206,9 @@ const StepNavigator = (props) => {
         <AntDesign name="leftcircleo" size={42} color={colors.light} />
       )}
       <CenterContent>
-        <Label>{step} de 5</Label>
+        <Label>{step} de 9</Label>
       </CenterContent>
-      {step < 5 ? (
+      {step < 9 ? (
         <TouchableOpacity onPress={() => setStep(step + 1)}>
           <AntDesign name="rightcircleo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
