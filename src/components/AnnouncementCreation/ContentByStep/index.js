@@ -35,10 +35,10 @@ export default function ContentByStep() {
         <>
           <MainCategorySelect />
           <MainBreedSelect />
+          <MainQuantityInput />
         </>
       ) : step === 3 ? (
         <>
-          <MainQuantityInput />
           {/*AQUI <MainAverageWeight /> */}
           {/*AQUI <MainAgeRange /> */}
         </>

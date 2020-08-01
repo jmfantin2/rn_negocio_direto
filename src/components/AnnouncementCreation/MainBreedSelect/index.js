@@ -1,50 +1,76 @@
-import React from "react";
-import RNPickerSelect from "react-native-picker-select";
-import { useMainBreed } from "context/AnnouncementCreation/MainBreed";
+import React, { useState, useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import AutoComplete from 'react-native-autocomplete-modal';
 
-import { colors } from "general";
-import { Label, SelectBG, pickerStyle } from "./styles";
+import { useMainBreed } from 'context/AnnouncementCreation/MainBreed';
+
+import { colors } from 'general';
 
 export default function MainBreedSelect() {
   const { mainBreed, setMainBreed } = useMainBreed();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadFont() {
+      await Expo.Font.loadAsync({
+        //this is needed, somehow, for the AutoComplete modal
+        Roboto: require('native-base/Fonts/Roboto.ttf'),
+        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      });
+      setLoading(false);
+    }
+    loadFont();
+  }, []);
+
   return (
     <>
-      <Label>Raça</Label>
-      <SelectBG>
-        <RNPickerSelect
-          placeholder={{
-            label: "───",
-            value: null,
-            color: colors.light,
-          }}
-          value={mainBreed}
-          style={pickerStyle}
-          useNativeAndroidPickerStyle={false}
-          onValueChange={(value) => setMainBreed(value)}
-          items={BREEDS}
-        />
-      </SelectBG>
+      {loading ? (
+        <ActivityIndicator size="large" color={colors.ruralGreen} />
+      ) : (
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <AutoComplete
+            style={{
+              borderRadius: 50,
+              backgroundColor: mainBreed
+                ? colors.ruralGreen
+                : colors.noticeBlue,
+              paddingRight: 16,
+              paddingLeft: 16,
+              paddingBottom: 8,
+              paddingTop: 8,
+            }}
+            onSelect={(data) => setMainBreed(data.value)}
+            dataSource={BREEDS}
+            textLabel={mainBreed ? mainBreed : 'Selecione uma Raça'}
+            searchPlaceholder="Buscar"
+            cancelText="Fechar"
+            textColor="white"
+            searchField="label"
+          />
+        </View>
+      )}
     </>
   );
 }
 
 const BREEDS = [
-  { label: "ANGUS (ABERDEEN)", value: "aberdeen_angus" },
-  { label: "ANGUS (RED)", value: "red_angus" },
-  { label: "BRAFORD", value: "braford" },
-  { label: "BRANGUS", value: "brangus" },
-  { label: "BRITÂNICOS", value: "britanicos" },
-  { label: "CANCHIN", value: "canchin" },
-  { label: "CHAROLES", value: "charoles" },
-  { label: "CRUZAS EUROPEIAS", value: "cruzas_europeias" },
-  { label: "CRUZAS LEITEIRAS", value: "cruzas_leiteiras" },
-  { label: "CRUZAS ZEBU", value: "cruzas_zebu" },
-  { label: "DEVON", value: "devon" },
-  { label: "EUROPEUS", value: "europeus" },
-  { label: "HEREFORD", value: "hereford" },
-  { label: "LIMOUSIN", value: "limousin" },
-  { label: "NELORE", value: "nelore" },
-  { label: "SIMENTAL", value: "simental" },
-  { label: "TABAPUÃ", value: "tabapua" },
-  { label: "ZEBU", value: "zebu" },
+  { label: 'Selecione uma Raça', value: '' },
+  { label: 'ANGUS (ABERDEEN)', value: 'ANGUS (ABERDEEN)' },
+  { label: 'ANGUS (RED)', value: 'ANGUS (RED)' },
+  { label: 'BRAFORD', value: 'BRAFORD' },
+  { label: 'BRANGUS', value: 'BRANGUS' },
+  { label: 'BRITÂNICOS', value: 'BRITÂNICOS' },
+  { label: 'CANCHIN', value: 'CANCHIN' },
+  { label: 'CHAROLES', value: 'CHAROLES' },
+  { label: 'CRUZAS EUROPEIAS', value: 'CRUZAS EUROPEIAS' },
+  { label: 'CRUZAS LEITEIRAS', value: 'CRUZAS LEITEIRAS' },
+  { label: 'CRUZAS ZEBU', value: 'CRUZAS ZEBU' },
+  { label: 'DEVON', value: 'DEVON' },
+  { label: 'EUROPEUS', value: 'EUROPEUS' },
+  { label: 'HEREFORD', value: 'HEREFORD' },
+  { label: 'LIMOUSIN', value: 'LIMOUSIN' },
+  { label: 'NELORE', value: 'NELORE' },
+  { label: 'SIMENTAL', value: 'SIMENTAL' },
+  { label: 'TABAPUÃ', value: 'TABAPUÃ' },
+  { label: 'ZEBU', value: 'ZEBU' },
 ];
