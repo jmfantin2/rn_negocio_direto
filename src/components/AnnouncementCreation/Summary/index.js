@@ -57,7 +57,7 @@ export default function Summary() {
           <Description>
             {mainQuantity +
               ' x ' +
-              mainCategory.toUpperCase() +
+              mainCategory +
               ' (' +
               mainBreed
                 .toUpperCase()

@@ -15,7 +15,6 @@ export default function AnnouncementCreation() {
     <ContextWrapper>
       <Canvas behavior="padding" enabled>
         <MediaUploader />
-        <Optional />
         <Container>
           <ContentByStep />
         </Container>
