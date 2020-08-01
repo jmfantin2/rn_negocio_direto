@@ -20,13 +20,11 @@ export const Label = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-  height: 40px;
-  padding: 0px 10px 0px 10px;
-  background-color: ${colors.lighter};
+  padding: 3px 0px 3px 0px;
+  background-color: ${colors.ruralGreen};
   text-align: center;
-  font-weight: bold;
   font-size: 16px;
-  color: ${colors.ruralGreen};
+  color: ${colors.white};
   border-radius: 50px;
-  width: ${screenW / 3}px;
+  width: 100px;
 `;

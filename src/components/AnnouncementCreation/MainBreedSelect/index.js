@@ -36,8 +36,8 @@ export default function MainBreedSelect() {
                 : colors.noticeBlue,
               paddingRight: 16,
               paddingLeft: 16,
-              paddingBottom: 8,
-              paddingTop: 8,
+              paddingBottom: 6,
+              paddingTop: 6,
             }}
             onSelect={(data) => setMainBreed(data.value)}
             dataSource={BREEDS}

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import RNPickerSelect from "react-native-picker-select";
+import React, { useState, useEffect } from 'react';
+import RNPickerSelect from 'react-native-picker-select';
 
-import { useMainCategory } from "context/AnnouncementCreation/MainCategory";
-import { useDynamic } from "context/AnnouncementCreation/Dynamic";
-import { useOtherCategory } from "context/AnnouncementCreation/OtherCategory";
+import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
+import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
+import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
 
-import { colors } from "general";
-import { Cow, Label, SelectBG, Notice, pickerStyle } from "./styles";
-import CowSrc from "assets/images/cow.png";
+import { colors } from 'general';
+import { Cow, Label, SelectBG, Notice, pickerStyle } from './styles';
+import CowSrc from 'assets/images/cow.png';
 
 export default function OtherCategorySelect() {
   const { mainCategory } = useMainCategory(); // READ
@@ -21,8 +21,8 @@ export default function OtherCategorySelect() {
   useEffect(() => {
     if (
       dynamic ||
-      mainCategory === "touro" ||
-      mainCategory === "vaca_invernar" ||
+      mainCategory === 'touro' ||
+      mainCategory === 'vaca_invernar' ||
       mainCategory === null
     ) {
       setOtherCategory(null);
@@ -41,7 +41,7 @@ export default function OtherCategorySelect() {
           <SelectBG>
             <RNPickerSelect
               placeholder={{
-                label: "───",
+                label: '───',
                 value: null,
                 color: colors.light,
               }}
@@ -58,9 +58,9 @@ export default function OtherCategorySelect() {
           <>
             <Cow source={CowSrc} resizeMode="contain" />
             <Notice>
-              Não há categoria{"\n"}adicional em caso de:{"\n\n"}PREÇO DINÂMICO
-              {"\n"}TOURO
-              {"\n"}
+              Não há categoria{'\n'}adicional em caso de:{'\n\n'}PREÇO DINÂMICO
+              {'\n'}TOURO
+              {'\n'}
               VACA INVERNAR
             </Notice>
           </>
@@ -72,35 +72,35 @@ export default function OtherCategorySelect() {
 
 function getMatchedCategories(value) {
   let matchedCategories = [];
-  switch (value) {
-    case "terneiro":
+  switch (value.toLowerCase()) {
+    case 'terneiro':
       matchedCategories = [
-        { label: "NOVILHO", value: "novilho" },
-        { label: "TERNEIRA", value: "terneira" },
+        { label: 'NOVILHO', value: 'novilho' },
+        { label: 'TERNEIRA', value: 'terneira' },
       ];
       break;
-    case "novilho":
+    case 'novilho':
       matchedCategories = [
-        { label: "TERNEIRO", value: "terneiro" },
-        { label: "NOVILHA", value: "novilha" },
-        { label: "VACA", value: "vaca" },
+        { label: 'TERNEIRO', value: 'terneiro' },
+        { label: 'NOVILHA', value: 'novilha' },
+        { label: 'VACA', value: 'vaca' },
       ];
       break;
-    case "terneira":
+    case 'terneira':
       matchedCategories = [
-        { label: "NOVILHA", value: "novilha" },
-        { label: "TERNEIRO", value: "terneiro" },
+        { label: 'NOVILHA', value: 'novilha' },
+        { label: 'TERNEIRO', value: 'terneiro' },
       ];
       break;
-    case "novilha":
+    case 'novilha':
       matchedCategories = [
-        { label: "TERNEIRA", value: "terneira" },
-        { label: "NOVILHO", value: "novilho" },
-        { label: "VACA", value: "vaca" },
+        { label: 'TERNEIRA', value: 'terneira' },
+        { label: 'NOVILHO', value: 'novilho' },
+        { label: 'VACA', value: 'vaca' },
       ];
       break;
-    case "vaca":
-      matchedCategories = [{ label: "NOVILHA", value: "novilha" }];
+    case 'vaca':
+      matchedCategories = [{ label: 'NOVILHA', value: 'novilha' }];
       break;
     default:
       // "touro", "vaca_invernar", null
