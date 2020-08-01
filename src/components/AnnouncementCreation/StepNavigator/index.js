@@ -119,7 +119,7 @@ const StepNavigator = (props) => {
       let ann = {
         animalsQuantity: 0,
         observations: [],
-        ageRange: 'TBD',
+        ageRange: [],
         category: [],
         breed: [],
         currentPrice: '0',
@@ -129,7 +129,7 @@ const StepNavigator = (props) => {
           city: '',
           state: '',
         },
-        weight: '',
+        weight: [],
         picture: {
           id: '',
           originalUrl: '',
@@ -140,7 +140,6 @@ const StepNavigator = (props) => {
       ann.picture.originalUrl = image.originalUrl;
 
       ann.location = { city, state };
-      ann.weight = averageWeight;
       const dates = makeDates(daysActive);
       // ann.createdDate = dates.createdDate;
       ann.endDate = dates.endDate;
@@ -153,6 +152,8 @@ const StepNavigator = (props) => {
       ann.breed.push({ name: mainBreed, quantity: parseInt(mainQuantity) });
       ann.observations.push(mainObservations);
       ann.animalsQuantity = parseInt(mainQuantity);
+      ann.ageRange.push('tmp age M: 9M-3Y');
+      ann.weight.push('tmp wgt M: 150');
 
       if (otherCategory && otherBreed && otherQuantity && otherObservations) {
         ann.category.push({
@@ -162,6 +163,8 @@ const StepNavigator = (props) => {
         ann.breed.push({ name: otherBreed, quantity: parseInt(otherQuantity) });
         ann.animalsQuantity += parseInt(otherQuantity);
         ann.observations.push(otherObservations);
+        ann.ageRange.push('tmp age O: 3Y-5Y');
+        ann.weight.push('tmp wgt O: 200');
       }
 
       sendData(ann);
