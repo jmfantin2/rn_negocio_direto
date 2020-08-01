@@ -192,17 +192,26 @@ const StepNavigator = (props) => {
     }
     setLoading(false);
   }
-  /*
-  function jump(currentStep, direction){
-    if(step ===){
 
+  function jump(direction) {
+    //we dont want the user to see steps 5-7 on these conditions
+    if (
+      ((direction === 'right' && step === 4) ||
+        (direction === 'left' && step === 8)) &&
+      (dynamic ||
+        mainCategory === 'TOURO' ||
+        mainCategory === 'VACA INVERNAR' ||
+        mainCategory === '')
+    ) {
+      return 4;
     }
-  }*/
+    return 1;
+  }
 
   return (
     <Container>
       {step > 1 ? (
-        <TouchableOpacity onPress={() => setStep(step - 1)}>
+        <TouchableOpacity onPress={() => setStep(step - jump('left'))}>
           <AntDesign name="leftcircleo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
       ) : (
@@ -212,7 +221,7 @@ const StepNavigator = (props) => {
         <Label>{step} de 9</Label>
       </CenterContent>
       {step < 9 ? (
-        <TouchableOpacity onPress={() => setStep(step + 1)}>
+        <TouchableOpacity onPress={() => setStep(step + jump('right'))}>
           <AntDesign name="rightcircleo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
       ) : loading ? (

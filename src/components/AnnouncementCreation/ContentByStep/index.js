@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Text } from 'react-native';
+
 import {
   DynamicSwitch,
   MainCategorySelect,
@@ -39,8 +41,8 @@ export default function ContentByStep() {
         </>
       ) : step === 3 ? (
         <>
-          {/*AQUI <MainAverageWeight /> */}
-          {/*AQUI <MainAgeRange /> */}
+          <Text>MainAverageWeight</Text>
+          <Text>MainAgeRange</Text>
         </>
       ) : step === 4 ? (
         <>
@@ -50,12 +52,12 @@ export default function ContentByStep() {
         <>
           <OtherCategorySelect />
           <OtherBreedSelect />
+          <OtherQuantityInput />
         </>
       ) : step === 6 ? (
         <>
-          <OtherQuantityInput />
-          {/*AQUI <OtherAverageWeight /> */}
-          {/*AQUI <OtherAgeRange /> */}
+          <Text>OtherAverageWeight</Text>
+          <Text>OtherAgeRange</Text>
         </>
       ) : step === 7 ? (
         <>

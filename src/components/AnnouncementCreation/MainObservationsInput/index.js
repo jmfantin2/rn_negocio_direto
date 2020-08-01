@@ -49,14 +49,6 @@ export default function MainObservationsInput() {
           </Chip>
         ))}
       </View>
-      {/*
-        <Input
-          textAlignVertical={'top'}
-          multiline={true}
-          value={mainObservations}
-          onChangeText={(text) => setMainObservations(text)}
-        />
-        */}
       <TextInput
         label="Observações"
         value={mainObservations}

@@ -8,48 +8,27 @@ import { colors } from 'general';
 
 export default function MainBreedSelect() {
   const { mainBreed, setMainBreed } = useMainBreed();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function loadFont() {
-      await Expo.Font.loadAsync({
-        //this is needed, somehow, for the AutoComplete modal
-        Roboto: require('native-base/Fonts/Roboto.ttf'),
-        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-      });
-      setLoading(false);
-    }
-    loadFont();
-  }, []);
 
   return (
-    <>
-      {loading ? (
-        <ActivityIndicator size="large" color={colors.ruralGreen} />
-      ) : (
-        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <AutoComplete
-            style={{
-              borderRadius: 50,
-              backgroundColor: mainBreed
-                ? colors.ruralGreen
-                : colors.noticeBlue,
-              paddingRight: 16,
-              paddingLeft: 16,
-              paddingBottom: 6,
-              paddingTop: 6,
-            }}
-            onSelect={(data) => setMainBreed(data.value)}
-            dataSource={BREEDS}
-            textLabel={mainBreed ? mainBreed : 'Selecione uma Raça'}
-            searchPlaceholder="Buscar"
-            cancelText="Fechar"
-            textColor="white"
-            searchField="label"
-          />
-        </View>
-      )}
-    </>
+    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+      <AutoComplete
+        style={{
+          borderRadius: 50,
+          backgroundColor: mainBreed ? colors.ruralGreen : colors.noticeBlue,
+          paddingRight: 16,
+          paddingLeft: 16,
+          paddingBottom: 6,
+          paddingTop: 6,
+        }}
+        onSelect={(data) => setMainBreed(data.value)}
+        dataSource={BREEDS}
+        textLabel={mainBreed ? mainBreed : 'Selecione uma Raça'}
+        searchPlaceholder="Buscar"
+        cancelText="Fechar"
+        textColor="white"
+        searchField="label"
+      />
+    </View>
   );
 }
 
