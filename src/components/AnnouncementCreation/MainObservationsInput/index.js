@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Text } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { View, Text } from 'react-native';
+import { TextInput, Chip } from 'react-native-paper';
 import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
 import { useMainObservations } from 'context/AnnouncementCreation/MainObservations';
 
@@ -18,18 +18,37 @@ export default function MainObservationsInput() {
 
   return (
     <>
-      <Text>Forneça mais informações</Text>
-
-      {possibleVariants.map((v) => (
-        <Text key={v.key} style={{ fontWeight: 'bold' }}>
-          {v.case
-            .charAt(0)
-            .toUpperCase()
-            .concat(v.case.substring(1))
-            .replace('_', ' ')}
-          ?
-        </Text>
-      ))}
+      <Text
+        style={{ fontSize: 18, fontWeight: 'bold', color: colors.darkCyan }}
+      >
+        Forneça mais informações
+      </Text>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'flex-end',
+          marginTop: 4,
+        }}
+      >
+        {possibleVariants.map((v) => (
+          <Chip
+            key={v.key}
+            style={{
+              fontWeight: 'bold',
+              marginRight: 2,
+              backgroundColor: colors.noticeBlue,
+            }}
+            textStyle={{ color: colors.white }}
+          >
+            {v.case
+              .charAt(0)
+              .toUpperCase()
+              .concat(v.case.substring(1))
+              .replace('_', ' ')}
+            ?
+          </Chip>
+        ))}
+      </View>
       {/*
         <Input
           textAlignVertical={'top'}
