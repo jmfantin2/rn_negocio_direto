@@ -3,6 +3,7 @@ import { Text, View, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { colors } from 'general';
 import { Feather } from '@expo/vector-icons';
+import currencyMask from '../../../helpers/currencyMask';
 
 const FinalPrices = ({ price }) => {
   if (price !== undefined) {
@@ -14,7 +15,7 @@ const FinalPrices = ({ price }) => {
         }}
       >
         <Text style={custom.title}>Maior proposta</Text>
-        <Text style={custom.price}>R$ {price}</Text>
+        <Text style={custom.price}>{currencyMask(price)}</Text>
       </View>
     );
   } else {

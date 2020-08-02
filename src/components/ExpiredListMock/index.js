@@ -13,6 +13,7 @@ import { colors } from 'general';
 import api from '../../services/ann';
 
 import { mockedList } from 'helpers/CattleUtility/constants';
+import currencyMask from '../../helpers/currencyMask';
 
 const ExpiredListMock = ({ navigation }) => {
   const [announcements, setAnnouncements] = useState([]);
@@ -83,7 +84,7 @@ const ExpiredListMock = ({ navigation }) => {
             <Paragraph
               style={{ color: '#b5b5b5' }}
             >{`${item.animalsQuantity} cabeças`}</Paragraph>
-            <Title>{`R$ ${item.currentPrice},00`}</Title>
+            <Title>{currencyMask(item.currentPrice)}</Title>
             <Text style={{ color: '#6B9061', fontSize: 16, marginTop: 8 }}>
               {`${item.location.city} (${item.location.state})`}
             </Text>
