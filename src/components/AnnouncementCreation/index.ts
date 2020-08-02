@@ -73,3 +73,6 @@ export { DaysActiveSlider };
 
 import LocationSelects from './LocationSelects';
 export { LocationSelects };
+
+import MainAgeRangeSelector from './MainAgeRangeSelector';
+export { MainAgeRangeSelector };

@@ -17,8 +17,8 @@ import {
   PriceProvider,
   DaysActiveProvider,
   LocationProvider,
-  MainWeightProvider,
-  OtherWeightProvider,
+  MainAgeRangeProvider,
+  OtherAgeRangeProvider,
 } from 'context/AnnouncementCreation';
 
 export default function ContextWrapper({ children }) {
@@ -31,11 +31,11 @@ export default function ContextWrapper({ children }) {
               <MainCategoryProvider>
                 <MainBreedProvider>
                   <MainQuantityProvider>
-                    <MainWeightProvider>
+                    <MainAgeRangeProvider>
                       <MainObservationsProvider>
                         <OtherBreedProvider>
                           <OtherQuantityProvider>
-                            <OtherWeightProvider>
+                            <OtherAgeRangeProvider>
                               <OtherObservationsProvider>
                                 <LocationProvider>
                                   <AverageWeightProvider>
@@ -45,11 +45,11 @@ export default function ContextWrapper({ children }) {
                                   </AverageWeightProvider>
                                 </LocationProvider>
                               </OtherObservationsProvider>
-                            </OtherWeightProvider>
+                            </OtherAgeRangeProvider>
                           </OtherQuantityProvider>
                         </OtherBreedProvider>
                       </MainObservationsProvider>
-                    </MainWeightProvider>
+                    </MainAgeRangeProvider>
                   </MainQuantityProvider>
                 </MainBreedProvider>
               </MainCategoryProvider>

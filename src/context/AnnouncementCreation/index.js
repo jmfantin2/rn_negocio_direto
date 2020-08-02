@@ -47,11 +47,11 @@ export { OtherObservationsProvider };
 import AverageWeightProvider from './AverageWeight';
 export { AverageWeightProvider };
 
-import MainWeightProvider from './MainWeight';
-export { MainWeightProvider };
+import MainAgeRangeProvider from './MainAgeRange';
+export { MainAgeRangeProvider };
 
-import OtherWeightProvider from './OtherWeight';
-export { OtherWeightProvider };
+import OtherAgeRangeProvider from './OtherAgeRange';
+export { OtherAgeRangeProvider };
 
 import PriceProvider from './Price';
 export { PriceProvider };

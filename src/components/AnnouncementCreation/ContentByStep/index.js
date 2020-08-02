@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 
 import {
   DynamicSwitch,
@@ -19,6 +19,8 @@ import {
   Summary,
   DaysActiveSlider,
   LocationSelects,
+  MainAgeRangeSelector,
+  OtherAgeRangeSelector,
 } from 'components/AnnouncementCreation';
 
 import { useStep } from 'context/AnnouncementCreation/Step';
@@ -41,7 +43,7 @@ export default function ContentByStep() {
         </>
       ) : step === 3 ? (
         <>
-          <Text>MainAverageWeight</Text>
+          <MainAgeRangeSelector />
           <Text>MainAgeRange</Text>
         </>
       ) : step === 4 ? (

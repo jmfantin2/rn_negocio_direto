@@ -1,13 +1,13 @@
 import React, { createContext, useState, useContext } from 'react';
 
-const MainWeightContext = createContext();
+const OtherAgeRangeContext = createContext();
 
-export default function MainWeightProvider({ children }) {
+export default function OtherAgeRangeProvider({ children }) {
   const [youngest, setYoungest] = useState({ num: '', unit: '' });
   const [oldest, setOldest] = useState({ num: '', unit: '' });
 
   return (
-    <MainWeightContext.Provider
+    <OtherAgeRangeContext.Provider
       value={{
         youngest,
         setYoungest,
@@ -16,14 +16,16 @@ export default function MainWeightProvider({ children }) {
       }}
     >
       {children}
-    </MainWeightContext.Provider>
+    </OtherAgeRangeContext.Provider>
   );
 }
 
-export function useMainWeight() {
-  const context = useContext(MainWeightContext);
+export function useOtherAgeRange() {
+  const context = useContext(OtherAgeRangeContext);
   if (!context)
-    throw new Error('useMainWeight must be used within a MainWeightProvider');
+    throw new Error(
+      'useOtherAgeRange must be used within a OtherAgeRangeProvider'
+    );
   const { youngest, setYoungest, oldest, setOldest } = context;
   return { youngest, setYoungest, oldest, setOldest };
 }
