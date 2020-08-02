@@ -81,47 +81,15 @@ const StepNavigator = (props) => {
     }
   });
 
-  function printData() {
-    console.log(
-      'MainCategory: ' +
-        mainCategory +
-        '\nMainBreed: ' +
-        mainBreed +
-        '\nMainQuantity: ' +
-        mainQuantity +
-        '\nMainObservations: ' +
-        mainObservations +
-        '\nOtherCategory: ' +
-        otherCategory +
-        '\nOtherBreed: ' +
-        otherBreed +
-        '\nOtherQuantity: ' +
-        otherQuantity +
-        '\nOtherObservations: ' +
-        otherObservations +
-        '\nState: ' +
-        uf +
-        '\nCity: ' +
-        city +
-        '\nAverageWeight: ' +
-        averageWeight +
-        '\nPrice: ' +
-        price
-    );
-  }
-
   function handleSubmit() {
-    printData();
     if (submitAllowed) {
-      const categoryWrapper = {};
-      const breedWrapper = {};
       let ann = {
         animalsQuantity: 0,
         observations: [],
         ageRange: [],
         category: [],
         breed: [],
-        currentPrice: '0',
+        currentPrice: 0,
         // createdDate: 0,
         endDate: 0,
         location: {
@@ -134,11 +102,11 @@ const StepNavigator = (props) => {
 
       ann.picture.push({ id: image.id, originalUrl: image.originalUrl });
 
-      ann.location = { city, uf };
+      ann.location = { city: city, state: uf };
       const dates = makeDates(daysActive);
       // ann.createdDate = dates.createdDate;
       ann.endDate = dates.endDate;
-      price ? (ann.currentPrice = price) : null;
+      price ? (ann.currentPrice = parseInt(price)) : null;
 
       ann.category.push({
         name: mainCategory,
@@ -162,7 +130,7 @@ const StepNavigator = (props) => {
         ann.weight.push('tmp wgt O: 200');
       }
 
-      sendData(ann);
+      sendData(ann).then(console.log(ann));
       console.log('Data submited');
     } else {
       console.log('Failed Submition');

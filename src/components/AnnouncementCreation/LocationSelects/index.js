@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import AutoComplete from 'react-native-autocomplete-modal';
 
@@ -15,9 +15,11 @@ export default function LocationSelects() {
   const { uf, setUF, city, setCity } = useLocation();
   const [cityOptions, setCityOptions] = useState([]);
 
-  useEffect(() => {
+  function updateUFCandidates(uf) {
+    setUF(uf);
+    setCity('');
     setCityOptions(getUFCities(uf));
-  }, [uf]);
+  }
 
   return (
     <>
@@ -31,7 +33,7 @@ export default function LocationSelects() {
             paddingBottom: 6,
             paddingTop: 6,
           }}
-          onSelect={(data) => [setUF(data.value), setCity('')]}
+          onSelect={(data) => updateUFCandidates(data.value)}
           dataSource={BRAZILIAN_STATES}
           textLabel={uf ? uf : 'Selecione um estado'}
           searchPlaceholder="Buscar"
