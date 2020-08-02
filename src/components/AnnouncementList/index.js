@@ -13,6 +13,7 @@ import { Button, Card, Chip, Paragraph, Title } from 'react-native-paper';
 import { colors } from 'general';
 import { process } from 'helpers/CattleUtility';
 import api from '../../services/ann';
+import currencyMask from '../../helpers/currencyMask';
 
 const AnnouncementList = ({ navigation }) => {
   const [announcements, setAnnouncements] = useState([]);
@@ -21,6 +22,8 @@ const AnnouncementList = ({ navigation }) => {
   useEffect(() => {
     async function fetchAnnouncements() {
       const response = await api.get('/api/v1/announcements');
+
+      console.log(JSON.stringify(response.data.content));
 
       setAnnouncements(response.data.content);
       setRefreshing(false);
@@ -49,22 +52,14 @@ const AnnouncementList = ({ navigation }) => {
               navigation.navigate('AnnouncementDetail', { id: item.id })
             }
           >
-            {item.picture ? (
-              <Card.Cover
-                style={{ height: 120, margin: 12, borderRadius: 5 }}
-                source={{
-                  uri: item.picture[0].originalUrl,
-                }}
-              />
-            ) : (
-              <Card.Cover
-                style={{ height: 120, margin: 12, borderRadius: 5 }}
-                source={{
-                  uri:
-                    'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
-                }}
-              />
-            )}
+            <Card.Cover
+              style={{ height: 120, margin: 12, borderRadius: 5 }}
+              source={{
+                uri:
+                  item.picture[0]?.originalUrl ||
+                  'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
+              }}
+            />
           </TouchableOpacity>
           <Card.Content>
             <View
@@ -83,7 +78,7 @@ const AnnouncementList = ({ navigation }) => {
             <Paragraph
               style={{ color: '#b5b5b5' }}
             >{`${item.animalsQuantity} cabeças`}</Paragraph>
-            <Title>{`R$ ${item.currentPrice},00`}</Title>
+            <Title>{currencyMask(item.currentPrice)}</Title>
             <Text style={{ color: '#6B9061', fontSize: 16, marginTop: 8 }}>
               {`${item.location.city} (${item.location.state})`}
             </Text>

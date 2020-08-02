@@ -4,12 +4,49 @@ import { Button, TextInput } from 'react-native-paper';
 import { colors } from 'general';
 import { Feather } from '@expo/vector-icons';
 
-const PriceInteractor = ({ price }) => {
+import api from '../../../services/api';
+import currencyMask from '../../../helpers/currencyMask';
+
+const PriceInteractor = ({ id, price }) => {
   const [inputON, toggleInput] = useState(false);
   const [bid, setBid] = useState(price);
 
-  function makeBid() {
-    Alert.alert('Obrigado', 'Proposta realizada com sucesso!');
+  async function makeBid() {
+    if (bid <= price) {
+      toggleInput(false);
+
+      return Alert.alert(
+        'Erro',
+        `Para realizar uma nova proposta, é necessário cobrir a proposta atual de ${currencyMask(
+          price
+        )}.`
+      );
+    }
+
+    console.log(
+      `https://taskforce-announcement-dev.herokuapp.com/api/v1/announcements/${id}/offer`
+    );
+
+    console.log({
+      offer: Number(bid),
+    });
+
+    try {
+      const response = await api.put(
+        `https://taskforce-announcement-dev.herokuapp.com/api/v1/announcements/${id}/offer`,
+        {
+          offer: Number(bid),
+        }
+      );
+
+      console.log(response.data);
+
+      Alert.alert('Obrigado', `Proposta realizada com sucesso!`);
+    } catch (error) {
+      console.log(error.message);
+      console.log(error.response.data.message);
+    }
+
     //api POST
     toggleInput(false);
   }
@@ -23,7 +60,7 @@ const PriceInteractor = ({ price }) => {
         }}
       >
         <Text style={custom.title}>Proposta Atual</Text>
-        <Text style={custom.price}>R$ {price}</Text>
+        <Text style={custom.price}>{currencyMask(price)}</Text>
         <View
           style={{
             height: 50,
@@ -42,13 +79,14 @@ const PriceInteractor = ({ price }) => {
                 </View>
               </TouchableOpacity>
               <TextInput
+                keyboardType="decimal-pad"
                 style={custom.input}
                 mode="outlined"
                 label="Sua proposta"
-                value={bid}
+                value={String(bid)}
                 onChangeText={(text) => setBid(text)}
               />
-              <TouchableOpacity onPress={() => makeBid()}>
+              <TouchableOpacity onPress={makeBid}>
                 <View style={custom.actionButton}>
                   <Feather
                     name="arrow-up-right"
