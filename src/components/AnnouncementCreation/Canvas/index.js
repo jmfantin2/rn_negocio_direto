@@ -1,10 +1,10 @@
 // dumb component => styled right away!
 
-import styled from "styled-components/native";
-import { colors } from "general";
+import styled from 'styled-components/native';
+import { colors } from 'general';
 
-import { Dimensions } from "react-native";
-const screenH = Dimensions.get("window").height;
+import { Dimensions } from 'react-native';
+const screenH = Dimensions.get('window').height;
 
 const Canvas = styled.KeyboardAvoidingView`
   height: ${screenH}px;

@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Button, Card, Chip, Paragraph, Title } from 'react-native-paper';
 import { colors } from 'general';
+import { process } from 'helpers/CattleUtility';
 import api from '../../services/ann';
 
 const AnnouncementList = ({ navigation }) => {
@@ -75,7 +76,7 @@ const AnnouncementList = ({ navigation }) => {
             >
               {item.category.map(({ name }) => (
                 <Chip key={name} style={{ marginRight: 8, marginBottom: 8 }}>
-                  {name}
+                  {process(name, 'category', 1).toUpperCase()}
                 </Chip>
               ))}
             </View>

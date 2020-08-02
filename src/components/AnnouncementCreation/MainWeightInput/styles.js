@@ -13,7 +13,7 @@ export const Container = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${colors.ruralGreen};
+  color: ${colors.darkCyan};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
@@ -21,10 +21,11 @@ export const Label = styled.Text`
 
 export const Input = styled.TextInput`
   padding: 3px 0px 3px 0px;
-  background-color: ${colors.ruralGreen};
+  background-color: ${colors.noticeBlue};
   text-align: center;
   font-size: 16px;
   color: ${colors.white};
   border-radius: 50px;
-  width: 100px;
+  width: 50px;
+  margin-right: 4px;
 `;

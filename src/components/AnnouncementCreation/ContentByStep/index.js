@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { View, Text } from 'react-native';
+
 import {
   DynamicSwitch,
   MainCategorySelect,
@@ -17,6 +19,10 @@ import {
   Summary,
   DaysActiveSlider,
   LocationSelects,
+  MainAgeRangeSelector,
+  OtherAgeRangeSelector,
+  MainWeightInput,
+  OtherWeightInput,
 } from 'components/AnnouncementCreation';
 
 import { useStep } from 'context/AnnouncementCreation/Step';
@@ -36,24 +42,38 @@ export default function ContentByStep() {
           <MainCategorySelect />
           <MainBreedSelect />
           <MainQuantityInput />
-          {/*<MainVariantsInputs /> DEPRECATED*/}
-          <MainObservationsInput />
         </>
       ) : step === 3 ? (
+        <>
+          <MainAgeRangeSelector />
+          <MainWeightInput />
+        </>
+      ) : step === 4 ? (
+        <>
+          <MainObservationsInput />
+        </>
+      ) : step === 5 ? (
         <>
           <OtherCategorySelect />
           <OtherBreedSelect />
           <OtherQuantityInput />
-          {/*<OtherVariantsInputs /> DEPRECATED*/}
+        </>
+      ) : step === 6 ? (
+        <>
+          <OtherAgeRangeSelector />
+          <OtherWeightInput />
+        </>
+      ) : step === 7 ? (
+        <>
           <OtherObservationsInput />
         </>
-      ) : step === 4 ? (
+      ) : step === 8 ? (
         <>
           <LocationSelects />
-          <AverageWeightInput />
+          {/*<AverageWeightInput />*/}
           <PriceInput />
         </>
-      ) : step === 5 ? (
+      ) : step === 9 ? (
         <>
           <Summary />
         </>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Card } from 'react-native-paper';
 
 import { useVideo } from 'context/AnnouncementCreation/Video';
 import { useImage } from 'context/AnnouncementCreation/Image';
 
-import { sendImage } from 'helpers/MediaUtility';
+import { sendMedia } from 'helpers/MediaUtility';
 
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -16,8 +17,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Button,
-  Image,
 } from 'react-native';
 
 import { colors } from 'general';
@@ -27,7 +26,11 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons';
 export default function MediaUploader() {
   const { video, setVideo } = useVideo();
   const { image, setImage } = useImage();
-  const [imgPreview, setImgPreview] = useState(null);
+  //const [imgPreview, setImgPreview] = useState(null);
+  // /\ uncomment this (and setImgPreview in _pickImage)
+  //if you want to preview the sent image (use a Image tag for it)
+  const [sendingImage, setSendingImage] = useState(false);
+  const [sendingVideo, setSendingVideo] = useState(false);
 
   useEffect(() => {
     getPermissionAsync();
@@ -43,9 +46,10 @@ export default function MediaUploader() {
   };
 
   const _pickImage = async () => {
+    setSendingImage(true);
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
@@ -69,8 +73,8 @@ export default function MediaUploader() {
 
       console.log('LOCAL IMAGE:', img);
 
-      setImgPreview(uri);
-      const payload = await sendImage(img);
+      //setImgPreview(uri);
+      const payload = await sendMedia(img);
       console.log('IMAGE PAYLOAD:', payload);
       setImage(payload);
     } catch (e) {
@@ -78,40 +82,85 @@ export default function MediaUploader() {
     }
   };
 
-  function handleVideoUpload() {
-    setVideo('some_url');
+  function handleVideo() {
+    setVideo('dumb_url_420_69');
   }
+
+  //JM-NOTE: consertar esse cara e tamo grande
+  const _pickVideo = async () => {
+    setSendingVideo(true);
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+        allowsEditing: false,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (result.cancelled) return;
+
+      //console.log('RESULTADO', result);
+
+      const uri = result.uri;
+      const filename = uri.split('/').pop();
+
+      const match = /\.(\w+)$/.exec(filename);
+      const type = match ? `image/${match[1]}` : `image`;
+
+      const vid = {
+        uri,
+        filename,
+        type,
+      };
+
+      console.log('LOCAL VIDEO:', vid);
+
+      const payload = await sendMedia(vid);
+      console.log('VIDEO PAYLOAD:', payload);
+      setVideo(payload);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
       <View style={custom.bar}>
-        <TouchableOpacity onPress={() => handleVideoUpload()}>
-          <View style={custom.section}>
-            {video ? (
-              <>
-                <CheckIcon />
-                <Text style={custom.label}>VÍDEO</Text>
-              </>
-            ) : (
-              <CameraIcon />
-            )}
-          </View>
+        <TouchableOpacity onPress={() => handleVideo()}>
+          <Card style={custom.section}>
+            <Card.Content
+              style={{ alignItems: 'center', justifyContent: 'center' }}
+            >
+              {video ? (
+                <>
+                  <CheckIcon />
+                  <Text style={custom.label}>VÍDEO</Text>
+                </>
+              ) : sendingVideo ? (
+                <ActivityIndicator size="large" color={colors.ruralGreen} />
+              ) : (
+                <CameraIcon />
+              )}
+            </Card.Content>
+          </Card>
         </TouchableOpacity>
         <TouchableOpacity onPress={_pickImage}>
-          <View style={custom.section}>
-            {imgPreview ? (
-              <>
-                {imgPreview && (
-                  <Image
-                    source={{ uri: imgPreview }}
-                    style={{ width: 200, height: 200 }}
-                  />
-                )}
-              </>
-            ) : (
-              <PictureIcon />
-            )}
-          </View>
+          <Card style={custom.section}>
+            <Card.Content
+              style={{ alignItems: 'center', justifyContent: 'center' }}
+            >
+              {image ? (
+                <>
+                  <CheckIcon />
+                  <Text style={custom.label}>IMAGEM</Text>
+                </>
+              ) : sendingImage ? (
+                <ActivityIndicator size="large" color={colors.ruralGreen} />
+              ) : (
+                <PictureIcon />
+              )}
+            </Card.Content>
+          </Card>
         </TouchableOpacity>
       </View>
     </>
@@ -122,32 +171,28 @@ const screenW = Dimensions.get('window').width;
 const custom = StyleSheet.create({
   bar: {
     flexDirection: 'row',
-    height: 80,
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   section: {
     height: 80,
-    width: screenW / 2,
-    backgroundColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 4,
-    borderColor: colors.oceanGreen,
-    borderEndColor: colors.white,
-    borderStartColor: colors.white,
-    borderTopColor: colors.white,
+    width: screenW / 2 - 12,
+    marginLeft: 4,
+    marginRight: 4,
   },
   label: {
     fontWeight: 'bold',
-    color: colors.oceanGreen,
+    color: colors.ruralGreen,
   },
 });
 
 export const CameraIcon = () => {
-  return <Ionicons name="md-videocam" size={42} color={colors.oceanGreen} />;
+  return <Ionicons name="md-videocam" size={42} color={colors.noticeBlue} />;
 };
 
 export const PictureIcon = () => {
-  return <FontAwesome name="picture-o" size={42} color={colors.oceanGreen} />;
+  return <FontAwesome name="picture-o" size={42} color={colors.noticeBlue} />;
 };
 
 export const CheckIcon = () => {
@@ -155,7 +200,7 @@ export const CheckIcon = () => {
     <Ionicons
       name="md-checkmark-circle-outline"
       size={42}
-      color={colors.oceanGreen}
+      color={colors.ruralGreen}
     />
   );
 };

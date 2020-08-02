@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
-import { colors, strings } from "general";
+import styled from 'styled-components/native';
+import { colors, strings } from 'general';
 
 export const Label = styled.Text`
-  color: ${colors.oceanGreen};
+  color: ${colors.ruralGreen};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
@@ -15,7 +15,7 @@ export const SelectBG = styled.View`
 
 export const pickerStyle = {
   inputIOS: {
-    color: "white",
+    color: 'white',
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
@@ -26,17 +26,17 @@ export const pickerStyle = {
     marginLeft: 10,
     marginTop: 5,
   },
-  placeholderColor: "white",
+  placeholderColor: 'white',
   underline: { borderTopWidth: 0 },
   icon: {
-    position: "absolute",
-    backgroundColor: "transparent",
+    position: 'absolute',
+    backgroundColor: 'transparent',
     borderTopWidth: 5,
-    borderTopColor: "#00000099",
+    borderTopColor: '#00000099',
     borderRightWidth: 5,
-    borderRightColor: "transparent",
+    borderRightColor: 'transparent',
     borderLeftWidth: 5,
-    borderLeftColor: "transparent",
+    borderLeftColor: 'transparent',
     width: 0,
     height: 0,
     top: 20,

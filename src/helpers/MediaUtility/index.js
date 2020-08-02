@@ -1,12 +1,12 @@
 import api from '../../services/storage';
 
-const sendImage = async (imageObj) => {
+const sendMedia = async (mediaObj) => {
   const formdata = new FormData();
 
   formdata.append('file', {
-    uri: imageObj.uri,
-    name: imageObj.filename,
-    type: imageObj.type,
+    uri: mediaObj.uri,
+    name: mediaObj.filename,
+    type: mediaObj.type,
   });
 
   try {
@@ -19,4 +19,4 @@ const sendImage = async (imageObj) => {
   }
 };
 
-export { sendImage };
+export { sendMedia };

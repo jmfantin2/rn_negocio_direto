@@ -1,106 +1,79 @@
-import React, { useState, useEffect } from "react";
-import RNPickerSelect from "react-native-picker-select";
+import React from 'react';
+import { View } from 'react-native';
+import AutoComplete from 'react-native-autocomplete-modal';
 
-import { useMainCategory } from "context/AnnouncementCreation/MainCategory";
-import { useDynamic } from "context/AnnouncementCreation/Dynamic";
-import { useOtherCategory } from "context/AnnouncementCreation/OtherCategory";
+import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
+import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
 
-import { colors } from "general";
-import { Cow, Label, SelectBG, Notice, pickerStyle } from "./styles";
-import CowSrc from "assets/images/cow.png";
+import { colors } from 'general';
 
 export default function OtherCategorySelect() {
   const { mainCategory } = useMainCategory(); // READ
-  const { dynamic } = useDynamic(); // READ
   const { otherCategory, setOtherCategory } = useOtherCategory(); // READ
 
-  const [options, setOptions] = useState([]);
-  const [shouldAppear, toggle] = useState(true);
-
-  // Triggered everytime mainCategory changes
-  useEffect(() => {
-    if (
-      dynamic ||
-      mainCategory === "touro" ||
-      mainCategory === "vaca_invernar" ||
-      mainCategory === null
-    ) {
-      setOtherCategory(null);
-      toggle(false);
-    } else {
-      setOptions(getMatchedCategories(mainCategory));
-      toggle(true);
-    }
-  }, [mainCategory, dynamic]);
-
   return (
-    <>
-      {shouldAppear ? (
-        <>
-          <Label>Categoria adicional</Label>
-          <SelectBG>
-            <RNPickerSelect
-              placeholder={{
-                label: "───",
-                value: null,
-                color: colors.light,
-              }}
-              value={otherCategory}
-              style={pickerStyle}
-              useNativeAndroidPickerStyle={false}
-              onValueChange={(value) => setOtherCategory(value)}
-              items={options}
-            />
-          </SelectBG>
-        </>
-      ) : (
-        <>
-          <>
-            <Cow source={CowSrc} resizeMode="contain" />
-            <Notice>
-              Não há categoria{"\n"}adicional em caso de:{"\n\n"}PREÇO DINÂMICO
-              {"\n"}TOURO
-              {"\n"}
-              VACA INVERNAR
-            </Notice>
-          </>
-        </>
-      )}
-    </>
+    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+      <AutoComplete
+        style={{
+          borderRadius: 50,
+          backgroundColor: otherCategory
+            ? colors.ruralGreen
+            : colors.oceanGreen,
+          paddingRight: 16,
+          paddingLeft: 16,
+          paddingBottom: 6,
+          paddingTop: 6,
+        }}
+        onSelect={(data) => setOtherCategory(data.value)}
+        dataSource={getMatchedCategories(mainCategory)}
+        textLabel={otherCategory ? otherCategory : 'Categoria Adicional?'}
+        searchPlaceholder="Buscar"
+        cancelText="Fechar"
+        textColor="white"
+        searchField="label"
+      />
+    </View>
   );
 }
 
 function getMatchedCategories(value) {
   let matchedCategories = [];
-  switch (value) {
-    case "terneiro":
+  switch (value.toLowerCase()) {
+    case 'terneiro':
       matchedCategories = [
-        { label: "NOVILHO", value: "novilho" },
-        { label: "TERNEIRA", value: "terneira" },
+        { label: 'Selecione uma Categoria', value: '' },
+        { label: 'NOVILHO', value: 'NOVILHO' },
+        { label: 'TERNEIRA', value: 'TERNEIRA' },
       ];
       break;
-    case "novilho":
+    case 'novilho':
       matchedCategories = [
-        { label: "TERNEIRO", value: "terneiro" },
-        { label: "NOVILHA", value: "novilha" },
-        { label: "VACA", value: "vaca" },
+        { label: 'Selecione uma Categoria', value: '' },
+        { label: 'TERNEIRO', value: 'TERNEIRO' },
+        { label: 'NOVILHA', value: 'NOVILHA' },
+        { label: 'VACA', value: 'VACA' },
       ];
       break;
-    case "terneira":
+    case 'terneira':
       matchedCategories = [
-        { label: "NOVILHA", value: "novilha" },
-        { label: "TERNEIRO", value: "terneiro" },
+        { label: 'Selecione uma Categoria', value: '' },
+        { label: 'NOVILHA', value: 'NOVILHA' },
+        { label: 'TERNEIRO', value: 'TERNEIRO' },
       ];
       break;
-    case "novilha":
+    case 'novilha':
       matchedCategories = [
-        { label: "TERNEIRA", value: "terneira" },
-        { label: "NOVILHO", value: "novilho" },
-        { label: "VACA", value: "vaca" },
+        { label: 'Selecione uma Categoria', value: '' },
+        { label: 'TERNEIRA', value: 'TERNEIRA' },
+        { label: 'NOVILHO', value: 'NOVILHO' },
+        { label: 'VACA', value: 'VACA' },
       ];
       break;
-    case "vaca":
-      matchedCategories = [{ label: "NOVILHA", value: "novilha" }];
+    case 'vaca':
+      matchedCategories = [
+        { label: 'Selecione uma Categoria', value: '' },
+        { label: 'NOVILHA', value: 'NOVILHA' },
+      ];
       break;
     default:
       // "touro", "vaca_invernar", null

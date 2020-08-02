@@ -17,39 +17,53 @@ import {
   PriceProvider,
   DaysActiveProvider,
   LocationProvider,
+  MainAgeRangeProvider,
+  OtherAgeRangeProvider,
+  MainWeightProvider,
+  OtherWeightProvider,
 } from 'context/AnnouncementCreation';
 
 export default function ContextWrapper({ children }) {
   return (
     <VideoProvider>
       <ImageProvider>
-        <DynamicProvider>
-          <MainCategoryProvider>
-            <MainBreedProvider>
-              <MainQuantityProvider>
-                <MainObservationsProvider>
-                  <OtherCategoryProvider>
-                    <OtherBreedProvider>
-                      <OtherQuantityProvider>
-                        <OtherObservationsProvider>
-                          <LocationProvider>
-                            <AverageWeightProvider>
-                              <PriceProvider>
-                                <DaysActiveProvider>
-                                  <StepProvider>{children}</StepProvider>
-                                </DaysActiveProvider>
-                              </PriceProvider>
-                            </AverageWeightProvider>
-                          </LocationProvider>
-                        </OtherObservationsProvider>
-                      </OtherQuantityProvider>
-                    </OtherBreedProvider>
-                  </OtherCategoryProvider>
-                </MainObservationsProvider>
-              </MainQuantityProvider>
-            </MainBreedProvider>
-          </MainCategoryProvider>
-        </DynamicProvider>
+        <OtherCategoryProvider>
+          <DaysActiveProvider>
+            <DynamicProvider>
+              <MainCategoryProvider>
+                <MainBreedProvider>
+                  <MainQuantityProvider>
+                    <MainAgeRangeProvider>
+                      <MainWeightProvider>
+                        <MainObservationsProvider>
+                          <OtherBreedProvider>
+                            <OtherQuantityProvider>
+                              <OtherAgeRangeProvider>
+                                <OtherWeightProvider>
+                                  <OtherObservationsProvider>
+                                    <LocationProvider>
+                                      <AverageWeightProvider>
+                                        <PriceProvider>
+                                          <StepProvider>
+                                            {children}
+                                          </StepProvider>
+                                        </PriceProvider>
+                                      </AverageWeightProvider>
+                                    </LocationProvider>
+                                  </OtherObservationsProvider>
+                                </OtherWeightProvider>
+                              </OtherAgeRangeProvider>
+                            </OtherQuantityProvider>
+                          </OtherBreedProvider>
+                        </MainObservationsProvider>
+                      </MainWeightProvider>
+                    </MainAgeRangeProvider>
+                  </MainQuantityProvider>
+                </MainBreedProvider>
+              </MainCategoryProvider>
+            </DynamicProvider>
+          </DaysActiveProvider>
+        </OtherCategoryProvider>
       </ImageProvider>
     </VideoProvider>
   );

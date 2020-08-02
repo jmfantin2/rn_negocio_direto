@@ -10,6 +10,7 @@ import { withNavigation } from 'react-navigation';
 import api from '../../../services/ann';
 
 import { makeDates } from 'helpers/DateUtility';
+import { prepare } from 'helpers/CattleUtility';
 
 import { colors } from 'general';
 import { Container, CenterContent, Label } from './styles';
@@ -26,14 +27,17 @@ import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
 import { useMainBreed } from 'context/AnnouncementCreation/MainBreed';
 import { useMainQuantity } from 'context/AnnouncementCreation/MainQuantity';
 import { useMainObservations } from 'context/AnnouncementCreation/MainObservations';
+import { useMainAgeRange } from 'context/AnnouncementCreation/MainAgeRange';
+import { useMainWeight } from 'context/AnnouncementCreation/MainWeight';
 
 import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
 import { useOtherBreed } from 'context/AnnouncementCreation/OtherBreed';
 import { useOtherQuantity } from 'context/AnnouncementCreation/OtherQuantity';
 import { useOtherObservations } from 'context/AnnouncementCreation/OtherObservations';
+import { useOtherAgeRange } from 'context/AnnouncementCreation/OtherAgeRange';
+import { useOtherWeight } from 'context/AnnouncementCreation/OtherWeight';
 
 import { useLocation } from 'context/AnnouncementCreation/Location';
-import { useAverageWeight } from 'context/AnnouncementCreation/AverageWeight';
 import { usePrice } from 'context/AnnouncementCreation/Price';
 
 import { useStep } from 'context/AnnouncementCreation/Step';
@@ -49,14 +53,17 @@ const StepNavigator = (props) => {
   const { mainBreed } = useMainBreed(); //READ
   const { mainQuantity } = useMainQuantity(); //READ
   const { mainObservations } = useMainObservations(); //READ
+  const { youngest, oldest } = useMainAgeRange(); //READ
+  const { mainWeight } = useMainWeight(); //READ
 
   const { otherCategory } = useOtherCategory(); //READ
   const { otherBreed } = useOtherBreed(); //READ
   const { otherQuantity } = useOtherQuantity(); //READ
   const { otherObservations } = useOtherObservations(); //READ
+  const { youngest2, oldest2 } = useOtherAgeRange(); //READ
+  const { otherWeight } = useOtherWeight(); //READ
 
-  const { state, city } = useLocation(); //READ
-  const { averageWeight } = useAverageWeight(); //READ
+  const { uf, city } = useLocation(); //READ
   const { price } = usePrice(); //READ
 
   const { step, setStep } = useStep();
@@ -71,8 +78,10 @@ const StepNavigator = (props) => {
       mainBreed &&
       mainQuantity &&
       mainObservations &&
-      averageWeight &&
-      state &&
+      youngest.num &&
+      oldest.num &&
+      mainWeight &&
+      uf &&
       city &&
       (dynamic || price)
     ) {
@@ -82,88 +91,76 @@ const StepNavigator = (props) => {
     }
   });
 
-  function printData() {
-    console.log(
-      'MainCategory: ' +
-        mainCategory +
-        '\nMainBreed: ' +
-        mainBreed +
-        '\nMainQuantity: ' +
-        mainQuantity +
-        '\nMainObservations: ' +
-        mainObservations +
-        '\nOtherCategory: ' +
-        otherCategory +
-        '\nOtherBreed: ' +
-        otherBreed +
-        '\nOtherQuantity: ' +
-        otherQuantity +
-        '\nOtherObservations: ' +
-        otherObservations +
-        '\nState: ' +
-        state +
-        '\nCity: ' +
-        city +
-        '\nAverageWeight: ' +
-        averageWeight +
-        '\nPrice: ' +
-        price
-    );
-  }
-
   function handleSubmit() {
-    printData();
     if (submitAllowed) {
-      const categoryWrapper = {};
-      const breedWrapper = {};
       let ann = {
-        animalsQuantity: 0,
-        observations: [],
         ageRange: [],
-        category: [],
+        animalsQuantity: 0,
         breed: [],
-        currentPrice: '0',
+        category: [],
         // createdDate: 0,
+        currentPrice: 0,
         endDate: 0,
         location: {
           city: '',
           state: '',
         },
-        weight: [],
+        observations: [],
         picture: [],
+        weight: [],
       };
 
+      //JM-NOTE: vamos precisar de um cara assim (o video tem que ir antes)
+      //await ann.picture.push({ id: video.id, originalUrl: video.originalUrl }).then(ann.picture.push({ id: image.id, originalUrl: image.originalUrl }));
       ann.picture.push({ id: image.id, originalUrl: image.originalUrl });
 
-      ann.location = { city, state };
+      ann.location = { city: city, state: uf };
       const dates = makeDates(daysActive);
       // ann.createdDate = dates.createdDate;
       ann.endDate = dates.endDate;
-      price ? (ann.currentPrice = price) : null;
+      price ? (ann.currentPrice = parseInt(price)) : null;
 
       ann.category.push({
-        name: mainCategory,
+        name: prepare(mainCategory),
         quantity: parseInt(mainQuantity),
       });
-      ann.breed.push({ name: mainBreed, quantity: parseInt(mainQuantity) });
+      ann.breed.push({
+        name: prepare(mainBreed),
+        quantity: parseInt(mainQuantity),
+      });
       ann.observations.push(mainObservations);
       ann.animalsQuantity = parseInt(mainQuantity);
-      ann.ageRange.push('tmp age M: 9M-3Y');
-      ann.weight.push('tmp wgt M: 150');
+      ann.ageRange.push(
+        youngest.num + youngest.unit + '-' + oldest.num + oldest.unit
+      );
+      ann.weight.push(mainWeight);
 
-      if (otherCategory && otherBreed && otherQuantity && otherObservations) {
+      if (
+        otherCategory &&
+        otherBreed &&
+        otherQuantity &&
+        otherObservations &&
+        youngest2.num &&
+        oldest2.num &&
+        otherWeight
+      ) {
         ann.category.push({
-          name: otherCategory,
+          name: prepare(otherCategory),
           quantity: parseInt(otherQuantity),
         });
-        ann.breed.push({ name: otherBreed, quantity: parseInt(otherQuantity) });
+        ann.breed.push({
+          name: prepare(otherBreed),
+          quantity: parseInt(otherQuantity),
+        });
         ann.animalsQuantity += parseInt(otherQuantity);
         ann.observations.push(otherObservations);
-        ann.ageRange.push('tmp age O: 3Y-5Y');
-        ann.weight.push('tmp wgt O: 200');
+        ann.ageRange.push(
+          youngest2.num + youngest2.unit + '-' + oldest2.num + oldest2.unit
+        );
+        ann.weight.push(otherWeight);
       }
 
-      sendData(ann);
+      sendData(ann).then(console.log(ann));
       console.log('Data submited');
     } else {
       console.log('Failed Submition');
@@ -189,31 +186,47 @@ const StepNavigator = (props) => {
     setLoading(false);
   }
 
+  function jump(direction) {
+    //we dont want the user to see steps 5-7 on these conditions
+    if (
+      ((direction === 'right' && step === 4) ||
+        (direction === 'left' && step === 8)) &&
+      (dynamic ||
+        mainCategory === 'TOURO' ||
+        mainCategory === 'VACA INVERNAR' ||
+        mainCategory === '')
+    ) {
+      return 4;
+    } else if (
+      (direction === 'right' && !otherCategory && step === 5) ||
+      (direction === 'left' && !otherCategory && step === 8)
+    ) {
+      return 3;
+    }
+    return 1;
+  }
+
   return (
     <Container>
       {step > 1 ? (
-        <TouchableOpacity onPress={() => setStep(step - 1)}>
-          <AntDesign name="leftcircleo" size={42} color={colors.darkCyan} />
+        <TouchableOpacity onPress={() => setStep(step - jump('left'))}>
+          <AntDesign name="leftcircleo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
       ) : (
         <AntDesign name="leftcircleo" size={42} color={colors.light} />
       )}
       <CenterContent>
-        <Label>{step} de 5</Label>
+        <Label>{step} de 9</Label>
       </CenterContent>
-      {step < 5 ? (
-        <TouchableOpacity onPress={() => setStep(step + 1)}>
-          <AntDesign name="rightcircleo" size={42} color={colors.darkCyan} />
+      {step < 9 ? (
+        <TouchableOpacity onPress={() => setStep(step + jump('right'))}>
+          <AntDesign name="rightcircleo" size={42} color={colors.noticeBlue} />
         </TouchableOpacity>
       ) : loading ? (
-        <ActivityIndicator size="large" color={colors.darkCyan} />
+        <ActivityIndicator size="large" color={colors.ruralGreen} />
       ) : submitAllowed ? (
         <TouchableOpacity onPress={() => handleSubmit()}>
-          <AntDesign
-            name="checkcircleo"
-            size={42}
-            color={colors.businessGreen}
-          />
+          <AntDesign name="checkcircleo" size={42} color={colors.ruralGreen} />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
@@ -225,7 +238,7 @@ const StepNavigator = (props) => {
             )
           }
         >
-          <AntDesign name="closecircleo" size={42} color={colors.danger} />
+          <AntDesign name="closecircleo" size={42} color={colors.meatRed} />
         </TouchableOpacity>
       )}
     </Container>

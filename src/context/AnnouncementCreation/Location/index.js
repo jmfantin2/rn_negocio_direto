@@ -1,16 +1,16 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext } from 'react';
 
 const LocationContext = createContext();
 
 export default function LocationProvider({ children }) {
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
+  const [uf, setUF] = useState('');
+  const [city, setCity] = useState('');
 
   return (
     <LocationContext.Provider
       value={{
-        state,
-        setState,
+        uf,
+        setUF,
         city,
         setCity,
       }}
@@ -23,7 +23,7 @@ export default function LocationProvider({ children }) {
 export function useLocation() {
   const context = useContext(LocationContext);
   if (!context)
-    throw new Error("useLocation must be used within a LocationProvider");
-  const { state, setState, city, setCity } = context;
-  return { state, setState, city, setCity };
+    throw new Error('useLocation must be used within a LocationProvider');
+  const { uf, setUF, city, setCity } = context;
+  return { uf, setUF, city, setCity };
 }

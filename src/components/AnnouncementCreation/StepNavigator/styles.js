@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { colors } from "general";
+import styled from 'styled-components/native';
+import { colors } from 'general';
 
 export const Container = styled.View`
   flex-direction: row;
@@ -14,7 +14,7 @@ export const CenterContent = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${colors.darkCyan};
+  color: ${colors.light};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
