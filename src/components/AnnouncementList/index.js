@@ -48,11 +48,11 @@ const AnnouncementList = ({ navigation }) => {
               navigation.navigate('AnnouncementDetail', { id: item.id })
             }
           >
-            {item.picture ? (
+            {item.picture[0] ? (
               <Card.Cover
                 style={{ height: 120, margin: 12, borderRadius: 5 }}
                 source={{
-                  uri: item.picture.originalUrl,
+                  uri: item.picture[0].originalUrl,
                 }}
               />
             ) : (

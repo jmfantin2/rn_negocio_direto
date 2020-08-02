@@ -47,11 +47,11 @@ export default function AnnouncementDetail({ navigation }) {
       />
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.picture ? (
+          {announcement.picture[0] ? (
             <MiniPlayer
               media={{
                 video: videoTest,
-                image: announcement.picture.originalUrl,
+                image: announcement.picture[0].originalUrl,
               }}
             />
           ) : (
