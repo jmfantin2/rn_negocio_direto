@@ -18,7 +18,7 @@ export default function OtherCategorySelect() {
           borderRadius: 50,
           backgroundColor: otherCategory
             ? colors.ruralGreen
-            : colors.noticeBlue,
+            : colors.oceanGreen,
           paddingRight: 16,
           paddingLeft: 16,
           paddingBottom: 6,

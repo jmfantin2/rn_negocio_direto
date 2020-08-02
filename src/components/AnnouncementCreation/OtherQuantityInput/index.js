@@ -1,47 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { useOtherQuantity } from 'context/AnnouncementCreation/OtherQuantity';
+import { Chip } from 'react-native-paper';
 
-import { useMainCategory } from "context/AnnouncementCreation/MainCategory";
-import { useDynamic } from "context/AnnouncementCreation/Dynamic";
-import { useOtherQuantity } from "context/AnnouncementCreation/OtherQuantity";
-
-import { Container, Label, Input } from "./styles";
+import { Input } from './styles';
+import { colors } from 'general';
 
 export default function OtherQuantityInput() {
-  const { mainCategory } = useMainCategory(); // READ
-  const { dynamic } = useDynamic();
   const { otherQuantity, setOtherQuantity } = useOtherQuantity();
-
-  const [shouldAppear, toggle] = useState(false);
-
-  // Triggered everytime mainCategory changes
-  useEffect(() => {
-    if (
-      dynamic ||
-      mainCategory === "touro" ||
-      mainCategory === "vaca_invernar" ||
-      mainCategory === null
-    ) {
-      setOtherQuantity("");
-      toggle(false);
-    } else {
-      toggle(true);
-    }
-  }, [mainCategory, dynamic]);
-
+  const [insert, toggleInsert] = useState(false);
   return (
-    <>
-      {shouldAppear ? (
-        <Container>
-          <Label>Quantidade</Label>
-          <Input
-            value={otherQuantity}
-            onChangeText={(text) => setOtherQuantity(text.replace(/\D/g, ""))}
-            placeholder={"n° cabeças"}
-            maxLength={3}
-            keyboardType={"numeric"}
-          />
-        </Container>
-      ) : null}
-    </>
+    <View style={{ alignItems: 'center', margin: 24 }}>
+      {insert || otherQuantity ? (
+        <Input
+          value={otherQuantity}
+          onChangeText={(text) => setOtherQuantity(text.replace(/\D/g, ''))}
+          placeholder={'   '}
+          maxLength={3}
+          keyboardType={'numeric'}
+        />
+      ) : (
+        <TouchableOpacity
+          onPress={() => [toggleInsert(true), setOtherQuantity('1')]}
+        >
+          <Chip
+            style={[
+              custom.chip,
+              otherQuantity ? { backgroundColor: colors.ruralGreen } : null,
+            ]}
+            textStyle={{ fontSize: 16, color: colors.white }}
+          >
+            Quantidade
+          </Chip>
+        </TouchableOpacity>
+      )}
+    </View>
   );
 }
+
+const custom = StyleSheet.create({
+  chip: {
+    alignItems: 'center',
+    backgroundColor: colors.oceanGreen,
+  },
+});

@@ -204,6 +204,11 @@ const StepNavigator = (props) => {
         mainCategory === '')
     ) {
       return 4;
+    } else if (
+      (direction === 'right' && !otherCategory && step === 5) ||
+      (direction === 'left' && !otherCategory && step === 8)
+    ) {
+      return 3;
     }
     return 1;
   }

@@ -23,6 +23,14 @@ export default function MainObservationsInput() {
       >
         Forneça mais informações
       </Text>
+
+      <TextInput
+        label="Observações"
+        value={mainObservations}
+        onChangeText={(text) => setMainObservations(text)}
+        multiline={true}
+        mode={'outlined'}
+      />
       <View
         style={{
           flexDirection: 'row',
@@ -49,13 +57,6 @@ export default function MainObservationsInput() {
           </Chip>
         ))}
       </View>
-      <TextInput
-        label="Observações"
-        value={mainObservations}
-        onChangeText={(text) => setMainObservations(text)}
-        multiline={true}
-        mode={'outlined'}
-      />
     </>
   );
 }
