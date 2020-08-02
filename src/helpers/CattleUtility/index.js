@@ -47,3 +47,26 @@ export function process(str, type, qtd) {
   }
   return processed;
 }
+
+export function prepare(term) {
+  switch (term) {
+    case 'VACA INVERNAR':
+      return 'VACA_INVERNAR';
+    case 'ANGUS (RED)':
+      return 'RED_ANGUS';
+    case 'ANGUS (ABERDEEN)':
+      return 'ABERDEEN_ANGUS';
+    case 'BRITÂNICOS':
+      return 'BRITANICOS';
+    case 'CRUZAS EUROPEIAS':
+      return 'CRUZAS_EUROPEIAS';
+    case 'CRUZAS LEITEIRAS':
+      return 'CRUZAS_LEITEIRAS';
+    case 'CRUZAS ZEBU':
+      return 'CRUZAS_ZEBU';
+    case 'TABAPUÃ':
+      return 'TABAPUA';
+    default:
+      return term;
+  }
+}

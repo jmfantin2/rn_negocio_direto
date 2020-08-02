@@ -10,6 +10,7 @@ import { withNavigation } from 'react-navigation';
 import api from '../../../services/ann';
 
 import { makeDates } from 'helpers/DateUtility';
+import { prepare } from 'helpers/CattleUtility';
 
 import { colors } from 'general';
 import { Container, CenterContent, Label } from './styles';
@@ -109,10 +110,13 @@ const StepNavigator = (props) => {
       price ? (ann.currentPrice = parseInt(price)) : null;
 
       ann.category.push({
-        name: mainCategory,
+        name: prepare(mainCategory),
         quantity: parseInt(mainQuantity),
       });
-      ann.breed.push({ name: mainBreed, quantity: parseInt(mainQuantity) });
+      ann.breed.push({
+        name: prepare(mainBreed),
+        quantity: parseInt(mainQuantity),
+      });
       ann.observations.push(mainObservations);
       ann.animalsQuantity = parseInt(mainQuantity);
       ann.ageRange.push('tmp age M: 9M-3Y');
@@ -120,10 +124,13 @@ const StepNavigator = (props) => {
 
       if (otherCategory && otherBreed && otherQuantity && otherObservations) {
         ann.category.push({
-          name: otherCategory,
+          name: prepare(otherCategory),
           quantity: parseInt(otherQuantity),
         });
-        ann.breed.push({ name: otherBreed, quantity: parseInt(otherQuantity) });
+        ann.breed.push({
+          name: prepare(otherBreed),
+          quantity: parseInt(otherQuantity),
+        });
         ann.animalsQuantity += parseInt(otherQuantity);
         ann.observations.push(otherObservations);
         ann.ageRange.push('tmp age O: 3Y-5Y');
