@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import RNPickerSelect from "react-native-picker-select";
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import AutoComplete from 'react-native-autocomplete-modal';
 
-import { colors } from "general";
+import { colors } from 'general';
 
-import { BRAZILIAN_STATES, getStateCities } from "./helpers";
+import {
+  BRAZILIAN_STATES,
+  getStateCities,
+} from 'helpers/LocationUtility/constants';
 
-import { useLocation } from "context/AnnouncementCreation/Location";
-
-import { Label, SelectBG, pickerStyle } from "./styles";
+import { useLocation } from 'context/AnnouncementCreation/Location';
 
 export default function LocationSelects() {
   const { state, setState, city, setCity } = useLocation();
@@ -15,41 +17,47 @@ export default function LocationSelects() {
 
   useEffect(() => {
     setCityOptions(getStateCities(state));
-    setCity("");
+    setCity('');
   }, [state]);
 
   return (
     <>
-      <Label>Estado</Label>
-      <SelectBG>
-        <RNPickerSelect
-          placeholder={{
-            label: "───",
-            value: null,
-            color: colors.light,
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <AutoComplete
+          style={{
+            borderRadius: 50,
+            backgroundColor: state ? colors.ruralGreen : colors.meatRed,
+            paddingRight: 16,
+            paddingLeft: 16,
+            paddingBottom: 6,
+            paddingTop: 6,
           }}
-          value={state}
-          style={pickerStyle}
-          useNativeAndroidPickerStyle={false}
-          onValueChange={(value) => setState(value)}
-          items={BRAZILIAN_STATES}
+          onSelect={(data) => setState(data.value)}
+          dataSource={BRAZILIAN_STATES}
+          textLabel={state ? state : 'Selecione um estado'}
+          searchPlaceholder="Buscar"
+          cancelText="Fechar"
+          textColor="white"
+          searchField="label"
         />
-      </SelectBG>
-      <Label>Cidade</Label>
-      <SelectBG>
-        <RNPickerSelect
-          placeholder={{
-            label: "───",
-            value: null,
-            color: colors.light,
+        <AutoComplete
+          style={{
+            borderRadius: 50,
+            backgroundColor: city ? colors.ruralGreen : colors.meatRed,
+            paddingRight: 16,
+            paddingLeft: 16,
+            paddingBottom: 6,
+            paddingTop: 6,
           }}
-          value={city}
-          style={pickerStyle}
-          useNativeAndroidPickerStyle={false}
-          onValueChange={(value) => setCity(value)}
-          items={cityOptions}
+          onSelect={(data) => setCity(data.value)}
+          dataSource={cityOptions}
+          textLabel={city ? city : 'Selecione um município'}
+          searchPlaceholder="Buscar"
+          cancelText="Fechar"
+          textColor="white"
+          searchField="label"
         />
-      </SelectBG>
+      </View>
     </>
   );
 }
