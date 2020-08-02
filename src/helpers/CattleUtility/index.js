@@ -73,7 +73,10 @@ export function prepare(term) {
 
 export function convertAge(ageRange) {
   return ageRange
-    .replaceAll('M', ' mês(es)')
+    .replace('M', ' mês(es)')
+    .replace('Y', ' ano(s)')
     .replace('-', ' a ')
-    .replaceAll('Y', ' ano(s)');
+    .replace('Y', ' ano(s)')
+    .replace('M', ' mês(es)');
+  //replaceAll tava quebrando, e eu não tô com saco pra resolver da maneira bonita
 }
