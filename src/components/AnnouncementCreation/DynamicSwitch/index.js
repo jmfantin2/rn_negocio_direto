@@ -7,13 +7,18 @@ import { AntDesign } from '@expo/vector-icons';
 import { colors } from 'general';
 
 import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
+import { useDaysActive } from 'context/AnnouncementCreation/DaysActive';
 import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
 
 export default function DynamicSwitch() {
+  const { daysActive, setDaysActive } = useDaysActive(); //WRITE
   const { setOtherCategory } = useOtherCategory(); //WRITE
   const { dynamic, toggle } = useDynamic();
 
   useEffect(() => {
+    if (dynamic && daysActive > 3) {
+      setDaysActive(3);
+    }
     setOtherCategory(null);
     //invalids second animal info, for safety
     //(submit won't accept it if null)

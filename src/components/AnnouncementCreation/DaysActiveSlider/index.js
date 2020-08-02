@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Slider } from 'react-native';
 import { SwitchContainer, Label } from './styles';
 import { colors } from 'general';
@@ -9,10 +9,6 @@ import { useDaysActive } from 'context/AnnouncementCreation/DaysActive';
 export default function DaysActiveSlider() {
   const { dynamic } = useDynamic();
   const { daysActive, setDaysActive } = useDaysActive();
-
-  useEffect(() => {
-    setDaysActive(2);
-  }, [dynamic]);
 
   return (
     <SwitchContainer>

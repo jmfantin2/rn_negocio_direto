@@ -24,31 +24,31 @@ export default function ContextWrapper({ children }) {
     <VideoProvider>
       <ImageProvider>
         <OtherCategoryProvider>
-          <DynamicProvider>
-            <MainCategoryProvider>
-              <MainBreedProvider>
-                <MainQuantityProvider>
-                  <MainObservationsProvider>
-                    <OtherBreedProvider>
-                      <OtherQuantityProvider>
-                        <OtherObservationsProvider>
-                          <LocationProvider>
-                            <AverageWeightProvider>
-                              <PriceProvider>
-                                <DaysActiveProvider>
+          <DaysActiveProvider>
+            <DynamicProvider>
+              <MainCategoryProvider>
+                <MainBreedProvider>
+                  <MainQuantityProvider>
+                    <MainObservationsProvider>
+                      <OtherBreedProvider>
+                        <OtherQuantityProvider>
+                          <OtherObservationsProvider>
+                            <LocationProvider>
+                              <AverageWeightProvider>
+                                <PriceProvider>
                                   <StepProvider>{children}</StepProvider>
-                                </DaysActiveProvider>
-                              </PriceProvider>
-                            </AverageWeightProvider>
-                          </LocationProvider>
-                        </OtherObservationsProvider>
-                      </OtherQuantityProvider>
-                    </OtherBreedProvider>
-                  </MainObservationsProvider>
-                </MainQuantityProvider>
-              </MainBreedProvider>
-            </MainCategoryProvider>
-          </DynamicProvider>
+                                </PriceProvider>
+                              </AverageWeightProvider>
+                            </LocationProvider>
+                          </OtherObservationsProvider>
+                        </OtherQuantityProvider>
+                      </OtherBreedProvider>
+                    </MainObservationsProvider>
+                  </MainQuantityProvider>
+                </MainBreedProvider>
+              </MainCategoryProvider>
+            </DynamicProvider>
+          </DaysActiveProvider>
         </OtherCategoryProvider>
       </ImageProvider>
     </VideoProvider>
