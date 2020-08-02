@@ -29,7 +29,7 @@ export const BRAZILIAN_STATES = [
   { label: 'Tocantins', value: 'TO' },
 ];
 
-export function getStateCities(uf) {
+export function getUFCities(uf) {
   let cityOptions = [];
   switch (uf) {
     case 'AC':

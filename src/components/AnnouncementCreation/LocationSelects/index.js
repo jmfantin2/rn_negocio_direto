@@ -6,19 +6,18 @@ import { colors } from 'general';
 
 import {
   BRAZILIAN_STATES,
-  getStateCities,
+  getUFCities,
 } from 'helpers/LocationUtility/constants';
 
 import { useLocation } from 'context/AnnouncementCreation/Location';
 
 export default function LocationSelects() {
-  const { state, setState, city, setCity } = useLocation();
+  const { uf, setUF, city, setCity } = useLocation();
   const [cityOptions, setCityOptions] = useState([]);
 
   useEffect(() => {
-    setCityOptions(getStateCities(state));
-    setCity('');
-  }, [state]);
+    setCityOptions(getUFCities(uf));
+  }, [uf]);
 
   return (
     <>
@@ -26,15 +25,15 @@ export default function LocationSelects() {
         <AutoComplete
           style={{
             borderRadius: 50,
-            backgroundColor: state ? colors.ruralGreen : colors.meatRed,
+            backgroundColor: uf ? colors.ruralGreen : colors.meatRed,
             paddingRight: 16,
             paddingLeft: 16,
             paddingBottom: 6,
             paddingTop: 6,
           }}
-          onSelect={(data) => setState(data.value)}
+          onSelect={(data) => setUF(data.value)}
           dataSource={BRAZILIAN_STATES}
-          textLabel={state ? state : 'Selecione um estado'}
+          textLabel={uf ? uf : 'Selecione um estado'}
           searchPlaceholder="Buscar"
           cancelText="Fechar"
           textColor="white"
