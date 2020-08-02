@@ -17,6 +17,8 @@ import {
   PriceProvider,
   DaysActiveProvider,
   LocationProvider,
+  MainWeightProvider,
+  OtherWeightProvider,
 } from 'context/AnnouncementCreation';
 
 export default function ContextWrapper({ children }) {
@@ -29,21 +31,25 @@ export default function ContextWrapper({ children }) {
               <MainCategoryProvider>
                 <MainBreedProvider>
                   <MainQuantityProvider>
-                    <MainObservationsProvider>
-                      <OtherBreedProvider>
-                        <OtherQuantityProvider>
-                          <OtherObservationsProvider>
-                            <LocationProvider>
-                              <AverageWeightProvider>
-                                <PriceProvider>
-                                  <StepProvider>{children}</StepProvider>
-                                </PriceProvider>
-                              </AverageWeightProvider>
-                            </LocationProvider>
-                          </OtherObservationsProvider>
-                        </OtherQuantityProvider>
-                      </OtherBreedProvider>
-                    </MainObservationsProvider>
+                    <MainWeightProvider>
+                      <MainObservationsProvider>
+                        <OtherBreedProvider>
+                          <OtherQuantityProvider>
+                            <OtherWeightProvider>
+                              <OtherObservationsProvider>
+                                <LocationProvider>
+                                  <AverageWeightProvider>
+                                    <PriceProvider>
+                                      <StepProvider>{children}</StepProvider>
+                                    </PriceProvider>
+                                  </AverageWeightProvider>
+                                </LocationProvider>
+                              </OtherObservationsProvider>
+                            </OtherWeightProvider>
+                          </OtherQuantityProvider>
+                        </OtherBreedProvider>
+                      </MainObservationsProvider>
+                    </MainWeightProvider>
                   </MainQuantityProvider>
                 </MainBreedProvider>
               </MainCategoryProvider>

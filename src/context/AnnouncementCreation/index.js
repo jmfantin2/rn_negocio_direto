@@ -47,6 +47,12 @@ export { OtherObservationsProvider };
 import AverageWeightProvider from './AverageWeight';
 export { AverageWeightProvider };
 
+import MainWeightProvider from './MainWeight';
+export { MainWeightProvider };
+
+import OtherWeightProvider from './OtherWeight';
+export { OtherWeightProvider };
+
 import PriceProvider from './Price';
 export { PriceProvider };
 
