@@ -76,7 +76,7 @@ export function convertAge(ageRange) {
     .replace('M', ' mês(es)')
     .replace('Y', ' ano(s)')
     .replace('-', ' a ')
-    .replace('Y', ' ano(s)')
-    .replace('M', ' mês(es)');
+    .replace('M', ' mês(es)')
+    .replace('Y', ' ano(s)');
   //replaceAll tava quebrando, e eu não tô com saco pra resolver da maneira bonita
 }
