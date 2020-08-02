@@ -1,43 +1,3 @@
-export function getMatchedCategories(value) {
-  let matchedCategories = [];
-  switch (value) {
-    case 'terneiro':
-      matchedCategories = [
-        { label: 'NOVILHO', value: 'novilho' },
-        { label: 'TERNEIRA', value: 'terneira' },
-      ];
-      break;
-    case 'novilho':
-      matchedCategories = [
-        { label: 'TERNEIRO', value: 'terneiro' },
-        { label: 'NOVILHA', value: 'novilha' },
-        { label: 'VACA', value: 'vaca' },
-      ];
-      break;
-    case 'terneira':
-      matchedCategories = [
-        { label: 'NOVILHA', value: 'novilha' },
-        { label: 'TERNEIRO', value: 'terneiro' },
-      ];
-      break;
-    case 'novilha':
-      matchedCategories = [
-        { label: 'TERNEIRA', value: 'terneira' },
-        { label: 'NOVILHO', value: 'novilho' },
-        { label: 'VACA', value: 'vaca' },
-      ];
-      break;
-    case 'vaca':
-      matchedCategories = [{ label: 'NOVILHA', value: 'novilha' }];
-      break;
-    default:
-      // "touro", "vaca_invernar", null
-      break;
-  }
-  // console.log("Matched categories for", value, ":", matchedCategories);
-  return matchedCategories;
-}
-
 export function getPossibleVariants(value) {
   let possibleVariants = [];
   switch (value) {
@@ -86,4 +46,34 @@ export function process(str, type, qtd) {
       .replace('ABERDEEN', 'ABD');
   }
   return processed;
+}
+
+export function prepare(term) {
+  switch (term) {
+    case 'VACA INVERNAR':
+      return 'VACA_INVERNAR';
+    case 'ANGUS (RED)':
+      return 'RED_ANGUS';
+    case 'ANGUS (ABERDEEN)':
+      return 'ABERDEEN_ANGUS';
+    case 'BRITÂNICOS':
+      return 'BRITANICOS';
+    case 'CRUZAS EUROPEIAS':
+      return 'CRUZAS_EUROPEIAS';
+    case 'CRUZAS LEITEIRAS':
+      return 'CRUZAS_LEITEIRAS';
+    case 'CRUZAS ZEBU':
+      return 'CRUZAS_ZEBU';
+    case 'TABAPUÃ':
+      return 'TABAPUA';
+    default:
+      return term;
+  }
+}
+
+export function convertAge(ageRange) {
+  return ageRange
+    .replaceAll('M', ' mês(es)')
+    .replace('-', ' a ')
+    .replaceAll('Y', ' ano(s)');
 }

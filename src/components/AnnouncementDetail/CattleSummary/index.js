@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Button, Chip, Card, Paragraph, Title } from 'react-native-paper';
 import { colors } from 'general';
-import { process } from 'helpers/CattleUtility';
+import { process, convertAge } from 'helpers/CattleUtility';
 
 const CattleSummary = ({ ann }) => {
   if (ann.category !== undefined) {
@@ -24,6 +24,9 @@ const CattleSummary = ({ ann }) => {
           </View>
           <View style={custom.info}>
             <Text style={custom.obs}>"{ann.observations[0]}"</Text>
+            <Text style={custom.bold}>
+              {ann.weight[0]}kg na média, de {convertAge(ann.ageRange[0])}
+            </Text>
           </View>
         </>
         {ann.category.length === 2 ? (
@@ -43,6 +46,9 @@ const CattleSummary = ({ ann }) => {
             </View>
             <View style={custom.info}>
               <Text style={custom.obs}>"{ann.observations[1]}"</Text>
+              <Text style={custom.bold}>
+                {ann.weight[1]}kg na média, de {convertAge(ann.ageRange[1])}
+              </Text>
             </View>
           </>
         ) : null}
@@ -74,6 +80,11 @@ const custom = StyleSheet.create({
   },
   obs: {
     fontStyle: 'italic',
+    marginBottom: 8,
+    fontSize: 14,
+  },
+  bold: {
+    fontWeight: 'bold',
     marginBottom: 8,
     fontSize: 14,
   },

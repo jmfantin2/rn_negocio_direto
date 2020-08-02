@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Button, Card, Chip, Paragraph, Title } from 'react-native-paper';
 import { colors } from 'general';
+import { process } from 'helpers/CattleUtility';
 import api from '../../services/ann';
 import currencyMask from '../../helpers/currencyMask';
 
@@ -55,7 +56,7 @@ const AnnouncementList = ({ navigation }) => {
               style={{ height: 120, margin: 12, borderRadius: 5 }}
               source={{
                 uri:
-                  item.picture?.originalUrl ||
+                  item.picture[0]?.originalUrl ||
                   'https://www.peta.org/wp-content/uploads/2017/07/iStock-502605347_emholk-1-668x336-1564757931.jpg?20190802025851',
               }}
             />
@@ -70,7 +71,7 @@ const AnnouncementList = ({ navigation }) => {
             >
               {item.category.map(({ name }) => (
                 <Chip key={name} style={{ marginRight: 8, marginBottom: 8 }}>
-                  {name}
+                  {process(name, 'category', 1).toUpperCase()}
                 </Chip>
               ))}
             </View>

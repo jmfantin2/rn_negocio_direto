@@ -47,6 +47,12 @@ export { OtherObservationsProvider };
 import AverageWeightProvider from './AverageWeight';
 export { AverageWeightProvider };
 
+import MainAgeRangeProvider from './MainAgeRange';
+export { MainAgeRangeProvider };
+
+import OtherAgeRangeProvider from './OtherAgeRange';
+export { OtherAgeRangeProvider };
+
 import PriceProvider from './Price';
 export { PriceProvider };
 
@@ -55,3 +61,9 @@ export { DaysActiveProvider };
 
 import LocationProvider from './Location';
 export { LocationProvider };
+
+import MainWeightProvider from './MainWeight';
+export { MainWeightProvider };
+
+import OtherWeightProvider from './OtherWeight';
+export { OtherWeightProvider };

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { TouchableOpacity, ActivityIndicator } from "react-native";
-import { useVideo } from "context/AnnouncementCreation/Video";
+import React, { useState } from 'react';
+import { TouchableOpacity, ActivityIndicator } from 'react-native';
+import { useVideo } from 'context/AnnouncementCreation/Video';
 
-import { Area, Message, CameraIcon, CheckIcon } from "./styles";
-import { colors } from "general";
+import { Area, Message, CameraIcon, CheckIcon } from './styles';
+import { colors } from 'general';
 
 export default function VideoUpload() {
   const { video, setVideo } = useVideo();
@@ -15,7 +15,7 @@ export default function VideoUpload() {
     setTimeout(() => {
       setLoading(false);
     }, 2222);
-    setVideo("some_url");
+    setVideo('some_url');
   }
 
   return (
@@ -23,7 +23,7 @@ export default function VideoUpload() {
       <Area>
         {loading ? (
           <>
-            <ActivityIndicator size="large" color={colors.oceanGreen} />
+            <ActivityIndicator size="large" color={colors.ruralGreen} />
             <Message> POR FAVOR AGUARDE </Message>
           </>
         ) : video ? (

@@ -7,7 +7,7 @@ const colors = {
   darker: '#333',
   black: '#000',
 
-  oceanGreen: '#075e54',
+  oceanGreen: '#28807c',
   businessGreen: '#004610',
   ruralGreen: '#52784f',
   businessBrown: '#421c07',

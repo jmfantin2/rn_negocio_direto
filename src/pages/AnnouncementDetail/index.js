@@ -51,7 +51,7 @@ export default function AnnouncementDetail({ navigation }) {
             <MiniPlayer
               media={{
                 video: videoTest,
-                image: announcement.picture.originalUrl,
+                image: announcement.picture[0].originalUrl,
               }}
             />
           ) : (
@@ -61,7 +61,7 @@ export default function AnnouncementDetail({ navigation }) {
       </Card>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.currentPrice ? (
+          {!!announcement.currentPrice ? (
             <PriceInteractor
               id={announcement.id}
               price={announcement.currentPrice}

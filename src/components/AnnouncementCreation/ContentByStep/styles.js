@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { colors } from "general";
+import styled from 'styled-components/native';
+import { colors } from 'general';
 
 export const SwitchContainer = styled.View`
   flex: 1;
@@ -8,7 +8,7 @@ export const SwitchContainer = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${colors.oceanGreen};
+  color: ${colors.ruralGreen};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
