@@ -70,3 +70,10 @@ export function prepare(term) {
       return term;
   }
 }
+
+export function convertAge(ageRange) {
+  return ageRange
+    .replace('M', ' mês(es)')
+    .replace('-', ' a ')
+    .replace('Y', ' ano(s)');
+}

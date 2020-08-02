@@ -4,7 +4,7 @@ import { Card } from 'react-native-paper';
 import { useVideo } from 'context/AnnouncementCreation/Video';
 import { useImage } from 'context/AnnouncementCreation/Image';
 
-import { sendImage } from 'helpers/MediaUtility';
+import { sendMedia } from 'helpers/MediaUtility';
 
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
@@ -30,6 +30,7 @@ export default function MediaUploader() {
   // /\ uncomment this (and setImgPreview in _pickImage)
   //if you want to preview the sent image (use a Image tag for it)
   const [sendingImage, setSendingImage] = useState(false);
+  const [sendingVideo, setSendingVideo] = useState(false);
 
   useEffect(() => {
     getPermissionAsync();
@@ -48,7 +49,7 @@ export default function MediaUploader() {
     setSendingImage(true);
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
@@ -73,7 +74,7 @@ export default function MediaUploader() {
       console.log('LOCAL IMAGE:', img);
 
       //setImgPreview(uri);
-      const payload = await sendImage(img);
+      const payload = await sendMedia(img);
       console.log('IMAGE PAYLOAD:', payload);
       setImage(payload);
     } catch (e) {
@@ -81,14 +82,51 @@ export default function MediaUploader() {
     }
   };
 
-  function handleVideoUpload() {
-    setVideo('some_url');
+  function handleVideo() {
+    setVideo('dumb_url_420_69');
   }
+
+  //JM-NOTE: consertar esse cara e tamo grande
+  const _pickVideo = async () => {
+    setSendingVideo(true);
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+        allowsEditing: false,
+        aspect: [4, 3],
+        quality: 1,
+      });
+
+      if (result.cancelled) return;
+
+      //console.log('RESULTADO', result);
+
+      const uri = result.uri;
+      const filename = uri.split('/').pop();
+
+      const match = /\.(\w+)$/.exec(filename);
+      const type = match ? `image/${match[1]}` : `image`;
+
+      const vid = {
+        uri,
+        filename,
+        type,
+      };
+
+      console.log('LOCAL VIDEO:', vid);
+
+      const payload = await sendMedia(vid);
+      console.log('VIDEO PAYLOAD:', payload);
+      setVideo(payload);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
       <View style={custom.bar}>
-        <TouchableOpacity onPress={() => handleVideoUpload()}>
+        <TouchableOpacity onPress={() => handleVideo()}>
           <Card style={custom.section}>
             <Card.Content
               style={{ alignItems: 'center', justifyContent: 'center' }}
@@ -98,6 +136,8 @@ export default function MediaUploader() {
                   <CheckIcon />
                   <Text style={custom.label}>VÍDEO</Text>
                 </>
+              ) : sendingVideo ? (
+                <ActivityIndicator size="large" color={colors.ruralGreen} />
               ) : (
                 <CameraIcon />
               )}
