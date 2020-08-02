@@ -23,6 +23,14 @@ const PriceInteractor = ({ id, price }) => {
       );
     }
 
+    console.log(
+      `https://taskforce-announcement-dev.herokuapp.com/api/v1/announcements/${id}/offer`
+    );
+
+    console.log({
+      offer: Number(bid),
+    });
+
     try {
       const response = await api.put(
         `https://taskforce-announcement-dev.herokuapp.com/api/v1/announcements/${id}/offer`,
@@ -33,12 +41,10 @@ const PriceInteractor = ({ id, price }) => {
 
       console.log(response.data);
 
-      Alert.alert(
-        'Obrigado',
-        `Proposta de ${bid} cobriu ${price} porrealizada com sucesso!`
-      );
-    } catch (e) {
-      console.log(e.message);
+      Alert.alert('Obrigado', `Proposta realizada com sucesso!`);
+    } catch (error) {
+      console.log(error.message);
+      console.log(error.response.data.message);
     }
 
     //api POST

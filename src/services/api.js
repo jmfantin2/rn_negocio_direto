@@ -1,16 +1,16 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { Alert } from "react-native";
+import { Alert } from 'react-native';
 
-import { getUser, navigate, deleteUser, postUser } from "../utils";
+import { getUser, navigate, deleteUser, postUser } from '../utils';
 
 const api = axios.create({
-  baseURL: "https://taskforce-security-dev.herokuapp.com/",
+  baseURL: 'https://taskforce-security-dev.herokuapp.com/',
   // baseURL: 'http://10.0.3.2:3000',
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   Accept: "application/json",
+  // },
 });
 
 api.interceptors.response.use(
@@ -27,12 +27,12 @@ api.interceptors.response.use(
 
     if (
       error.request._hasError === true &&
-      error.request._response.includes("connect")
+      error.request._response.includes('connect')
     ) {
       Alert.alert(
-        "Aviso",
-        "Não foi possível conectar aos nossos servidores, sem conexão a internet",
-        [{ text: "OK" }],
+        'Aviso',
+        'Não foi possível conectar aos nossos servidores, sem conexão a internet',
+        [{ text: 'OK' }],
         { cancelable: false }
       );
     }
@@ -43,7 +43,7 @@ api.interceptors.response.use(
       // O token JWT expirou
 
       deleteUser().then(() => {
-        navigate("AuthLoading", {});
+        navigate('AuthLoading', {});
       });
 
       return axios(requestConfig);

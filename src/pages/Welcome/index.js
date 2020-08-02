@@ -34,7 +34,7 @@ export default function Welcome(props) {
   const [errorMessage, setErrorMessage] = useState(null);
 
   async function saveUser(user) {
-    api.defaults.headers.common = { Authorization: `bearer ${user.token}` };
+    api.defaults.headers.authorization = `Bearer ${user.token}`;
 
     await AsyncStorage.setItem('@ListApp:userToken', JSON.stringify(user));
   }
