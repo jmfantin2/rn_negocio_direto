@@ -39,7 +39,7 @@ export default function Summary() {
   const { otherQuantity } = useOtherQuantity(); //READ
   const { otherObservations } = useOtherObservations(); //READ
 
-  const { state, city } = useLocation(); //READ
+  const { uf, city } = useLocation(); //READ
   const { averageWeight } = useAverageWeight(); //READ
   const { price } = usePrice(); //READ
 
@@ -100,14 +100,14 @@ export default function Summary() {
           Categoria não informada{'\n'}ou informações faltantes
         </Description>
       )}
-      {averageWeight && (dynamic || price) && state && city ? (
+      {(dynamic || price) && uf && city ? (
         <>
           <Label>Detalhes da venda</Label>
           <Description>
             {'Em ' +
               city +
               ' (' +
-              state +
+              uf +
               ')\n' +
               'Peso médio ' +
               averageWeight +

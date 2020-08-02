@@ -31,7 +31,7 @@ export default function LocationSelects() {
             paddingBottom: 6,
             paddingTop: 6,
           }}
-          onSelect={(data) => setUF(data.value)}
+          onSelect={(data) => [setUF(data.value), setCity('')]}
           dataSource={BRAZILIAN_STATES}
           textLabel={uf ? uf : 'Selecione um estado'}
           searchPlaceholder="Buscar"
@@ -39,23 +39,25 @@ export default function LocationSelects() {
           textColor="white"
           searchField="label"
         />
-        <AutoComplete
-          style={{
-            borderRadius: 50,
-            backgroundColor: city ? colors.ruralGreen : colors.meatRed,
-            paddingRight: 16,
-            paddingLeft: 16,
-            paddingBottom: 6,
-            paddingTop: 6,
-          }}
-          onSelect={(data) => setCity(data.value)}
-          dataSource={cityOptions}
-          textLabel={city ? city : 'Selecione um município'}
-          searchPlaceholder="Buscar"
-          cancelText="Fechar"
-          textColor="white"
-          searchField="label"
-        />
+        {uf ? (
+          <AutoComplete
+            style={{
+              borderRadius: 50,
+              backgroundColor: city ? colors.ruralGreen : colors.meatRed,
+              paddingRight: 16,
+              paddingLeft: 16,
+              paddingBottom: 6,
+              paddingTop: 6,
+            }}
+            onSelect={(data) => setCity(data.value)}
+            dataSource={cityOptions}
+            textLabel={city ? city : 'Selecione um município'}
+            searchPlaceholder="Buscar"
+            cancelText="Fechar"
+            textColor="white"
+            searchField="label"
+          />
+        ) : null}
       </View>
     </>
   );

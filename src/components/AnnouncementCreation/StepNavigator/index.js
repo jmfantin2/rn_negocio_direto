@@ -55,7 +55,7 @@ const StepNavigator = (props) => {
   const { otherQuantity } = useOtherQuantity(); //READ
   const { otherObservations } = useOtherObservations(); //READ
 
-  const { state, city } = useLocation(); //READ
+  const { uf, city } = useLocation(); //READ
   const { averageWeight } = useAverageWeight(); //READ
   const { price } = usePrice(); //READ
 
@@ -71,8 +71,7 @@ const StepNavigator = (props) => {
       mainBreed &&
       mainQuantity &&
       mainObservations &&
-      averageWeight &&
-      state &&
+      uf &&
       city &&
       (dynamic || price)
     ) {
@@ -101,7 +100,7 @@ const StepNavigator = (props) => {
         '\nOtherObservations: ' +
         otherObservations +
         '\nState: ' +
-        state +
+        uf +
         '\nCity: ' +
         city +
         '\nAverageWeight: ' +
@@ -139,7 +138,7 @@ const StepNavigator = (props) => {
       ann.picture.id = image.id;
       ann.picture.originalUrl = image.originalUrl;
 
-      ann.location = { city, state };
+      ann.location = { city, uf };
       const dates = makeDates(daysActive);
       // ann.createdDate = dates.createdDate;
       ann.endDate = dates.endDate;
