@@ -64,3 +64,6 @@ export { LocationProvider };
 
 import MainWeightProvider from './MainWeight';
 export { MainWeightProvider };
+
+import OtherWeightProvider from './OtherWeight';
+export { OtherWeightProvider };

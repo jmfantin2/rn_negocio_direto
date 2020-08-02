@@ -13,7 +13,7 @@ export const Container = styled.View`
 `;
 
 export const Label = styled.Text`
-  color: ${colors.businessGreen};
+  color: ${colors.darkCyan};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;

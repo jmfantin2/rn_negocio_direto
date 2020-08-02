@@ -3,16 +3,16 @@ import React, { createContext, useState, useContext } from 'react';
 const OtherAgeRangeContext = createContext();
 
 export default function OtherAgeRangeProvider({ children }) {
-  const [youngest, setYoungest] = useState({ num: '', unit: '' });
-  const [oldest, setOldest] = useState({ num: '', unit: '' });
+  const [youngest2, setYoungest2] = useState({ num: '1', unit: 'M' });
+  const [oldest2, setOldest2] = useState({ num: '1', unit: 'Y' });
 
   return (
     <OtherAgeRangeContext.Provider
       value={{
-        youngest,
-        setYoungest,
-        oldest,
-        setOldest,
+        youngest2,
+        setYoungest2,
+        oldest2,
+        setOldest2,
       }}
     >
       {children}
@@ -26,6 +26,6 @@ export function useOtherAgeRange() {
     throw new Error(
       'useOtherAgeRange must be used within a OtherAgeRangeProvider'
     );
-  const { youngest, setYoungest, oldest, setOldest } = context;
-  return { youngest, setYoungest, oldest, setOldest };
+  const { youngest2, setYoungest2, oldest2, setOldest2 } = context;
+  return { youngest2, setYoungest2, oldest2, setOldest2 };
 }

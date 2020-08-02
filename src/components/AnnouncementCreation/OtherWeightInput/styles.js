@@ -7,12 +7,13 @@ const screenW = Dimensions.get('window').width;
 export const Container = styled.View`
   flex-direction: row;
   flex: 1;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 18px 0px 0px 0px;
   align-items: center;
 `;
 
 export const Label = styled.Text`
-  color: ${colors.darkCyan};
+  color: ${colors.businessGreen};
   font-size: 18px;
   font-weight: bold;
   margin: 0px 0px 2px 0px;
@@ -20,7 +21,7 @@ export const Label = styled.Text`
 
 export const Input = styled.TextInput`
   padding: 3px 0px 3px 0px;
-  background-color: ${colors.noticeBlue};
+  background-color: ${colors.oceanGreen};
   text-align: center;
   font-size: 16px;
   color: ${colors.white};
