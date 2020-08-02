@@ -130,14 +130,10 @@ const StepNavigator = (props) => {
           state: '',
         },
         weight: [],
-        picture: {
-          id: '',
-          originalUrl: '',
-        },
+        picture: [],
       };
 
-      ann.picture.id = image.id;
-      ann.picture.originalUrl = image.originalUrl;
+      ann.picture.push({ id: image.id, originalUrl: image.originalUrl });
 
       ann.location = { city, state };
       const dates = makeDates(daysActive);
