@@ -21,6 +21,7 @@ import {
   LocationSelects,
   MainAgeRangeSelector,
   OtherAgeRangeSelector,
+  MainWeightInput,
 } from 'components/AnnouncementCreation';
 
 import { useStep } from 'context/AnnouncementCreation/Step';
@@ -44,7 +45,7 @@ export default function ContentByStep() {
       ) : step === 3 ? (
         <>
           <MainAgeRangeSelector />
-          <Text>MainAgeRange</Text>
+          <MainWeightInput />
         </>
       ) : step === 4 ? (
         <>

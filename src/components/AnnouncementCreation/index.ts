@@ -76,3 +76,6 @@ export { LocationSelects };
 
 import MainAgeRangeSelector from './MainAgeRangeSelector';
 export { MainAgeRangeSelector };
+
+import MainWeightInput from './MainWeightInput';
+export { MainWeightInput };

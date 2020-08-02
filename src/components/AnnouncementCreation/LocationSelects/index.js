@@ -27,7 +27,7 @@ export default function LocationSelects() {
         <AutoComplete
           style={{
             borderRadius: 50,
-            backgroundColor: uf ? colors.ruralGreen : colors.meatRed,
+            backgroundColor: uf ? colors.ruralGreen : colors.noticeBlue,
             paddingRight: 16,
             paddingLeft: 16,
             paddingBottom: 6,
@@ -45,7 +45,7 @@ export default function LocationSelects() {
           <AutoComplete
             style={{
               borderRadius: 50,
-              backgroundColor: city ? colors.ruralGreen : colors.meatRed,
+              backgroundColor: city ? colors.ruralGreen : colors.noticeBlue,
               paddingRight: 16,
               paddingLeft: 16,
               paddingBottom: 6,

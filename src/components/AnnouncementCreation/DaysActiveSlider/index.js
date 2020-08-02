@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider } from 'react-native';
+import { Slider, View } from 'react-native';
 import { SwitchContainer, Label } from './styles';
 import { colors } from 'general';
 
@@ -11,7 +11,7 @@ export default function DaysActiveSlider() {
   const { daysActive, setDaysActive } = useDaysActive();
 
   return (
-    <SwitchContainer>
+    <View style={{ marginTop: 24, alignItems: 'center' }}>
       <Label>Dias em Anúncio</Label>
       <Slider
         minimumTrackTintColor={colors.noticeBlue}
@@ -27,6 +27,6 @@ export default function DaysActiveSlider() {
       <Label style={{ color: colors.noticeBlue }}>
         {daysActive.toString()}
       </Label>
-    </SwitchContainer>
+    </View>
   );
 }

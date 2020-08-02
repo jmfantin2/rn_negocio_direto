@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Switch, TouchableOpacity, Alert } from 'react-native';
+import { Switch, TouchableOpacity, Alert, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { SwitchContainer, Label, Description } from './styles';
 import { AntDesign } from '@expo/vector-icons';
@@ -25,7 +25,7 @@ export default function DynamicSwitch() {
   }, [dynamic]);
 
   return (
-    <SwitchContainer>
+    <View style={{ alignItems: 'center' }}>
       <Button
         style={{
           backgroundColor: colors.noticeBlue,
@@ -52,6 +52,6 @@ export default function DynamicSwitch() {
       >
         <AntDesign name="questioncircleo" size={22} color={colors.noticeBlue} />
       </TouchableOpacity>
-    </SwitchContainer>
+    </View>
   );
 }

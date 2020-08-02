@@ -50,6 +50,7 @@ export default function MainAgeRangeSelector() {
           placeholder={'   '}
           maxLength={2}
           keyboardType={'numeric'}
+          style={youngest.num ? { backgroundColor: colors.ruralGreen } : null}
         />
 
         <TouchableOpacity onPress={() => toggleUnit('young')}>
@@ -78,6 +79,7 @@ export default function MainAgeRangeSelector() {
           placeholder={'   '}
           maxLength={2}
           keyboardType={'numeric'}
+          style={oldest.num ? { backgroundColor: colors.ruralGreen } : null}
         />
 
         <TouchableOpacity onPress={() => toggleUnit('old')}>
@@ -102,6 +104,6 @@ export default function MainAgeRangeSelector() {
 const custom = StyleSheet.create({
   chip: {
     alignItems: 'center',
-    backgroundColor: colors.noticeBlue,
+    backgroundColor: colors.ruralGreen,
   },
 });

@@ -61,3 +61,6 @@ export { DaysActiveProvider };
 
 import LocationProvider from './Location';
 export { LocationProvider };
+
+import MainWeightProvider from './MainWeight';
+export { MainWeightProvider };

@@ -19,6 +19,7 @@ import {
   LocationProvider,
   MainAgeRangeProvider,
   OtherAgeRangeProvider,
+  MainWeightProvider,
 } from 'context/AnnouncementCreation';
 
 export default function ContextWrapper({ children }) {
@@ -32,23 +33,25 @@ export default function ContextWrapper({ children }) {
                 <MainBreedProvider>
                   <MainQuantityProvider>
                     <MainAgeRangeProvider>
-                      <MainObservationsProvider>
-                        <OtherBreedProvider>
-                          <OtherQuantityProvider>
-                            <OtherAgeRangeProvider>
-                              <OtherObservationsProvider>
-                                <LocationProvider>
-                                  <AverageWeightProvider>
-                                    <PriceProvider>
-                                      <StepProvider>{children}</StepProvider>
-                                    </PriceProvider>
-                                  </AverageWeightProvider>
-                                </LocationProvider>
-                              </OtherObservationsProvider>
-                            </OtherAgeRangeProvider>
-                          </OtherQuantityProvider>
-                        </OtherBreedProvider>
-                      </MainObservationsProvider>
+                      <MainWeightProvider>
+                        <MainObservationsProvider>
+                          <OtherBreedProvider>
+                            <OtherQuantityProvider>
+                              <OtherAgeRangeProvider>
+                                <OtherObservationsProvider>
+                                  <LocationProvider>
+                                    <AverageWeightProvider>
+                                      <PriceProvider>
+                                        <StepProvider>{children}</StepProvider>
+                                      </PriceProvider>
+                                    </AverageWeightProvider>
+                                  </LocationProvider>
+                                </OtherObservationsProvider>
+                              </OtherAgeRangeProvider>
+                            </OtherQuantityProvider>
+                          </OtherBreedProvider>
+                        </MainObservationsProvider>
+                      </MainWeightProvider>
                     </MainAgeRangeProvider>
                   </MainQuantityProvider>
                 </MainBreedProvider>
