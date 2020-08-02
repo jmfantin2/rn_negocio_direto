@@ -4,7 +4,6 @@ import {
   ContextWrapper,
   Canvas,
   Container,
-  Optional,
   ContentByStep,
   StepNavigator,
   MediaUploader,

@@ -23,12 +23,12 @@ export default function ContextWrapper({ children }) {
   return (
     <VideoProvider>
       <ImageProvider>
-        <DynamicProvider>
-          <MainCategoryProvider>
-            <MainBreedProvider>
-              <MainQuantityProvider>
-                <MainObservationsProvider>
-                  <OtherCategoryProvider>
+        <OtherCategoryProvider>
+          <DynamicProvider>
+            <MainCategoryProvider>
+              <MainBreedProvider>
+                <MainQuantityProvider>
+                  <MainObservationsProvider>
                     <OtherBreedProvider>
                       <OtherQuantityProvider>
                         <OtherObservationsProvider>
@@ -44,12 +44,12 @@ export default function ContextWrapper({ children }) {
                         </OtherObservationsProvider>
                       </OtherQuantityProvider>
                     </OtherBreedProvider>
-                  </OtherCategoryProvider>
-                </MainObservationsProvider>
-              </MainQuantityProvider>
-            </MainBreedProvider>
-          </MainCategoryProvider>
-        </DynamicProvider>
+                  </MainObservationsProvider>
+                </MainQuantityProvider>
+              </MainBreedProvider>
+            </MainCategoryProvider>
+          </DynamicProvider>
+        </OtherCategoryProvider>
       </ImageProvider>
     </VideoProvider>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, TouchableOpacity, Alert } from 'react-native';
 import { Button } from 'react-native-paper';
 import { SwitchContainer, Label, Description } from './styles';
@@ -7,9 +7,17 @@ import { AntDesign } from '@expo/vector-icons';
 import { colors } from 'general';
 
 import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
+import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
 
 export default function DynamicSwitch() {
+  const { setOtherCategory } = useOtherCategory(); //WRITE
   const { dynamic, toggle } = useDynamic();
+
+  useEffect(() => {
+    setOtherCategory(null);
+    //invalids second animal info, for safety
+    //(submit won't accept it if null)
+  }, [dynamic]);
 
   return (
     <SwitchContainer>

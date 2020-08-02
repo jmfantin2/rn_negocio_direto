@@ -3,12 +3,19 @@ import { View, StyleSheet } from 'react-native';
 import AutoComplete from 'react-native-autocomplete-modal';
 
 import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
+import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
 
 import { colors, strings } from 'general';
 
 export default function MainCategorySelect() {
-  const { mainCategory, setMainCategory } = useMainCategory();
-  const [loading, setLoading] = useState(true);
+  const { setOtherCategory } = useOtherCategory(); //WRITE
+  const { mainCategory, setMainCategory } = useMainCategory(); //WRITE
+
+  useEffect(() => {
+    setOtherCategory(null);
+    //invalids second animal info, for safety
+    //(submit won't accept it if null)
+  }, [mainCategory]);
 
   return (
     <View style={{ justifyContent: 'center', alignItems: 'center' }}>

@@ -1,29 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import AutoComplete from 'react-native-autocomplete-modal';
 
 import { useMainCategory } from 'context/AnnouncementCreation/MainCategory';
-import { useDynamic } from 'context/AnnouncementCreation/Dynamic';
 import { useOtherCategory } from 'context/AnnouncementCreation/OtherCategory';
 
 import { colors } from 'general';
 
 export default function OtherCategorySelect() {
   const { mainCategory } = useMainCategory(); // READ
-  const { dynamic } = useDynamic(); // READ
   const { otherCategory, setOtherCategory } = useOtherCategory(); // READ
-
-  // Triggered everytime mainCategory changes
-  useEffect(() => {
-    if (
-      dynamic ||
-      mainCategory === 'TOURO' ||
-      mainCategory === 'VACA INVERNAR' ||
-      mainCategory === null
-    ) {
-      setOtherCategory(null);
-    }
-  }, [mainCategory, dynamic]);
 
   return (
     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
