@@ -61,7 +61,7 @@ export default function AnnouncementDetail({ navigation }) {
       </Card>
       <Card style={[custom.el, custom.card]}>
         <Card.Content>
-          {announcement.currentPrice ? (
+          {announcement.currentPrice !== null ? (
             <PriceInteractor price={announcement.currentPrice} />
           ) : (
             <ActivityIndicator size="large" color={colors.noticeBlue} />
