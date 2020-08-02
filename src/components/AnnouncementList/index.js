@@ -48,7 +48,7 @@ const AnnouncementList = ({ navigation }) => {
               navigation.navigate('AnnouncementDetail', { id: item.id })
             }
           >
-            {item.picture[0] ? (
+            {item.picture ? (
               <Card.Cover
                 style={{ height: 120, margin: 12, borderRadius: 5 }}
                 source={{
